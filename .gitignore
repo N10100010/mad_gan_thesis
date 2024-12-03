@@ -168,3 +168,6 @@ cython_debug/
 # MAC SPECIFIC 
 .DS_Store
 
+
+# Environments
+code/*env
