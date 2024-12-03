@@ -161,8 +161,12 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
+##########
 # PROJECT SPECIFIC
 **/models/*
+code/
+
 
 # MAC SPECIFIC 
 .DS_Store
+
