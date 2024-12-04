@@ -1,3 +1,6 @@
+from typing import Dict, List
+import tensorflow as tf 
+
 class MADGAN(tf.keras.Model):
     """
     Multi-Agent Diverse Generative Adversarial Network (MADGAN)
@@ -15,7 +18,7 @@ class MADGAN(tf.keras.Model):
     n_gen : int
         The number of generator models.
     """
-    def __init__(self, discriminator: tf.keras.Model, generators: list[tf.keras.Model], latent_dim: int, n_gen: int) -> None:
+    def __init__(self, discriminator: tf.keras.Model, generators: List[tf.keras.Model], latent_dim: int, n_gen: int) -> None:
         """
         Initialize the MADGAN model.
 
@@ -71,7 +74,7 @@ class MADGAN(tf.keras.Model):
         self.d_loss_fn = d_loss_fn
         self.g_loss_fn = g_loss_fn
 
-    def train_step(self, data: tf.Tensor) -> dict[str, tf.Tensor]:
+    def train_step(self, data: tf.Tensor) -> Dict[str, tf.Tensor]:
         """
         A single training iteration for the MADGAN model.
 

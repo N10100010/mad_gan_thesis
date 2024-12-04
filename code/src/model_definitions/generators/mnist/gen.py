@@ -1,7 +1,10 @@
+from typing import List
+
 import tensorflow as tf
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, Dense, Reshape, Conv2DTranspose, BatchNormalization, LeakyReLU
-def define_generators(n_gen: int, latent_dim: int, class_labels: list) -> list[Model]:
+
+def define_generators(n_gen: int, latent_dim: int, class_labels: list) -> List[Model]:
     """
     Defines a number of generator models for a GAN.
 

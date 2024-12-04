@@ -1,7 +1,9 @@
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, Conv2D, LeakyReLU, Flatten, Dense, Dropout
 # define the standalone discriminator model
-def define_discriminator(n_gen: int):
+def define_discriminator(
+    n_gen: int
+) -> Model:
     """
     Defines the standalone discriminator model.
 

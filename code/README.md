@@ -9,3 +9,6 @@ The file: [setup_env.sh](./setup_env.yml) serves as an entry point and will crea
 
 ### MAC
 - python version: 3.8.18
+
+
+https://www.youtube.com/watch?v=b9TDftBlfi0

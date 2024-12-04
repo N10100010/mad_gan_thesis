@@ -1,5 +1,8 @@
-form pathlib import Path
+from pathlib import Path
 import matplotlib.pyplot as plt
+
+from PIL import Image
+import os
 
 def plot_training_history(history, save: bool = True, path: str = None, display: bool = False):
     """
@@ -104,3 +107,16 @@ def plot_generated_images(
         plt.savefig(f'{dir_name}/image_at_epoch_{(epoch + 1):04}.png', dpi=200, format="png")
     if show: 
         plt.show()
+
+
+# Function to create a GIF from a list of image paths
+def create_gif(image_folder, output_gif, duration=500):
+    image_files = sorted([os.path.join(image_folder, file) for file in os.listdir(image_folder) if file.endswith('.png')])
+
+    frames = []
+    for image_name in image_files:
+        img = Image.open(image_name)
+        frames.append(img)
+
+    # Save the frames as an animated GIF
+    frames[0].save(output_gif, format='GIF', append_images=frames[1:], save_all=True, duration=duration, loop=0)
