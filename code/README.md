@@ -1,6 +1,5 @@
 # TODO 
-Code has been copied, commented and sorted into folders. 
-OPEN: create a runner script, add __init__.py's and test the execution on MNIST.
+test the execution on MNIST using the run.py
 
 # Notes 
 
