@@ -2,6 +2,7 @@ from typing import List
 
 from tensorflow_probability import distributions as tfd
 import tensorflow_probability as tfp
+import tensorflow as tf
 
 
 # generate points in latent space as input for the generator

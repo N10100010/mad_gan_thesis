@@ -1,8 +1,10 @@
-from pathlib import Path
+import os
+
+import numpy as np 
 import matplotlib.pyplot as plt
 
+from pathlib import Path
 from PIL import Image
-import os
 
 def plot_training_history(history, save: bool = True, path: str = None, display: bool = False):
     """
@@ -63,7 +65,7 @@ def plot_training_history(history, save: bool = True, path: str = None, display:
         
         plt.savefig(f'{dir_name}/training_history.png', dpi=200, format="png")
         
-def plot_generated_images(
+def plot_generators_examples(
     n_rows: int, 
     n_cols: int, 
     random_latent_vectors: list, 

@@ -1,5 +1,8 @@
 import tensorflow as tf
-from src.utils.plotting import plot_generators_examples
+import numpy as np
+
+from utils.plotting import plot_generators_examples
+
 class GANMonitor(tf.keras.callbacks.Callback):
     def __init__(self, 
                  random_latent_vectors: list, 

@@ -3,15 +3,25 @@ import os
 import imageio
 import glob
 
+import numpy as np 
+
+
+
 import tensorflow as tf
 
-from datasets.mnist import get_dataset
 
+from monitors.generator import GANMonitor
 from model_definitions.mad_gan.mnist import MADGAN 
-from model_definitions.discriminators.mnist.disc import define_discriminator 
 from model_definitions.generators.mnist.gen import define_generators
+from model_definitions.discriminators.mnist.disc import define_discriminator
 
 from loss_functions.generator import generators_loss_function
+from latent_points.mnist import generate_latent_points
+from datasets.mnist import dataset_func, get_dataset
+
+def Generators_loss_function(y_true, y_pred): 
+    logarithm = -tf.math.log(y_pred[:,-1] + 1e-15)
+    return tf.reduce_mean(logarithm, axis=-1)
 
 
 def func():
@@ -42,44 +52,29 @@ def func():
         print("Using a CPU")
         
     print("Loading dataset")
-    dataset, labels = get_dataset(n_gen, batch_size, size_dataset)
-    unique_labels = np.unique(labels)
-    print("Dataset loaded")
+    data, unique_labels = dataset_func() 
+    dataset = tf.data.Dataset.from_tensor_slices(data) 
+    dataset = dataset.repeat().shuffle(10 * size_dataset, reshuffle_each_iteration=True).batch(n_gen * batch_size, drop_remainder=True)
+
+    discriminator = define_discriminator(n_gen)
+    print(discriminator.summary())
+    generators = define_generators(n_gen, latent_dim, class_labels=unique_labels)
+    print(generators[0].summary())
     
-    print("Defining generator loss")
-    generator_loss = generators_loss_function()
-    print("Generator loss defined")
+    # creating MADGAN
+    madgan = MADGAN(discriminator = discriminator, generators = generators, 
+                latent_dim = latent_dim, n_gen = n_gen)
     
-    print("Defining discriminator")
-    discriminator = define_discriminators(n_gen)
-    print("Discriminator defined")
-    
-    print("Defining generators")
-    generators = define_generators(n_gen,latent_dim, class_labels = unique_labels)
-    print("Generators defined")
-    
-    print("Defining MADGAN")
-    madgan = MADGAN(discriminator, generators, latent_dim, n_gen)
-    print("MADGAN defined")
-    
-    print("Compiling MADGAN")
     madgan.compile(
-        d_optimizer=tf.keras.optimizers.Adam(learning_rate=0.0002, beta_1=0.5),
-        g_optimizer=tf.keras.optimizers.Adam(learning_rate=0.0002, beta_1=0.5),
-        d_loss_fn=tf.keras.losses.BinaryCrossentropy(),
-        g_loss_fn=generator_loss
-    )
-    print("MADGAN compiled")
+        d_optimizer = tf.optimizers.Adam(learning_rate=2e-4, beta_1=0.5),
+        g_optimizer = [tf.optimizers.Adam(learning_rate=1e-4, beta_1=0.5) for g in range(n_gen)],
+        d_loss_fn = tf.keras.losses.CategoricalCrossentropy(),
+        g_loss_fn = Generators_loss_function
+    )   
     
-    print("Defining checkpoint filepath")
+    
     checkpoint_filepath = f'{dir_name}\checkpoint.weights.h5'
-    print("Checkpoint filepath defined")
-    
-    print("Generating random latent vectors")
     random_latent_vectors = generate_latent_points(latent_dim = latent_dim, batch_size = 11, n_gen = n_gen)
-    print("Random latent vectors generated")
-    
-    print("Defining callbacks")
     my_callbacks = [
         GANMonitor(
             random_latent_vectors=random_latent_vectors, 
@@ -89,13 +84,11 @@ def func():
             dir_name = dir_name, 
         ),    
         # This callback is for Saving the model
-        tf.keras.callbacks.ModelCheckpoint(filepath = checkpoint_filepath , save_freq = 1 , save_weights_only = True),
+        tf.keras.callbacks.ModelCheckpoint(filepath = checkpoint_filepath , save_freq = 10 , save_weights_only = True),
     ]
-    print("Callbacks defined")
+    history = madgan.fit(dataset, epochs = 2, steps_per_epoch = steps_per_epoch, verbose = 1, callbacks = my_callbacks)    
     
-    print("Training MADGAN")
-    history = madgan.fit(dataset, epochs = 2, steps_per_epoch = steps_per_epoch, verbose = 1, callbacks = my_callbacks)
-    print("MADGAN trained")
+    
 
 if __name__ == '__main__':
     

@@ -4,10 +4,10 @@ test the execution on MNIST using the run.py
 # Notes 
 
 ## Conda Environment 
-The file: [setup_env.sh](./setup_env.yml) serves as an entry point and will create a Anaconda environment - _python3.8.18_ - containing the mandatory packages to run the project.
+```conda env create -f environment.yml```
 
-### MAC
-- python version: 3.8.18
+to create a conda venv called `local_thesis_conda`
+
 
 
 https://www.youtube.com/watch?v=b9TDftBlfi0
