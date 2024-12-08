@@ -51,7 +51,6 @@ def func():
     else:
         print("Using a CPU")
         
-    print("Loading dataset")
     data, unique_labels = dataset_func() 
     dataset = tf.data.Dataset.from_tensor_slices(data) 
     dataset = dataset.repeat().shuffle(10 * size_dataset, reshuffle_each_iteration=True).batch(n_gen * batch_size, drop_remainder=True)
