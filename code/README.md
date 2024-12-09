@@ -1,5 +1,6 @@
 # TODO 
-test the execution on MNIST using the run.py
+- test the execution on MNIST the experiments base class 
+- ensure that the logger works as intended 
 
 # Notes 
 

@@ -1,5 +1,7 @@
-# experiments/base_experiment.py
+import tensorflow as tf
+
 from abc import ABC, abstractmethod
+from utils import setup_logger
 
 class BaseExperiment(ABC):
     """
@@ -8,14 +10,19 @@ class BaseExperiment(ABC):
     Provides a basic structure for defining how an experiment should be run and
     how the results should be saved.
     """
+    
+    def __init__(self, name: str):
+        logger = setup_logger(name = "")
+        self._setup()
 
     def run(self):
+        logger.info(f"Running experiment {self.name}...")
         self._check_gpu()
         self._load_data()
         self._initialize_models()
         self._run()
         self._save_results()
-        print("Experiment completed.")
+        logger.info(f"Experiment {self.name} completed.")
 
     @abstractmethod
     def _run(self):
@@ -26,7 +33,18 @@ class BaseExperiment(ABC):
         is run.
         """
         pass
+    
+    @abstractmethod
+    def _setup(self):
+        """
+        Define how the experiment should be set up.
 
+        This method should be overridden by subclasses to define how the
+        experiment should be set up before running the experiment.
+        """
+        pass
+        
+        
     @abstractmethod
     def _save_results(self):
         """
@@ -59,9 +77,9 @@ class BaseExperiment(ABC):
 
 
     def _check_gpu(self):
-        print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
+        logger.debug("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
         if tf.test.gpu_device_name() == '/device:GPU:0':
-            print("Using a GPU")
+            logger.info("Using a GPU")
         else:
-            print("Using a CPU")
+            logger.info("Using a CPU")
             
