@@ -3,6 +3,10 @@ import os
 
 def setup_logger(name: str, log_file: str = "experiment.log", level=logging.INFO):
     """Sets up a logger with a file and console handler."""
+    
+    if name is None: 
+        name = __name__ 
+    
     formatter = logging.Formatter(
         "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
     )
