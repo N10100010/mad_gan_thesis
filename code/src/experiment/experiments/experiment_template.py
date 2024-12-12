@@ -1,12 +1,16 @@
 from experiment import BaseExperiment
 from experiment.base_experiment import call_super
 
-class MNISTExperiment(BaseExperiment): 
+class TemplateExperiment(BaseExperiment): 
     """Test implementation of the BaseExperiments class
 
     Args:
         BaseExperiment (_type_): _description_
     """
+    
+    @call_super
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
     @call_super
     def _run(self):
         pass
@@ -18,7 +22,7 @@ class MNISTExperiment(BaseExperiment):
         pass
     @call_super
     def _initialize_models(self):
-        pass
+        
     @call_super
     def _save_results(self):
         pass

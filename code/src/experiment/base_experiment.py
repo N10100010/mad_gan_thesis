@@ -1,22 +1,34 @@
 # Set environment variable to reduce TF logging to warning level
 import os
+from abc import ABC, ABCMeta, abstractmethod
+
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 import tensorflow as tf
 from abc import ABC, abstractmethod
 from utils import setup_logger
 
-def call_super(func):
-    def wrapper(self, *args, **kwargs):
-        # Call the base class method
-        base_method = getattr(super(type(self), self), func.__name__, None)
-        if base_method:
-            base_method(*args, **kwargs)
-        # Call the overridden method
-        return func(self, *args, **kwargs)
-    return wrapper
+class AutoSuperMeta(ABCMeta):
+    def __new__(cls, name, bases, dct):
+        for attr_name, attr_value in dct.items():
+            if callable(attr_value) and attr_name not in ('__init__',):
+                original_method = attr_value
 
-class BaseExperiment(ABC):
+                # Use a closure to capture the method and attribute name
+                def make_wrapper(original_method, attr_name):
+                    def wrapper(self, *args, **kwargs):
+                        # Call the base class method if it exists
+                        for base in bases:
+                            if hasattr(base, attr_name):
+                                getattr(super(type(self), self), attr_name)(*args, **kwargs)
+                        # Call the current method
+                        return original_method(self, *args, **kwargs)
+                    return wrapper
+
+                dct[attr_name] = make_wrapper(original_method, attr_name)
+        return super().__new__(cls, name, bases, dct)
+
+class BaseExperiment(ABC, metaclass=AutoSuperMeta):
     """
     Abstract base class for running experiments.
 
@@ -30,13 +42,13 @@ class BaseExperiment(ABC):
         self._setup()
 
     def run(self):
-        self.logger.info(f"Running experiment {self.name}...")
+        self.logger.info(f"################# Running experiment {self.name}...")
         self._check_gpu()
         self._load_data()
         self._initialize_models()
         self._run()
         self._save_results()
-        self.logger.info(f"Experiment {self.name} completed.")
+        self.logger.info(f"################# Experiment {self.name} completed.")
 
     @abstractmethod
     def _run(self):
@@ -46,7 +58,7 @@ class BaseExperiment(ABC):
         This method should contain the code that is executed when the experiment
         is run.
         """
-        self.logger.info("Running")
+        self.logger.info("################# Running")
         pass
     
     @abstractmethod
@@ -57,7 +69,7 @@ class BaseExperiment(ABC):
         This method should be overridden by subclasses to define how the
         experiment should be set up before running the experiment.
         """
-        self.logger.info("Setup")
+        self.logger.info("################# Setup")
         pass
         
         
@@ -70,7 +82,7 @@ class BaseExperiment(ABC):
         of the experiment should be saved. This may include saving model weights,
         training history, results of statistical tests, etc.
         """
-        self.logger.info("Saving results")
+        self.logger.info("################# Saving results")
         pass
     
     @abstractmethod
@@ -81,7 +93,7 @@ class BaseExperiment(ABC):
         This method should be overridden by subclasses to define how the data
         should be loaded for the experiment.
         """
-        self.logger.info("Loading data")
+        self.logger.info("################# Loading data")
         pass
     
     @abstractmethod
@@ -92,7 +104,7 @@ class BaseExperiment(ABC):
         This method should be overridden by subclasses to define how the models
         should be initialized for the experiment.
         """
-        self.logger.info("INitializing Models")
+        self.logger.info("################# Initializing Models")
         pass
 
 
@@ -100,7 +112,7 @@ class BaseExperiment(ABC):
     def _check_gpu(self):
         self.logger.debug("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
         if tf.test.gpu_device_name() == '/device:GPU:0':
-            self.logger.info("Using a GPU")
+            self.logger.info("################# Using a GPU")
         else:
-            self.logger.info("Using a CPU")
+            self.logger.info("################# Using a CPU")
             
