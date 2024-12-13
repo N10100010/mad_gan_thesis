@@ -1,14 +1,29 @@
-# Set environment variable to reduce TF logging to warning level
+from datetime import datetime
+from pathlib import Path
+import tensorflow as tf
 import os
 from abc import ABC, ABCMeta, abstractmethod
-
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-
-import tensorflow as tf
-from abc import ABC, abstractmethod
 from utils import setup_logger
 
+# Set environment variable to reduce TF logging to warning level
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
+
 class AutoSuperMeta(ABCMeta):
+    """
+    Wrapper to automatically add super() calls to methods. As of now, this is solely for ease of logging.
+    However, this functionality can be used for greater benefits. 
+    
+    Scenario: Writing into a directory 
+        The base method could ensure, that the directory exists before writing into it.
+        This could be achived by calling super().write(), 
+        BUT it would require to explicitly mention the super call.
+    
+    Adjusting the super-classes __new__ method and explicitly calling the super method 
+    AND then calling the sub-classes method achieves this behaviour automatically.    
+    
+    QUESTION: Indirections could be an interesting point here, that may loose some performance.
+    """
     def __new__(cls, name, bases, dct):
         for attr_name, attr_value in dct.items():
             if callable(attr_value) and attr_name not in ('__init__',):
@@ -33,22 +48,26 @@ class BaseExperiment(ABC, metaclass=AutoSuperMeta):
     Abstract base class for running experiments.
 
     Provides a basic structure for defining how an experiment should be run and
-    how the results should be saved.
+    how the results should be saved, etc.
     """
     
-    def __init__(self, name: str):
+    def __init__(self, name: str, experiments_base_path: str = "/experiments", experiment_suffix: str = ""):
         self.name = name
         self.logger = setup_logger(name = name)
         self._setup()
 
     def run(self):
-        self.logger.info(f"################# Running experiment {self.name}...")
-        self._check_gpu()
-        self._load_data()
-        self._initialize_models()
-        self._run()
-        self._save_results()
-        self.logger.info(f"################# Experiment {self.name} completed.")
+        try: 
+            self.logger.info(f"################# Running experiment {self.name}...")
+            self.dir_path = self._create_experiment_directory()
+            self._check_gpu()
+            self._load_data()
+            self._initialize_models()
+            self._run()
+            self._save_results()
+            self.logger.info(f"################# Experiment {self.name} completed.")
+        except Exception as e:
+            self.logger.error(f"Error running experiment {self.name}: {e}")
 
     @abstractmethod
     def _run(self):
@@ -110,9 +129,48 @@ class BaseExperiment(ABC, metaclass=AutoSuperMeta):
 
 
     def _check_gpu(self):
+        """
+        Check if a GPU is available and log whether a GPU or CPU is being used.
+        """
         self.logger.debug("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
         if tf.test.gpu_device_name() == '/device:GPU:0':
             self.logger.info("################# Using a GPU")
         else:
             self.logger.info("################# Using a CPU")
+
+            
+    def _create_experiment_directory(self):
+        """
+        Creates a directory for the experiment based on the current date, experiment name,
+        and an optional experiment suffix.
+
+        The directory is created under the specified base path for experiments. If the directory
+        already exists, it will not be recreated. A log entry is created to indicate the directory
+        path.
+
+        Returns:
+            Path: The path to the created experiment directory.
+        """
+
+        current_date = datetime.now().strftime("%Y-%m-%d")
+        dir_name = Path(self.experiments_base_path) / f"{current_date}_{self.name}{'_' + self.experiment_suffix if self.experiment_suffix else ''}"
+        dir_name.mkdir(parents=True, exist_ok=True)
+        
+        self.logger.info(f"################# Experiment directory: {dir_name}")
+        return dir_name
+    
+    def _create_metadata_file(self):
+        """
+        Creates a metadata file for the experiment based on the current date, experiment name,
+        and an optional experiment suffix.
+
+        The metadata file is created under the specified base path for experiments. If the file
+        already exists, it will not be overwritten. A log entry is created to indicate the file
+        path.
+
+        Returns:    
+            Path: The path to the created metadata file.
+        """
+        # self.meta
+        pass
             

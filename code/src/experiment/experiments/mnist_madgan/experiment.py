@@ -20,7 +20,7 @@ class MNIST_MADGAN_Experiment(BaseExperiment):
     latent_dim: int = 256
     size_dataset: int = 60_000
     batch_size: int = 256    
-    epochs: int = 100   
+    epochs: int = 3    
     
     # @call_super
     def __init__(self, *args, **kwargs):
