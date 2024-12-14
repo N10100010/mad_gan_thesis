@@ -165,7 +165,7 @@ cython_debug/
 # PROJECT SPECIFIC
 **/models/*
 
-# MAC SPECIFIC 
+# MAC SPECIFIC
 .DS_Store
 
 

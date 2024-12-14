@@ -1,15 +1,12 @@
-from typing import List 
+from typing import List
 
-from tensorflow_probability import distributions as tfd
-import tensorflow_probability as tfp
 import tensorflow as tf
+from tensorflow_probability import distributions as tfd
 
 
 # generate points in latent space as input for the generator
 def generate_latent_points(
-    latent_dim: int,
-    batch_size: int,
-    n_gen: int
+    latent_dim: int, batch_size: int, n_gen: int
 ) -> List[tf.Tensor]:
     """
     Generate points in latent space as input for the generator.
@@ -30,8 +27,8 @@ def generate_latent_points(
     """
     # Multivariate normal diagonal distribution
     mvn = tfd.MultivariateNormalDiag(
-        loc=[0]*latent_dim,
-        scale_diag=[1.0]*latent_dim)
+        loc=[0] * latent_dim, scale_diag=[1.0] * latent_dim
+    )
 
     noise = []
     for i in range(n_gen):

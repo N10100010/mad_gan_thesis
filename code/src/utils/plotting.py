@@ -1,12 +1,14 @@
 import os
-
-import numpy as np 
-import matplotlib.pyplot as plt
-
 from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
 from PIL import Image
 
-def plot_training_history(history, save: bool = True, path: str = None, display: bool = False):
+
+def plot_training_history(
+    history, save: bool = True, path: str = None, display: bool = False
+):
     """
     Plot training history of GAN.
 
@@ -23,57 +25,63 @@ def plot_training_history(history, save: bool = True, path: str = None, display:
         Whether to display the plot or not. Defaults to False.
 
     """
-    
 
     history_dict = history.history
     generator_losses = []
     discriminator_loss = None
-    
+
     # Separate generator losses and discriminator loss
     for key in history_dict.keys():
-        if 'g_loss' in key:
+        if "g_loss" in key:
             generator_losses.append((key, history_dict[key]))
-        elif key == 'd_loss':
+        elif key == "d_loss":
             discriminator_loss = history_dict[key]
-    
+
     # Plotting
     plt.figure(figsize=(10, 6))
-    
+
     # Plot generator losses
     for gen_loss_key, gen_loss_values in generator_losses:
         plt.plot(gen_loss_values, label=gen_loss_key)
-    
+
     # Plot discriminator loss
     if discriminator_loss is not None:
-        plt.plot(discriminator_loss, label='d_loss', linewidth=2, linestyle='--', color='black')
-    
-    plt.title('Training Losses')
-    plt.xlabel('Epochs')
-    plt.ylabel('Loss')
+        plt.plot(
+            discriminator_loss,
+            label="d_loss",
+            linewidth=2,
+            linestyle="--",
+            color="black",
+        )
+
+    plt.title("Training Losses")
+    plt.xlabel("Epochs")
+    plt.ylabel("Loss")
     plt.legend()
     plt.grid(True)
-    
+
     if display:
         plt.show()
-        
-    if save: 
+
+    if save:
         if path is None:
             dir_name = Path.cwd()
         else:
             dir_name = Path(path)
         dir_name.mkdir(exist_ok=True, parents=True)
-        
-        plt.savefig(f'{dir_name}/training_history.png', dpi=200, format="png")
-        
+
+        plt.savefig(f"{dir_name}/training_history.png", dpi=200, format="png")
+
+
 def plot_generators_examples(
-    n_rows: int, 
-    n_cols: int, 
-    random_latent_vectors: list, 
-    data: np.ndarray, 
-    generators: list,  
-    dir_name: str, 
-    epoch: int, 
-    save: bool = False, 
+    n_rows: int,
+    n_cols: int,
+    random_latent_vectors: list,
+    data: np.ndarray,
+    generators: list,
+    dir_name: str,
+    epoch: int,
+    save: bool = False,
     show: bool = True,
 ) -> None:
     """
@@ -81,39 +89,73 @@ def plot_generators_examples(
     """
     # Create a figure and a grid of subplots
     fig, axes = plt.subplots(nrows=n_rows, ncols=n_cols, figsize=(12, 8))
-    fig.suptitle(f'Epoch: {epoch}', fontsize=20)
+    fig.suptitle(f"Epoch: {epoch}", fontsize=20)
     # Flatten the axes array to iterate over individual subplots
     axes = axes.flatten()
 
     # Iterate over the subplots
     for ax_index, ax in enumerate(axes):
         # Determine if we're plotting real or generated data
-        if (ax_index + 1) % n_cols == 0: 
+        if (ax_index + 1) % n_cols == 0:
             # Plot real data
-            ax.imshow((data[ax_index // n_cols, :, :,] * 127.5 + 127.5) / 255, cmap='gray')
+            ax.imshow(
+                (
+                    data[
+                        ax_index // n_cols,
+                        :,
+                        :,
+                    ]
+                    * 127.5
+                    + 127.5
+                )
+                / 255,
+                cmap="gray",
+            )
             ax.set_title("REAL")
-        else: 
+        else:
             # Plot generated data
             generator_index = ax_index % (n_cols - 1)
-            generated_sample = generators[generator_index](random_latent_vectors[generator_index])
-            ax.imshow((generated_sample[ax_index // n_cols, :, :,] * 127.5 + 127.5) / 255, cmap='gray')
+            generated_sample = generators[generator_index](
+                random_latent_vectors[generator_index]
+            )
+            ax.imshow(
+                (
+                    generated_sample[
+                        ax_index // n_cols,
+                        :,
+                        :,
+                    ]
+                    * 127.5
+                    + 127.5
+                )
+                / 255,
+                cmap="gray",
+            )
             ax.set_title(f"FAKE (Gen {generator_index + 1})")
-        
+
         # Turn off axis labels for clarity
-        ax.axis('off')
-    
+        ax.axis("off")
+
     # Adjust layout and spacing
     fig.tight_layout()
 
-    if save: 
-        plt.savefig(f'{dir_name}/image_at_epoch_{(epoch + 1):04}.png', dpi=200, format="png")
-    if show: 
+    if save:
+        plt.savefig(
+            f"{dir_name}/image_at_epoch_{(epoch + 1):04}.png", dpi=200, format="png"
+        )
+    if show:
         plt.show()
 
 
 # Function to create a GIF from a list of image paths
 def create_gif(image_folder, output_gif, duration=500):
-    image_files = sorted([os.path.join(image_folder, file) for file in os.listdir(image_folder) if file.endswith('.png')])
+    image_files = sorted(
+        [
+            os.path.join(image_folder, file)
+            for file in os.listdir(image_folder)
+            if file.endswith(".png")
+        ]
+    )
 
     frames = []
     for image_name in image_files:
@@ -121,4 +163,11 @@ def create_gif(image_folder, output_gif, duration=500):
         frames.append(img)
 
     # Save the frames as an animated GIF
-    frames[0].save(output_gif, format='GIF', append_images=frames[1:], save_all=True, duration=duration, loop=0)
+    frames[0].save(
+        output_gif,
+        format="GIF",
+        append_images=frames[1:],
+        save_all=True,
+        duration=duration,
+        loop=0,
+    )

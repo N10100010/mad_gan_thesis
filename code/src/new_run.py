@@ -1,13 +1,12 @@
 # Initialize the manager with necessary parameters and functions
-from experimenter.manager import ExperimentManager
 from datasets.mnist import dataset_func
+from experimenter.manager import ExperimentManager
 from latent_points.mnist import generate_latent_points
 from model_definitions.discriminators.mnist.disc import define_discriminator
 from model_definitions.generators.mnist.gen import define_generators
 from model_definitions.mad_gan.mnist import MADGAN
 from monitors.generator import GANMonitor
 from run import Generators_loss_function
-
 
 manager = ExperimentManager(
     n_gen=2,

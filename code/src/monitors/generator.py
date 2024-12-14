@@ -1,17 +1,18 @@
-import tensorflow as tf
 import numpy as np
-
+import tensorflow as tf
 from utils.plotting import plot_generators_examples
 
+
 class GANMonitor(tf.keras.callbacks.Callback):
-    def __init__(self, 
-                 random_latent_vectors: list, 
-                 data: np.ndarray, 
-                 n_classes: int, 
-                 latent_dim: int = 128,  
-                 dir_name: str = 'Model', 
-                 generate_after_epochs: int = 10
-                ) -> None:
+    def __init__(
+        self,
+        random_latent_vectors: list,
+        data: np.ndarray,
+        n_classes: int,
+        latent_dim: int = 128,
+        dir_name: str = "Model",
+        generate_after_epochs: int = 10,
+    ) -> None:
         """
         Parameters
         ----------
@@ -38,7 +39,7 @@ class GANMonitor(tf.keras.callbacks.Callback):
     def on_epoch_end(self, epoch: int, logs: dict = None) -> None:
         """
         Saves generated images after each epoch if the epoch number is divisible by `generate_after_epochs`.
-        
+
         Parameters
         ----------
         epoch : int
@@ -50,14 +51,14 @@ class GANMonitor(tf.keras.callbacks.Callback):
         -------
         None
         """
-        if epoch % self.generate_after_epochs == 0: 
+        if epoch % self.generate_after_epochs == 0:
             plot_generators_examples(
-                n_rows=len(self.model.generators), 
-                n_cols=len(self.model.generators) + 1, 
-                dir_name=self.dir_name, 
-                random_latent_vectors=self.random_latent_vectors, 
+                n_rows=len(self.model.generators),
+                n_cols=len(self.model.generators) + 1,
+                dir_name=self.dir_name,
+                random_latent_vectors=self.random_latent_vectors,
                 data=self.data,
-                generators=self.model.generators, 
+                generators=self.model.generators,
                 epoch=epoch,
-                save=True
+                save=True,
             )

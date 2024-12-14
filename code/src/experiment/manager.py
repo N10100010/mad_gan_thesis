@@ -1,10 +1,27 @@
-import os
 import datetime
-import tensorflow as tf
+import os
+
 import numpy as np
+import tensorflow as tf
+
 
 class ExperimentManager:
-    def __init__(self, n_gen, latent_dim, batch_size, size_dataset, epochs, experiment_type, dataset_func, define_discriminator, define_generators, MADGAN, Generators_loss_function, GANMonitor, generate_latent_points):
+    def __init__(
+        self,
+        n_gen,
+        latent_dim,
+        batch_size,
+        size_dataset,
+        epochs,
+        experiment_type,
+        dataset_func,
+        define_discriminator,
+        define_generators,
+        MADGAN,
+        Generators_loss_function,
+        GANMonitor,
+        generate_latent_points,
+    ):
         self.n_gen = n_gen
         self.latent_dim = latent_dim
         self.batch_size = batch_size
@@ -35,8 +52,8 @@ class ExperimentManager:
         return dir_name
 
     def _check_gpu(self):
-        print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
-        if tf.test.gpu_device_name() == '/device:GPU:0':
+        print("Num GPUs Available: ", len(tf.config.list_physical_devices("GPU")))
+        if tf.test.gpu_device_name() == "/device:GPU:0":
             print("Using a GPU")
         else:
             print("Using a CPU")
@@ -45,8 +62,7 @@ class ExperimentManager:
         self.data, self.unique_labels = self.dataset_func()
         self.dataset = tf.data.Dataset.from_tensor_slices(self.data)
         self.dataset = (
-            self.dataset
-            .repeat()
+            self.dataset.repeat()
             .shuffle(10 * self.size_dataset, reshuffle_each_iteration=True)
             .batch(self.n_gen * self.batch_size, drop_remainder=True)
         )
@@ -57,7 +73,9 @@ class ExperimentManager:
         print("Discriminator Summary:")
         print(self.discriminator.summary())
 
-        self.generators = self.define_generators(self.n_gen, self.latent_dim, class_labels=self.unique_labels)
+        self.generators = self.define_generators(
+            self.n_gen, self.latent_dim, class_labels=self.unique_labels
+        )
         print("Generator[0] Summary:")
         print(self.generators[0].summary())
 
@@ -70,7 +88,8 @@ class ExperimentManager:
         self.madgan.compile(
             d_optimizer=tf.optimizers.Adam(learning_rate=2e-4, beta_1=0.5),
             g_optimizer=[
-                tf.optimizers.Adam(learning_rate=1e-4, beta_1=0.5) for _ in range(self.n_gen)
+                tf.optimizers.Adam(learning_rate=1e-4, beta_1=0.5)
+                for _ in range(self.n_gen)
             ],
             d_loss_fn=tf.keras.losses.CategoricalCrossentropy(),
             g_loss_fn=self.Generators_loss_function,

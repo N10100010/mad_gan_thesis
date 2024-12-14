@@ -1,1 +1,1 @@
-from .experiment import *
+from .experiment import MNIST_MADGAN_Experiment as MNIST_MADGAN_Experiment
