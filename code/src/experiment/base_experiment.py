@@ -138,7 +138,7 @@ class BaseExperiment(ABC, metaclass=AutoSuperMeta):
         else:
             self.logger.info("################# Using a CPU")
 
-            
+
     def _create_experiment_directory(self):
         """
         Creates a directory for the experiment based on the current date, experiment name,
@@ -158,6 +158,7 @@ class BaseExperiment(ABC, metaclass=AutoSuperMeta):
         
         self.logger.info(f"################# Experiment directory: {dir_name}")
         return dir_name
+    
     
     def _create_metadata_file(self):
         """

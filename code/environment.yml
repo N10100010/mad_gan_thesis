@@ -108,6 +108,7 @@ dependencies:
   - platformdirs=3.10.0
   - ply=3.11
   - pooch=1.7.0
+  - pre-commit=3.4.0
   - prometheus_client=0.14.1
   - prompt-toolkit=3.0.43
   - prompt_toolkit=3.0.43
