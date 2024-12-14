@@ -60,20 +60,38 @@ class BaseExperiment(ABC, metaclass=AutoSuperMeta):
     def __init__(
         self,
         name: str,
-        experiments_base_path: str = "/experiments",
+        experiments_base_path: str = "./experiments",
         experiment_suffix: str = "",
     ):
-        self.name = name
+        self.name: str = name
+        self.experiments_base_path: str = experiments_base_path
+        self.experiment_suffix: str = experiment_suffix
         self.logger = setup_logger(name=name)
         self._setup()
 
+        self.dir_path: Path = None
+
     def run(self):
+        """
+        Run the experiment.
+
+        This method runs the experiment from start to finish. It will create a
+        directory for the experiment, check if a GPU is available, load the
+        data, initialize the models, run the experiment, and save the results.
+
+        If an error occurs during the experiment, it will be logged and the
+        experiment will exit.
+
+        :raises Exception: If an error occurs during the experiment.
+        """
         try:
             self.logger.info(f"################# Running experiment {self.name}...")
             self.dir_path = self._create_experiment_directory()
             self._check_gpu()
             self._load_data()
             self._initialize_models()
+            ## TODO: could nest _save_results with _run, to pass history, etc OR
+            ## set self.history in the _run method's implementation
             self._run()
             self._save_results()
             self.logger.info(f"################# Experiment {self.name} completed.")
@@ -148,7 +166,7 @@ class BaseExperiment(ABC, metaclass=AutoSuperMeta):
         else:
             self.logger.info("################# Using a CPU")
 
-    def _create_experiment_directory(self):
+    def _create_experiment_directory(self) -> Path:
         """
         Creates a directory for the experiment based on the current date, experiment name,
         and an optional experiment suffix.

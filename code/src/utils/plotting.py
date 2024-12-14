@@ -69,7 +69,6 @@ def plot_training_history(
         else:
             dir_name = Path(path)
         dir_name.mkdir(exist_ok=True, parents=True)
-
         plt.savefig(f"{dir_name}/training_history.png", dpi=200, format="png")
 
 

@@ -3,7 +3,7 @@ import tensorflow as tf
 from utils.plotting import plot_generators_examples
 
 
-class GANMonitor(tf.keras.callbacks.Callback):
+class MADGANMonitor(tf.keras.callbacks.Callback):
     def __init__(
         self,
         random_latent_vectors: list,
