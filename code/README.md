@@ -1,7 +1,6 @@
 # TODO
 
-- test the execution on MNIST the experiments base class
-- ensure that the logger works as intended
+- create a scheduler, to manage the execution of consecutive experiments
 
 # Notes
 
