@@ -40,7 +40,7 @@ generators, and discriminator sophistication can be scaled as needed.
 2.  High computational costs with high-definition samples and high number
     of generators
 
-        Solutions: Use low-resolution datasets (e.g. MNIST, Fashion-MNIST, CIFAR-10, …)
+    Solutions: Use low-resolution datasets (e.g. MNIST, Fashion-MNIST, CIFAR-10, …)
 
 3.  Sensitivity to hyperparameters
 
