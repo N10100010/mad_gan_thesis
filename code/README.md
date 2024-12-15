@@ -1,6 +1,7 @@
 # TODO
 
 - create a scheduler, to manage the execution of consecutive experiments
+- STILL OPEN TODO: add meta information to the folder the model is saved in. e.g. in a csv
 
 # Notes
 

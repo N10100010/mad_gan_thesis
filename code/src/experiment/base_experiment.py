@@ -1,4 +1,5 @@
 import os
+import warnings
 from abc import ABC, ABCMeta, abstractmethod
 from datetime import datetime
 from pathlib import Path
@@ -6,8 +7,12 @@ from pathlib import Path
 import tensorflow as tf
 from utils import setup_logger
 
-# Set environment variable to reduce TF logging to warning level
+# Suppress TensorFlow INFO and WARNING messages
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
+
+# Suppress specific warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+warnings.filterwarnings("ignore", message=".*scale_identity_multiplier.*")
 
 
 class AutoSuperMeta(ABCMeta):

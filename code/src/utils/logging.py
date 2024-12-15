@@ -1,27 +1,38 @@
 import logging
 
+logging.getLogger("tensorflow").setLevel(logging.ERROR)
 
-def setup_logger(name: str, log_file: str = "experiment.log", level=logging.INFO):
-    """Sets up a logger with a file and console handler."""
 
-    if name is None:
-        name = __name__
+class LoggerSingleton:
+    _instances = {}
 
-    formatter = logging.Formatter(
-        "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-    )
+    def __new__(cls, name, *args, **kwargs):
+        if name not in cls._instances:
+            instance = super().__new__(cls)
+            cls._instances[name] = instance
+            instance._initialize(name, *args, **kwargs)
+        return cls._instances[name]
 
-    # File handler
-    file_handler = logging.FileHandler(log_file)
-    file_handler.setFormatter(formatter)
+    def _initialize(self, name, log_file="app.log", level=logging.INFO):
+        self.logger = logging.getLogger(name)
+        if not self.logger.hasHandlers():  # Prevent duplicate handlers
+            self.logger.setLevel(level)
 
-    # Console handler
-    console_handler = logging.StreamHandler()
-    console_handler.setFormatter(formatter)
+            # Console handler
+            console_handler = logging.StreamHandler()
+            console_handler.setLevel(level)
+            console_handler.setFormatter(
+                logging.Formatter(f"%(asctime)s - {name} - %(levelname)s - %(message)s")
+            )
+            self.logger.addHandler(console_handler)
 
-    # Get or create a logger
-    logger = logging.getLogger(name)
-    logger.setLevel(level)
-    logger.addHandler(console_handler)
+            # NOT MANDATORY FOR NOW: Rotating file handler
+            # file_handler = RotatingFileHandler(log_file, maxBytes=10**6, backupCount=3)
+            # file_handler.setLevel(level)
+            # file_handler.setFormatter(logging.Formatter(f"%(asctime)s - {name} - %(levelname)s - %(message)s"))
+            # self.logger.addHandler(file_handler)
 
-    return logger
+
+# Helper function
+def setup_logger(name="App", log_file="app.log", level=logging.INFO):
+    return LoggerSingleton(name, log_file=log_file, level=level).logger

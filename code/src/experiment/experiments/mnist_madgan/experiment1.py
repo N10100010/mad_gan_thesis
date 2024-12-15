@@ -11,7 +11,7 @@ from model_definitions.mad_gan.mnist import MADGAN
 from utils.plotting import plot_training_history
 
 
-class MNIST_MADGAN_Experiment(BaseExperiment):
+class MNIST_MADGAN_Experiment1(BaseExperiment):
     """Test implementation of the BaseExperiments class
 
     Args:
