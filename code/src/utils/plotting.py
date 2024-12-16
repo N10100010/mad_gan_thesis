@@ -54,13 +54,18 @@ def plot_training_history(
             color="black",
         )
 
+    # Add equilibrium line
     plt.plot(
         [0.5] * len(discriminator_loss),
-        label="Discriminator Equibirium",
+        label="Discriminator Equilibrium [0.5]",
         linewidth=1,
         linestyle="-",
         color="red",
     )
+
+    # Set y-axis ticks to specific values
+    y_ticks = [0, 0.2, 0.4, 0.45, 0.5, 0.55, 0.6, 0.8, 1, 2, 3] + list(range(4, 26))
+    plt.yticks(y_ticks)
 
     plt.title("Training Losses")
     plt.xlabel("Epochs")
