@@ -1,3 +1,4 @@
+import json
 import os
 import warnings
 from abc import ABC, ABCMeta, abstractmethod
@@ -67,10 +68,20 @@ class BaseExperiment(ABC, metaclass=AutoSuperMeta):
         name: str,
         experiments_base_path: str = "./experiments",
         experiment_suffix: str = "",
+        **kwargs,
     ):
         self.name: str = name
         self.experiments_base_path: str = experiments_base_path
         self.experiment_suffix: str = experiment_suffix
+        self.experiment_start_time: datetime = None
+        self.experiment_end_time: datetime = None
+        self.experiment_duration: datetime = None
+
+        # Update class attributes if provided in kwargs
+        for k, v in kwargs.items():
+            if hasattr(self, k):  # Only set attributes that already exist
+                setattr(self, k, v)
+
         self.logger = setup_logger(name=name)
         self._setup()
 
@@ -99,6 +110,7 @@ class BaseExperiment(ABC, metaclass=AutoSuperMeta):
             ## set self.history in the _run method's implementation
             self._run()
             self._save_results()
+            self._save_metadata_file()
             self.logger.info(f"################# Experiment {self.name} completed.")
         except Exception as e:
             self.logger.error(f"Error running experiment {self.name}: {e}")
@@ -111,7 +123,13 @@ class BaseExperiment(ABC, metaclass=AutoSuperMeta):
         This method should contain the code that is executed when the experiment
         is run.
         """
+        self.experiment_start_time = datetime.now()
+
         self.logger.info("################# Running")
+        self.logger.info(
+            f"################# Experiment Start Time: {self.experiment_start_time}"
+        )
+
         pass
 
     @abstractmethod
@@ -134,7 +152,16 @@ class BaseExperiment(ABC, metaclass=AutoSuperMeta):
         of the experiment should be saved. This may include saving model weights,
         training history, results of statistical tests, etc.
         """
+
+        self.experiment_end_time = datetime.now()
+        self.experiment_duration = self.experiment_end_time - self.experiment_start_time
         self.logger.info("################# Saving results")
+        self.logger.info(
+            f"################# Experiment End Time: {self.experiment_end_time}"
+        )
+
+        self.logger.info(f"################# Duration: {self.experiment_duration}")
+
         pass
 
     @abstractmethod
@@ -194,17 +221,56 @@ class BaseExperiment(ABC, metaclass=AutoSuperMeta):
         self.logger.info(f"################# Experiment directory: {dir_name}")
         return dir_name
 
-    def _create_metadata_file(self):
+    def _save_metadata_file(self):
         """
-        Creates a metadata file for the experiment based on the current date, experiment name,
-        and an optional experiment suffix.
+        Creates a metadata file (`metadata.json`) for the experiment,
+        saving all attributes of the implementing class to a JSON file.
 
-        The metadata file is created under the specified base path for experiments. If the file
-        already exists, it will not be overwritten. A log entry is created to indicate the file
-        path.
-
-        Returns:
-            Path: The path to the created metadata file.
+        The file is created in the experiment's directory.
         """
-        # self.meta
-        pass
+
+        skipping_attributes = [
+            "logger",
+            "run",
+            "data",
+            "dataset",
+            "callbacks",
+            "discriminator",
+            "generators",
+            "madgan",
+            "callbacks",
+            "history",
+        ]
+
+        if not self.dir_path:
+            raise ValueError(
+                "Experiment directory is not set. Run `_create_experiment_directory` first."
+            )
+
+        # Collect attributes from both the instance and class
+        metadata = {
+            "experiment_name": self.name,
+            "experiment_end_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        }
+
+        # Combine instance and class attributes
+        for cls in self.__class__.__mro__:  # Traverse the class hierarchy
+            for attr_name, attr_value in cls.__dict__.items():
+                if (
+                    not attr_name.startswith("_")
+                    and attr_name not in skipping_attributes
+                ):
+                    metadata[attr_name] = str(getattr(self, attr_name, attr_value))
+
+        # Add instance-specific attributes
+        for attr_name, attr_value in vars(self).items():
+            if not attr_name.startswith("_") and attr_name not in skipping_attributes:
+                metadata[attr_name] = str(attr_value)
+
+        # Write metadata to a file
+        metadata_file = self.dir_path / "metadata.json"
+        with metadata_file.open("w") as f:
+            json.dump(metadata, f, indent=4, sort_keys=True)
+
+        self.logger.info(f"################# Metadata saved to {metadata_file}")
+        return metadata_file

@@ -48,11 +48,19 @@ def plot_training_history(
     if discriminator_loss is not None:
         plt.plot(
             discriminator_loss,
-            label="d_loss",
+            label="Discriminator Loss",
             linewidth=2,
             linestyle="--",
             color="black",
         )
+
+    plt.plot(
+        [0.5] * len(discriminator_loss),
+        label="Discriminator Equibirium",
+        linewidth=1,
+        linestyle="-",
+        color="red",
+    )
 
     plt.title("Training Losses")
     plt.xlabel("Epochs")

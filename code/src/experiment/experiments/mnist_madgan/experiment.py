@@ -18,7 +18,7 @@ class MNIST_MADGAN_Experiment(BaseExperiment):
         BaseExperiment (_type_): _description_
     """
 
-    n_gen: int = 5
+    n_gen: int = 1
     latent_dim: int = 256
     size_dataset: int = 60_000
     batch_size: int = 256
@@ -26,6 +26,17 @@ class MNIST_MADGAN_Experiment(BaseExperiment):
     steps_per_epoch: int = (size_dataset // batch_size) // n_gen  # 78
 
     def __init__(self, *args, **kwargs):
+        pop_keys = []
+        # Update class attributes if provided in kwargs
+        for k, v in kwargs.items():
+            if hasattr(self, k):  # Only set attributes that already exist
+                setattr(self, k, v)
+                pop_keys.append(k)
+
+        # Remove keys from kwargs that have been used
+        for k in pop_keys:
+            kwargs.pop(k)
+
         super().__init__(*args, **kwargs)
 
     def _setup(self):
