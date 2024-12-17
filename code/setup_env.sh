@@ -5,7 +5,7 @@ conda init
 
 # Step 1: Create a new conda environment
 echo "Creating conda environment with Python 3.8..."
-conda create -y --prefix ./__env python=3.8.18
+conda create -y --name __env python=3.8.19
 
 # Step 2: Activate the environment
 echo "Activating the environment..."
@@ -19,7 +19,7 @@ conda activate ./__env
 # Step 4: Install Conda packages from environment.yml
 if [ -f "environment.yml" ]; then
   echo "Installing Anaconda dependencies..."
-  conda env update --prefix ./__env --file environment.yml --prune
+  conda env update --name __env --file environment.yml --prune
 fi
 
 echo "Environment setup complete!"
