@@ -5,7 +5,7 @@ conda init
 
 # Step 1: Create a new conda environment
 echo "Creating conda environment with Python 3.8..."
-conda create -y --prefix ./mad_gan_env python=3.8.18
+conda create -y --prefix ./mad_gan_env python=3.8.19
 
 # Step 2: Activate the environment
 echo "Activating the environment..."
