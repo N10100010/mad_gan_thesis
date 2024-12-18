@@ -1,4 +1,4 @@
-# name: local_thesis_conda
+name: __env
 channels:
   - conda-forge
   - defaults

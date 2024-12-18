@@ -27,7 +27,7 @@ if __name__ == "__main__":
         # MNIST_MADGAN_Experiment(name="MNIST_MADGAN_Experiment__4", experiment_suffix="n_gen_4", epochs=200, n_gen=4),
         # MNIST_MADGAN_Experiment(name="MNIST_MADGAN_Experiment__5", experiment_suffix="n_gen_5", epochs=200, n_gen=5),
         # MNIST_MADGAN_Experiment(name="MNIST_MADGAN_Experiment__6", experiment_suffix="n_gen_6", epochs=200, n_gen=6),
-        # MNIST_MADGAN_Experiment(name="MNIST_MADGAN_Experiment__7", experiment_suffix="n_gen_7", epochs=300, n_gen=7),
+        # MNIST_MADGAN_Experiment(name="MNIST_MADGAN_Experiment__7", experiment_suffix="n_gen_7", epochs=300, n_gen=7), 
         # MNIST_MADGAN_Experiment(
         #     name="MNIST_MADGAN_Experiment__10",
         #     experiment_suffix="n_gen_10",
