@@ -1,5 +1,6 @@
 import json
 import os
+import traceback
 import warnings
 from abc import ABC, ABCMeta, abstractmethod
 from datetime import datetime
@@ -102,7 +103,7 @@ class BaseExperiment(ABC, metaclass=AutoSuperMeta):
         """
         try:
             self.logger.info(f"################# Running experiment {self.name}...")
-            self.dir_path = self._create_experiment_directory()
+            self.dir_path: Path = self._create_experiment_directory()
             self._check_gpu()
             self._load_data()
             self._initialize_models()
@@ -114,6 +115,7 @@ class BaseExperiment(ABC, metaclass=AutoSuperMeta):
             self.logger.info(f"################# Experiment {self.name} completed.")
         except Exception as e:
             self.logger.error(f"Error running experiment {self.name}: {e}")
+            self.logger.error(traceback.format_exc())
 
     @abstractmethod
     def _run(self):

@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import numpy as np
 import tensorflow as tf
 from utils.plotting import plot_generators_examples
@@ -10,7 +12,7 @@ class MADGANMonitor(tf.keras.callbacks.Callback):
         data: np.ndarray,
         n_classes: int,
         latent_dim: int = 128,
-        dir_name: str = "Model",
+        dir_name: Path = "Model",
         generate_after_epochs: int = 10,
     ) -> None:
         """
@@ -24,7 +26,7 @@ class MADGANMonitor(tf.keras.callbacks.Callback):
             The number of classes in the dataset.
         latent_dim : int, optional
             The dimensionality of the latent space. Defaults to 128.
-        dir_name : str, optional
+        dir_name : Path, optional
             The directory name to save the generated images in. Defaults to 'Model'.
         generate_after_epochs : int, optional
             The interval (in epochs) after which to generate images. Defaults to 10.

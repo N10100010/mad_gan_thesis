@@ -4,10 +4,12 @@ import numpy as np
 import tensorflow as tf
 from datasets.mnist import dataset_func
 from experiment import BaseExperiment
+from latent_points.mnist import generate_latent_points
 from loss_functions.generator import generators_loss_function
 from model_definitions.discriminators.mnist.disc import define_discriminator
 from model_definitions.generators.mnist.gen import define_generators
 from model_definitions.mad_gan.mnist import MADGAN
+from monitors.generators import MADGANMonitor
 from utils.plotting import plot_training_history
 
 
@@ -76,18 +78,19 @@ class MNIST_MADGAN_Experiment(BaseExperiment):
         )
 
     def _run(self):
-        checkpoint_filepath = f"{self.dir_path}\checkpoint.weights.h5"
-        # random_latent_vectors = generate_latent_points(
-        #     latent_dim=self.latent_dim, batch_size=11, n_gen=self.n_gen
-        # )
+        checkpoint_filepath = self.dir_path / "last_checkpoint.weights.h5"
+        random_latent_vectors = generate_latent_points(
+            latent_dim=self.latent_dim, batch_size=11, n_gen=self.n_gen
+        )
         self.callbacks = [
-            # GANMonitor(
-            #     random_latent_vectors=random_latent_vectors,
-            #     data=data,
-            #     n_classes=len(self.unique_labels),
-            #     latent_dim=self.latent_dim,
-            #     dir_name=self.dir_path,
-            # ),
+            MADGANMonitor(
+                random_latent_vectors=random_latent_vectors,
+                data=self.data,
+                n_classes=len(self.unique_labels),
+                latent_dim=self.latent_dim,
+                dir_name=self.dir_path,
+                generate_after_epochs=1,
+            ),
             # This callback is for Saving the model
             tf.keras.callbacks.ModelCheckpoint(
                 filepath=checkpoint_filepath, save_freq=10, save_weights_only=True
@@ -109,7 +112,6 @@ class MNIST_MADGAN_Experiment(BaseExperiment):
 
         # Save history
         history_path = Path(self.dir_path, "training_history.npy")
-        ## TODO: save history
         np.save(history_path, self.history.history)
         self.logger.info(f"Training history saved to: {history_path}")
 
