@@ -2,7 +2,7 @@ from pathlib import Path
 
 import numpy as np
 import tensorflow as tf
-from datasets.mnist import dataset_func
+from datasets.fasion_mnist import dataset_func
 from experiment import BaseExperiment
 from latent_points.mnist import generate_latent_points
 from loss_functions.generator import generators_loss_function
@@ -13,7 +13,7 @@ from monitors.generators import MADGANMonitor
 from utils.plotting import generate_gan_training_gif, plot_training_history
 
 
-class MNIST_MADGAN_Experiment(BaseExperiment):
+class FASHION_MNIST_MADGAN_Experiment(BaseExperiment):
     """Test implementation of the BaseExperiments class
 
     Args:
