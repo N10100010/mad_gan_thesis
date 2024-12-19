@@ -10,7 +10,7 @@ from model_definitions.discriminators.mnist.disc import define_discriminator
 from model_definitions.generators.mnist.gen import define_generators
 from model_definitions.mad_gan.mnist import MADGAN
 from monitors.generators import MADGANMonitor
-from utils.plotting import plot_training_history
+from utils.plotting import generate_gan_training_gif, plot_training_history
 
 
 class MNIST_MADGAN_Experiment(BaseExperiment):
@@ -26,6 +26,7 @@ class MNIST_MADGAN_Experiment(BaseExperiment):
     batch_size: int = 256
     epochs: int = 2
     steps_per_epoch: int = (size_dataset // batch_size) // n_gen  # 78
+    generator_training_samples_subfolder: str = "generators_examples"
 
     def __init__(self, *args, **kwargs):
         pop_keys = []
@@ -85,11 +86,13 @@ class MNIST_MADGAN_Experiment(BaseExperiment):
         self.callbacks = [
             MADGANMonitor(
                 random_latent_vectors=random_latent_vectors,
+                n_gen=self.n_gen,
                 data=self.data,
                 n_classes=len(self.unique_labels),
                 latent_dim=self.latent_dim,
                 dir_name=self.dir_path,
-                generate_after_epochs=1,
+                sub_folder=self.generator_training_samples_subfolder,
+                generate_after_epochs=10,
             ),
             # This callback is for Saving the model
             tf.keras.callbacks.ModelCheckpoint(
@@ -118,4 +121,11 @@ class MNIST_MADGAN_Experiment(BaseExperiment):
         plot_training_history(
             history=self.history,
             path=self.dir_path,
+        )
+
+    def _final(self):
+        generate_gan_training_gif(
+            image_folder=self.dir_path / self.generator_training_samples_subfolder,
+            output_gif=Path(self.dir_path, "generator_training.gif"),
+            duration=300,
         )

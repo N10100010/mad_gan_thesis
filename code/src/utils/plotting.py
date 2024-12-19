@@ -93,6 +93,7 @@ def plot_generators_examples(
     generators: list,
     dir_name: Path,
     epoch: int,
+    samples_subfolder: str = "generators_examples",
     save: bool = True,
     show: bool = False,
 ) -> None:
@@ -154,9 +155,9 @@ def plot_generators_examples(
     fig.tight_layout()
 
     if save:
-        Path(dir_name / "generators_examples").mkdir(exist_ok=True, parents=True)
+        Path(dir_name / samples_subfolder).mkdir(exist_ok=True, parents=True)
         plt.savefig(
-            dir_name / "generators_examples" / f"image_at_epoch_{(epoch + 1):04}.png",
+            dir_name / samples_subfolder / f"image_at_epoch_{(epoch + 1):04}.png",
             dpi=200,
             format="png",
         )
@@ -165,7 +166,7 @@ def plot_generators_examples(
 
 
 # Function to create a GIF from a list of image paths
-def create_gif(image_folder, output_gif, duration=500):
+def generate_gan_training_gif(image_folder, output_gif, duration=500):
     image_files = sorted(
         [
             os.path.join(image_folder, file)

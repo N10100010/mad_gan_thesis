@@ -9,10 +9,12 @@ class MADGANMonitor(tf.keras.callbacks.Callback):
     def __init__(
         self,
         random_latent_vectors: list,
+        n_gen: int,
         data: np.ndarray,
         n_classes: int,
         latent_dim: int = 128,
         dir_name: Path = "Model",
+        sub_folder: str = "generators_examples",
         generate_after_epochs: int = 10,
     ) -> None:
         """
@@ -31,10 +33,11 @@ class MADGANMonitor(tf.keras.callbacks.Callback):
         generate_after_epochs : int, optional
             The interval (in epochs) after which to generate images. Defaults to 10.
         """
-        self.data = data[0:10]
+        self.data = data[0 : n_gen + 1]
         self.random_latent_vectors = random_latent_vectors
         self.latent_dim = latent_dim
         self.dir_name = dir_name
+        self.sub_folder = sub_folder
         self.n_classes = n_classes
         self.generate_after_epochs = generate_after_epochs
 
@@ -58,6 +61,7 @@ class MADGANMonitor(tf.keras.callbacks.Callback):
                 n_rows=len(self.model.generators),
                 n_cols=len(self.model.generators) + 1,
                 dir_name=self.dir_name,
+                samples_subfolder=self.sub_folder,
                 random_latent_vectors=self.random_latent_vectors,
                 data=self.data,
                 generators=self.model.generators,

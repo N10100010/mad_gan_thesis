@@ -112,6 +112,7 @@ class BaseExperiment(ABC, metaclass=AutoSuperMeta):
             self._run()
             self._save_results()
             self._save_metadata_file()
+            self._final()
             self.logger.info(f"################# Experiment {self.name} completed.")
         except Exception as e:
             self.logger.error(f"Error running experiment {self.name}: {e}")
@@ -276,3 +277,9 @@ class BaseExperiment(ABC, metaclass=AutoSuperMeta):
 
         self.logger.info(f"################# Metadata saved to {metadata_file}")
         return metadata_file
+
+    def _final(self):
+        """
+        Define any final operations that should be performed after the experiment is completed.
+        """
+        pass
