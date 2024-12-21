@@ -1,7 +1,7 @@
 from typing import Dict, List
 
 import tensorflow as tf
-from latent_points.mnist import generate_latent_points
+from src.latent_points.utils import generate_latent_points
 
 
 class MADGAN(tf.keras.Model):
