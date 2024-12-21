@@ -25,7 +25,7 @@ class FASHION_MNIST_MADGAN_Experiment(BaseExperiment):
     size_dataset: int = 60_000
     batch_size: int = 256
     epochs: int = 2
-    steps_per_epoch: int = (size_dataset // batch_size) // n_gen  # 78
+    steps_per_epoch: int = (size_dataset // batch_size) // n_gen
     generator_training_samples_subfolder: str = "generators_examples"
     generate_after_epochs = 1
 
@@ -56,9 +56,7 @@ class FASHION_MNIST_MADGAN_Experiment(BaseExperiment):
 
     def _initialize_models(self):
         self.discriminator = define_discriminator(self.n_gen)
-        self.generators = define_generators(
-            self.n_gen, self.latent_dim, class_labels=self.unique_labels
-        )
+        self.generators = define_generators(self.n_gen, self.latent_dim)
 
         self.madgan = MADGAN(
             discriminator=self.discriminator,
@@ -108,10 +106,11 @@ class FASHION_MNIST_MADGAN_Experiment(BaseExperiment):
         )
 
     def _save_results(self):
-        model_path = Path(self.dir_path, "final_model.weights.h5")
-        self.madgan.save_weights(model_path)
-        self.logger.info(f"Model saved to: {model_path}")
+        model_weights_path = Path(self.dir_path, "final_model.weights.h5")
+        self.madgan.save_weights(model_weights_path)
+        self.logger.info(f"Model saved to: {model_weights_path}")
 
+        # Save history
         history_path = Path(self.dir_path, "training_history.npy")
         np.save(history_path, self.history.history)
         self.logger.info(f"Training history saved to: {history_path}")
@@ -127,3 +126,13 @@ class FASHION_MNIST_MADGAN_Experiment(BaseExperiment):
             output_gif=Path(self.dir_path, "generator_training.gif"),
             duration=300,
         )
+
+    def load_model_from_path(self, path: Path) -> MADGAN:
+        self._load_data()
+        self._initialize_models()
+
+        self.madgan.built = True
+
+        # Now load the weights
+        self.madgan.load_weights(path.__str__())
+        return self.madgan

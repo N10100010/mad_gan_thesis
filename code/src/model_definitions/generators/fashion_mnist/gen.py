@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 
-def define_generators(n_gen, latent_dim, class_labels):
+def define_generators(n_gen, latent_dim):
     dens = tf.keras.layers.Dense(
         units=7 * 7 * 256, use_bias=False, input_shape=(latent_dim,)
     )

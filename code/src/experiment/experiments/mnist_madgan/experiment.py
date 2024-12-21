@@ -4,12 +4,12 @@ import numpy as np
 import tensorflow as tf
 from datasets.mnist import dataset_func
 from experiment import BaseExperiment
+from latent_points.utils import generate_latent_points
 from loss_functions.generator import generators_loss_function
 from model_definitions.discriminators.mnist.disc import define_discriminator
 from model_definitions.generators.mnist.gen import define_generators
 from model_definitions.mad_gan import MADGAN
 from monitors.generators import MADGANMonitor
-from src.latent_points.utils import generate_latent_points
 from utils.plotting import generate_gan_training_gif, plot_training_history
 
 
@@ -56,9 +56,7 @@ class MNIST_MADGAN_Experiment(BaseExperiment):
 
     def _initialize_models(self):
         self.discriminator = define_discriminator(self.n_gen)
-        self.generators = define_generators(
-            self.n_gen, self.latent_dim, class_labels=self.unique_labels
-        )
+        self.generators = define_generators(self.n_gen, self.latent_dim)
 
         self.madgan = MADGAN(
             discriminator=self.discriminator,
@@ -108,9 +106,9 @@ class MNIST_MADGAN_Experiment(BaseExperiment):
         )
 
     def _save_results(self):
-        model_path = Path(self.dir_path, "final_model.weights.h5")
-        self.madgan.save_weights(model_path)
-        self.logger.info(f"Model saved to: {model_path}")
+        model_weights_path = Path(self.dir_path, "final_model.weights.h5")
+        self.madgan.save_weights(model_weights_path)
+        self.logger.info(f"Model saved to: {model_weights_path}")
 
         # Save history
         history_path = Path(self.dir_path, "training_history.npy")
@@ -128,3 +126,10 @@ class MNIST_MADGAN_Experiment(BaseExperiment):
             output_gif=Path(self.dir_path, "generator_training.gif"),
             duration=300,
         )
+
+    def load_model_from_path(self, path: Path) -> MADGAN:
+        _, self.unique_labels = dataset_func()
+        del _
+        self._initialize_models()
+        self.madgan.load_weights(path.__str__())
+        return self.madgan

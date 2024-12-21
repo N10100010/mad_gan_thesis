@@ -119,6 +119,19 @@ class BaseExperiment(ABC, metaclass=AutoSuperMeta):
             self.logger.error(traceback.format_exc())
 
     @abstractmethod
+    def load_model_from_path(self, path: Path):
+        """
+        Load a model from a path.
+        Depending on the experiment, this could require to call functions other functions
+        in the experiment first or to set certain variable that are defined by the experiment.
+        E.g. self.unique_labels - see: ./src/experiment/experiments/fashion_mnist_madgan/experiment.py
+
+        :param path: The path to the model.
+
+        """
+        pass
+
+    @abstractmethod
     def _run(self):
         """
         Define the main logic for running the experiment.

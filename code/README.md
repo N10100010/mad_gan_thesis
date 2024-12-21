@@ -46,3 +46,10 @@ All datasets can be loaded
 `conda env create -f server_env.yml`
 
 to create a conda environment called `__env`
+
+## python environment
+
+Add src to the python path
+**WIN**
+
+`set PYTHONPATH=%PYTHONPATH%;C:\Users\NiXoN\Desktop\_thesis\mad_gan_thesis\code\src`

@@ -1,7 +1,7 @@
 from typing import Dict, List
 
 import tensorflow as tf
-from src.latent_points.utils import generate_latent_points
+from latent_points.utils import generate_latent_points
 
 
 class MADGAN(tf.keras.Model):
@@ -52,6 +52,17 @@ class MADGAN(tf.keras.Model):
         self.generators = generators
         self.latent_dim = latent_dim
         self.n_gen = n_gen
+
+    def save_model(self, path: str):
+        """Save the MADGAN model architecture and weights."""
+        self.save_weights(path)
+
+    @classmethod
+    def load_model(cls, path: str, **kwargs) -> "MADGAN":
+        """Load the MADGAN model from weights."""
+        instance = cls(**kwargs)
+        instance.load_weights(path)
+        return instance
 
     def compile(
         self,
