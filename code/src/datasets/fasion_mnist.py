@@ -10,13 +10,7 @@ def dataset_func(random_state=None):
     train_images = train_images.reshape(train_images.shape[0], 28, 28, 1).astype(
         "float32"
     )
-    # train_images = tf.image.resize(train_images, [32,32])
     train_images = (train_images - 127.5) / 127.5  # Normalize the images to [-1, 1]
-
-    # Convert to stacked-mnist(rgb images)
-    # t1 = tf.random.shuffle(train_images, seed = 10)
-    # t2 = tf.random.shuffle(train_images, seed = 20)
-    # train_images = tf.concat([train_images, t1, t2], axis=-1)
 
     return train_images, np.unique(train_labels)
 
