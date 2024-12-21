@@ -4,12 +4,12 @@ import numpy as np
 import tensorflow as tf
 from datasets.mnist import dataset_func
 from experiment import BaseExperiment
-from latent_points.mnist import generate_latent_points
 from loss_functions.generator import generators_loss_function
 from model_definitions.discriminators.mnist.disc import define_discriminator
 from model_definitions.generators.mnist.gen import define_generators
-from model_definitions.mad_gan.mnist import MADGAN
+from model_definitions.mad_gan import MADGAN
 from monitors.generators import MADGANMonitor
+from src.latent_points.utils import generate_latent_points
 from utils.plotting import generate_gan_training_gif, plot_training_history
 
 
@@ -31,13 +31,11 @@ class MNIST_MADGAN_Experiment(BaseExperiment):
 
     def __init__(self, *args, **kwargs):
         pop_keys = []
-        # Update class attributes if provided in kwargs
         for k, v in kwargs.items():
-            if hasattr(self, k):  # Only set attributes that already exist
+            if hasattr(self, k):
                 setattr(self, k, v)
                 pop_keys.append(k)
 
-        # Remove keys from kwargs that have been used
         for k in pop_keys:
             kwargs.pop(k)
 

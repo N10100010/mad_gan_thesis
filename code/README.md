@@ -1,5 +1,7 @@
 # TODO
 
+## MNIST
+
 - track experiments:
   - gen1: check
   - gen2: check
@@ -23,6 +25,8 @@ https://deeplearn.mi.hdm-stuttgart.de/user/nr063/lab
 https://deeplearn.pages.mi.hdm-stuttgart.de/docs/quickstart/
 
 # Datasets
+
+All datasets can be loaded
 
 - mnist
   - https://www.tensorflow.org/datasets/catalog/mnist
