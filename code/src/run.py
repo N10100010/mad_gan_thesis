@@ -4,12 +4,12 @@ from experiment.experiments.fashion_mnist_madgan import FASHION_MNIST_MADGAN_Exp
 
 if __name__ == "__main__":
     experiments = [
-        # FASHION_MNIST_MADGAN_Experiment(
-        #     name="FASHION_MNIST_MADGAN_Experiment__1",
-        #     experiment_suffix="n_gen_1",
-        #     epochs=10,
-        #     n_gen=1,
-        # ),
+        FASHION_MNIST_MADGAN_Experiment(
+            name="FASHION_MNIST_MADGAN_Experiment__1",
+            experiment_suffix="n_gen_1",
+            epochs=2,
+            n_gen=1,
+        ),
         # MNIST_MADGAN_Experiment(
         #     name="MNIST_MADGAN_Experiment__1",
         #     experiment_suffix="n_gen_1",
@@ -51,28 +51,33 @@ if __name__ == "__main__":
     # queue = ExperimentQueue()
     # for exp in experiments:
     #     queue.add_experiment(exp)
-    #
     # queue.run_all()
 
     if __name__ == "__main__":
-        experiment = FASHION_MNIST_MADGAN_Experiment(
-            name="MNIST_MADGAN_Experiment__1",
-            experiment_suffix="n_gen_1",
-            epochs=10,
-            n_gen=1,
-        )
-        madgan = experiment.load_model_from_path(
-            Path(
-                "experiments\\2024-12-19_FASHION_MNIST_MADGAN_Experiment__1_n_gen_1\\final_model.weights.h5"
-            )
+        # to load an exwperiment, with the models initialized
+        experiment = FASHION_MNIST_MADGAN_Experiment.load_from_path(
+            Path("experiments\\2024-12-22_FASHION_MNIST_MADGAN_Experiment__1_n_gen_1")
         )
 
-        madgan.fit(
-            experiment.dataset,
-            epochs=1,
-            steps_per_epoch=(experiment.size_dataset // experiment.batch_size)
-            // experiment.n_gen,  # 78
-            verbose=1,
+        experiment.load_model_weights()
+        # to load an exwperiment, with the models initialized
+
+        from latent_points.utils import generate_latent_points
+        from matplotlib import pyplot as plt
+
+        latent_points = generate_latent_points(
+            latent_dim=experiment.latent_dim,
+            batch_size=experiment.batch_size,
+            n_gen=experiment.n_gen,
         )
+
+        generators = experiment.madgan.generators
+        generated_images = []
+        for g in range(experiment.n_gen):
+            generated_images.append(generators[g](latent_points[g]))
+        for image in generated_images:
+            print(type(image))
+            plt.imshow(image[0])
+            plt.show()
 
         print("Hi! It works")

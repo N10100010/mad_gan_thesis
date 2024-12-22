@@ -80,10 +80,8 @@ class BaseExperiment(ABC, metaclass=AutoSuperMeta):
 
         self.meta_json_filename: str = "metadata.json"
 
-        # Update class attributes if provided in kwargs
         for k, v in kwargs.items():
-            if hasattr(self, k):  # Only set attributes that already exist
-                setattr(self, k, v)
+            setattr(self, k, v)
 
         self.logger = setup_logger(name=name)
         self._setup()
