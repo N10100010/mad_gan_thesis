@@ -53,6 +53,9 @@ class MADGAN(tf.keras.Model):
         self.latent_dim = latent_dim
         self.n_gen = n_gen
 
+        self.discriminator_loss_label = "d_loss"
+        self.generator_loss_label = "g_loss"
+
     def save_model(self, path: str):
         """Save the MADGAN model architecture and weights."""
         self.save_weights(path)
@@ -193,6 +196,9 @@ class MADGAN(tf.keras.Model):
             )
             g_loss_list.append(g_loss)
 
-        mydict = {f"g_loss{g}": g_loss_list[g] for g in range(self.n_gen)}
-        mydict.update({"d_loss": d_loss})
+        mydict = {
+            f"{self.generator_loss_label}_{g}": g_loss_list[g]
+            for g in range(self.n_gen)
+        }
+        mydict.update({self.discriminator_loss_label: d_loss})
         return mydict

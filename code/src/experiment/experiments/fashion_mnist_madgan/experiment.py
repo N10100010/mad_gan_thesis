@@ -48,7 +48,7 @@ class FASHION_MNIST_MADGAN_Experiment(BaseMADGANExperiment):
         self.discriminator = define_discriminator(self.n_gen)
         self.generators = define_generators(self.n_gen, self.latent_dim)
 
-        self.madgan = MADGAN(
+        self.madgan: MADGAN = MADGAN(
             discriminator=self.discriminator,
             generators=self.generators,
             latent_dim=self.latent_dim,
@@ -66,7 +66,8 @@ class FASHION_MNIST_MADGAN_Experiment(BaseMADGANExperiment):
         )
 
     def _run(self):
-        checkpoint_filepath = self.dir_path / "last_checkpoint.weights.h5"
+        checkpoint_filepath = self.dir_path / "checkpoints" / "backup"
+        checkpoint_filepath.parent.mkdir(parents=True, exist_ok=True)
         random_latent_vectors = generate_latent_points(
             latent_dim=self.latent_dim, batch_size=11, n_gen=self.n_gen
         )
@@ -81,9 +82,11 @@ class FASHION_MNIST_MADGAN_Experiment(BaseMADGANExperiment):
                 sub_folder=self.generator_training_samples_subfolder,
                 generate_after_epochs=self.generate_after_epochs,
             ),
-            # This callback is for Saving the model
+            # the epoch variable in the f-string is available in the callback
             tf.keras.callbacks.ModelCheckpoint(
-                filepath=checkpoint_filepath, save_freq=10, save_weights_only=True
+                filepath=checkpoint_filepath.__str__() + "_epoch_{epoch}.weights.h5",
+                save_freq=25,
+                save_weights_only=True,
             ),
         ]
 

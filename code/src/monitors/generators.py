@@ -33,6 +33,8 @@ class MADGANMonitor(tf.keras.callbacks.Callback):
         generate_after_epochs : int, optional
             The interval (in epochs) after which to generate images. Defaults to 10.
         """
+        super().__init__()
+
         self.data = data[0 : n_gen + 1]
         self.random_latent_vectors = random_latent_vectors
         self.latent_dim = latent_dim
@@ -58,8 +60,8 @@ class MADGANMonitor(tf.keras.callbacks.Callback):
         """
         if epoch % self.generate_after_epochs == 0:
             plot_generators_examples(
-                n_rows=len(self.model.generators),
-                n_cols=len(self.model.generators) + 1,
+                n_rows=len(self.model.generators),  # FYI self.model is a MADGAN model
+                n_cols=len(self.model.generators) + 1,  # +1 for real data
                 dir_name=self.dir_name,
                 samples_subfolder=self.sub_folder,
                 random_latent_vectors=self.random_latent_vectors,
@@ -68,3 +70,12 @@ class MADGANMonitor(tf.keras.callbacks.Callback):
                 epoch=epoch,
                 save=True,
             )
+
+        # self.model.stop_training = True
+        # save the model
+        # final_save_path = self.dir_name / "checkpoints" / "__chckpnt_final_model.weights.h5"
+
+        # self.model.save_weights(
+        #     final_save_path,
+        #     overwrite=True,
+        # )

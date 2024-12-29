@@ -41,8 +41,8 @@ def plot_training_history(
     plt.figure(figsize=(10, 6))
 
     # Plot generator losses
-    for gen_loss_key, gen_loss_values in generator_losses:
-        plt.plot(gen_loss_values, label=gen_loss_key)
+    for i, (_, gen_loss_values) in enumerate(generator_losses):
+        plt.plot(gen_loss_values, label=f"Generator Loss {i}", linewidth=2)
 
     # Plot discriminator loss
     if discriminator_loss is not None:
@@ -64,8 +64,8 @@ def plot_training_history(
     )
 
     # Set y-axis ticks to specific values
-    y_ticks = [0, 0.2, 0.4, 0.45, 0.5, 0.55, 0.6, 0.8, 1, 2, 3] + list(range(4, 26))
-    plt.yticks(y_ticks)
+    # y_ticks = [0, 0.2, 0.4, 0.45, 0.5, 0.55, 0.6, 0.8, 1, 2, 3] + list(range(4, 26))
+    # plt.yticks(y_ticks)
 
     plt.title("Training Losses")
     plt.xlabel("Epochs")
@@ -114,18 +114,19 @@ def plot_generators_examples(
             # Plot real data
             ax.imshow(
                 (
-                    data[
-                        ax_index // n_cols,
-                        :,
-                        :,
-                    ]
-                    * 127.5
-                    + 127.5
+                    # data[
+                    #     ax_index // n_cols,
+                    #     :,
+                    #     :,
+                    # ]
+                    # * 127.5
+                    # + 127.5
+                    data[np.random.randint(data.shape[0]), :, :] * 127.5 + 127.5
                 )
                 / 255,
                 cmap="gray",
             )
-            ax.set_title("REAL")
+            ax.set_title("Real (random)")
             generator_index = 0
         else:
             # Plot generated data
@@ -150,8 +151,6 @@ def plot_generators_examples(
 
         # Turn off axis labels for clarity
         ax.axis("off")
-
-    # Adjust layout and spacing
     fig.tight_layout()
 
     if save:
@@ -161,6 +160,7 @@ def plot_generators_examples(
             dpi=200,
             format="png",
         )
+        plt.close()
     if show:
         plt.show()
 
