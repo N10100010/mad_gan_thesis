@@ -1,6 +1,6 @@
 import tensorflow as tf
 from datasets.mnist import dataset_func
-from experiment import BaseMADGANExperiment
+from experiment.base_experiments.base_mad_gan_experiment import BaseMADGANExperiment
 from latent_points.utils import generate_latent_points
 from loss_functions.generator import generators_loss_function
 from model_definitions.discriminators.mnist.disc import define_discriminator
