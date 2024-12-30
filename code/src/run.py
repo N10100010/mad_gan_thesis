@@ -1,12 +1,43 @@
 from experiment.experiment_queue import ExperimentQueue
 from experiment.experiments.fashion_mnist_madgan import FASHION_MNIST_MADGAN_Experiment
+from experiment.experiments.mnist_madgan import MNIST_MADGAN_Experiment
 
 if __name__ == "__main__":
     experiments = [
+        MNIST_MADGAN_Experiment(
+            name="MNIST_MADGAN_Experiment__1",
+            experiment_suffix="n_gen_1",
+            epochs=150,
+            n_gen=1,
+        ),
+        MNIST_MADGAN_Experiment(
+            name="MNIST_MADGAN_Experiment__2",
+            experiment_suffix="n_gen_2",
+            epochs=150,
+            n_gen=2,
+        ),
+        MNIST_MADGAN_Experiment(
+            name="MNIST_MADGAN_Experiment__3",
+            experiment_suffix="n_gen_3",
+            epochs=200,
+            n_gen=3,
+        ),
         FASHION_MNIST_MADGAN_Experiment(
             name="FASHION_MNIST_MADGAN_Experiment__1",
+            experiment_suffix="n_gen_1",
+            epochs=150,
+            n_gen=1,
+        ),
+        FASHION_MNIST_MADGAN_Experiment(
+            name="FASHION_MNIST_MADGAN_Experiment__2",
+            experiment_suffix="n_gen_2",
+            epochs=150,
+            n_gen=2,
+        ),
+        FASHION_MNIST_MADGAN_Experiment(
+            name="FASHION_MNIST_MADGAN_Experiment__3",
             experiment_suffix="n_gen_3",
-            epochs=3,
+            epochs=200,
             n_gen=3,
         ),
     ]

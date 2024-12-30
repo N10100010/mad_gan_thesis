@@ -47,6 +47,10 @@ Add src to the python path
 
 `set PYTHONPATH=%PYTHONPATH%;C:\Users\NiXoN\Desktop\_thesis\mad_gan_thesis\code\src`
 
+## SAVING CHECKPOINTS via callback
+when defining an int to decide which modulo should save the model, for MADGAN, you need to combine the steps_per_epch * epochs (e.g. 234 * 25 - this will save the madgan model every 25th episode)
+
+
 ## Load a past madgan experiment
 
 To load a past experiment, one hast to:

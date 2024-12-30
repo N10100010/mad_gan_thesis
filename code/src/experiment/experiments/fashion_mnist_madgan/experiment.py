@@ -85,7 +85,7 @@ class FASHION_MNIST_MADGAN_Experiment(BaseMADGANExperiment):
             # the epoch variable in the f-string is available in the callback
             tf.keras.callbacks.ModelCheckpoint(
                 filepath=checkpoint_filepath.__str__() + "_epoch_{epoch}.weights.h5",
-                save_freq=25,
+                save_freq=234 * 25,
                 save_weights_only=True,
             ),
         ]
