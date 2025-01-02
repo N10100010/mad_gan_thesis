@@ -53,6 +53,8 @@ when defining an int to decide which modulo should save the model, for MADGAN, y
 
 ## Load a past madgan experiment
 
+**Due to a version mismatch between the local- and the servers version of tensorflow (server: 2.15, local: 2.10), server-models cannot be loaded locally. BUT, loading models on the creating machine works as planned.**
+
 To load a past experiment, one hast to:
 
 - load the experiment from its saved path

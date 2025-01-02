@@ -1,8 +1,10 @@
 import json
 from pathlib import Path
 from typing import Dict, List
-
+from matplotlib import pyplot as plt 
 import numpy as np
+
+
 from experiment.base_experiments.base_experiment import BaseExperiment
 from model_definitions.mad_gan.mad_gan import MADGAN
 from utils.plotting import generate_gan_training_gif, plot_training_history
@@ -74,7 +76,7 @@ class BaseMADGANExperiment(BaseExperiment):
         self.madgan.load_weights(file_path)
 
     def generate_images(
-        self, n_images: int, latent_vectors: List[np.ndarray], use_generator: int
+        self, n_images: int, latent_vectors: List[np.ndarray], use_generator: int, save: bool = True
     ) -> Dict[int, np.ndarray]:
         """
         Generates images from a list of latent vectors. If use_generator is set, that specific generator will be used.
@@ -109,6 +111,8 @@ class BaseMADGANExperiment(BaseExperiment):
             image_data = {i: [] for i in range(self.madgan.n_gen)}
             for i in range(n_images):
                 for j in range(self.madgan.n_gen):
-                    image_data[j].append(self.madgan.generators[j](latent_vectors[j]))
+                    image = self.madgan.generators[j](latent_vectors[j])
+                    plt.imshow(image[0])
+                    image_data[j].append(image)
 
         return image_data
