@@ -48,8 +48,8 @@ class MADGAN(tf.keras.Model):
         None
         """
         super(MADGAN, self).__init__()
-        self.discriminator = discriminator
-        self.generators = generators
+        self.discriminator: tf.keras.Model = discriminator
+        self.generators: List[tf.keras.Model] = generators
         self.latent_dim = latent_dim
         self.n_gen = n_gen
 
