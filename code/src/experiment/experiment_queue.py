@@ -17,6 +17,9 @@ class ExperimentQueue:
     def run_all(self):
         self.logger.info("### RUNNING ALL EXPERIMENTS...")
 
+        # TODO: add error handling, track those that failed
+        self.failed_experiments = []
+
         while not self.queue.empty():
             experiment = self.queue.get()
             self.logger.info(f"### RUNNING {experiment.name}...")

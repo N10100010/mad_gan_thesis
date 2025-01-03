@@ -244,6 +244,9 @@ class BaseExperiment(ABC, metaclass=AutoSuperMeta):
             "callbacks",
             "history",
             "load_from_path",
+            "image_data",
+            "latent_point_generator",
+            "latent_vectors",
         ]
 
         if not self.dir_path:
