@@ -7,6 +7,13 @@
   - how can we identify the modes a generator is 'best' in recreating?
     - Can we utilize the FID-score of generated images, compared to real images? For a 'good' image of a certain class, the FID-score should be bigger, given images of the same class, than the resulting score for images of a different class. Right?
 
+# TODO CODE
+
+- implement:
+  - classification experiments
+  - cifar madgan geneartion
+  - GDA
+
 ## check
 
 ### server
@@ -48,8 +55,8 @@ Add src to the python path
 `set PYTHONPATH=%PYTHONPATH%;C:\Users\NiXoN\Desktop\_thesis\mad_gan_thesis\code\src`
 
 ## SAVING CHECKPOINTS via callback
-when defining an int to decide which modulo should save the model, for MADGAN, you need to combine the steps_per_epch * epochs (e.g. 234 * 25 - this will save the madgan model every 25th episode)
 
+when defining an int to decide which modulo should save the model, for MADGAN, you need to combine the steps_per_epch _ epochs (e.g. 234 _ 25 - this will save the madgan model every 25th episode)
 
 ## Load a past madgan experiment
 
