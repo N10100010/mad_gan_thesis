@@ -1,18 +1,21 @@
 from experiment.experiment_queue import ExperimentQueue
-from experiment.experiments.fashion_mnist_madgan import FASHION_MNIST_MADGAN_Experiment
-from experiment.experiments.generative_creation.experiment import (
-    GenerativeCreationExperiment,
-)
-from latent_points.utils import generate_latent_points
+from experiment.experiments.cifar_madgan import CIFAR_MADGAN_Experiment
 
 if __name__ == "__main__":
     experiments = [
-        GenerativeCreationExperiment(
-            name="Fashion_MNIST_DataCreation",
-            experiment_class=FASHION_MNIST_MADGAN_Experiment,
-            experiment_path="experiments\\2025-01-02_FASHION_MNIST_MADGAN_Experiment__6_n_gen_6",
-            latent_point_generator=generate_latent_points,
-            n_images=1,
+        # GenerativeCreationExperiment(
+        #     name="Fashion_MNIST_DataCreation",
+        #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+        #     experiment_path="experiments\\2025-01-02_FASHION_MNIST_MADGAN_Experiment__6_n_gen_6",
+        #     latent_point_generator=generate_latent_points,
+        #     n_images=1,
+        # ),
+        CIFAR_MADGAN_Experiment(
+            name="TEST_better_discriminator_CIFAR_MADGAN_Experiment_2",
+            n_gen=2,
+            latent_dim=256,
+            epochs=100,
+            experiment_suffix="n_gen_2",
         ),
     ]
 

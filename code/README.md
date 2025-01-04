@@ -13,6 +13,7 @@
   - classification experiments
   - cifar madgan geneartion
   - GDA
+  - BASELINE GANS FOR THE 3 DATASETS
 
 ## check
 
@@ -56,7 +57,7 @@ Add src to the python path
 
 ## SAVING CHECKPOINTS via callback
 
-when defining an int to decide which modulo should save the model, for MADGAN, you need to combine the steps_per_epch _ epochs (e.g. 234 _ 25 - this will save the madgan model every 25th episode)
+when defining an int to decide which modulo should save the model, for MADGAN, you need to combine the steps*per_epch * epochs (e.g. 234 \_ 25 - this will save the madgan model every 25th episode)
 
 ## Load a past madgan experiment
 

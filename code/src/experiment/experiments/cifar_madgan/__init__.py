@@ -1,0 +1,1 @@
+from .experiment import CIFAR_MADGAN_Experiment as CIFAR_MADGAN_Experiment
