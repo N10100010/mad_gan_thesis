@@ -1,6 +1,5 @@
 import tensorflow as tf
 
-
 def define_generators(n_gen, latent_dim):
     """
     Define multiple generator models for generating CIFAR-10 images.
@@ -12,35 +11,34 @@ def define_generators(n_gen, latent_dim):
     Returns:
     - List of generator models.
     """
-    # Dense layer to project the latent space into an initial 8x8x256 tensor
+    kernel_initializer = tf.keras.initializers.RandomNormal(mean=0.0, stddev=0.02)
+
+    # Define the upsampling layers
     dens = tf.keras.layers.Dense(
-        units=8 * 8 * 256, use_bias=False, input_shape=(latent_dim,)
+        units=8 * 8 * 256, use_bias=False, input_shape=(latent_dim,), kernel_initializer=kernel_initializer
     )
     batchnorm0 = tf.keras.layers.BatchNormalization()
-    rel0 = tf.keras.layers.LeakyReLU()
+    rel0 = tf.keras.layers.ReLU()
     reshape0 = tf.keras.layers.Reshape([8, 8, 256])
 
-    # First upsampling block
     con2dt1 = tf.keras.layers.Conv2DTranspose(
-        128, (5, 5), strides=(2, 2), padding="same", use_bias=False
+        128, (5, 5), strides=(2, 2), padding="same", use_bias=False, kernel_initializer=kernel_initializer
     )
     batchnorm1 = tf.keras.layers.BatchNormalization()
-    rel1 = tf.keras.layers.LeakyReLU()
+    rel1 = tf.keras.layers.ReLU()
 
-    # Second upsampling block
     con2dt2 = tf.keras.layers.Conv2DTranspose(
-        64, (5, 5), strides=(2, 2), padding="same", use_bias=False
+        64, (5, 5), strides=(2, 2), padding="same", use_bias=False, kernel_initializer=kernel_initializer
     )
     batchnorm2 = tf.keras.layers.BatchNormalization()
-    rel2 = tf.keras.layers.LeakyReLU()
+    rel2 = tf.keras.layers.ReLU()
 
-    # Final convolution to output a 32x32x3 image
     models = []
     for label in range(n_gen):
-        input = tf.keras.layers.Input(
+        inp = tf.keras.layers.Input(
             shape=(latent_dim,), dtype=tf.float32, name=f"input_{label}"
         )
-        x = dens(input)
+        x = dens(inp)
         x = batchnorm0(x)
         x = rel0(x)
         x = reshape0(x)
@@ -53,10 +51,11 @@ def define_generators(n_gen, latent_dim):
         x = batchnorm2(x)
         x = rel2(x)
 
-        # Adjust output layer for 3 channels (RGB) and tanh activation
+        # Adjust output layer for 3 channels (RGB) with tanh activation
         x = tf.keras.layers.Conv2DTranspose(
-            3, (5, 5), strides=(1, 1), padding="same", use_bias=False, activation="tanh"
+            3, (5, 5), strides=(1, 1), padding="same", use_bias=False,
+            activation="tanh", kernel_initializer=kernel_initializer
         )(x)
 
-        models.append(tf.keras.models.Model(input, x, name=f"generator{label}"))
+        models.append(tf.keras.models.Model(inp, x, name=f"generator{label}"))
     return models
