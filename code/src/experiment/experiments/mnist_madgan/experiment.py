@@ -54,7 +54,7 @@ class MNIST_MADGAN_Experiment(BaseMADGANExperiment):
         self.discriminator = define_discriminator(self.n_gen)
         self.generators = define_generators(self.n_gen, self.latent_dim)
 
-        self.madgan = MADGAN(
+        self.madgan: MADGAN = MADGAN(
             discriminator=self.discriminator,
             generators=self.generators,
             latent_dim=self.latent_dim,

@@ -14,7 +14,7 @@ if __name__ == "__main__":
             name="TEST_better_discriminator_CIFAR_MADGAN_Experiment_2",
             n_gen=2,
             latent_dim=256,
-            epochs=100,
+            epochs=2,
             experiment_suffix="n_gen_2",
         ),
     ]

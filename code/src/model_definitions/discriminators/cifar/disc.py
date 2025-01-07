@@ -21,6 +21,7 @@ def define_discriminator(n_gen, in_shape=(32, 32, 3)):
     x = tf.keras.layers.Conv2D(
         64, (3, 3), padding="same", kernel_initializer=kernel_initializer
     )(inp)
+    x = tf.keras.layers.BatchNormalization()(x)  # Normalize after convolutions
     x = tf.keras.layers.LeakyReLU(alpha=alpha)(x)
 
     # Downsampling Layers

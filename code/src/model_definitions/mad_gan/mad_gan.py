@@ -145,7 +145,7 @@ class MADGAN(tf.keras.Model):
             axis=0,
         )
 
-        # Add random noise to the labels. important trick
+        # Add random noise to the labels. important trick  ### smoothing
         labels += 0.05 * tf.random.uniform(shape=tf.shape(labels), minval=-1, maxval=1)
 
         #######################
