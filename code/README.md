@@ -63,36 +63,9 @@ when defining an int to decide which modulo should save the model, for MADGAN, y
 
 **Due to a version mismatch between the local- and the servers version of tensorflow (server: 2.15, local: 2.10), server-models cannot be loaded locally. BUT, loading models on the creating machine works as planned.**
 
-To load a past experiment, one hast to:
+# Literature
 
-- load the experiment from its saved path
-- load the models weights from the afore given path
-
-```
-experiment = FASHION_MNIST_MADGAN_Experiment.load_from_path(
-    Path(
-        "experiments\\2024-12-22_FASHION_MNIST_MADGAN_Experiment__1_n_gen_1"
-    )
-)
-
-experiment.load_model_weights()
-```
-
-After that, the MADGAN is initialized, with its two submodels (discriminator and n-generators). Also, the generators can be used to create images they were trained on, after laoding the weights.
-
-```
-from latent_points.utils import generate_latent_points
-from matplotlib import pyplot as plt
-latent_points = generate_latent_points(
-    latent_dim=experiment.latent_dim, batch_size=experiment.batch_size, n_gen=experiment.n_gen
-)
-
-generators = experiment.madgan.generators
-generated_images = []
-for g in range(experiment.n_gen):
-    generated_images.append(generators[g](latent_points[g]))
-for image in generated_images:
-    print(type(image))
-    plt.imshow(image[0])
-    plt.show()
-```
+- Brief summary, with links, for what is what in the context of training and using a GAN
+  - https://github.com/amidstdebug/CIFAR100-GAN/blob/main/CIFAR-100-GAN/research.md
+- GAN hacks; a summary of tips for training a GNA
+  - https://github.com/soumith/ganhacks

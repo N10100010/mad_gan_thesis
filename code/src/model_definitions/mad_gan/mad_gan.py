@@ -118,7 +118,7 @@ class MADGAN(tf.keras.Model):
         random_latent_vectors = generate_latent_points(
             self.latent_dim, batch_size // self.n_gen, self.n_gen
         )
-        print(self.latent_dim, batch_size // self.n_gen, self.n_gen)
+
         # Decode them to fake generator output
         x_generator = []
         for g in range(self.n_gen):
@@ -196,9 +196,9 @@ class MADGAN(tf.keras.Model):
             )
             g_loss_list.append(g_loss)
 
-        mydict = {
+        history = {
             f"{self.generator_loss_label}_{g}": g_loss_list[g]
             for g in range(self.n_gen)
         }
-        mydict.update({self.discriminator_loss_label: d_loss})
-        return mydict
+        history.update({self.discriminator_loss_label: d_loss})
+        return history

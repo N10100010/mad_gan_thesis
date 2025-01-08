@@ -113,17 +113,7 @@ def plot_generators_examples(
         if (ax_index + 1) % n_cols == 0:
             # Plot real data
             ax.imshow(
-                (
-                    # data[
-                    #     ax_index // n_cols,
-                    #     :,
-                    #     :,
-                    # ]
-                    # * 127.5
-                    # + 127.5
-                    data[np.random.randint(data.shape[0]), :, :] * 127.5 + 127.5
-                )
-                / 255,
+                (data[np.random.randint(data.shape[0]), :, :] * 127.5 + 127.5) / 255,
                 cmap="gray",
             )
             ax.set_title("Real (random)")

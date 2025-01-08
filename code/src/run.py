@@ -1,5 +1,5 @@
 from experiment.experiment_queue import ExperimentQueue
-from experiment.experiments.cifar_madgan import CIFAR_MADGAN_Experiment
+from experiment.experiments.cifar_vanilla_gan import CIFAR_VanillaGAN_Experiment
 
 if __name__ == "__main__":
     experiments = [
@@ -10,12 +10,18 @@ if __name__ == "__main__":
         #     latent_point_generator=generate_latent_points,
         #     n_images=1,
         # ),
-        CIFAR_MADGAN_Experiment(
-            name="TEST_better_discriminator_CIFAR_MADGAN_Experiment_2",
-            n_gen=2,
-            latent_dim=256,
-            epochs=2,
-            experiment_suffix="n_gen_2",
+        # CIFAR_MADGAN_Experiment(
+        #     name="TEST_better_discriminator_CIFAR_MADGAN_Experiment_2",
+        #     n_gen=2,
+        #     latent_dim=256,
+        #     epochs=2,
+        #     experiment_suffix="n_gen_2",
+        # ),
+        CIFAR_VanillaGAN_Experiment(
+            name="CIFAR_VanillaGAN_Experiment",
+            latent_dim=100,
+            epochs=100,
+            experiment_suffix="",
         ),
     ]
 
