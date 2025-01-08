@@ -10,10 +10,12 @@
 # TODO CODE
 
 - implement:
-  - classification experiments
   - cifar madgan geneartion
   - GDA
   - BASELINE GANS FOR THE 3 DATASETS
+    - MNIST VANILLA GAN FINISHING!!!
+    - mnist fashion: OPEN
+    - cifar: OPEN
 
 ## check
 
