@@ -17,7 +17,6 @@ def generator_loss(fake_output):
 
 class VanillaGAN(tf.keras.Model):
     batch_size = 256
-    noise_dim = 100
 
     def __init__(self, generator, discriminator, latent_dim):
         super(VanillaGAN, self).__init__()
@@ -33,7 +32,7 @@ class VanillaGAN(tf.keras.Model):
 
     @tf.function
     def train_step(self, real_images):
-        noise = tf.random.normal([self.batch_size, self.noise_dim])
+        noise = tf.random.normal([self.batch_size, self.latent_dim])
 
         with tf.GradientTape() as gen_tape, tf.GradientTape() as disc_tape:
             generated_images = self.generator(noise, training=True)

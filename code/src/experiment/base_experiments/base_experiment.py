@@ -224,6 +224,16 @@ class BaseExperiment(ABC, metaclass=AutoSuperMeta):
         self.logger.info(f"################# Experiment directory: {dir_name}")
         return dir_name
 
+    @classmethod
+    def load_from_path(cls, path: Path):
+        try:
+            json_path = Path(path, "metadata.json")
+            with open(json_path, "r") as f:
+                metadata = json.load(f)
+        except Exception as e:
+            raise Exception(f"Error loading from metadata file {json_path}: {e}")
+        return cls(**metadata)
+
     def _save_metadata_file(self):
         """
         Creates a metadata file (`metadata.json`) for the experiment,

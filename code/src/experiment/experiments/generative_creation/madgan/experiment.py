@@ -11,7 +11,7 @@ from utils.logging import setup_logger
 X = TypeVar("X", bound=BaseExperiment)
 
 
-class GenerativeCreationExperiment(BaseExperiment):
+class MADGAN_GenerativeCreationExperiment(BaseExperiment):
     experiment_class: Type[X]
     experiment_path: str = None
 
