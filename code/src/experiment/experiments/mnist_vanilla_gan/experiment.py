@@ -3,7 +3,7 @@ from pathlib import Path
 import numpy as np
 import tensorflow as tf
 from datasets.mnist import dataset_func
-from experiment.base_experiments.base_experiment import BaseExperiment
+from experiment.base_experiments import BaseGANExperiment
 from latent_points.utils import generate_latent_points
 from model_definitions.discriminators.vanilla_mnist.disc import define_discriminator
 from model_definitions.generators.vanilla_mnist.gen import define_generator
@@ -12,7 +12,7 @@ from monitors.vanilla_gan_geneator import VanillaGANMonitor
 from utils.plotting import plot_training_history
 
 
-class MNIST_VanillaGAN_Experiment(BaseExperiment):
+class MNIST_VanillaGAN_Experiment(BaseGANExperiment):
     latent_dim: int = 100
     generator_training_samples_subfolder: str = "generators_examples"
     generate_after_epochs: int = 1
