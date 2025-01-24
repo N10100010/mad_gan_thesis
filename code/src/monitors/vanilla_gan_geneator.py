@@ -50,7 +50,15 @@ class VanillaGANMonitor(tf.keras.callbacks.Callback):
                 ax.set_title("Real (random)")
             else:
                 ax.imshow(
-                    (generated_sample[0, :, :] * 127.5 + 127.5) / 255, cmap="gray"
+                    (
+                        generated_sample[
+                            np.random.randint(generated_sample.shape[0]), :, :
+                        ]
+                        * 127.5
+                        + 127.5
+                    )
+                    / 255,
+                    cmap="gray",
                 )
                 ax.set_title("Generated Image")
                 ax.axis("off")

@@ -7,12 +7,12 @@ from experiment.base_experiments import BaseGANExperiment
 from latent_points.utils import generate_latent_points
 from model_definitions.discriminators.vanilla_cifar.disc import define_discriminator
 from model_definitions.generators.vanilla_cifar.gen import define_generator
-from model_definitions.vanilla_gan.gan import VanillaGAN
+from model_definitions.wasserstein_gan.gan import WassersteinGAN
 from monitors.vanilla_gan_geneator import VanillaGANMonitor
 from utils.plotting import plot_training_history
 
 
-class CIFAR_VanillaGAN_Experiment(BaseGANExperiment):
+class CIFAR_WassersteinGAN_Experiment(BaseGANExperiment):
     latent_dim: int = 100
     generator_training_samples_subfolder: str = "generators_examples"
     generate_after_epochs: int = 1
@@ -42,20 +42,19 @@ class CIFAR_VanillaGAN_Experiment(BaseGANExperiment):
         self.logger.info(f"Data loaded with shape: {self.data.shape}")
 
     def _initialize_models(self):
-        self.generator = define_generator(self.latent_dim)
-        self.discriminator = define_discriminator()
-
-        # Use learning rate decay
-        lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(
-            0.0002, decay_steps=1000, decay_rate=0.95
+        self.generator: tf.keras.Model = define_generator(self.latent_dim)
+        self.discriminator: tf.keras.Model = define_discriminator()
+        self.gan: WassersteinGAN = WassersteinGAN(
+            self.generator, self.discriminator, self.latent_dim
         )
 
-        self.gan = VanillaGAN(
-            self.generator, self.discriminator, self.latent_dim
-        ).compile(
-            generator_optimizer=tf.keras.optimizers.Adam(lr_schedule, beta_1=0.5),
-            discriminator_optimizer=tf.keras.optimizers.Adam(lr_schedule, beta_1=0.5),
-            loss_fn=tf.keras.losses.BinaryCrossentropy(),
+        self.gan.compile(
+            generator_optimizer=tf.keras.optimizers.Adam(
+                learning_rate=0.0001, beta_1=0.5
+            ),
+            discriminator_optimizer=tf.keras.optimizers.Adam(
+                learning_rate=0.0004, beta_1=0.5
+            ),
         )
 
     def _save_results(self):

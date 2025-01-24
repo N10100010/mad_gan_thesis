@@ -55,11 +55,23 @@ if __name__ == "__main__":
         #     epochs=100,
         #     experiment_suffix="",
         # ),
+        # CIFAR_WassersteinGAN_Experiment(
+        #     name="CIFAR_WassersteinGAN_Experiment__",
+        #     latent_dim=128,
+        #     epochs=100,
+        #     experiment_suffix="applied_wg_loss_latent_128_epochs_50",
+        # ),
         CIFAR_VanillaGAN_Experiment(
-            name="CIFAR_VanillaGAN_Experiment__",
-            latent_dim=100,
-            epochs=200,
-            experiment_suffix="latent_100_epochs_200",
+            name="NEW_CIFAR_VanillaGAN_Experiment__",
+            latent_dim=128,
+            epochs=100,
+            experiment_suffix="latent_128_epochs_100",
+        ),
+        CIFAR_VanillaGAN_Experiment(
+            name="NEW_CIFAR_VanillaGAN_Experiment__",
+            latent_dim=256,
+            epochs=100,
+            experiment_suffix="latent_256_epochs_100",
         ),
         # GAN_GenerativeCreationExperiment(
         #     name="MNIST_GENERATIVE_VanillaGAN_Experiment",
