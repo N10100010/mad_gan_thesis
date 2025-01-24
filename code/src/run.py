@@ -1,17 +1,10 @@
-# import tensorflow as tf
+import tensorflow as tf
 from experiment.experiment_queue import ExperimentQueue
-
-# from experiment.experiments.generative_creation.gan import (
-#     GAN_GenerativeCreationExperiment,
-# )
-# from experiment.experiments.mnist_vanilla_gan.experiment import (
-#     MNIST_VanillaGAN_Experiment,
-# )
-# from experiment.experiments.fashion_mnist_vanilla_gan.experiment import (
-#     FASHION_MNIST_VanillaGAN_Experiment,
-# )
 from experiment.experiments.cifar_vanilla_gan.experiment import (
     CIFAR_VanillaGAN_Experiment,
+)
+from experiment.experiments.generative_creation.gan import (
+    GAN_GenerativeCreationExperiment,
 )
 
 if __name__ == "__main__":
@@ -44,41 +37,85 @@ if __name__ == "__main__":
         #     n_images=1,
         # ),
         # MNIST_VanillaGAN_Experiment(
-        #     name="MNIST_VanillaGAN_Experiment__5",
+        #     name="MNIST_VanillaGAN_Experiment__",
         #     latent_dim=100,
-        #     epochs=100,
-        #     experiment_suffix="",
+        #     epochs=10,
+        #     experiment_suffix="epochs_10",
         # ),
         # FASHION_MNIST_VanillaGAN_Experiment(
-        #     name="MNIST_VanillaGAN_Experiment__5",
+        #     name="FASHION_MNIST_VanillaGAN_Experiment__",
         #     latent_dim=100,
-        #     epochs=100,
-        #     experiment_suffix="",
-        # ),
-        # CIFAR_WassersteinGAN_Experiment(
-        #     name="CIFAR_WassersteinGAN_Experiment__",
-        #     latent_dim=128,
-        #     epochs=100,
-        #     experiment_suffix="applied_wg_loss_latent_128_epochs_50",
+        #     epochs=10,
+        #     experiment_suffix="epochs_10",
         # ),
         CIFAR_VanillaGAN_Experiment(
-            name="NEW_CIFAR_VanillaGAN_Experiment__",
-            latent_dim=128,
-            epochs=100,
-            experiment_suffix="latent_128_epochs_100",
-        ),
-        CIFAR_VanillaGAN_Experiment(
-            name="NEW_CIFAR_VanillaGAN_Experiment__",
-            latent_dim=256,
-            epochs=100,
-            experiment_suffix="latent_256_epochs_100",
+            name="CIFAR_VanillaGAN_Experiment__",
+            latent_dim=100,
+            epochs=200,
+            experiment_suffix="latent_100_epochs_200",
         ),
         # GAN_GenerativeCreationExperiment(
-        #     name="MNIST_GENERATIVE_VanillaGAN_Experiment",
+        #     name="generative_creation_test",
         #     experiment_class=MNIST_VanillaGAN_Experiment,
-        #     experiment_path="experiments\\2025-01-10_MNIST_VanillaGAN_Experiment__5",
+        #     experiment_path="experiments/2025-01-14_MNIST_VanillaGAN_Experiment___epochs_10",
         #     latent_point_generator=tf.random.normal,
-        #     n_images=1,
+        #     n_images=50,
+        # ),
+        # GAN_GenerativeCreationExperiment(
+        #     name="generative_creation_test_fashion",
+        #     experiment_class=FASHION_MNIST_VanillaGAN_Experiment,
+        #     experiment_path="experiments/2025-01-14_FASHION_MNIST_VanillaGAN_Experiment___epochs_10",
+        #     latent_point_generator=tf.random.normal,
+        #     n_images=50,
+        # ),
+        GAN_GenerativeCreationExperiment(
+            name="generative_creation_test_cifar",
+            experiment_class=CIFAR_VanillaGAN_Experiment,
+            experiment_path="experiments/2025-01-14_CIFAR_VanillaGAN_Experiment___latent_200_epochs_200",
+            latent_point_generator=tf.random.normal,
+            n_images=50,
+        ),
+        # CIFAR_VanillaGAN_Experiment(
+        #     name="CIFAR_VanillaGAN_Experiment__",
+        #     latent_dim=100,
+        #     epochs=200,
+        #     experiment_suffix="latent_100_epochs_200",
+        # ),
+        # CIFAR_VanillaGAN_Experiment(
+        #     name="CIFAR_VanillaGAN_Experiment__",
+        #     latent_dim=150,
+        #     epochs=200,
+        #     experiment_suffix="latent_150_epochs_200",
+        # ),
+        # CIFAR_VanillaGAN_Experiment(
+        #     name="CIFAR_VanillaGAN_Experiment__",
+        #     latent_dim=200,
+        #     epochs=200,
+        #     experiment_suffix="latent_200_epochs_200",
+        # ),
+        # GAN_GenerativeCreationExperiment(
+        #     name="CIFAR_GENERATIVE_VanillaGAN_Experiment",
+        #     experiment_class=CIFAR_VanillaGAN_Experiment,
+        #     experiment_path="experiments/2025-01-14_CIFAR_VanillaGAN_Experiment___latent_100_epochs_200",
+        #     latent_point_generator=tf.random.normal,
+        #     experiment_suffix="__latent_100_epochs_200",
+        #     n_images=20,
+        # ),
+        # GAN_GenerativeCreationExperiment(
+        #     name="CIFAR_GENERATIVE_VanillaGAN_Experiment",
+        #     experiment_class=CIFAR_VanillaGAN_Experiment,
+        #     experiment_path="experiments/2025-01-14_CIFAR_VanillaGAN_Experiment___latent_150_epochs_200",
+        #     latent_point_generator=tf.random.normal,
+        #     experiment_suffix="__latent_150_epochs_200",
+        #     n_images=20,
+        # ),
+        # GAN_GenerativeCreationExperiment(
+        #     name="CIFAR_GENERATIVE_VanillaGAN_Experiment",
+        #     experiment_class=CIFAR_VanillaGAN_Experiment,
+        #     experiment_path="experiments/2025-01-14_CIFAR_VanillaGAN_Experiment___latent_200_epochs_200",
+        #     latent_point_generator=tf.random.normal,
+        #     experiment_suffix="__latent_200_epochs_200",
+        #     n_images=20,
         # )
     ]
 

@@ -11,11 +11,7 @@
 
 - implement:
   - cifar madgan geneartion
-  - GDA
-  - BASELINE GANS FOR THE 3 DATASETS
-    - MNIST VANILLA GAN FINISHING!!!
-    - mnist fashion: OPEN
-    - cifar: OPEN
+    - The images created from this model are not sufficient
 
 ## check
 
