@@ -21,7 +21,7 @@ class VanillaGAN(tf.keras.Model):
         self.generator = generator
         self.discriminator = discriminator
         self.latent_dim = latent_dim
-        self.batch_size = 256  # Made instance variable for flexibility
+        self.batch_size = 256
 
     def compile(self, generator_optimizer, discriminator_optimizer, loss_fn):
         super(VanillaGAN, self).compile()
@@ -33,26 +33,28 @@ class VanillaGAN(tf.keras.Model):
 
     @tf.function
     def train_step(self, real_images):
-        # Label smoothing for stable training
-        real_labels = tf.ones_like(real_output) * 0.9  # Instead of 1.0
-        fake_labels = tf.zeros_like(fake_output) + 0.1  # Instead of 0.0
-
         noise = tf.random.normal([self.batch_size, self.latent_dim])
 
         with tf.GradientTape() as gen_tape, tf.GradientTape() as disc_tape:
             generated_images = self.generator(noise, training=True)
 
+            # Get discriminator outputs first
             real_output = self.discriminator(real_images, training=True)
             fake_output = self.discriminator(generated_images, training=True)
 
-            # Modified loss with label smoothing
+            # Create labels after outputs are defined
+            real_labels = tf.ones_like(real_output) * 0.9  # Label smoothing
+            fake_labels = tf.zeros_like(fake_output) + 0.1
+
+            # Calculate losses
             real_loss = self.loss_fn(real_labels, real_output)
             fake_loss = self.loss_fn(fake_labels, fake_output)
             disc_loss = real_loss + fake_loss
 
-            gen_loss = self.loss_fn(real_labels, fake_output)  # Try to fool D
+            # Generator tries to make fake outputs appear real
+            gen_loss = self.loss_fn(real_labels, fake_output)  # Use real_labels here
 
-        # Gradient clipping for discriminator
+        # Gradient clipping
         gradients_of_discriminator = disc_tape.gradient(
             disc_loss, self.discriminator.trainable_variables
         )
@@ -64,6 +66,7 @@ class VanillaGAN(tf.keras.Model):
             gen_loss, self.generator.trainable_variables
         )
 
+        # Apply gradients
         self.discriminator_optimizer.apply_gradients(
             zip(gradients_of_discriminator, self.discriminator.trainable_variables)
         )

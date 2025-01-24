@@ -1,10 +1,6 @@
-import tensorflow as tf
 from experiment.experiment_queue import ExperimentQueue
 from experiment.experiments.cifar_vanilla_gan.experiment import (
     CIFAR_VanillaGAN_Experiment,
-)
-from experiment.experiments.generative_creation.gan import (
-    GAN_GenerativeCreationExperiment,
 )
 
 if __name__ == "__main__":
@@ -49,10 +45,10 @@ if __name__ == "__main__":
         #     experiment_suffix="epochs_10",
         # ),
         CIFAR_VanillaGAN_Experiment(
-            name="CIFAR_VanillaGAN_Experiment__",
+            name="TEST",
             latent_dim=100,
-            epochs=200,
-            experiment_suffix="latent_100_epochs_200",
+            epochs=20,
+            experiment_suffix="",
         ),
         # GAN_GenerativeCreationExperiment(
         #     name="generative_creation_test",
@@ -68,13 +64,13 @@ if __name__ == "__main__":
         #     latent_point_generator=tf.random.normal,
         #     n_images=50,
         # ),
-        GAN_GenerativeCreationExperiment(
-            name="generative_creation_test_cifar",
-            experiment_class=CIFAR_VanillaGAN_Experiment,
-            experiment_path="experiments/2025-01-14_CIFAR_VanillaGAN_Experiment___latent_200_epochs_200",
-            latent_point_generator=tf.random.normal,
-            n_images=50,
-        ),
+        # GAN_GenerativeCreationExperiment(
+        #     name="generative_creation_test_cifar",
+        #     experiment_class=CIFAR_VanillaGAN_Experiment,
+        #     experiment_path="experiments/2025-01-14_CIFAR_VanillaGAN_Experiment___latent_200_epochs_200",
+        #     latent_point_generator=tf.random.normal,
+        #     n_images=50,
+        # ),
         # CIFAR_VanillaGAN_Experiment(
         #     name="CIFAR_VanillaGAN_Experiment__",
         #     latent_dim=100,

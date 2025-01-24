@@ -50,9 +50,8 @@ class CIFAR_VanillaGAN_Experiment(BaseGANExperiment):
             0.0002, decay_steps=1000, decay_rate=0.95
         )
 
-        self.gan = VanillaGAN(
-            self.generator, self.discriminator, self.latent_dim
-        ).compile(
+        self.gan = VanillaGAN(self.generator, self.discriminator, self.latent_dim)
+        self.gan.compile(
             generator_optimizer=tf.keras.optimizers.Adam(lr_schedule, beta_1=0.5),
             discriminator_optimizer=tf.keras.optimizers.Adam(lr_schedule, beta_1=0.5),
             loss_fn=tf.keras.losses.BinaryCrossentropy(),
