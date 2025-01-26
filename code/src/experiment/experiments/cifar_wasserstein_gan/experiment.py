@@ -9,7 +9,7 @@ from model_definitions.discriminators.vanilla_cifar.disc import define_discrimin
 from model_definitions.generators.vanilla_cifar.gen import define_generator
 from model_definitions.wasserstein_gan.gan import WassersteinGAN
 from monitors.vanilla_gan_geneator import VanillaGANMonitor
-from utils.plotting import plot_training_history
+from utils.plotting import plot_gan_training_history
 
 
 class CIFAR_WassersteinGAN_Experiment(BaseGANExperiment):
@@ -66,7 +66,7 @@ class CIFAR_WassersteinGAN_Experiment(BaseGANExperiment):
         np.save(history_path, self.history.history)
         self.logger.info(f"Training history saved to: {history_path}")
 
-        plot_training_history(
+        plot_gan_training_history(
             history=self.history,
             path=self.dir_path,
         )

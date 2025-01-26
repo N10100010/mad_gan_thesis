@@ -11,7 +11,7 @@ from model_definitions.discriminators.vanilla_fashion_mnist.disc import (
 from model_definitions.generators.vanilla_fashion_mnist.gen import define_generator
 from model_definitions.vanilla_gan.gan import VanillaGAN
 from monitors.vanilla_gan_geneator import VanillaGANMonitor
-from utils.plotting import plot_training_history
+from utils.plotting import plot_gan_training_history
 
 
 class FASHION_MNIST_VanillaGAN_Experiment(BaseGANExperiment):
@@ -69,7 +69,7 @@ class FASHION_MNIST_VanillaGAN_Experiment(BaseGANExperiment):
         np.save(history_path, self.history.history)
         self.logger.info(f"Training history saved to: {history_path}")
 
-        plot_training_history(
+        plot_gan_training_history(
             history=self.history,
             path=self.dir_path,
         )

@@ -4,7 +4,7 @@ from pathlib import Path
 import numpy as np
 from experiment.base_experiments.base_experiment import BaseExperiment
 from model_definitions.mad_gan.mad_gan import MADGAN
-from utils.plotting import generate_gan_training_gif, plot_training_history
+from utils.plotting import generate_gan_training_gif, plot_gan_training_history
 
 
 class BaseMADGANExperiment(BaseExperiment):
@@ -33,7 +33,7 @@ class BaseMADGANExperiment(BaseExperiment):
         np.save(history_path, self.history.history)
         self.logger.info(f"Training history saved to: {history_path}")
 
-        plot_training_history(
+        plot_gan_training_history(
             history=self.history,
             path=self.dir_path,
         )

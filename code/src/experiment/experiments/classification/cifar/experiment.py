@@ -2,17 +2,17 @@ from pathlib import Path
 
 import numpy as np
 import tensorflow as tf
-from experiment.base_experiments import BaseExperiment
-from model_definitions.classifiers import MNISTClassifier
+from experiment.base_experiments.base_experiment import BaseExperiment
+from model_definitions.classifiers import CIFAR10Classifier
 from utils.plotting import plot_classifier_training_history
 
 
-class CLASS_MNIST_Experiment(BaseExperiment):
-    epochs: int = 10
+class CLASS_CIFAR10_Experiment(BaseExperiment):
+    epochs: int = 50  # More epochs for complex dataset
+    batch_size: int = 128
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
         for k, v in kwargs.items():
             setattr(self, k, v)
 
@@ -20,29 +20,31 @@ class CLASS_MNIST_Experiment(BaseExperiment):
         pass
 
     def _load_data(self):
-        (x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
+        (x_train, y_train), (x_test, y_test) = tf.keras.datasets.cifar10.load_data()
 
-        # Preprocess data
-        x_train = x_train.reshape(-1, 28, 28, 1).astype("float32") / 255.0
-        x_test = x_test.reshape(-1, 28, 28, 1).astype("float32") / 255.0
+        # Normalize and convert to float32
+        x_train = x_train.astype("float32") / 255.0
+        x_test = x_test.astype("float32") / 255.0
 
-        # Create TensorFlow datasets
-        train_dataset = (
+        # No reshaping needed for CIFAR-10 (already 32x32x3)
+        self.train_dataset = (
             tf.data.Dataset.from_tensor_slices((x_train, y_train))
-            .shuffle(1000)
-            .batch(32)
+            .shuffle(5000)
+            .batch(self.batch_size)
+            .prefetch(tf.data.AUTOTUNE)
         )
-        test_dataset = tf.data.Dataset.from_tensor_slices((x_test, y_test)).batch(32)
-
-        self.train_dataset = train_dataset
-        self.test_dataset = test_dataset
+        self.test_dataset = (
+            tf.data.Dataset.from_tensor_slices((x_test, y_test))
+            .batch(self.batch_size)
+            .prefetch(tf.data.AUTOTUNE)
+        )
 
     def _initialize_models(self):
-        self.classifier = MNISTClassifier()
+        self.classifier = CIFAR10Classifier()
         self.classifier.compile(
-            optimizer=tf.keras.optimizers.Adam(),
-            # Uses default loss (sparse categorical crossentropy with logits)
-            metrics=["accuracy"],  # Can add additional metrics here
+            optimizer=tf.keras.optimizers.Adam(learning_rate=1e-4),
+            metrics=["accuracy"],
+            loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
         )
 
     def _run(self):
@@ -88,7 +90,18 @@ class CLASS_MNIST_Experiment(BaseExperiment):
         report = classification_report(
             y_true,
             y_pred,
-            target_names=["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+            target_names=[
+                "airplane",
+                "automobile",
+                "bird",
+                "cat",
+                "deer",
+                "dog",
+                "frog",
+                "horse",
+                "ship",
+                "truck",
+            ],
         )
 
         report_path = Path(self.dir_path, "classification_report.txt")

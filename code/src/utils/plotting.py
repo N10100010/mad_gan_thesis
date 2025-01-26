@@ -1,13 +1,68 @@
 import os
 from pathlib import Path
+from typing import Dict
 
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
 
 
-def plot_training_history(
-    history, save: bool = True, path: str = None, display: bool = False
+def plot_classifier_training_history(
+    history: Dict, save: bool = True, path: Path = None, display: bool = False
+) -> None:
+    """
+    Visualizes training history with metrics and loss curves.
+
+    Parameters:
+    history (Dict): History object returned from model.fit()
+    save (bool): Whether to save the plot (default: True)
+    path (str): Path to save the plot (default: 'training_history.png')
+    display (bool): Whether to show the plot (default: False)
+    """
+    # Extract metrics from history
+    metrics = [k for k in history.history.keys() if not k.startswith("val_")]
+    n_metrics = len(metrics)
+
+    if n_metrics == 0:
+        raise ValueError("No training history found in the provided object")
+
+    plt.figure(figsize=(12, 6 * n_metrics))
+
+    # Create subplots for each metric
+    for i, metric in enumerate(metrics, 1):
+        plt.subplot(n_metrics, 1, i)
+
+        # Plot training values
+        plt.plot(history.history[metric], label=f"Training {metric}")
+
+        # Plot validation values if available
+        val_metric = f"val_{metric}"
+        if val_metric in history.history:
+            plt.plot(history.history[val_metric], label=f"Validation {metric}")
+
+        plt.title(f"{metric.capitalize()} Curve")
+        plt.ylabel(metric.capitalize())
+        plt.xlabel("Epoch")
+        plt.legend()
+
+    plt.tight_layout()
+
+    if save:
+        if path is None:
+            dir_name = Path.cwd()
+        else:
+            dir_name = Path(path)
+        dir_name.mkdir(exist_ok=True, parents=True)
+        plt.savefig(f"{dir_name}/training_history.png", dpi=200, format="png")
+
+    if display:
+        plt.show()
+
+    plt.close()
+
+
+def plot_gan_training_history(
+    history, save: bool = True, path: Path = None, display: bool = False
 ):
     """
     Plot training history of GAN.

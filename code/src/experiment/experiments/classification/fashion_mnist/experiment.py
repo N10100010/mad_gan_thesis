@@ -2,17 +2,16 @@ from pathlib import Path
 
 import numpy as np
 import tensorflow as tf
-from experiment.base_experiments import BaseExperiment
-from model_definitions.classifiers import MNISTClassifier
+from experiment.base_experiments.base_experiment import BaseExperiment
+from model_definitions.classifiers import FashionMNISTClassifier
 from utils.plotting import plot_classifier_training_history
 
 
-class CLASS_MNIST_Experiment(BaseExperiment):
-    epochs: int = 10
+class CLASS_FashionMNIST_Experiment(BaseExperiment):
+    epochs: int = 15  # Increased for more complex data
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
         for k, v in kwargs.items():
             setattr(self, k, v)
 
@@ -20,29 +19,33 @@ class CLASS_MNIST_Experiment(BaseExperiment):
         pass
 
     def _load_data(self):
-        (x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
+        (
+            (x_train, y_train),
+            (
+                x_test,
+                y_test,
+            ),
+        ) = tf.keras.datasets.fashion_mnist.load_data()
 
         # Preprocess data
         x_train = x_train.reshape(-1, 28, 28, 1).astype("float32") / 255.0
         x_test = x_test.reshape(-1, 28, 28, 1).astype("float32") / 255.0
 
-        # Create TensorFlow datasets
-        train_dataset = (
+        self.train_dataset = (
             tf.data.Dataset.from_tensor_slices((x_train, y_train))
             .shuffle(1000)
-            .batch(32)
+            .batch(64)
+        )  # Larger batch size
+        self.test_dataset = tf.data.Dataset.from_tensor_slices((x_test, y_test)).batch(
+            64
         )
-        test_dataset = tf.data.Dataset.from_tensor_slices((x_test, y_test)).batch(32)
-
-        self.train_dataset = train_dataset
-        self.test_dataset = test_dataset
 
     def _initialize_models(self):
-        self.classifier = MNISTClassifier()
+        self.classifier = FashionMNISTClassifier()
         self.classifier.compile(
-            optimizer=tf.keras.optimizers.Adam(),
-            # Uses default loss (sparse categorical crossentropy with logits)
-            metrics=["accuracy"],  # Can add additional metrics here
+            optimizer=tf.keras.optimizers.Adam(learning_rate=1e-4),
+            metrics=["accuracy"],
+            loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
         )
 
     def _run(self):
@@ -76,7 +79,6 @@ class CLASS_MNIST_Experiment(BaseExperiment):
             history=self.history,
             path=self.dir_path,
         )
-
         self._save_classification_report()
 
     def _save_classification_report(self):
@@ -88,7 +90,18 @@ class CLASS_MNIST_Experiment(BaseExperiment):
         report = classification_report(
             y_true,
             y_pred,
-            target_names=["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+            target_names=[
+                "T-shirt/top",
+                "Trouser",
+                "Pullover",
+                "Dress",
+                "Coat",
+                "Sandal",
+                "Shirt",
+                "Sneaker",
+                "Bag",
+                "Ankle boot",
+            ],
         )
 
         report_path = Path(self.dir_path, "classification_report.txt")
