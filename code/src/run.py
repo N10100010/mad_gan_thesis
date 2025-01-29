@@ -117,9 +117,11 @@ if __name__ == "__main__":
         #     experiment_suffix="__latent_200_epochs_200",
         #     n_images=20,
         # )
-        CLASS_MNIST_Experiment(name="CLASS_MNIST_Experiment__", epochs=2),
-        CLASS_FashionMNIST_Experiment(name="CLASS_FashionMNIST_Experiment__", epochs=2),
-        CLASS_CIFAR10_Experiment(name="CLASS_CIFAR10_Experiment__", epochs=2),
+        CLASS_MNIST_Experiment(name="CLASS_MNIST_Experiment__", epochs=20),
+        CLASS_FashionMNIST_Experiment(
+            name="CLASS_FashionMNIST_Experiment__", epochs=20
+        ),
+        CLASS_CIFAR10_Experiment(name="CLASS_CIFAR10_Experiment__", epochs=50),
     ]
 
     queue = ExperimentQueue()

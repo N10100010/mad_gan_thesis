@@ -26,12 +26,6 @@ class LoggerSingleton:
             )
             self.logger.addHandler(console_handler)
 
-            # NOT MANDATORY FOR NOW: Rotating file handler
-            # file_handler = RotatingFileHandler(log_file, maxBytes=10**6, backupCount=3)
-            # file_handler.setLevel(level)
-            # file_handler.setFormatter(logging.Formatter(f"%(asctime)s - {name} - %(levelname)s - %(message)s"))
-            # self.logger.addHandler(file_handler)
-
 
 # Helper function
 def setup_logger(name="App", log_file="app.log", level=logging.INFO):

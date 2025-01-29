@@ -2,8 +2,10 @@ from pathlib import Path
 
 import numpy as np
 import tensorflow as tf
+from classification_metrics import F1Score
 from experiment.base_experiments import BaseExperiment
 from model_definitions.classifiers import MNISTClassifier
+from monitors.classification import ClassificationSaveCallback
 from utils.plotting import plot_classifier_training_history
 
 
@@ -42,25 +44,22 @@ class CLASS_MNIST_Experiment(BaseExperiment):
         self.classifier.compile(
             optimizer=tf.keras.optimizers.Adam(),
             # Uses default loss (sparse categorical crossentropy with logits)
-            metrics=["accuracy"],  # Can add additional metrics here
+            metrics=["accuracy", F1Score(name="f1_score")],
         )
 
     def _run(self):
         checkpoint_path = self.dir_path / "checkpoints" / "best_weights.h5"
         checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
-        checkpoint = tf.keras.callbacks.ModelCheckpoint(
-            filepath=checkpoint_path,
-            save_weights_only=True,
-            monitor="val_accuracy",
-            mode="max",
-            save_best_only=True,
-        )
+        custom_save_callback = ClassificationSaveCallback(checkpoint_path)
 
         self.history = self.classifier.fit(
             self.train_dataset,
             epochs=self.epochs,
             validation_data=self.test_dataset,
-            callbacks=[checkpoint, tf.keras.callbacks.ReduceLROnPlateau(patience=2)],
+            callbacks=[
+                custom_save_callback,
+                tf.keras.callbacks.ReduceLROnPlateau(patience=2),
+            ],
         )
 
     def _save_results(self):
