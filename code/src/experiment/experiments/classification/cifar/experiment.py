@@ -2,8 +2,6 @@ from pathlib import Path
 
 import numpy as np
 import tensorflow as tf
-
-# from classification_metrics import F1Score
 from classification_metrics import F1Score
 from experiment.base_experiments.base_experiment import BaseExperiment
 from model_definitions.classifiers import CIFAR10Classifier
@@ -12,6 +10,8 @@ from utils.plotting import plot_classifier_training_history
 
 
 class CLASS_CIFAR10_Experiment(BaseExperiment):
+    # https://www.kaggle.com/datasets/swaroopkml/cifar10-pngs-in-folders
+
     epochs: int = 50  # More epochs for complex dataset
     batch_size: int = 32
     num_classes: int = 10

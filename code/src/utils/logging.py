@@ -13,7 +13,8 @@ class LoggerSingleton:
             instance._initialize(name, *args, **kwargs)
         return cls._instances[name]
 
-    def _initialize(self, name, log_file="app.log", level=logging.INFO):
+    def _initialize(self, name, log_file="app.log", level=logging.INFO, prefix=None):
+        self.prefix = f"{prefix}" if prefix is not None else ""
         self.logger = logging.getLogger(name)
         if not self.logger.hasHandlers():  # Prevent duplicate handlers
             self.logger.setLevel(level)
