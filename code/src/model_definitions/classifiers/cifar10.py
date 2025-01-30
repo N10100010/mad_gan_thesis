@@ -5,7 +5,7 @@ from model_definitions.classifiers import BaseClassifier
 class CIFAR10Classifier(BaseClassifier):
     def __init__(self, num_classes=10):
         super().__init__()
-        # Deeper architecture for color images
+
         self.conv1 = tf.keras.layers.Conv2D(
             64, (3, 3), activation="relu", padding="same", input_shape=(32, 32, 3)
         )
@@ -26,7 +26,7 @@ class CIFAR10Classifier(BaseClassifier):
         self.global_pool = tf.keras.layers.GlobalAveragePooling2D()
         self.dense1 = tf.keras.layers.Dense(512, activation="relu")
         self.dropout = tf.keras.layers.Dropout(0.5)
-        self.dense2 = tf.keras.layers.Dense(num_classes)
+        self.dense2 = tf.keras.layers.Dense(num_classes, activation="softmax")
 
     def call(self, inputs):
         x = self.conv1(inputs)
