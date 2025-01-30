@@ -2,6 +2,12 @@ from experiment.experiment_queue import ExperimentQueue
 from experiment.experiments.classification.cifar.experiment import (
     CLASS_CIFAR10_Experiment,
 )
+from experiment.experiments.classification.fashion_mnist.experiment import (
+    CLASS_FashionMNIST_Experiment,
+)
+from experiment.experiments.classification.mnist.experiment import (
+    CLASS_MNIST_Experiment,
+)
 
 # from experiment.experiments.cifar_vanilla_gan.experiment import (
 #     CIFAR_VanillaGAN_Experiment,
@@ -111,9 +117,11 @@ if __name__ == "__main__":
         #     experiment_suffix="__latent_200_epochs_200",
         #     n_images=20,
         # )
-        # CLASS_MNIST_Experiment(name="CLASS_MNIST_Experiment__", epochs=20),
-        # CLASS_FashionMNIST_Experiment(name="CLASS_FashionMNIST_Experiment__", epochs=20),
-        CLASS_CIFAR10_Experiment(name="TEST--CLASS_CIFAR10_Experiment__", epochs=1),
+        CLASS_MNIST_Experiment(name="TEST--CLASS_MNIST_Experiment__", epochs=2),
+        CLASS_FashionMNIST_Experiment(
+            name="TEST--CLASS_FashionMNIST_Experiment__", epochs=2
+        ),
+        CLASS_CIFAR10_Experiment(name="TEST--CLASS_CIFAR10_Experiment__", epochs=2),
     ]
 
     queue = ExperimentQueue()

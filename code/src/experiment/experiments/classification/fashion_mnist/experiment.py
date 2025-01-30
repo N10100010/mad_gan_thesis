@@ -11,6 +11,8 @@ from utils.plotting import plot_classifier_training_history
 
 class CLASS_FashionMNIST_Experiment(BaseExperiment):
     epochs: int = 15  # Increased for more complex data
+    batch_size: int = 32
+    num_classes: int = 10
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -30,24 +32,49 @@ class CLASS_FashionMNIST_Experiment(BaseExperiment):
         ) = tf.keras.datasets.fashion_mnist.load_data()
 
         # Preprocess data
-        x_train = x_train.reshape(-1, 28, 28, 1).astype("float32") / 255.0
-        x_test = x_test.reshape(-1, 28, 28, 1).astype("float32") / 255.0
+        x_train = x_train.reshape(-1, 28, 28, 1).astype("float32") - 127.5 / 127.5
+        x_test = x_test.reshape(-1, 28, 28, 1).astype("float32") - 127.5 / 127.5
 
-        self.train_dataset = (
-            tf.data.Dataset.from_tensor_slices((x_train, y_train))
-            .shuffle(1000)
-            .batch(64)
-        )  # Larger batch size
-        self.test_dataset = tf.data.Dataset.from_tensor_slices((x_test, y_test)).batch(
-            64
+        # needed for classification_report
+        self.test_dataset = (
+            tf.data.Dataset.from_tensor_slices((x_test, y_test))
+            .batch(self.batch_size)
+            .prefetch(tf.data.AUTOTUNE)
+        )
+
+        # Convert labels to categorical (one-hot encoding)
+        y_train = tf.keras.utils.to_categorical(y_train, self.num_classes)
+        y_test = tf.keras.utils.to_categorical(y_test, self.num_classes)
+
+        # Define ImageDataGenerator for data augmentation
+        train_datagen = tf.keras.preprocessing.image.ImageDataGenerator(
+            # rotation_range=15,
+            # width_shift_range=0.1,
+            # height_shift_range=0.1,
+            # horizontal_flip=True,
+        )
+
+        test_datagen = tf.keras.preprocessing.image.ImageDataGenerator()
+
+        # Create generators
+        self.train_generator = train_datagen.flow(
+            x_train, y_train, batch_size=self.batch_size
+        )
+        self.test_generator = test_datagen.flow(
+            x_test, y_test, batch_size=self.batch_size
         )
 
     def _initialize_models(self):
         self.classifier = FashionMNISTClassifier()
         self.classifier.compile(
             optimizer=tf.keras.optimizers.Adam(learning_rate=1e-4),
-            metrics=["accuracy", F1Score(name="f1_score")],
-            loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+            metrics=[
+                "accuracy",
+                F1Score(name="f1_score", num_classes=self.num_classes),
+                tf.keras.metrics.Precision(name="precision"),
+                tf.keras.metrics.Recall(name="recall"),  # Added Recall metric
+            ],
+            loss="categorical_crossentropy",
         )
 
     def _run(self):
@@ -56,9 +83,9 @@ class CLASS_FashionMNIST_Experiment(BaseExperiment):
         custom_save_callback = ClassificationSaveCallback(checkpoint_path)
 
         self.history = self.classifier.fit(
-            self.train_dataset,
+            self.train_generator,
             epochs=self.epochs,
-            validation_data=self.test_dataset,
+            validation_data=self.test_generator,
             callbacks=[
                 custom_save_callback,
                 tf.keras.callbacks.ReduceLROnPlateau(patience=2),

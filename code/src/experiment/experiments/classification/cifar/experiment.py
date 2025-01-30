@@ -13,7 +13,7 @@ from utils.plotting import plot_classifier_training_history
 
 class CLASS_CIFAR10_Experiment(BaseExperiment):
     epochs: int = 50  # More epochs for complex dataset
-    batch_size: int = 128
+    batch_size: int = 32
     num_classes: int = 10
 
     def __init__(self, *args, **kwargs):
@@ -44,10 +44,10 @@ class CLASS_CIFAR10_Experiment(BaseExperiment):
 
         # Define ImageDataGenerator for data augmentation
         train_datagen = tf.keras.preprocessing.image.ImageDataGenerator(
-            rotation_range=15,
-            width_shift_range=0.1,
-            height_shift_range=0.1,
-            horizontal_flip=True,
+            # rotation_range=15,
+            # width_shift_range=0.1,
+            # height_shift_range=0.1,
+            # horizontal_flip=True,
         )
 
         test_datagen = tf.keras.preprocessing.image.ImageDataGenerator()

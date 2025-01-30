@@ -14,7 +14,7 @@ class MNISTClassifier(BaseClassifier):
         self.pool2 = tf.keras.layers.MaxPooling2D((2, 2))
         self.flatten = tf.keras.layers.Flatten()
         self.dense1 = tf.keras.layers.Dense(128, activation="relu")
-        self.dense2 = tf.keras.layers.Dense(num_classes)
+        self.dense2 = tf.keras.layers.Dense(num_classes, activation="softmax")
 
     def call(self, inputs):
         x = self.conv1(inputs)

@@ -22,11 +22,15 @@ class LoggerSingleton:
             console_handler = logging.StreamHandler()
             console_handler.setLevel(level)
             console_handler.setFormatter(
-                logging.Formatter(f"%(asctime)s - {name} - %(levelname)s - %(message)s")
+                logging.Formatter(
+                    f"{self.prefix}%(asctime)s - {name} - %(levelname)s - %(message)s"
+                )
             )
             self.logger.addHandler(console_handler)
 
 
 # Helper function
-def setup_logger(name="App", log_file="app.log", level=logging.INFO):
-    return LoggerSingleton(name, log_file=log_file, level=level).logger
+def setup_logger(
+    name="App", log_file="app.log", level=logging.INFO, prefix: str = None
+):
+    return LoggerSingleton(name, log_file=log_file, level=level, prefix=prefix).logger

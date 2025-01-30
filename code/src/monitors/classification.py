@@ -18,7 +18,7 @@ class ClassificationSaveCallback(tf.keras.callbacks.Callback):
         super(ClassificationSaveCallback, self).__init__()
         self.save_path = save_path
         self.best_score = -np.inf
-        self.logger = setup_logger(name="SaveCallback")
+        self.logger = setup_logger(name="SaveCallback", prefix="\n")
 
     def on_epoch_end(self, epoch, logs=None):
         if logs is None:

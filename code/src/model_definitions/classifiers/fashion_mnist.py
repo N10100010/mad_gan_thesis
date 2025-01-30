@@ -18,7 +18,7 @@ class FashionMNISTClassifier(BaseClassifier):
         self.flatten = tf.keras.layers.Flatten()
         self.dense1 = tf.keras.layers.Dense(256, activation="relu")
         self.dropout = tf.keras.layers.Dropout(0.3)
-        self.dense2 = tf.keras.layers.Dense(num_classes)
+        self.dense2 = tf.keras.layers.Dense(num_classes, activation="softmax")
 
     def call(self, inputs):
         x = self.conv1(inputs)
