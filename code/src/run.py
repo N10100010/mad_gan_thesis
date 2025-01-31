@@ -2,6 +2,14 @@
 #     CIFAR_VanillaGAN_Experiment,
 # )
 
+import tensorflow as tf
+from experiment.experiments.cifar_vanilla_gan.experiment import (
+    CIFAR_VanillaGAN_Experiment,
+)
+from experiment.experiments.generative_creation.gan.experiment import (
+    GAN_GenerativeCreationExperiment,
+)
+
 if __name__ == "__main__":
     experiments = [
         # GenerativeCreationExperiment(
@@ -98,14 +106,14 @@ if __name__ == "__main__":
         #     experiment_suffix="__latent_150_epochs_200",
         #     n_images=20,
         # ),
-        # GAN_GenerativeCreationExperiment(
-        #     name="CIFAR_GENERATIVE_VanillaGAN_Experiment",
-        #     experiment_class=CIFAR_VanillaGAN_Experiment,
-        #     experiment_path="experiments/2025-01-14_CIFAR_VanillaGAN_Experiment___latent_200_epochs_200",
-        #     latent_point_generator=tf.random.normal,
-        #     experiment_suffix="__latent_200_epochs_200",
-        #     n_images=20,
-        # )
+        GAN_GenerativeCreationExperiment(
+            name="CIFAR_GENERATIVE_VanillaGAN_Experiment",
+            experiment_class=CIFAR_VanillaGAN_Experiment,
+            experiment_path="experiments/2025-01-14_CIFAR_VanillaGAN_Experiment___latent_200_epochs_200",
+            latent_point_generator=tf.random.normal,
+            experiment_suffix="__latent_200_epochs_200",
+            n_images=20,
+        )
         # CLASS_MNIST_Experiment(name="TEST--CLASS_MNIST_Experiment__", epochs=20),
         # CLASS_FashionMNIST_Experiment(
         #     name="TEST--CLASS_FashionMNIST_Experiment__", epochs=20
@@ -119,74 +127,74 @@ if __name__ == "__main__":
     # queue.run_all()
 
 
-import numpy as np
-import tensorflow as tf
-
-
-def preprocess_image(img_path, target_size=(32, 32)):
-    """
-    Preprocess an image for inference.
-
-    Args:
-        img_path (str): Path to the image file.
-        target_size (tuple): Target size of the image (height, width).
-
-    Returns:
-        np.array: Preprocessed image with shape (1, height, width, channels).
-    """
-    # Load the image and resize it
-    img = tf.keras.preprocessing.image.load_img(img_path, target_size=target_size)
-
-    # Convert the image to a numpy array
-    img_array = tf.keras.preprocessing.image.img_to_array(img)
-
-    # Normalize pixel values to [0, 1]
-    img_array = img_array - 127.5 / 127.5
-
-    # Add a batch dimension
-    img_array = np.expand_dims(img_array, axis=0)
-
-    return img_array
-
-
-from model_definitions.classifiers import CIFAR10Classifier
-
-classifier = CIFAR10Classifier()
-_ = classifier(tf.random.normal((1, 32, 32, 3)))
-
-classifier.load_weights(
-    "C:\\Users\\NiXoN\\Desktop\\_thesis\\mad_gan_thesis\\code\\experiments\\2025-01-30_TEST--CLASS_CIFAR10_Experiment__\\checkpoints\\best_weights.h5"
-)
-
-
-# Example usage
-img_path = "C:\\Users\\NiXoN\\Desktop\\_thesis\\mad_gan_thesis\\code\\experiments\\2025-01-30_TEST--CLASS_CIFAR10_Experiment__\\0001.png"
-preprocessed_image = preprocess_image(img_path)
-
-print("shape ", preprocessed_image.shape)
-
-# Make predictions
-predictions = classifier(preprocessed_image)
-print(predictions)
-
-# Step 1: Get the predicted class index
-predicted_class_index = tf.argmax(predictions, axis=1).numpy()[0]
-
-# Step 2: Map the index to the class name
-class_names = [
-    "airplane",
-    "automobile",
-    "bird",
-    "cat",
-    "deer",
-    "dog",
-    "frog",
-    "horse",
-    "ship",
-    "truck",
-]
-predicted_class_name = class_names[predicted_class_index]
-
-# Print the result
-print(f"Predicted class index: {predicted_class_index}")
-print(f"Predicted class name: {predicted_class_name}")
+# import numpy as np
+# import tensorflow as tf
+#
+#
+# def preprocess_image(img_path, target_size=(32, 32)):
+#     """
+#     Preprocess an image for inference.
+#
+#     Args:
+#         img_path (str): Path to the image file.
+#         target_size (tuple): Target size of the image (height, width).
+#
+#     Returns:
+#         np.array: Preprocessed image with shape (1, height, width, channels).
+#     """
+#     # Load the image and resize it
+#     img = tf.keras.preprocessing.image.load_img(img_path, target_size=target_size)
+#
+#     # Convert the image to a numpy array
+#     img_array = tf.keras.preprocessing.image.img_to_array(img)
+#
+#     # Normalize pixel values to [0, 1]
+#     img_array = img_array - 127.5 / 127.5
+#
+#     # Add a batch dimension
+#     img_array = np.expand_dims(img_array, axis=0)
+#
+#     return img_array
+#
+#
+# from model_definitions.classifiers import CIFAR10Classifier
+#
+# classifier = CIFAR10Classifier()
+# _ = classifier(tf.random.normal((1, 32, 32, 3)))
+#
+# classifier.load_weights(
+#     "C:\\Users\\NiXoN\\Desktop\\_thesis\\mad_gan_thesis\\code\\experiments\\2025-01-30_TEST--CLASS_CIFAR10_Experiment__\\checkpoints\\best_weights.h5"
+# )
+#
+#
+# # Example usage
+# img_path = "C:\\Users\\NiXoN\\Desktop\\_thesis\\mad_gan_thesis\\code\\experiments\\2025-01-30_TEST--CLASS_CIFAR10_Experiment__\\0001.png"
+# preprocessed_image = preprocess_image(img_path)
+#
+# print("shape ", preprocessed_image.shape)
+#
+# # Make predictions
+# predictions = classifier(preprocessed_image)
+# print(predictions)
+#
+# # Step 1: Get the predicted class index
+# predicted_class_index = tf.argmax(predictions, axis=1).numpy()[0]
+#
+# # Step 2: Map the index to the class name
+# class_names = [
+#     "airplane",
+#     "automobile",
+#     "bird",
+#     "cat",
+#     "deer",
+#     "dog",
+#     "frog",
+#     "horse",
+#     "ship",
+#     "truck",
+# ]
+# predicted_class_name = class_names[predicted_class_index]
+#
+# # Print the result
+# print(f"Predicted class index: {predicted_class_index}")
+# print(f"Predicted class name: {predicted_class_name}")

@@ -19,6 +19,7 @@ class GAN_GenerativeCreationExperiment(BaseExperiment):
     n_images: int
 
     save: bool = True
+    save_raw_image: bool = False
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -44,7 +45,6 @@ class GAN_GenerativeCreationExperiment(BaseExperiment):
         self.gan: VanillaGAN = self.experiment.gan
 
     def _run(self):
-
         if self.gan is None:
             raise Exception("MADGAN is not initialized")
 
@@ -60,7 +60,10 @@ class GAN_GenerativeCreationExperiment(BaseExperiment):
 
         for i, batch in enumerate(self.image_data):
             for j, image in enumerate(batch):
-                plt.imshow(image, cmap="gray")
-                plt.title(f"Image {j}")
-                plt.savefig(saving_path / f"image_{j}.png")
-                plt.close()
+                if self.save_raw_image:
+                    plt.imsave(fname=saving_path / f"image_{j}.png", arr=image)
+                else:
+                    plt.imshow(image, cmap="gray")
+                    plt.title(f"Image {j}")
+                    plt.savefig(saving_path / f"image_{j}.png")
+                    plt.close()
