@@ -46,7 +46,7 @@ class GAN_GenerativeCreationExperiment(BaseExperiment):
 
     def _run(self):
         if self.gan is None:
-            raise Exception("MADGAN is not initialized")
+            raise Exception("GAN is not initialized")
 
         image_data = []
         for i in range(self.n_images):
@@ -61,7 +61,8 @@ class GAN_GenerativeCreationExperiment(BaseExperiment):
         for i, batch in enumerate(self.image_data):
             for j, image in enumerate(batch):
                 if self.save_raw_image:
-                    plt.imsave(fname=saving_path / f"image_{j}.png", arr=image)
+                    image = image.numpy() if hasattr(image, "numpy") else np.array(image)  # Convert to NumPy
+                    plt.imsave(fname=saving_path / f"image_{j}.png", arr=(image + 1 ) / 2)  # sclae images from -1 ... 1 -> 0 ... 1 
                 else:
                     plt.imshow(image, cmap="gray")
                     plt.title(f"Image {j}")

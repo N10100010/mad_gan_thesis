@@ -69,4 +69,5 @@ class BaseGANExperiment(BaseExperiment):
             file_path = self.dir_path / "final_model.weights.h5"
         if not file_path.exists():
             raise Exception(f"Model weights not found at {file_path}")
+        print(f"########################################### {file_path}")
         self.gan.load_weights(file_path)
