@@ -37,43 +37,44 @@ class VanillaGANMonitor(tf.keras.callbacks.Callback):
 
         generated_sample = self.model.generator(self.random_latent_vectors)
 
-        for ax_index, ax in enumerate(axes):
-            if (ax_index + 1) % n_cols == 0:
-                ax.imshow(
-                    (
-                        self.data[np.random.randint(self.data.shape[0]), :, :] * 127.5
-                        + 127.5
+        if epoch % self.generate_after_epochs == 0: 
+            for ax_index, ax in enumerate(axes):
+                if (ax_index + 1) % n_cols == 0:
+                    ax.imshow(
+                        (
+                            self.data[np.random.randint(self.data.shape[0]), :, :] * 127.5
+                            + 127.5
+                        )
+                        / 255,
+                        cmap="gray",
                     )
-                    / 255,
-                    cmap="gray",
-                )
-                ax.set_title("Real (random)")
-            else:
-                ax.imshow(
-                    (
-                        generated_sample[
-                            np.random.randint(generated_sample.shape[0]), :, :
-                        ]
-                        * 127.5
-                        + 127.5
+                    ax.set_title("Real (random)")
+                else:
+                    ax.imshow(
+                        (
+                            generated_sample[
+                                np.random.randint(generated_sample.shape[0]), :, :
+                            ]
+                            * 127.5
+                            + 127.5
+                        )
+                        / 255,
+                        cmap="gray",
                     )
-                    / 255,
-                    cmap="gray",
+                    ax.set_title("Generated Image")
+                    ax.axis("off")
+    
+            fig.tight_layout()
+    
+            if self.save:
+                Path(self.dir_name / self.samples_subfolder).mkdir(
+                    exist_ok=True, parents=True
                 )
-                ax.set_title("Generated Image")
-                ax.axis("off")
-
-        fig.tight_layout()
-
-        if self.save:
-            Path(self.dir_name / self.samples_subfolder).mkdir(
-                exist_ok=True, parents=True
-            )
-            plt.savefig(
-                self.dir_name
-                / self.samples_subfolder
-                / f"image_at_epoch_{(epoch + 1):04}.png",
-                dpi=200,
-                format="png",
-            )
-            plt.close()
+                plt.savefig(
+                    self.dir_name
+                    / self.samples_subfolder
+                    / f"image_at_epoch_{(epoch + 1):04}.png",
+                    dpi=200,
+                    format="png",
+                )
+                plt.close()

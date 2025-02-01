@@ -85,12 +85,12 @@ if __name__ == "__main__":
         #     epochs=200,
         #     experiment_suffix="latent_256_epochs_200",
         # ),
-        # CIFAR_VanillaGAN_Experiment(
-        #     name="CIFAR_VanillaGAN_Experiment__",
-        #     latent_dim=200,
-        #     epochs=200,
-        #     experiment_suffix="latent_200_epochs_200",
-        # ),
+        CIFAR_VanillaGAN_Experiment(
+            name="CIFAR_VanillaGAN_Experiment__",
+            latent_dim=200,
+            epochs=2000,
+            experiment_suffix="latent_200_epochs_2000",
+        ),
         GAN_GenerativeCreationExperiment(
             name="generative_creation_test_cifar_1",
             experiment_class=CIFAR_VanillaGAN_Experiment,
