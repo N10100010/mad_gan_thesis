@@ -14,7 +14,7 @@ class VanillaGANMonitor(tf.keras.callbacks.Callback):
         latent_dim: int = 128,
         dir_name: Path = "Model",
         samples_subfolder: str = "generators_examples",
-        generate_after_epochs: int = 10,
+        generator_example_freq: int = 10,
         save: bool = True,
     ):
         super().__init__()
@@ -25,7 +25,7 @@ class VanillaGANMonitor(tf.keras.callbacks.Callback):
         self.n_classes = n_classes
         self.dir_name = dir_name
         self.samples_subfolder = samples_subfolder
-        self.generate_after_epochs = generate_after_epochs
+        self.generator_example_freq = generator_example_freq
         self.save = save
 
     def on_epoch_end(self, epoch: int, logs: dict = None) -> None:
@@ -37,7 +37,7 @@ class VanillaGANMonitor(tf.keras.callbacks.Callback):
 
         generated_sample = self.model.generator(self.random_latent_vectors)
 
-        if epoch % self.generate_after_epochs == 0: 
+        if epoch % self.generator_example_freq == 0: 
             for ax_index, ax in enumerate(axes):
                 if (ax_index + 1) % n_cols == 0:
                     ax.imshow(

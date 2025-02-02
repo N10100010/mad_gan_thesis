@@ -88,17 +88,17 @@ if __name__ == "__main__":
         CIFAR_VanillaGAN_Experiment(
             name="CIFAR_VanillaGAN_Experiment__",
             latent_dim=200,
-            epochs=2000,
-            experiment_suffix="latent_200_epochs_2000",
+            epochs=1000,
+            experiment_suffix="latent_200_epochs_1000",
         ),
-        GAN_GenerativeCreationExperiment(
-            name="generative_creation_test_cifar_1",
-            experiment_class=CIFAR_VanillaGAN_Experiment,
-            experiment_path="experiments/2025-01-31_CIFAR_VanillaGAN_Experiment___latent_200_epochs_200",
-            latent_point_generator=tf.random.normal,
-            n_images=5,
-            save_raw_image=True
-        ),
+        # GAN_GenerativeCreationExperiment(
+        #     name="generative_creation_test_cifar_1",
+        #     experiment_class=CIFAR_VanillaGAN_Experiment,
+        #     experiment_path="experiments/2025-02-02_CIFAR_VanillaGAN_Experiment___latent_200_epochs_1000",
+        #     latent_point_generator=tf.random.normal,
+        #     n_images=5,
+        #     save_raw_image=True
+        # ),
         # GAN_GenerativeCreationExperiment(
         #     name="CIFAR_GENERATIVE_VanillaGAN_Experiment",
         #     experiment_class=CIFAR_VanillaGAN_Experiment,
