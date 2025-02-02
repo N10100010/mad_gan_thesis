@@ -15,7 +15,8 @@ from utils.plotting import plot_gan_training_history
 class CIFAR_VanillaGAN_Experiment(BaseGANExperiment):
     latent_dim: int = 100
     generator_training_samples_subfolder: str = "generators_examples"
-    generate_after_epochs: int = 1
+    generator_example_freq: int = 10
+    save_freq: int = 50
     size_dataset: int = 60_000
     batch_size: int = 256
     epochs: int = 2
@@ -86,11 +87,11 @@ class CIFAR_VanillaGAN_Experiment(BaseGANExperiment):
                 latent_dim=self.latent_dim,
                 dir_name=self.dir_path,
                 samples_subfolder=self.generator_training_samples_subfolder,
-                generate_after_epochs=self.generate_after_epochs,
+                generator_example_freq=self.generator_example_freq,
             ),
             tf.keras.callbacks.ModelCheckpoint(
                 filepath=checkpoint_filepath.__str__() + "_epoch_{epoch}.weights.h5",
-                save_freq=234 * 25,
+                save_freq=234 * self.save_freq,
                 save_weights_only=True,
             ),
         ]
