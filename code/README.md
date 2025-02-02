@@ -9,9 +9,9 @@
 
 # TODO CODE
 
-- implement:
-  - cifar madgan geneartion
-    - The images created from this model are not sufficient
+- implement the classification with images from the different architecture
+  - should this also be an experiment?! No reason to track any metrics...
+    - Q: How do we save the classified information, including the images
 
 ## check
 
