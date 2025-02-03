@@ -10,8 +10,18 @@
 # TODO CODE
 
 - implement the classification with images from the different architecture
+
   - should this also be an experiment?! No reason to track any metrics...
     - Q: How do we save the classified information, including the images
+
+- inception scores:
+  - mnist: https://github.com/ChunyuanLI/MNIST_Inception_Score
+  - fashion mnist: https://www.kaggle.com/code/babbler/inception-model-for-fashion-mnist
+  - cifar10: https://github.com/Ahmed-Habashy/calculate-Inception-Score-for-CIFAR-10-in-Keras
+
+## GAN hacks:
+
+https://github.com/soumith/ganhacks
 
 ## check
 
