@@ -11,6 +11,11 @@ class BaseClassifier(tf.keras.Model):
     #             # F1Score(name="f1_score"),
     #         ]
 
+    CIFAR10 = "cifar10"
+    MNIST = "mnist"
+    FASHION_MNIST = "fashion_mnist"
+    CUSTOM = "custom"
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

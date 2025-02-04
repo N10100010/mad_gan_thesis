@@ -19,6 +19,10 @@
   - fashion mnist: https://www.kaggle.com/code/babbler/inception-model-for-fashion-mnist
   - cifar10: https://github.com/Ahmed-Habashy/calculate-Inception-Score-for-CIFAR-10-in-Keras
 
+## windows hacks:
+
+- hold down Windows Key + CTRL + SHIFT + B - this clears your GPU memory
+
 ## GAN hacks:
 
 https://github.com/soumith/ganhacks

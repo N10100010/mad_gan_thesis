@@ -3,9 +3,10 @@ from model_definitions.classifiers import BaseClassifier
 
 
 class FashionMNISTClassifier(BaseClassifier):
+    dataset = BaseClassifier.FASHION_MNIST
+
     def __init__(self, num_classes=10):
         super().__init__()
-        # Enhanced architecture for fashion items
         self.conv1 = tf.keras.layers.Conv2D(
             32, (3, 3), activation="relu", input_shape=(28, 28, 1)
         )

@@ -3,6 +3,8 @@ from model_definitions.classifiers import BaseClassifier
 
 
 class MNISTClassifier(BaseClassifier):
+    dataset = BaseClassifier.MNIST
+
     def __init__(self, num_classes=10):
         super().__init__()
         # Define convolutional layers

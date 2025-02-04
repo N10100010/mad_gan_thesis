@@ -1,15 +1,8 @@
-# from experiment.experiments.cifar_vanilla_gan.experiment import (
-#     CIFAR_VanillaGAN_Experiment,
-# )
+from pathlib import Path
 
-import tensorflow as tf
-from experiment.experiments.cifar_vanilla_gan.experiment import (
-    CIFAR_VanillaGAN_Experiment,
-)
-from experiment.experiments.generative_creation.gan.experiment import (
-    GAN_GenerativeCreationExperiment,
-)
 from experiment.experiment_queue import ExperimentQueue
+from experiment.experiments.classification import CLASSIFICATION_Experiment
+from model_definitions.classifiers.cifar10 import CIFAR10Classifier
 
 if __name__ == "__main__":
     experiments = [
@@ -85,12 +78,13 @@ if __name__ == "__main__":
         #     epochs=200,
         #     experiment_suffix="latent_256_epochs_200",
         # ),
-        CIFAR_VanillaGAN_Experiment(
-            name="CIFAR_VanillaGAN_Experiment__",
-            latent_dim=200,
-            epochs=1000,
-            experiment_suffix="latent_200_epochs_1000",
-        ),
+        # Best Cifar vanilla GAN thus far
+        # CIFAR_VanillaGAN_Experiment(
+        #     name="CIFAR_VanillaGAN_Experiment__",
+        #     latent_dim=200,
+        #     epochs=1000,
+        #     experiment_suffix="latent_200_epochs_1000",
+        # ),
         # GAN_GenerativeCreationExperiment(
         #     name="generative_creation_test_cifar_1",
         #     experiment_class=CIFAR_VanillaGAN_Experiment,
@@ -138,11 +132,21 @@ if __name__ == "__main__":
         #     name="TEST--CLASS_FashionMNIST_Experiment__", epochs=20
         # ),
         # CLASS_CIFAR10_Experiment(name="TEST--CLASS_CIFAR10_Experiment__", epochs=50),
+        CLASSIFICATION_Experiment(
+            name="TEST--CLASSIFICATION_Experiment__",
+            created_images_folder_path=Path(
+                "C:\\Users\\NiXoN\\Desktop\\_thesis\\mad_gan_thesis\\code\\experiments\\2025-02-03_generative_creation_test_cifar10\\generated_images"
+            ),
+            model_path=Path(
+                "C:\\Users\\NiXoN\\Desktop\\_thesis\\mad_gan_thesis\\code\\experiments\\2025-01-30_TEST--CLASS_CIFAR10_Experiment__\\final_model.weights.h5"
+            ),
+            classifier_class=CIFAR10Classifier,
+        )
     ]
 
     queue = ExperimentQueue()
     for exp in experiments:
-       queue.add_experiment(exp)
+        queue.add_experiment(exp)
     queue.run_all()
 
 # import numpy as np

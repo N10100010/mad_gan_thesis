@@ -3,6 +3,8 @@ from model_definitions.classifiers import BaseClassifier
 
 
 class CIFAR10Classifier(BaseClassifier):
+    dataset = BaseClassifier.CIFAR10
+
     def __init__(self, num_classes=10):
         super().__init__()
 
