@@ -14,16 +14,14 @@ class DatasetCreator:
         self,
         created_images_folder: Path,
         tf_dataset_load_func: Callable,
-        percentage_of_generated_images_per_class: dict,
-        percentage_of_real_images_per_class: dict,
+        number_of_generated_images_per_class: dict,
+        number_of_real_images_per_class: dict,
     ):
         self.created_images_folder = created_images_folder
         self.created_images_labels_file = created_images_folder / "labels.json"
         self.tf_dataset_load_func = tf_dataset_load_func
-        self.percentage_of_generated_images_per_class = (
-            percentage_of_generated_images_per_class
-        )
-        self.percentage_of_real_images_per_class = percentage_of_real_images_per_class
+        self.number_of_generated_images_per_class = number_of_generated_images_per_class
+        self.number_of_real_images_per_class = number_of_real_images_per_class
 
     def create_dataset(self) -> tf.data.Dataset:
         """
@@ -34,10 +32,8 @@ class DatasetCreator:
         Returns:
             tf.data.Dataset: the merged dataset.
         """
-        # Load and preprocess generated data
-        generated_data = self._load_and_preprocess_generated_data()
 
-        # Load real data via the provided callable.
+        generated_data = self._load_and_preprocess_generated_data()
         real_data = self.tf_dataset_load_func()
 
         # If the returned real_data is a tuple (e.g., (images, labels)), convert it into a tf.data.Dataset.
@@ -120,8 +116,9 @@ class DatasetCreator:
 
     def _load_and_preprocess_generated_data(self) -> tf.data.Dataset:
         """
-        Loads generated images (png files) from the created_images_folder, using the labels
-        from labels.json. Preprocesses them by decoding and scaling to [-1,1].
+        Loads generated images (png files) from the self.created_images_folder, using the labels
+        from labels.json, in the same folder. Preprocesses them by decoding and scaling to [-1,1].
+        Supports both colored images (3 channels) and grayscale images (1 channel).
 
         Returns:
             tf.data.Dataset: dataset of (image, label) where image is scaled to [-1,1].
@@ -137,9 +134,11 @@ class DatasetCreator:
             if not image_path.exists():
                 print(f"Warning: {image_path} does not exist. Skipping.")
                 continue
-            # Read and decode the image.
+            # Read and decode the image without forcing a channel count.
             img_raw = tf.io.read_file(str(image_path))
-            img = tf.image.decode_png(img_raw, channels=3)
+            img = tf.image.decode_png(
+                img_raw
+            )  # Let the image keep its original number of channels.
             # Convert to float32 in [0, 1].
             img = tf.image.convert_image_dtype(img, tf.float32)
             # Scale to [-1, 1]
