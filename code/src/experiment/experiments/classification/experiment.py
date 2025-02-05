@@ -136,9 +136,9 @@ class CLASSIFICATION_Experiment(BaseExperiment):
         self.logger.info(f"Loading {len(image_file_names)} images.")
         self.images = {fn.name: preprocess_image(fn) for fn in image_file_names}
 
-        self.image_data_shape = next(
-            iter(self.images.values())
-        ).shape  # apparently most efficient way to get the first element in a dict.
+        self.image_data_shape = (
+            next(iter(self.images.values())).shape
+        )  # apparently most memory efficient way to get the first element in a dict.
 
     def _initialize_models(self):
         self.classifier = self.classifier_class()
