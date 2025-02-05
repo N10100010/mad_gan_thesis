@@ -118,7 +118,7 @@ class CLASSIFICATION_Experiment(BaseExperiment):
             setattr(self, k, v)
 
         self.results_json_file_path = (
-            self.created_images_folder_path / self.labels_json_file_name
+            self.created_images_folder_path / ".." / self.labels_json_file_name
         )
 
     def _setup(self):
@@ -131,10 +131,10 @@ class CLASSIFICATION_Experiment(BaseExperiment):
         self.logger.info(f"Found {len(image_file_names)} images.")
 
         image_file_names = [
-            os.path.join(self.created_images_folder_path, fn) for fn in image_file_names
+            self.created_images_folder_path / fn for fn in image_file_names
         ]
         self.logger.info(f"Loading {len(image_file_names)} images.")
-        self.images = {fn: preprocess_image(fn) for fn in image_file_names}
+        self.images = {fn.name: preprocess_image(fn) for fn in image_file_names}
 
         self.image_data_shape = next(
             iter(self.images.values())
@@ -156,7 +156,6 @@ class CLASSIFICATION_Experiment(BaseExperiment):
             self.classifications[fn] = classification
 
     def _save_results(self):
-        breakpoint()
         classifications_json = json.dumps(self.classifications)
         with open(self.results_json_file_path, "w") as f:
             f.write(classifications_json)
