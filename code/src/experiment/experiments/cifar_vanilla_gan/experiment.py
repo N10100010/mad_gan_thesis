@@ -17,7 +17,7 @@ class CIFAR_VanillaGAN_Experiment(BaseGANExperiment):
     generator_training_samples_subfolder: str = "generators_examples"
     generator_example_freq: int = 10
     save_freq: int = 50
-    size_dataset: int = 60_000
+    size_dataset: int = 50_000
     batch_size: int = 256
     epochs: int = 2
 

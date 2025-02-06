@@ -6,6 +6,7 @@ from typing import Dict
 import tensorflow as tf
 from experiment.base_experiments import BaseExperiment
 from experiment.experiments.classification.utils import preprocess_image
+from datasets.utils import dataset_labels
 
 """
 CLASSIFICATION LABELS OF CURRENT USED DATASETS:
@@ -52,45 +53,6 @@ CLASSIFICATION LABELS OF CURRENT USED DATASETS:
     |   8   | ship        |
     |   9   | truck       |
 """
-
-dataset_labels = {
-    "mnist": {
-        0: "0",
-        1: "1",
-        2: "2",
-        3: "3",
-        4: "4",
-        5: "5",
-        6: "6",
-        7: "7",
-        8: "8",
-        9: "9",
-    },
-    "fashion_mnist": {
-        0: "T-shirt/top",
-        1: "Trouser",
-        2: "Pullover",
-        3: "Dress",
-        4: "Coat",
-        5: "Sandal",
-        6: "Shirt",
-        7: "Sneaker",
-        8: "Bag",
-        9: "Ankle boot",
-    },
-    "cifar10": {
-        0: "airplane",
-        1: "automobile",
-        2: "bird",
-        3: "cat",
-        4: "deer",
-        5: "dog",
-        6: "frog",
-        7: "horse",
-        8: "ship",
-        9: "truck",
-    },
-}
 
 
 class CLASSIFICATION_Experiment(BaseExperiment):
@@ -152,8 +114,8 @@ class CLASSIFICATION_Experiment(BaseExperiment):
         for fn, img in self.images.items():
             classification = self.classifier(img)
             index = tf.argmax(classification, axis=-1).numpy().item()
-            classification = dataset_labels[self.classifier.dataset][index]
-            self.classifications[fn] = classification
+            # classification = dataset_labels[self.classifier.dataset][index]
+            self.classifications[fn] = index
 
     def _save_results(self):
         classifications_json = json.dumps(self.classifications)

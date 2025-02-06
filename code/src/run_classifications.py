@@ -1,10 +1,10 @@
 from pathlib import Path
 
 from experiment.experiment_queue import ExperimentQueue
-from src.experiment.experiments.classification.experiment import (
+from experiment.experiments.classification.experiment import (
     CLASSIFICATION_Experiment,
 )
-from src.model_definitions.classifiers.cifar10 import CIFAR10Classifier
+from model_definitions.classifiers.cifar10 import CIFAR10Classifier
 
 experiments = [
     CLASSIFICATION_Experiment(
