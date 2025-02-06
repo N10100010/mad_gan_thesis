@@ -33,6 +33,16 @@ https://github.com/soumith/ganhacks
 
 https://deeplearn.mi.hdm-stuttgart.de/user/nr063/lab
 
+#### How to run the code without having to have it open: 
+
+```
+python src/run.py 2>&1 | while IFS= read -r line; do
+  echo "$line" >> output.log
+  tail -n 100 output.log > output.log.tmp
+  mv output.log.tmp output.log
+done &
+```
+
 ### how to
 
 https://deeplearn.pages.mi.hdm-stuttgart.de/docs/quickstart/
