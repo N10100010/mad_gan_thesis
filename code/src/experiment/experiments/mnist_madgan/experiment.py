@@ -6,7 +6,7 @@ from loss_functions.generator import generators_loss_function
 from model_definitions.discriminators.mnist.disc import define_discriminator
 from model_definitions.generators.mnist.gen import define_generators
 from model_definitions.mad_gan import MADGAN
-from src.monitors.madgan_generator import MADGANMonitor
+from monitors.madgan_generator import MADGANMonitor
 
 
 class MNIST_MADGAN_Experiment(BaseMADGANExperiment):
@@ -23,7 +23,7 @@ class MNIST_MADGAN_Experiment(BaseMADGANExperiment):
     epochs: int = 2
     steps_per_epoch: int = (size_dataset // batch_size) // n_gen  # 78
     generator_training_samples_subfolder: str = "generators_examples"
-    generate_after_epochs = 1
+    generate_after_epochs: int = 1
 
     def __init__(self, *args, **kwargs):
         pop_keys = []

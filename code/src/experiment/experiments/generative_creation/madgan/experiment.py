@@ -20,6 +20,8 @@ class MADGAN_GenerativeCreationExperiment(BaseExperiment):
 
     use_generator: int = None
     save: bool = True
+    
+    save_raw_image: bool = True
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -35,9 +37,16 @@ class MADGAN_GenerativeCreationExperiment(BaseExperiment):
         )
 
     def _load_data(self):
-        self.latent_vectors = self.latent_point_generator(
-            self.experiment.latent_dim, self.n_images, self.experiment.n_gen
-        )
+        if self.use_generator: 
+            # Provide latent vectors, with a batch_size of 1, to generate n-images, in n-images batches, with a batch-size of 1 respectively. 
+            self.latent_vectors = self.latent_point_generator(
+                self.experiment.latent_dim, 1, self.n_images
+            )
+        else: 
+            # Provide latent vectors, with a batch_size of n_generators, to generate n-images * n_generators images, with a batch-size of n_generators respectively. 
+            self.latent_vectors = self.latent_point_generator(
+                self.experiment.latent_dim, self.experiment.n_gen, self.n_images
+            )
 
     def _initialize_models(self):
         self.experiment.load_model_weights()
@@ -60,7 +69,7 @@ class MADGAN_GenerativeCreationExperiment(BaseExperiment):
             raise Exception("MADGAN is not initialized")
 
         if self.use_generator:
-            if 0 > self.use_generator or self.use_generator >= self.madgan.n_gen:
+            if 0 >= self.use_generator or self.use_generator > self.madgan.n_gen:
                 raise Exception(
                     f"Generator index {self.use_generator} is out of bounds. Generator indizes: {range(self.madgan.n_gen)}"
                 )
@@ -79,7 +88,6 @@ class MADGAN_GenerativeCreationExperiment(BaseExperiment):
             for _ in range(self.n_images):
                 for j in range(self.madgan.n_gen):
                     image = self.madgan.generators[j](self.latent_vectors[j])
-                    plt.imshow(image[0])
                     image_data[j].append(image)
 
         self.image_data: Dict[int, np.ndarray] = image_data
@@ -91,9 +99,12 @@ class MADGAN_GenerativeCreationExperiment(BaseExperiment):
         for gen_idx, batch in self.image_data.items():
             for batch_number, _images in enumerate(batch):
                 for image_number, image in enumerate(_images):
-                    plt.imshow(image / 127.5 * 127.5)
-                    plt.title(f"Generator {gen_idx}")
-                    plt.savefig(
-                        saving_path
-                        / f"gen_{gen_idx}_{batch_number}__{image_number}.png"
-                    )
+                    if self.save_raw_image: 
+                        plt.imsave(saving_path / f"gen_{gen_idx}_{batch_number}__{image_number}.png", np.squeeze(image, axis=-1), cmap='gray')
+                    else: 
+                        plt.imshow(image)
+                        plt.title(f"Generator {gen_idx}")
+                        plt.savefig(
+                            saving_path
+                            / f"gen_{gen_idx}_{batch_number}__{image_number}.png"
+                        )
