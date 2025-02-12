@@ -63,6 +63,7 @@ class CLASSIFICATION_Experiment(BaseExperiment):
     """
 
     labels_json_file_name: str = "labels.json"
+    certainties_json_file_name: str = "certainties.json"
 
     created_images_folder_path: Path
     model_path: Path
@@ -78,8 +79,11 @@ class CLASSIFICATION_Experiment(BaseExperiment):
         for k, v in kwargs.items():
             setattr(self, k, v)
 
-        self.results_json_file_path = (
+        self.labels_json_file_path = (
             self.created_images_folder_path / ".." / self.labels_json_file_name
+        )
+        self.certainties_json_file_path = (
+            self.created_images_folder_path / ".." / self.classifications_json_file_name
         )
 
     def _setup(self):
@@ -94,33 +98,42 @@ class CLASSIFICATION_Experiment(BaseExperiment):
         image_file_names = [
             self.created_images_folder_path / fn for fn in image_file_names
         ]
-        
+
         image_file_names = image_file_names[:10]
-        
+
         self.logger.info(f"Loading {len(image_file_names)} images.")
-        self.images = {fn.name: preprocess_image(fn, target_size=self.classifier_class.input_shape) for fn in image_file_names}
+        self.images = {
+            fn.name: preprocess_image(fn, target_size=self.classifier_class.input_shape)
+            for fn in image_file_names
+        }
 
         # apparently most memory efficient way to get the first element in a dict.
-        self.image_data_shape = (next(iter(self.images.values())).shape)  
+        self.image_data_shape = next(iter(self.images.values())).shape
 
     def _initialize_models(self):
         self.classifier = self.classifier_class()
-        
-        breakpoint()
 
         _ = self.classifier(tf.random.normal(shape=self.image_data_shape))
         self.classifier.load_weights(self.model_path)
 
     def _run(self):
         self.classifications = {}
+        self.certainties = {}
 
         for fn, img in self.images.items():
             classification = self.classifier(img)
+            breakpoint()
             index = tf.argmax(classification, axis=-1).numpy().item()
+            maximum = tf.reduce_max(classification, axis=-1).numpy().item()
+            # --> to get to labels
             # classification = dataset_labels[self.classifier.dataset][index]
             self.classifications[fn] = index
+            self.certainties[fn] = maximum
 
     def _save_results(self):
         classifications_json = json.dumps(self.classifications)
-        with open(self.results_json_file_path, "w") as f:
+        certainties_json = json.dumps(self.certainties)
+        with open(self.labels_json_file_path, "w") as f:
             f.write(classifications_json)
+        with open(self.certainties_json_file_path, "w") as f:
+            f.write(certainties_json)
