@@ -11,7 +11,7 @@ from utils.plotting import plot_classifier_training_history
 
 class CLASS_FashionMNIST_Experiment(BaseExperiment):
     epochs: int = 15  # Increased for more complex data
-    batch_size: int = 32
+    batch_size: int = 64
     num_classes: int = 10
 
     traditional_data_augmentation: bool = False
@@ -53,7 +53,6 @@ class CLASS_FashionMNIST_Experiment(BaseExperiment):
                 rotation_range=15,
                 width_shift_range=0.1,
                 height_shift_range=0.1,
-                horizontal_flip=True,
             )
         else:
             train_datagen = tf.keras.preprocessing.image.ImageDataGenerator()
@@ -65,7 +64,7 @@ class CLASS_FashionMNIST_Experiment(BaseExperiment):
             x_train, y_train, batch_size=self.batch_size
         )
         self.test_generator = test_datagen.flow(
-            x_test, y_test, batch_size=self.batch_size
+            x_test, y_test, batch_size=self.batch_size, shuffle=False
         )
 
     def _initialize_models(self):

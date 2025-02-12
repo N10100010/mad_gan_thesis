@@ -6,13 +6,6 @@ from utils.logging import setup_logger
 
 
 class ClassificationSaveCallback(tf.keras.callbacks.Callback):
-    combined_score_weights = {
-        "val_f1_score": 0.5,
-        "val_accuracy": 0.3,
-        "val_roc_auc": 0.2,
-        "val_precision": 0.05,
-        "val_recall": 0.05,
-    }
 
     def __init__(self, save_path: Path):
         super(ClassificationSaveCallback, self).__init__()
@@ -34,9 +27,8 @@ class ClassificationSaveCallback(tf.keras.callbacks.Callback):
         combined_score = (
             (0.5 * f1)
             + (0.3 * accuracy)
-            + (0.2 * roc_auc)
-            + (0.05 * precision)
-            + (0.05 * recall)
+            + (0.15 * precision)
+            + (0.15 * recall)
         )
 
         self.logger.info(f"Epoch {epoch + 1}: Combined Score = {combined_score:.4f}")

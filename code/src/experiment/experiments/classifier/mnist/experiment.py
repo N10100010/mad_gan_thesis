@@ -11,7 +11,7 @@ from utils.plotting import plot_classifier_training_history
 
 class CLASS_MNIST_Experiment(BaseExperiment):
     epochs: int = 10
-    batch_size: int = 32
+    batch_size: int = 64
     num_classes: int = 10
 
     traditional_data_augmentation: bool = False
@@ -29,8 +29,8 @@ class CLASS_MNIST_Experiment(BaseExperiment):
         (x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
 
         # Preprocess data
-        x_train = x_train.reshape(-1, 28, 28, 1).astype("float32") - 127.5 / 127.5
-        x_test = x_test.reshape(-1, 28, 28, 1).astype("float32") - 127.5 / 127.5
+        x_train = ( x_train.reshape(-1, 28, 28, 1).astype("float32") - 127.5 ) / 127.5
+        x_test = ( x_test.reshape(-1, 28, 28, 1).astype("float32") - 127.5 ) / 127.5
 
         # needed for classification_report
         self.test_dataset = (
@@ -48,7 +48,6 @@ class CLASS_MNIST_Experiment(BaseExperiment):
                 rotation_range=15,
                 width_shift_range=0.1,
                 height_shift_range=0.1,
-                horizontal_flip=True,
             )
         else:
             train_datagen = tf.keras.preprocessing.image.ImageDataGenerator()
@@ -60,7 +59,7 @@ class CLASS_MNIST_Experiment(BaseExperiment):
             x_train, y_train, batch_size=self.batch_size
         )
         self.test_generator = test_datagen.flow(
-            x_test, y_test, batch_size=self.batch_size
+            x_test, y_test, batch_size=self.batch_size, shuffle=False
         )
 
     def _initialize_models(self):
