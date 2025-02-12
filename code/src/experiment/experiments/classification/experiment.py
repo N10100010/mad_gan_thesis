@@ -99,8 +99,6 @@ class CLASSIFICATION_Experiment(BaseExperiment):
             self.created_images_folder_path / fn for fn in image_file_names
         ]
 
-        image_file_names = image_file_names[:10]
-
         self.logger.info(f"Loading {len(image_file_names)} images.")
         self.images = {
             fn.name: preprocess_image(fn, target_size=self.classifier_class.input_shape)
