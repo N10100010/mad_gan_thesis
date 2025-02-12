@@ -1,82 +1,84 @@
+from typing import Tuple
 import tensorflow as tf
-
+import numpy as np
 
 def calculate_inception_score(
-    generated_images: tf.Tensor, real_images: tf.Tensor, n_splits: int = 10
-) -> tuple:
+    images: np.ndarray, 
+    classifier: tf.keras.Model,
+    n_splits: int = 10
+) -> Tuple[float, float]:
     """
-    Calculate the Inception score for a set of generated images.
+    Calculate the Inception Score (IS) using a provided classifier.
 
     Args:
-        generated_images (tf.Tensor): Generated images as a tensor.
-        real_images (tf.Tensor): Real images as a tensor.
+        images (np.ndarray): Array of images with shape (N, H, W, 3). 
+            These images can be of any size; they will be resized to match the classifier's input.
+        classifier (tf.keras.Model): A model (typically from the Functional API) that outputs a probability distribution.
+            For example, a classifier trained on your dataset with a softmax output.
+        n_splits (int): Number of splits to partition the data for computing statistics.
 
     Returns:
-        tuple: Inception score and standard deviation.
+        tuple: (mean_inception_score, std_inception_score)
     """
-    # Use the model with the top classification layer
-    model = tf.keras.applications.InceptionV3(include_top=True, weights="imagenet")
-
+    # Determine the expected input size from the classifier.
+    target_size = classifier.input_shape[1:3]  # (height, width)
+    
     scores = []
-    n_part = generated_images.shape[0] // n_splits
+    n_samples = images.shape[0]
+    n_part = n_samples // n_splits
 
-    for split in range(n_splits):
-        ix_start, ix_end = split * n_part, (split + 1) * n_part
-        subset_generated = generated_images[ix_start:ix_end]
-        subset_real = real_images[ix_start:ix_end]
-
-        if subset_generated.shape[-1] == 1:
-            subset_generated = tf.image.grayscale_to_rgb(subset_generated)
-        if subset_real.shape[-1] == 1:
-            subset_real = tf.image.grayscale_to_rgb(subset_real)
-
-        subset_generated = tf.image.resize(subset_generated, (299, 299))
-        subset_real = tf.image.resize(subset_real, (299, 299))
-        subset_generated = tf.keras.applications.inception_v3.preprocess_input(
-            subset_generated
-        )
-        subset_real = tf.keras.applications.inception_v3.preprocess_input(subset_real)
-
-        # Get predictions and apply softmax to obtain probabilities
-        preds_generated = tf.nn.softmax(model.predict(subset_generated))
-        preds_real = tf.nn.softmax(model.predict(subset_real))
-
-        for j in range(len(preds_generated)):
-            p_yx = preds_generated[j]
-            p_y = tf.reduce_mean(preds_real, axis=0)
-            # To avoid division by zero, add a small epsilon if necessary
-            kl_div = tf.reduce_sum(p_yx * tf.math.log(p_yx / (p_y + 1e-10)))
-            scores.append(kl_div)
-
-    scores = tf.convert_to_tensor(scores)
-    inception_score = tf.exp(tf.reduce_mean(scores))
-    inception_score_std = tf.exp(tf.math.reduce_std(scores))
-
-    return inception_score.numpy(), inception_score_std.numpy()
+    for i in range(n_splits):
+        # Select a subset of images
+        subset = images[i * n_part:(i + 1) * n_part]
+        # Resize to classifier's expected input size.
+        subset_resized = tf.image.resize(subset, target_size)
+        # (Optional) Add any preprocessing steps here if required by your classifier.
+        # For example, if your classifier expects images in the range [-1,1], normalize accordingly.
+        #
+        # Compute predictions using the provided classifier.
+        preds = classifier.predict(subset_resized)
+        # Compute the marginal distribution (average probability over images)
+        py = np.mean(preds, axis=0)
+        # Compute the KL divergence for each image and then the exponential of its mean.
+        kl_divs = preds * (np.log(preds + 1e-16) - np.log(py + 1e-16))
+        kl_div_sum = np.sum(kl_divs, axis=1)
+        split_score = np.exp(np.mean(kl_div_sum))
+        scores.append(split_score)
+    
+    inception_score = np.mean(scores)
+    inception_score_std = np.std(scores)
+    return inception_score, inception_score_std
 
 
 # Example usage:
+if __name__ == '__main__':
+    # Here we use MNIST as an example. In practice, you might train a domain-specific classifier.
+    import numpy as np
 
-# Load MNIST dataset
-(mnist_train_images, _), (mnist_test_images, _) = tf.keras.datasets.mnist.load_data()
-mnist_train_images = mnist_train_images.astype("float32") / 255.0
-mnist_test_images = mnist_test_images.astype("float32") / 255.0
+    # Load MNIST data.
+    (mnist_train, _), (mnist_test, _) = tf.keras.datasets.mnist.load_data()
+    # Normalize and add a channel dimension.
+    mnist_train = mnist_train.astype('float32') / 255.0
+    mnist_test = mnist_test.astype('float32') / 255.0
+    mnist_train = np.expand_dims(mnist_train, axis=-1)
+    mnist_test = np.expand_dims(mnist_test, axis=-1)
+    # Convert grayscale to RGB.
+    mnist_train_tensor = tf.convert_to_tensor(mnist_train)
+    mnist_test_tensor = tf.convert_to_tensor(mnist_test)
+    mnist_train_rgb = tf.image.grayscale_to_rgb(mnist_train_tensor).numpy()
+    mnist_test_rgb = tf.image.grayscale_to_rgb(mnist_test_tensor).numpy()
 
-# Ensure MNIST images have 3 channels
-mnist_train_images = tf.image.grayscale_to_rgb(
-    tf.expand_dims(mnist_train_images, axis=-1)
-)
-mnist_test_images = tf.image.grayscale_to_rgb(
-    tf.expand_dims(mnist_test_images, axis=-1)
-)
-
-mnist_train_images = mnist_train_images[:1000]
-mnist_test_images = mnist_test_images[:1000]
-
-# Calculate Inception Score
-inception_score, inception_score_std = calculate_inception_score(
-    mnist_train_images, mnist_test_images
-)
-
-print(f"Inception Score: {inception_score}")
-print(f"Inception Score Standard Deviation: {inception_score_std}")
+    # For demonstration, let's assume we have a simple classifier.
+    # (In practice, you would use a well-trained model on MNIST or your dataset.)
+    # Here we build a simple model that accepts 28x28x3 images.
+    input_img = tf.keras.Input(shape=(28, 28, 3))
+    x = tf.keras.layers.Conv2D(32, (3, 3), activation='relu')(input_img)
+    x = tf.keras.layers.MaxPooling2D((2, 2))(x)
+    x = tf.keras.layers.Flatten()(x)
+    output = tf.keras.layers.Dense(10, activation='softmax')(x)
+    simple_classifier = tf.keras.Model(input_img, output)
+    # Note: This model is untrained and is used here for demonstration only.
+    
+    # Compute the Inception Score using the classifier.
+    is_score, is_std = calculate_inception_score(mnist_train_rgb, simple_classifier, n_splits=10)
+    print(f"Inception Score: {is_score:.4f} ± {is_std:.4f}")
