@@ -83,7 +83,7 @@ class CLASSIFICATION_Experiment(BaseExperiment):
             self.created_images_folder_path / ".." / self.labels_json_file_name
         )
         self.certainties_json_file_path = (
-            self.created_images_folder_path / ".." / self.classifications_json_file_name
+            self.created_images_folder_path / ".." / self.certainties_json_file_name
         )
 
     def _setup(self):
