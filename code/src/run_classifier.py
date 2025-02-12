@@ -6,11 +6,11 @@ from experiment.experiments.classifier.fashion_mnist.experiment import (
 from experiment.experiments.classifier.mnist.experiment import CLASS_MNIST_Experiment
 
 experiments = [
-    CLASS_MNIST_Experiment(name="TEST--CLASS_MNIST_Experiment__", epochs=20),
-    CLASS_FashionMNIST_Experiment(
-        name="TEST--CLASS_FashionMNIST_Experiment__", epochs=20
-    ),
-    CLASS_CIFAR10_Experiment(name="TEST--CLASS_CIFAR10_Experiment__", epochs=50),
+    CLASS_MNIST_Experiment(name="TEST--CLASS_MNIST_Experiment___CURRENT", epochs=2),
+    # CLASS_FashionMNIST_Experiment(
+    #     name="TEST--CLASS_FashionMNIST_Experiment__", epochs=20
+    # ),
+    # CLASS_CIFAR10_Experiment(name="TEST--CLASS_CIFAR10_Experiment__", epochs=50),
 ]
 
 queue = ExperimentQueue()

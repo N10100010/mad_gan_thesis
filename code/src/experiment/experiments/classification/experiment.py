@@ -6,7 +6,6 @@ from typing import Dict
 import tensorflow as tf
 from experiment.base_experiments import BaseExperiment
 from experiment.experiments.classification.utils import preprocess_image
-from datasets.utils import dataset_labels
 
 """
 CLASSIFICATION LABELS OF CURRENT USED DATASETS:
@@ -95,15 +94,19 @@ class CLASSIFICATION_Experiment(BaseExperiment):
         image_file_names = [
             self.created_images_folder_path / fn for fn in image_file_names
         ]
+        
+        image_file_names = image_file_names[:10]
+        
         self.logger.info(f"Loading {len(image_file_names)} images.")
-        self.images = {fn.name: preprocess_image(fn) for fn in image_file_names}
+        self.images = {fn.name: preprocess_image(fn, target_size=self.classifier_class.input_shape) for fn in image_file_names}
 
-        self.image_data_shape = (
-            next(iter(self.images.values())).shape
-        )  # apparently most memory efficient way to get the first element in a dict.
+        # apparently most memory efficient way to get the first element in a dict.
+        self.image_data_shape = (next(iter(self.images.values())).shape)  
 
     def _initialize_models(self):
         self.classifier = self.classifier_class()
+        
+        breakpoint()
 
         _ = self.classifier(tf.random.normal(shape=self.image_data_shape))
         self.classifier.load_weights(self.model_path)

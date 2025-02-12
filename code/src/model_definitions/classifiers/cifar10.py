@@ -4,12 +4,14 @@ from model_definitions.classifiers import BaseClassifier
 
 class CIFAR10Classifier(BaseClassifier):
     dataset = BaseClassifier.CIFAR10
+    
+    input_shape = (32, 32, 3)
 
     def __init__(self, num_classes=10):
         super().__init__()
 
         self.conv1 = tf.keras.layers.Conv2D(
-            64, (3, 3), activation="relu", padding="same", input_shape=(32, 32, 3)
+            64, (3, 3), activation="relu", padding="same", input_shape=self.input_shape
         )
         self.bn1 = tf.keras.layers.BatchNormalization()
         self.pool1 = tf.keras.layers.MaxPooling2D((2, 2))

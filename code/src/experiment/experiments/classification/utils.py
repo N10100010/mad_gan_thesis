@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 
-def preprocess_image(img_path, target_size=(32, 32), scale_minus_1_1: bool = False):
+def preprocess_image(img_path, target_size=(32, 32, 3), scale_minus_1_1: bool = False):
     """
     Preprocess an image for inference.
 
@@ -12,8 +12,13 @@ def preprocess_image(img_path, target_size=(32, 32), scale_minus_1_1: bool = Fal
     Returns:
         np.array: Preprocessed image with shape (1, height, width, channels).
     """
+    
+    # weird, but this is to laod colored or gray images with tf...image.load_img function
+    # if not specifically defined, it'll load 3-channel iamges by default
+    target_cmap = "grayscale" if target_size[2] == 1 else "rgb"
+    target_size = target_size[0:2]
 
-    img = tf.keras.preprocessing.image.load_img(img_path, target_size=target_size)
+    img = tf.keras.preprocessing.image.load_img(img_path, target_size=target_size, color_mode=target_cmap)
     img_array = tf.keras.preprocessing.image.img_to_array(img)
     img_array = img_array - 127.5 / 127.5
 
