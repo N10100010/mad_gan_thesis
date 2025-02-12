@@ -14,6 +14,8 @@ class CLASS_MNIST_Experiment(BaseExperiment):
     batch_size: int = 32
     num_classes: int = 10
 
+    traditional_data_augmentation: bool = False
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -41,13 +43,15 @@ class CLASS_MNIST_Experiment(BaseExperiment):
         y_train = tf.keras.utils.to_categorical(y_train, self.num_classes)
         y_test = tf.keras.utils.to_categorical(y_test, self.num_classes)
 
-        # Define ImageDataGenerator for data augmentation
-        train_datagen = tf.keras.preprocessing.image.ImageDataGenerator(
-            # rotation_range=15,
-            # width_shift_range=0.1,
-            # height_shift_range=0.1,
-            # horizontal_flip=True,
-        )
+        if self.traditional_data_augmentation:
+            train_datagen = tf.keras.preprocessing.image.ImageDataGenerator(
+                rotation_range=15,
+                width_shift_range=0.1,
+                height_shift_range=0.1,
+                horizontal_flip=True,
+            )
+        else:
+            train_datagen = tf.keras.preprocessing.image.ImageDataGenerator()
 
         test_datagen = tf.keras.preprocessing.image.ImageDataGenerator()
 
