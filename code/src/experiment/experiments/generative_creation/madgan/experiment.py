@@ -37,7 +37,7 @@ class MADGAN_GenerativeCreationExperiment(BaseExperiment):
         )
 
     def _load_data(self):
-        if self.use_generator: 
+        if self.use_generator is not None: 
             # Provide latent vectors, with a batch_size of 1, to generate n-images, in n-images batches, with a batch-size of 1 respectively. 
             self.latent_vectors = self.latent_point_generator(
                 self.experiment.latent_dim, 1, self.n_images
@@ -67,9 +67,8 @@ class MADGAN_GenerativeCreationExperiment(BaseExperiment):
         """
         if self.madgan is None:
             raise Exception("MADGAN is not initialized")
-
-        if self.use_generator:
-            if 0 >= self.use_generator or self.use_generator > self.madgan.n_gen:
+        if self.use_generator is not None:
+            if 0 > self.use_generator or self.use_generator > self.madgan.n_gen:
                 raise Exception(
                     f"Generator index {self.use_generator} is out of bounds. Generator indizes: {range(self.madgan.n_gen)}"
                 )
@@ -89,6 +88,7 @@ class MADGAN_GenerativeCreationExperiment(BaseExperiment):
                 for j in range(self.madgan.n_gen):
                     image = self.madgan.generators[j](self.latent_vectors[j])
                     image_data[j].append(image)
+
 
         self.image_data: Dict[int, np.ndarray] = image_data
 

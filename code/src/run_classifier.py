@@ -7,13 +7,13 @@ from experiment.experiments.classifier.mnist.experiment import CLASS_MNIST_Exper
 
 experiments = [
     CLASS_MNIST_Experiment(
-        name="CLASSFIER_MNIST", epochs=2, traditional_data_augmentation=True
+        name="CLASSFIER_MNIST", epochs=35, traditional_data_augmentation=True
     ),
     CLASS_FashionMNIST_Experiment(
-        name="CLASSFIER_FashionMNIST", epochs=2, traditional_data_augmentation=True
+        name="CLASSFIER_FashionMNIST", epochs=50, traditional_data_augmentation=True
     ),
     CLASS_CIFAR10_Experiment(
-        name="CLASSFIER_CIFAR10", epochs=2, traditional_data_augmentation=True
+        name="CLASSFIER_CIFAR10", epochs=100, traditional_data_augmentation=True
     ),
 ]
 

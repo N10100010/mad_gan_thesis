@@ -165,21 +165,95 @@ experiments = [
     #     experiment_class=MNIST_MADGAN_Experiment,
     #     experiment_path="experiments/2024-12-30_MNIST_MADGAN_Experiment__5_n_gen_5",
     #     latent_point_generator=generate_latent_points,
-    #     n_images=10_000,
+    #     n_images=10_0,
+    #     save_raw_image=True,
+    #     use_generator=4
+    # ),
+    MADGAN_GenerativeCreationExperiment(
+        name="MADGAN_MNIST_7_GEN_DataCreation_SPEC_GEN_0",
+        experiment_class=MNIST_MADGAN_Experiment,
+        experiment_path="experiments/2024-12-31_MNIST_MADGAN_Experiment__7_n_gen_7",
+        latent_point_generator=generate_latent_points,
+        n_images=90_000,
+        save_raw_image=True,
+        use_generator=0
+    ),
+    MADGAN_GenerativeCreationExperiment(
+        name="MADGAN_MNIST_7_GEN_DataCreation_SPEC_GEN_1",
+        experiment_class=MNIST_MADGAN_Experiment,
+        experiment_path="experiments/2024-12-31_MNIST_MADGAN_Experiment__7_n_gen_7",
+        latent_point_generator=generate_latent_points,
+        n_images=90_000,
+        save_raw_image=True,
+        use_generator=1
+    ),
+    MADGAN_GenerativeCreationExperiment(
+        name="MADGAN_MNIST_7_GEN_DataCreation_SPEC_GEN_2",
+        experiment_class=MNIST_MADGAN_Experiment,
+        experiment_path="experiments/2024-12-31_MNIST_MADGAN_Experiment__7_n_gen_7",
+        latent_point_generator=generate_latent_points,
+        n_images=90_000,
+        save_raw_image=True,
+        use_generator=2
+    ),
+    MADGAN_GenerativeCreationExperiment(
+        name="MADGAN_MNIST_7_GEN_DataCreation_SPEC_GEN_3",
+        experiment_class=MNIST_MADGAN_Experiment,
+        experiment_path="experiments/2024-12-31_MNIST_MADGAN_Experiment__7_n_gen_7",
+        latent_point_generator=generate_latent_points,
+        n_images=90_000,
+        save_raw_image=True,
+        use_generator=3
+    ),
+    MADGAN_GenerativeCreationExperiment(
+        name="MADGAN_MNIST_7_GEN_DataCreation_SPEC_GEN_4",
+        experiment_class=MNIST_MADGAN_Experiment,
+        experiment_path="experiments/2024-12-31_MNIST_MADGAN_Experiment__7_n_gen_7",
+        latent_point_generator=generate_latent_points,
+        n_images=90_000,
+        save_raw_image=True,
+        use_generator=4
+    ),
+    MADGAN_GenerativeCreationExperiment(
+        name="MADGAN_MNIST_7_GEN_DataCreation_SPEC_GEN_5",
+        experiment_class=MNIST_MADGAN_Experiment,
+        experiment_path="experiments/2024-12-31_MNIST_MADGAN_Experiment__7_n_gen_7",
+        latent_point_generator=generate_latent_points,
+        n_images=90_000,
+        save_raw_image=True,
+        use_generator=5
+    ),
+    MADGAN_GenerativeCreationExperiment(
+        name="MADGAN_MNIST_7_GEN_DataCreation_SPEC_GEN_6",
+        experiment_class=MNIST_MADGAN_Experiment,
+        experiment_path="experiments/2024-12-31_MNIST_MADGAN_Experiment__7_n_gen_7",
+        latent_point_generator=generate_latent_points,
+        n_images=90_000,
+        save_raw_image=True,
+        use_generator=6
+    ),
+
+    #
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHION_MNIST_5_GEN_DataCreation_SPEC_GEN_4",
+    #     experiment_class=MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/2025-01-04_FASHION_MNIST_MADGAN_Experiment__10_n_gen_10",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=1_0,
     #     save_raw_image=True,
     #     use_generator=4
     # ),
 
-    #
-    MADGAN_GenerativeCreationExperiment(
-        name="MADGAN_FASHION_MNIST_5_GEN_DataCreation_SPEC_GEN_4",
-        experiment_class=MNIST_MADGAN_Experiment,
-        experiment_path="experiments/2025-01-04_FASHION_MNIST_MADGAN_Experiment__10_n_gen_10",
-        latent_point_generator=generate_latent_points,
-        n_images=1_000,
-        save_raw_image=True,
-        use_generator=4
-    ),
+    # 
+    
+    
+    
+    
+    
+    
+    
+    
+    
 ]
 
 queue = ExperimentQueue()
