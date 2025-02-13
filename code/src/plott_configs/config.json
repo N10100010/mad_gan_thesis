@@ -1,0 +1,21 @@
+{
+  "figsize": [10, 8],
+  "font_family": "serif",
+  "font_size": 14,
+  "line_styles": {
+    "train": {
+      "color": "blue",
+      "linestyle": "-",
+      "linewidth": 2
+    },
+    "val": {
+      "color": "red",
+      "linestyle": "--",
+      "linewidth": 2
+    }
+  },
+  "grid": true,
+  "legend": true,
+  "xlabel": "Epoch",
+  "ylabel": "Score"
+}

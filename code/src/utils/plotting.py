@@ -1,3 +1,4 @@
+import json
 import os
 from pathlib import Path
 from typing import Dict
@@ -5,6 +6,106 @@ from typing import Dict
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
+
+from .logging import setup_logger
+
+logger = setup_logger(name="Plotting")
+
+
+def process_experiment_folder(experiments_root: Path, plot_config_path: Path) -> None:
+    """
+    Recursively searches for .npy files in the given experiment folder and
+    calls `plot_training_history` for each one, saving plots in the same folder.
+
+    Args:
+        experiments_root (Path): Root directory containing experiment subfolders.
+        plot_config_path (Path): Path to the JSON file defining plot styles.
+
+    Returns:
+        None
+    """
+    experiments_root = Path(experiments_root)
+
+    # Traverse all subdirectories
+    for root, _, files in os.walk(experiments_root):
+        root_path = Path(root)
+
+        # Check for .npy files in the current folder
+        for file in files:
+            if file.endswith(".npy"):
+                history_path = root_path / file
+                save_path = root_path / "plots"
+
+                logger.info(f"Processing: {history_path}")  # Debugging output
+
+                # Call the plot function
+                plot_training_history(history_path, plot_config_path, save_path)
+
+
+def plot_training_history(
+    history_path: Path, plot_config_path: Path, save_path: Path = None
+) -> None:
+    """
+    Loads training history and plot configuration, then generates separate plots for each metric.
+
+    Args:
+        history_path (Path): Path to the .npy file containing the training history.
+        plot_config_path (Path): Path to the JSON file defining plot styles.
+        save_path (Path, optional): Directory where plots should be saved. If None, plots are only displayed.
+
+    Returns:
+        None
+    """
+    with open(plot_config_path, "r") as f:
+        config = json.load(f)
+
+    history = np.load(history_path, allow_pickle=True).item()
+
+    plt.rcParams.update(
+        {
+            "font.family": config.get("font_family", "serif"),
+            "font.size": config.get("font_size", 12),
+        }
+    )
+
+    training_metrics = [key for key in history.keys() if not key.startswith("val_")]
+
+    if save_path:
+        save_path = Path(save_path)
+        save_path.mkdir(parents=True, exist_ok=True)
+
+    for metric in training_metrics:
+        plt.figure(figsize=tuple(config["figsize"]), dpi=config.get("dpi", 100))
+
+        plt.plot(
+            history[metric], label=f"Train {metric}", **config["line_styles"]["train"]
+        )
+
+        val_metric = f"val_{metric}"
+        if val_metric in history:
+            plt.plot(
+                history[val_metric],
+                label=f"Validation {metric}",
+                **config["line_styles"]["val"],
+            )
+
+        plt.title(metric.replace("_", " ").capitalize())
+        plt.xlabel(config["xlabel"])
+        plt.ylabel(config["ylabel"])
+
+        if config["grid"]:
+            plt.grid(True)
+        if config["legend"]:
+            plt.legend()
+
+        plt.tight_layout()
+
+        if save_path:
+            plt.savefig(save_path / f"{metric}.png", dpi=config.get("dpi", 300))
+        else:
+            plt.show()
+
+        plt.close()  # Close the figure to free memory
 
 
 def plot_classifier_training_history(
