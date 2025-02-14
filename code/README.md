@@ -1,12 +1,3 @@
-# TODO
-
-- answer quest: Is one generator better than the other, given a specific class to be generated?
-  - Given the fact that specific generators should converge to specifc modes in the data dist, each generator should be 'better' in its specialized modes, than in those it did not specialize in
-    - This hypothesis holds true for the case `n_gen < n_classes`
-    - For the case `n_gen == n_classes`, there should presumably be one generator that is 'best' for a specific class
-  - how can we identify the modes a generator is 'best' in recreating?
-    - Can we utilize the FID-score of generated images, compared to real images? For a 'good' image of a certain class, the FID-score should be bigger, given images of the same class, than the resulting score for images of a different class. Right?
-
 # TODO CODE
 
 - implement the classification with images from the different architecture
@@ -33,7 +24,7 @@ https://github.com/soumith/ganhacks
 
 https://deeplearn.mi.hdm-stuttgart.de/user/nr063/lab
 
-#### How to run the code without having to have it open: 
+#### How to run the code without having to have it open:
 
 ```
 python src/run.py 2>&1 | while IFS= read -r line; do
@@ -42,8 +33,9 @@ python src/run.py 2>&1 | while IFS= read -r line; do
   mv output.log.tmp output.log
 done &
 ```
-*As a one liner*
-```` python src/run_classifier.py 2>&1 | while IFS= read -r line; do   echo "$line" >> output.log;   tail -n 100 output.log > output.log.tmp;   mv output.log.tmp output.log; done &````
+
+_As a one liner_
+` python src/run_classifier.py 2>&1 | while IFS= read -r line; do   echo "$line" >> output.log;   tail -n 100 output.log > output.log.tmp;   mv output.log.tmp output.log; done &`
 
 ### how to
 
