@@ -46,7 +46,7 @@ import os
 import re
 from pathlib import Path
 
-mnist_classifier_path = "code/experiments/2025-02-12_CLASSFIER_MNIST/checkpoints/best_weights.h5"
+mnist_classifier_path = "experiments/2025-02-12_CLASSFIER_MNIST/checkpoints/best_weights.h5"
 experiments_path = Path("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments")
 
 all_experiments = os.listdir(experiments_path)

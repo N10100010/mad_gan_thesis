@@ -120,7 +120,6 @@ class CLASSIFICATION_Experiment(BaseExperiment):
 
         for fn, img in self.images.items():
             classification = self.classifier(img)
-            breakpoint()
             index = tf.argmax(classification, axis=-1).numpy().item()
             maximum = tf.reduce_max(classification, axis=-1).numpy().item()
             # --> to get to labels
