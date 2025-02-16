@@ -89,7 +89,7 @@ class FASHION_MNIST_VanillaGAN_Experiment(BaseGANExperiment):
                 latent_dim=self.latent_dim,
                 dir_name=self.dir_path,
                 samples_subfolder=self.generator_training_samples_subfolder,
-                generate_after_epochs=self.generate_after_epochs,
+                generator_example_freq=self.generate_after_epochs,
             ),
             tf.keras.callbacks.ModelCheckpoint(
                 filepath=checkpoint_filepath.__str__() + "_epoch_{epoch}.weights.h5",
