@@ -22,12 +22,12 @@ experiments = [
     #     epochs=10,
     #     experiment_suffix="epochs_10",
     # ),
-    CIFAR_VanillaGAN_Experiment(
-        name="CIFAR_VanillaGAN_Experiment__",
-        latent_dim=128,
-        epochs=100,
-        experiment_suffix="latent_128_epochs_200",
-    ),
+    # CIFAR_VanillaGAN_Experiment(
+    #     name="CIFAR_VanillaGAN_Experiment__",
+    #     latent_dim=128,
+    #     epochs=100,
+    #     experiment_suffix="latent_128_epochs_200",
+    # ),
     # CIFAR_VanillaGAN_Experiment(
     #     name="CIFAR_VanillaGAN_Experiment__",
     #     latent_dim=256,
@@ -41,6 +41,19 @@ experiments = [
     #     epochs=1000,
     #     experiment_suffix="latent_200_epochs_1000",
     # ),
+
+    FASHION_MNIST_VanillaGAN_Experiment(
+        name="FASHION_MNIST_VanillaGAN_Experiment__", 
+        latent_dim=128, 
+        epoch=300, 
+        experiment_suffix="latent_128_epoch_300"
+    ),
+    MNIST_VanillaGAN_Experiment(
+        name="MNIST_VanillaGAN_Experiment__", 
+        latent_dim=128, 
+        epoch=200, 
+        experiment_suffix="latent_128_epoch_200"
+    )
 ]
 
 queue = ExperimentQueue()
