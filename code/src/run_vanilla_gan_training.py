@@ -45,13 +45,13 @@ experiments = [
     FASHION_MNIST_VanillaGAN_Experiment(
         name="FASHION_MNIST_VanillaGAN_Experiment__", 
         latent_dim=128, 
-        epoch=300, 
+        epochs=300, 
         experiment_suffix="latent_128_epoch_300"
     ),
     MNIST_VanillaGAN_Experiment(
         name="MNIST_VanillaGAN_Experiment__", 
         latent_dim=128, 
-        epoch=200, 
+        epochs=200, 
         experiment_suffix="latent_128_epoch_200"
     )
 ]
