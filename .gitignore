@@ -175,3 +175,6 @@ jupyter_env
 
 # Experiments
 code/experiments/*
+
+# Ignore all zip files. This is mostly downloads from the server
+*.zip

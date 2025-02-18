@@ -2,6 +2,7 @@
   "figsize": [10, 8],
   "font_family": "serif",
   "font_size": 14,
+  "histogram_edge_color": "black",
   "line_styles": {
     "train": {
       "color": "blue",
