@@ -35,25 +35,25 @@ experiments = [
     #     experiment_suffix="latent_256_epochs_200",
     # ),
     # # Best Cifar vanilla GAN thus far
-    # CIFAR_VanillaGAN_Experiment(
-    #     name="CIFAR_VanillaGAN_Experiment__",
-    #     latent_dim=200,
-    #     epochs=1000,
-    #     experiment_suffix="latent_200_epochs_1000",
-    # ),
-
-    FASHION_MNIST_VanillaGAN_Experiment(
-        name="FASHION_MNIST_VanillaGAN_Experiment__", 
-        latent_dim=128, 
-        epochs=300, 
-        experiment_suffix="latent_128_epoch_300"
+    CIFAR_VanillaGAN_Experiment(
+        name="CIFAR_VanillaGAN_Experiment__",
+        latent_dim=200,
+        epochs=500,
+        experiment_suffix="latent_200_epochs_500",
     ),
-    MNIST_VanillaGAN_Experiment(
-        name="MNIST_VanillaGAN_Experiment__", 
-        latent_dim=128, 
-        epochs=200, 
-        experiment_suffix="latent_128_epoch_200"
-    )
+
+    # FASHION_MNIST_VanillaGAN_Experiment(
+    #     name="FASHION_MNIST_VanillaGAN_Experiment__", 
+    #     latent_dim=128, 
+    #     epochs=300, 
+    #     experiment_suffix="latent_128_epoch_300"
+    # ),
+    # MNIST_VanillaGAN_Experiment(
+    #     name="MNIST_VanillaGAN_Experiment__", 
+    #     latent_dim=128, 
+    #     epochs=200, 
+    #     experiment_suffix="latent_128_epoch_200"
+    # )
 ]
 
 queue = ExperimentQueue()

@@ -35,9 +35,10 @@ class GAN_GenerativeCreationExperiment(BaseExperiment):
         )
 
     def _load_data(self):
-        self.latent_vectors = self.latent_point_generator(
-            [self.n_images, self.experiment.latent_dim]
-        )
+        #self.latent_vectors = self.latent_point_generator(
+        #    [self.n_images, self.experiment.latent_dim]
+        #)
+        ...
 
     def _initialize_models(self):
         self.experiment.load_model_weights()
@@ -50,7 +51,8 @@ class GAN_GenerativeCreationExperiment(BaseExperiment):
 
         image_data = []
         for i in range(self.n_images):
-            image_data.append(self.gan.generator(self.latent_vectors))
+            image_data.append(self.gan.generator(self.latent_point_generator([1, self.experiment.latent_dim])))
+            # breakpoint()
 
         self.image_data: np.ndarray = image_data
 
@@ -58,13 +60,25 @@ class GAN_GenerativeCreationExperiment(BaseExperiment):
         saving_path = Path(self.dir_path, "generated_images")
         saving_path.mkdir(parents=True, exist_ok=True)
 
+
+
         for i, batch in enumerate(self.image_data):
             for j, image in enumerate(batch):
+
+                image = image.numpy() if hasattr(image, "numpy") else np.array(image)
+                image = (image + 1) / 2    
+                
+                # If image has an extra channel (grayscale image with shape HxWx1), remove it.
+                if image.ndim == 3 and image.shape[-1] == 1:
+                    image = image.squeeze(axis=-1)
+
+                # Determine the colormap: if image is 2D, we assume grayscale.
+                cmap = "gray" if image.ndim == 2 else None
+
                 if self.save_raw_image:
-                    image = image.numpy() if hasattr(image, "numpy") else np.array(image)  # Convert to NumPy
-                    plt.imsave(fname=saving_path / f"image_{j}.png", arr=(image + 1 ) / 2)  # sclae images from -1 ... 1 -> 0 ... 1 
+                    plt.imsave(fname=saving_path / f"image_{i + j}.png", arr=image, cmap=cmap)  # sclae images from -1 ... 1 -> 0 ... 1 
                 else:
                     plt.imshow(image, cmap="gray")
                     plt.title(f"Image {j}")
-                    plt.savefig(saving_path / f"image_{j}.png")
+                    plt.savefig(saving_path / f"image_{i + j}.png")
                     plt.close()
