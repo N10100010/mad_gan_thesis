@@ -78,6 +78,28 @@ experiments = [
     #     n_images=20,
     # ),
 
+    # MNIST data creation
+    GAN_GenerativeCreationExperiment(
+        name="MNIST_GENERATIVE_VanillaGAN_Experiment",
+        experiment_class=MNIST_VanillaGAN_Experiment,
+        experiment_path="experiments/2025-02-16_MNIST_VanillaGAN_Experiment___latent_128_epoch_200",
+        latent_point_generator=tf.random.normal,
+        experiment_suffix="",
+        save_raw_image=True,
+        n_images=90_000,
+    ),
+
+    # FASHION-MNIST data creation
+    GAN_GenerativeCreationExperiment(
+        name="FASHION_MNIST_GENERATIVE_VanillaGAN_Experiment",
+        experiment_class=FASHION_MNIST_VanillaGAN_Experiment,
+        experiment_path="experiments/2025-02-16_FASHION_MNIST_VanillaGAN_Experiment___latent_128_epoch_300",
+        latent_point_generator=tf.random.normal,
+        experiment_suffix="",
+        save_raw_image=True,
+        n_images=90_000,
+    ),
+
 ]
 
 queue = ExperimentQueue()

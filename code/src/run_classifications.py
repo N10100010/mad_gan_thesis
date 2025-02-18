@@ -4,7 +4,7 @@ import re
  
 from experiment.experiment_queue import ExperimentQueue
 from experiment.experiments.classification.experiment import CLASSIFICATION_Experiment
-from model_definitions.classifiers.fashion_mnist import FashionMNISTClassifier
+from model_definitions.classifiers import FashionMNISTClassifier
 from model_definitions.classifiers import MNISTClassifier
 
 
@@ -14,15 +14,17 @@ experiments_path = Path("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/exp
 classifier_path = "experiments/2025-02-12_CLASSFIER_MNIST/checkpoints/best_weights.h5"
 dataset_identifier = "_MNIST_"
 classification_experiment_name = "ClassificationExperiment_MNIST_MADGAN"
+classifier_class = MNISTClassifier
 
 ## classify madgan fashion-mnist experiments. 
-classifier_path = "experiments/2025-02-12_CLASSFIER_FashionMNIST/checkpoints/best_weights.h5"
-dataset_identifier = "_FASHIONMNIST_"
-classification_experiment_name = "ClassificationExperiment_FASHIONMNIST_MADGAN"
+#classifier_path = "experiments/2025-02-12_CLASSFIER_FashionMNIST/checkpoints/best_weights.h5"
+#dataset_identifier = "_FASHIONMNIST_"
+#classification_experiment_name = "ClassificationExperiment_FASHIONMNIST_MADGAN"
+# classifier_class = FashionMNISTClassifier
 
 all_experiments = os.listdir(experiments_path)
 creation_experiments = [exp for exp in all_experiments if (f'{dataset_identifier}' in exp) and ('DataCreation_SPEC' in exp)]
-
+creation_experiments = [exp for exp in creation_experiments if not (Path(experiments_path) / exp / "labels.json").exists()]
 experiments_to_run = []
 
 for ex in creation_experiments: 
@@ -39,7 +41,7 @@ for ex in creation_experiments:
             name=f"{classification_experiment_name}_{generators_trained}_used_generator_{generator_used}",
             created_images_folder_path=experiments_path / ex / "generated_images",
             model_path=Path(classifier_path),
-            classifier_class=FashionMNISTClassifier
+            classifier_class=classifier_class
         )
     )
 
