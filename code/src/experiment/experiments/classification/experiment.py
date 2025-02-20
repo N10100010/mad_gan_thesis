@@ -87,7 +87,6 @@ class CLASSIFICATION_Experiment(BaseExperiment):
         )
 
     def _setup(self):
-        self.logger.info("################# Setup")
         pass
 
     def _load_data(self):

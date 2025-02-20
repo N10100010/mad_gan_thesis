@@ -1,0 +1,2 @@
+from .fid_score import calculate_fid_score as calculate_fid_score
+from .incetption_score import calculate_inception_score as calculate_inception_score
