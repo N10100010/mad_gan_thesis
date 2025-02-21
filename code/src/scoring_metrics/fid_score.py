@@ -1,7 +1,6 @@
 import numpy as np
 import tensorflow as tf
 from scipy.linalg import sqrtm
-from tensorflow.keras.applications.inception_v3 import preprocess_input
 
 
 def _load_real_images(dataset, num_samples=10000):
@@ -80,8 +79,12 @@ def calculate_fid_score(generated_images, dataset, classifier, batch_size=32):
             real_images = tf.image.resize(real_images, resize_shape).numpy()
 
     if dataset == "cifar10":
-        generated_images = preprocess_input(generated_images * 255.0)
-        real_images = preprocess_input(real_images * 255.0)
+        generated_images = tf.keras.applications.inception_v3.preprocess_input(
+            generated_images * 255.0
+        )
+        real_images = tf.keras.applications.inception_v3.preprocess_input(
+            real_images * 255.0
+        )
 
     # Extract features from an intermediate layer
     if dataset != "cifar10":
