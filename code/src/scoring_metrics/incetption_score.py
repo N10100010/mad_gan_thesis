@@ -23,7 +23,12 @@ def calculate_inception_score(generated_images, classifier, batch_size=32, split
     """
     # Determine the expected number of channels and spatial dimensions from the classifier's input shape.
     # classifier.input_shape is generally like (None, H_expected, W_expected, C_expected)
-    expected_height, expected_width, expected_channels = classifier.input_shape
+    if len(classifier.input_shape) == 4:
+        expected_height, expected_width, expected_channels = classifier.input_shape[1:4]
+    elif len(classifier.input_shape) == 3:
+        expected_height, expected_width, expected_channels = classifier.input_shape
+    else:
+        raise ValueError("Invalid input shape for classifier.")
 
     # Adjust the channel dimension if needed:
     if generated_images.shape[-1] != expected_channels:
@@ -66,6 +71,9 @@ def calculate_inception_score(generated_images, classifier, batch_size=32, split
         # Convert logits to probabilities via softmax
         prob = tf.nn.softmax(logits).numpy()
         preds.append(prob)
+
+    # free memory of the feature extractor
+    classifier = None
 
     preds = np.concatenate(preds, axis=0)  # Shape: (N, num_classes)
 

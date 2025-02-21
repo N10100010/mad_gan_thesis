@@ -30,7 +30,11 @@ class ScoringExperiment(BaseExperiment):
         for k, v in kwargs.items():
             setattr(self, k, v)
 
-        self.dataset = self.classifier_class.dataset
+        if self.model_path is None and self.classifier:
+            # in this case, we assume the inceptionV3
+            self.dataset = BaseClassifier.CIFAR10
+        else:
+            self.dataset = self.classifier_class.dataset
 
     def _load_data(self):
         """
@@ -61,20 +65,27 @@ class ScoringExperiment(BaseExperiment):
         for filename in selected_image_paths:
             img_path = Path(folder_path) / filename
             try:
-                img = preprocess_image(
-                    img_path, target_size=self.classifier_class.input_shape
-                )
+                if self.dataset == BaseClassifier.CIFAR10:
+                    img = preprocess_image(img_path, target_size=(32, 32, 3))
+                else:
+                    img = preprocess_image(
+                        img_path, target_size=self.classifier_class.input_shape
+                    )
                 images.append(img)
             except Exception as e:
-                print(f"Could not load image {img_path}: {e}")
+                self.logger.warning(f"Could not load image {img_path}: {e}")
+
+        if len(images) == 0:
+            raise Exception(f"Could not load any images from folder {folder_path}.")
 
         self.image_data_shape = next(iter(images)).shape
         self.generated_images = np.array(images)
 
     def _initialize_models(self):
-        self.classifier = self.classifier_class()
-        _ = self.classifier(tf.random.normal(shape=self.image_data_shape))
-        self.classifier.load_weights(self.model_path)
+        if self.dataset != BaseClassifier.CIFAR10:
+            self.classifier = self.classifier_class()
+            _ = self.classifier(tf.random.normal(shape=self.image_data_shape))
+            self.classifier.load_weights(self.model_path)
 
     def _run(self):
         """
@@ -84,14 +95,30 @@ class ScoringExperiment(BaseExperiment):
 
         """
         self.logger.info("Calculating scores...")
+        if self.dataset == BaseClassifier.CIFAR10:
+            fid_score = calculate_fid_score(
+                generated_images=self.generated_images,
+                dataset=self.dataset,
+                classifier=tf.keras.applications.InceptionV3(
+                    weights="imagenet", include_top=False, pooling="avg"
+                ),
+            )
+            is_score = calculate_inception_score(
+                generated_images=self.generated_images,
+                classifier=tf.keras.applications.InceptionV3(
+                    weights="imagenet", include_top=True
+                ),
+            )
+        else:
+            fid_score = calculate_fid_score(
+                generated_images=self.generated_images,
+                dataset=self.dataset,
+                classifier=self.classifier,
+            )
+            is_score = calculate_inception_score(
+                generated_images=self.generated_images,
+                classifier=self.classifier,
+            )
 
-        fid_score = calculate_fid_score(
-            generated_images=self.generated_images,
-            dataset=self.dataset,
-            classifier=self.classifier,
-        )
         self.logger.info(f"FID score: {fid_score}")
-        is_score = calculate_inception_score(
-            generated_images=self.generated_images, classifier=self.classifier
-        )
         self.logger.info(f"Inception score: {is_score}")

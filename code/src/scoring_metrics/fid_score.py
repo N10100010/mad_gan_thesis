@@ -9,7 +9,7 @@ def _load_real_images(dataset, num_samples=10000):
     if dataset == "mnist":
         (x_train, _), _ = tf.keras.datasets.mnist.load_data()
         x_train = np.expand_dims(x_train, axis=-1)  # Add channel dimension
-    elif dataset == "fashion-mnist":
+    elif dataset == "fashion_mnist":
         (x_train, _), _ = tf.keras.datasets.fashion_mnist.load_data()
         x_train = np.expand_dims(x_train, axis=-1)  # Add channel dimension
     elif dataset == "cifar10":
@@ -86,10 +86,10 @@ def calculate_fid_score(generated_images, dataset, classifier, batch_size=32):
     # Extract features from an intermediate layer
     if dataset != "cifar10":
         # we assume that the passed classifier has a layer named "feature_extractor". This is assumed to be the last dense-layer in the deep net.
-        assert (
-            "feature_extractor" in [l.name for l in classifier.layers],
-            "No layer named `feature_extractor` found in classifier.",
-        )
+        if "feature_extractor" not in [_.name for _ in classifier.layers]:
+            raise ValueError(
+                "Classifier is not a model with a layer named `feature_extractor`."
+            )
         feature_extractor = tf.keras.Model(
             classifier.model.input,
             classifier.model.get_layer("feature_extractor").output,
@@ -112,6 +112,9 @@ def calculate_fid_score(generated_images, dataset, classifier, batch_size=32):
 
     real_features = get_features(real_images)
     generated_features = get_features(generated_images)
+
+    # free memory of the feature extractor
+    feature_extractor = None
 
     # Compute mean and covariance statistics
     mu_real, sigma_real = (
