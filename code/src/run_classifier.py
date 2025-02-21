@@ -1,16 +1,19 @@
 from experiment.experiment_queue import ExperimentQueue
-from experiment.experiments.classifier.mnist.experiment import CLASS_MNIST_Experiment
+from src.experiment.experiments.classifier import (
+    CLASS_CIFAR10_Experiment,
+    CLASS_FashionMNIST_Experiment,
+)
 
 experiments = [
-    CLASS_MNIST_Experiment(
-        name="CLASSFIER_MNIST", epochs=5, traditional_data_augmentation=True
+    # CLASS_MNIST_Experiment(
+    #    name="CLASSFIER_MNIST", epochs=5, traditional_data_augmentation=True
+    # ),
+    CLASS_FashionMNIST_Experiment(
+        name="CLASSFIER_FashionMNIST", epochs=50, traditional_data_augmentation=True
     ),
-    # CLASS_FashionMNIST_Experiment(
-    #     name="CLASSFIER_FashionMNIST", epochs=50, traditional_data_augmentation=True
-    # ),
-    # CLASS_CIFAR10_Experiment(
-    #     name="CLASSFIER_CIFAR10", epochs=100, traditional_data_augmentation=True
-    # ),
+    CLASS_CIFAR10_Experiment(
+        name="CLASSFIER_CIFAR10", epochs=100, traditional_data_augmentation=True
+    ),
 ]
 
 queue = ExperimentQueue()

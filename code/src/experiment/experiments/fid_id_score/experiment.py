@@ -1,4 +1,4 @@
-import os
+import random
 from pathlib import Path
 
 import numpy as np
@@ -6,7 +6,7 @@ import tensorflow as tf
 from experiment.base_experiments import BaseExperiment
 from experiment.experiments.classification.utils import preprocess_image
 from model_definitions.classifiers.base import BaseClassifier
-from scoring_metrics import calculate_fid_score
+from scoring_metrics import calculate_fid_score, calculate_inception_score
 
 
 class ScoringExperiment(BaseExperiment):
@@ -44,11 +44,21 @@ class ScoringExperiment(BaseExperiment):
             numpy.ndarray: Array of images with shape (N, H, W, C).
         """
 
-        image_target_size = self.classifier_class.input_shape[0:2]
-        folder_path = os.path.join(self.generation_experiment_path, "generated_images")
+        folder_path = Path(self.generation_experiment_path) / "generated_images"
+
+        all_image_paths = [
+            p for p in folder_path.iterdir() if p.suffix in [".jpg", ".jpeg", ".png"]
+        ]
+
+        if self.n_generated_images:
+            selected_image_paths = random.sample(
+                all_image_paths, min(self.n_generated_images, len(all_image_paths))
+            )
+        else:
+            selected_image_paths = all_image_paths
 
         images = []
-        for filename in os.listdir(folder_path)[:1000]:
+        for filename in selected_image_paths:
             img_path = Path(folder_path) / filename
             try:
                 img = preprocess_image(
@@ -81,5 +91,7 @@ class ScoringExperiment(BaseExperiment):
             classifier=self.classifier,
         )
         self.logger.info(f"FID score: {fid_score}")
-        # is_score = calculate_inception_score(generated_images=self.generated_images, classifier=self.classifier)
-        # self.logger.info("Inception score: ", is_score)
+        is_score = calculate_inception_score(
+            generated_images=self.generated_images, classifier=self.classifier
+        )
+        self.logger.info(f"Inception score: {is_score}")

@@ -23,7 +23,7 @@ def calculate_inception_score(generated_images, classifier, batch_size=32, split
     """
     # Determine the expected number of channels and spatial dimensions from the classifier's input shape.
     # classifier.input_shape is generally like (None, H_expected, W_expected, C_expected)
-    expected_height, expected_width, expected_channels = classifier.input_shape[1:4]
+    expected_height, expected_width, expected_channels = classifier.input_shape
 
     # Adjust the channel dimension if needed:
     if generated_images.shape[-1] != expected_channels:
@@ -39,6 +39,11 @@ def calculate_inception_score(generated_images, classifier, batch_size=32, split
     # Normalize generated_images to [0, 1] if they are not already
     if generated_images.max() > 1:
         generated_images = generated_images.astype(np.float32) / 255.0
+
+    if (
+        generated_images.shape[1] == 1
+    ):  # we have a not needed batch dimension, so we can remove it.
+        generated_images = np.squeeze(generated_images, axis=1)
 
     # Resize generated_images if their spatial dimensions don't match the classifier's expected dimensions.
     if (
