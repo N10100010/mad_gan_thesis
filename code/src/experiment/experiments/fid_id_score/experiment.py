@@ -1,4 +1,3 @@
-import random
 from pathlib import Path
 
 import numpy as np
@@ -22,6 +21,7 @@ class ScoringExperiment(BaseExperiment):
 
     # The experiment that generated images - assumed to contain a folder named generated_images
     generation_experiment_path: str = None
+    n_generated_images: int = None
 
     def __init__(self, *args, **kwargs):
         #  Todo: make the init explicit? Then we can have propper type hints, when calling the constructor.
@@ -55,9 +55,10 @@ class ScoringExperiment(BaseExperiment):
         ]
 
         if self.n_generated_images:
-            selected_image_paths = random.sample(
-                all_image_paths, min(self.n_generated_images, len(all_image_paths))
+            idx = np.random.choice(
+                len(all_image_paths), self.n_generated_images, replace=False
             )
+            selected_image_paths = np.array(all_image_paths)[idx]
         else:
             selected_image_paths = all_image_paths
 
