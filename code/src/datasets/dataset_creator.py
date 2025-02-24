@@ -19,6 +19,11 @@ class DatasetCreator:
     ):
         self.created_images_folder = created_images_folder
         self.created_images_labels_file = created_images_folder / "labels.json"
+
+        # potentially, only use images, e.g. from cifar, that fulfill a certainty threshold
+        self.created_images_certainties_file = (
+            created_images_folder / "certainties.json"
+        )
         self.tf_dataset_load_func = tf_dataset_load_func
         self.number_of_generated_images_per_class = number_of_generated_images_per_class
         self.number_of_real_images_per_class = number_of_real_images_per_class

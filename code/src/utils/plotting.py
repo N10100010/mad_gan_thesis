@@ -12,6 +12,48 @@ from .logging import setup_logger
 logger = setup_logger(name="Plotting")
 
 
+def plot_labels_histogram(
+    data,
+    title: str,
+    suptitle: str = None,
+    x_tick_labels: list = [str(_) for _ in range(10)],
+    show_bar_counts: bool = True,
+    show: bool = True,
+    save: bool = False,
+):
+    plot_config_path = Path(
+        "C:\\Users\\NiXoN\\Desktop\\_thesis\\mad_gan_thesis\\code\\src\\plott_configs\\config.json"
+    )
+    plot_config = None
+    with open(plot_config_path) as f:
+        plot_config = json.load(f)
+
+    plt.rcParams.update(
+        {
+            "font.family": plot_config.get("font_family", "serif"),
+            "font.size": plot_config.get("font_size", 12),
+        }
+    )
+
+    counts, bin_edges, bars = plt.hist(
+        data,
+        bins=np.arange(11) - 0.5,
+        edgecolor=plot_config.get("histogram_edge_color", "black"),
+    )
+    bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2
+    plt.xticks(bin_centers, labels=x_tick_labels)
+    plt.title(title, fontsize=10)
+    plt.suptitle(
+        suptitle,
+    )
+
+    if show_bar_counts:
+        plt.bar_label(bars, fontsize=10, label_type="edge")
+
+    if show:
+        plt.show()
+
+
 def process_experiment_folder(experiments_root: Path, plot_config_path: Path) -> None:
     """
     Recursively searches for .npy files in the given experiment folder and
