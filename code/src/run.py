@@ -1,8 +1,8 @@
 from pathlib import Path
 
 import tensorflow as tf
-from datasets.new_dataset_creator import DatasetCreator
 from matplotlib import pyplot as plt
+from src.datasets.dataset_creator import DatasetCreator
 
 if __name__ == "__main__":
     dsc = DatasetCreator(
