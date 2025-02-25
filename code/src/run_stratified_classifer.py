@@ -15,8 +15,8 @@ creation_experiments = [exp for exp in all_experiments if (f'{dataset_identifier
 
 experiments_to_run = []
 
-N_GENERATED_IMAGES_PER_CLASS = 1_000 
-N_REAL_IMAGES_PER_CLASS = 4_000
+N_GENERATED_IMAGES_PER_CLASS = 2_000 
+N_REAL_IMAGES_PER_CLASS = 3_000
 
 
 for ex in creation_experiments: 
@@ -39,6 +39,7 @@ for ex in creation_experiments:
         tf_dataset_load_func=tf.keras.datasets.mnist.load_data,
         number_of_generated_images_per_class={i: N_GENERATED_IMAGES_PER_CLASS for i in range(10)},
         number_of_real_images_per_class={i: N_REAL_IMAGES_PER_CLASS for i in range(10)},
+        experiments_base_path="./experiments/MNIST_STRATIFIED_CLASSIFIERS"
         ))
         
 
