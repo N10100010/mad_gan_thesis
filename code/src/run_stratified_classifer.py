@@ -1,20 +1,49 @@
+import re
 import tensorflow as tf
 from experiment.experiment_queue import ExperimentQueue
 from experiment.experiments.classifier import StratifiedClassifierExperiment
+from pathlib import Path
+import os
 
-experiments = [
-    StratifiedClassifierExperiment(
-        name="STRATIFIED_MNIST",
-        epochs=10,
+experiments_path = Path("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments")
+
+dataset_identifier = "MADGAN_MNIST_"
+experiment_name = "Stratified_classifierExperiment_MNIST_"
+
+all_experiments = os.listdir(experiments_path)
+creation_experiments = [exp for exp in all_experiments if (f'{dataset_identifier}' in exp) and ('DataCreation_SPEC' in exp)]
+
+experiments_to_run = []
+
+N_GENERATED_IMAGES_PER_CLASS = 1_000 
+N_REAL_IMAGES_PER_CLASS = 4_000
+
+
+for ex in creation_experiments: 
+    
+    # Extract number of trained generators
+    match1 = re.search(r'(\d+)_GEN', ex)
+    generators_trained = int(match1.group(1)) if match1 else None
+    # 
+    # Extract the generator used
+    match2 = re.search(r'_GEN_(\d+)', ex)
+    generator_used = int(match2.group(1)) if match2 else None
+
+    experiments_to_run.append(
+        StratifiedClassifierExperiment(
+        name=f"{experiment_name}_{generators_trained}_used_generator_{generator_used}__images_real_{N_REAL_IMAGES_PER_CLASS}_gen_{N_GENERATED_IMAGES_PER_CLASS}",
+        # name=f"{experiment_name}_BASE__images_real_{N_REAL_IMAGES_PER_CLASS}_gen_{N_GENERATED_IMAGES_PER_CLASS}",
+        epochs=50,
         dataset="mnist",
-        creation_experiment_path="C:\\Users\\NiXoN\\Desktop\\_thesis\\mad_gan_thesis\\code\\experiments\\2025-02-12_MADGAN_MNIST_5_GEN_DataCreation_SPEC_GEN_0",
+        creation_experiment_path=experiments_path / ex,
         tf_dataset_load_func=tf.keras.datasets.mnist.load_data,
-        number_of_generated_images_per_class={i: 2000 for i in range(10)},
-        number_of_real_images_per_class={i: 2000 for i in range(10)},
-    )
-]
+        number_of_generated_images_per_class={i: N_GENERATED_IMAGES_PER_CLASS for i in range(10)},
+        number_of_real_images_per_class={i: N_REAL_IMAGES_PER_CLASS for i in range(10)},
+        ))
+        
+
 
 queue = ExperimentQueue()
-for exp in experiments:
+for exp in experiments_to_run:
     queue.add_experiment(exp)
 queue.run_all()
