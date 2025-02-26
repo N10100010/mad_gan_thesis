@@ -140,6 +140,8 @@ class DatasetCreator:
         images = []
         labels = []
 
+        self.logger.info(f"Loading images from: {self.generated_images_folder}")
+
         total_files = len(self.gen_labels)
 
         n_channels = 1 if self.dataset != "cifar10" else 3

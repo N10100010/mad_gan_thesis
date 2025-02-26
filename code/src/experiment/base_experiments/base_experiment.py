@@ -64,6 +64,38 @@ class BaseExperiment(ABC, metaclass=AutoSuperMeta):
     how the results should be saved, etc.
     """
 
+    whitelist_attributes = [
+        "n_images",
+        "save",
+        "results_json_file_path",
+        "latent_dim",
+        "epochs",
+        "image_data_shape",
+        "experiments_base_path",
+        "experiment_start_time",
+        "experiment_end_time",
+        "experiment_name",
+        "classifier",
+        "n_gen",
+        "size_dataset",
+        "generator_training_samples_subfolder",
+        "batch_size",
+        "steps_per_epoch",
+        "experiment_duration",
+        "dir_path",
+        "name",
+        "meta_json_filename",
+        "save_raw_image",
+        "created_images_folder_path",
+        "experiment_suffix",
+        "classifier_class",
+        "model_path",
+        "use_generator",
+        "labels_json_file_name",
+        "unique_labels",
+    ]
+
+
     def __init__(
         self,
         name: str,
@@ -242,37 +274,6 @@ class BaseExperiment(ABC, metaclass=AutoSuperMeta):
         The file is created in the experiment's directory.
         """
 
-        whitelist_attributes = [
-            "n_images",
-            "save",
-            "results_json_file_path",
-            "latent_dim",
-            "epochs",
-            "image_data_shape",
-            "experiments_base_path",
-            "experiment_start_time",
-            "experiment_end_time",
-            "experiment_name",
-            "classifier",
-            "n_gen",
-            "size_dataset",
-            "generator_training_samples_subfolder",
-            "batch_size",
-            "steps_per_epoch",
-            "experiment_duration",
-            "dir_path",
-            "name",
-            "meta_json_filename",
-            "save_raw_image",
-            "created_images_folder_path",
-            "experiment_suffix",
-            "classifier_class",
-            "model_path",
-            "use_generator",
-            "labels_json_file_name",
-            "unique_labels",
-        ]
-
         if not self.dir_path:
             raise ValueError(
                 "Experiment directory is not set. Run `_create_experiment_directory` first."
@@ -295,7 +296,7 @@ class BaseExperiment(ABC, metaclass=AutoSuperMeta):
             for attr_name, attr_value in cls.__dict__.items():
                 if (
                     not attr_name.startswith("_")
-                    and attr_name in whitelist_attributes
+                    and attr_name in self.whitelist_attributes
                     and not callable(attr_value)
                 ):
                     # Use the actual attribute value from the instance
@@ -304,7 +305,7 @@ class BaseExperiment(ABC, metaclass=AutoSuperMeta):
 
         # Add instance-specific attributes
         for attr_name, attr_value in vars(self).items():
-            if not attr_name.startswith("_") and attr_name in whitelist_attributes:
+            if not attr_name.startswith("_") and attr_name in self.whitelist_attributes:
                 metadata[attr_name] = (
                     attr_value if is_serializable(attr_value) else str(attr_value)
                 )

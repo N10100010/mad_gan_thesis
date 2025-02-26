@@ -46,37 +46,30 @@ class StratifiedClassifierExperiment(BaseExperiment):
         )
 
     def _load_data(self):
-        # Load dataset (generated + real samples)
         self.train_x, self.train_y, self.test_x, self.test_y = self.dsc.create_dataset()
 
-        # self.test_x should remain untouched, only expanding for CNN compatibility
         if (
             len(self.test_x.shape) == 3
-        ):  # If shape is (num_samples, height, width), add channel dim
+        ): 
             self.test_x = np.expand_dims(
                 self.test_x, axis=-1
-            )  # (num_samples, 28, 28, 1)
+            ) 
 
-        # Convert labels to categorical for classification reporting only
         y_train_cat = tf.keras.utils.to_categorical(self.train_y, self.num_classes)
         y_test_cat = tf.keras.utils.to_categorical(self.test_y, self.num_classes)
 
-        # Create tf.data.Dataset for test classification (prefetch for performance)
         self.test_dataset = (
             tf.data.Dataset.from_tensor_slices((self.test_x, self.test_y))
             .batch(self.batch_size)
             .prefetch(tf.data.AUTOTUNE)
         )
 
-        # Create ImageDataGenerators
         train_datagen = tf.keras.preprocessing.image.ImageDataGenerator()
         test_datagen = tf.keras.preprocessing.image.ImageDataGenerator()
 
-        # Ensure self.train_x and self.train_y are valid numpy arrays before passing to .flow()
         print("Train X shape:", self.train_x.shape, "dtype:", self.train_x.dtype)
         print("Train Y shape:", self.train_y.shape, "dtype:", self.train_y.dtype)
 
-        # Create generators
         self.train_generator = train_datagen.flow(
             self.train_x, y_train_cat, batch_size=self.batch_size, shuffle=False
         )
