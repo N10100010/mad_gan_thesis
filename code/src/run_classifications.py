@@ -47,24 +47,30 @@ experiments_path = Path("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/exp
 #     )
 
 experiments = [
+    # CLASSIFICATION_Experiment(
+    #     name=f"ClassificationExperiment_MNIST_VanillaGAN",
+    #     created_images_folder_path=experiments_path / "2025-02-18___MNIST_GENERATIVE_VanillaGAN_Experiment" / "generated_images",
+    #     model_path=Path("experiments/2025-02-12_CLASSFIER_MNIST/checkpoints/best_weights.h5"),
+    #     classifier_class=MNISTClassifier
+    # ),
+    # CLASSIFICATION_Experiment(
+    #     name=f"ClassificationExperiment_FASHIONMNIST_VanillaGAN",
+    #     created_images_folder_path=experiments_path / "2025-02-18___FASHION_MNIST_GENERATIVE_VanillaGAN_Experiment" / "generated_images",
+    #     model_path=Path("experiments/2025-02-12_CLASSFIER_FashionMNIST/checkpoints/best_weights.h5"),
+    #     classifier_class=FashionMNISTClassifier
+    # ),
+    # CLASSIFICATION_Experiment(
+    #     name=f"ClassificationExperiment_CIFAR_VanillaGAN",
+    #     created_images_folder_path=experiments_path / "2025-02-18___CIFAR_GENERATIVE_VanillaGAN_Experiment" / "generated_images",
+    #     model_path=Path("experiments/2025-02-12_CLASSFIER_CIFAR10/checkpoints/best_weights.h5"),
+    #     classifier_class=CIFAR10Classifier
+    # )
     CLASSIFICATION_Experiment(
-        name=f"ClassificationExperiment_MNIST_VanillaGAN",
-        created_images_folder_path=experiments_path / "2025-02-18___MNIST_GENERATIVE_VanillaGAN_Experiment" / "generated_images",
-        model_path=Path("experiments/2025-02-12_CLASSFIER_MNIST/checkpoints/best_weights.h5"),
-        classifier_class=MNISTClassifier
-    ),
-    CLASSIFICATION_Experiment(
-        name=f"ClassificationExperiment_FASHIONMNIST_VanillaGAN",
-        created_images_folder_path=experiments_path / "2025-02-18___FASHION_MNIST_GENERATIVE_VanillaGAN_Experiment" / "generated_images",
+        name=f"ClassificationExperiment_FASHIONMNIST_MADGAN_10_used_generator_2",
+        created_images_folder_path=experiments_path / "2025-02-14_MADGAN_FASHIONMNIST_10_GEN_DataCreation_SPEC_GEN_2" / "generated_images",
         model_path=Path("experiments/2025-02-12_CLASSFIER_FashionMNIST/checkpoints/best_weights.h5"),
         classifier_class=FashionMNISTClassifier
     ),
-    CLASSIFICATION_Experiment(
-        name=f"ClassificationExperiment_CIFAR_VanillaGAN",
-        created_images_folder_path=experiments_path / "2025-02-18___CIFAR_GENERATIVE_VanillaGAN_Experiment" / "generated_images",
-        model_path=Path("experiments/2025-02-12_CLASSFIER_CIFAR10/checkpoints/best_weights.h5"),
-        classifier_class=CIFAR10Classifier
-    )
 ]
 
 queue = ExperimentQueue()

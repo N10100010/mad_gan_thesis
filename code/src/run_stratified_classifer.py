@@ -10,8 +10,8 @@ experiments_path = Path(
     "/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments"
 )
 
-dataset_identifier = "MADGAN_MNIST_"
-experiment_name = "Stratified_classifierExperiment_MNIST_"
+dataset_identifier = "MADGAN_FASHIONMNIST_"
+experiment_name = "Stratified_classifierExperiment_FASHIONMNIST_"
 
 all_experiments = os.listdir(experiments_path)
 creation_experiments = [
@@ -25,7 +25,7 @@ experiments_to_run = []
 N_GENERATED_IMAGES_PER_CLASS = 2_000
 N_REAL_IMAGES_PER_CLASS = 3_000
 
-n_images_per_class = [(3000, 2000), (4000, 1000), (5000, 0)]
+n_images_per_class = [ (1000, 4000), (2000, 3000), (3000, 2000), (4000, 1000), (5000, 0)]
 for gen_img_pc, real_img_pc in n_images_per_class:
     N_GENERATED_IMAGES_PER_CLASS = gen_img_pc
     N_REAL_IMAGES_PER_CLASS = real_img_pc
@@ -46,17 +46,34 @@ for gen_img_pc, real_img_pc in n_images_per_class:
                 epochs=50,
                 dataset="mnist",
                 creation_experiment_path=experiments_path / ex,
-                tf_dataset_load_func=tf.keras.datasets.mnist.load_data,
+                tf_dataset_load_func=tf.keras.datasets.fashion_mnist.load_data,
                 number_of_generated_images_per_class={
                     i: N_GENERATED_IMAGES_PER_CLASS for i in range(10)
                 },
                 number_of_real_images_per_class={
                     i: N_REAL_IMAGES_PER_CLASS for i in range(10)
                 },
-                experiments_base_path="./experiments/MNIST_STRATIFIED_CLASSIFIERS",
+                experiments_base_path="./experiments/FASHION_MNIST_STRATIFIED_CLASSIFIERS",
             )
         )
 
+# ADD BASE VERSION
+experiments_to_run.append(
+    StratifiedClassifierExperiment(
+        name=f"{experiment_name}_BASE__images_real_{5000}_gen_{0}",
+        epochs=50,
+        dataset="fashion_mnist",
+        creation_experiment_path=experiments_path / ex,
+        tf_dataset_load_func=tf.keras.datasets.fashion_mnist.load_data,
+        number_of_generated_images_per_class={
+            i: N_GENERATED_IMAGES_PER_CLASS for i in range(10)
+        },
+        number_of_real_images_per_class={
+            i: N_REAL_IMAGES_PER_CLASS for i in range(10)
+        },
+        experiments_base_path="./experiments/FASHION_MNIST_STRATIFIED_CLASSIFIERS",
+    )
+)
 
 queue = ExperimentQueue()
 for exp in experiments_to_run:
