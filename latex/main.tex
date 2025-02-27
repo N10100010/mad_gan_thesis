@@ -1,0 +1,48 @@
+\documentclass{article}
+\usepackage{graphicx} % For including images
+\usepackage{amsmath}  % For mathematical expressions
+
+\begin{document}
+
+\title{Dummy LaTeX Document}
+\author{Test User}
+\date{\today}
+
+\maketitle
+
+\section{Introduction}
+This is a simple document to test the LaTeX build process.
+
+\section{Mathematical Expression}
+Here is a sample equation:
+\begin{equation}
+    E = mc^2
+\end{equation}
+
+\section{Table Example}
+Table \ref{tab:sample} shows some example data:
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        A & B & C \\
+        \hline
+        1 & 2 & 3 \\
+        4 & 5 & 6 \\
+        \hline
+    \end{tabular}
+    \caption{Sample Table}
+    \label{tab:sample}
+\end{table}
+
+\section{Image Placeholder}
+Figure \ref{fig:placeholder} is an example of an image placeholder.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{example-image}
+    \caption{Example Image Placeholder}
+    \label{fig:placeholder}
+\end{figure}
+
+\end{document}
