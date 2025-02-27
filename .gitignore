@@ -179,3 +179,7 @@ notebooks/experiments/*
 
 # Ignore all zip files. This is mostly downloads from the server
 *.zip
+
+# whitelist some files in the latex folder
+!latex/*.pdf
+!latex/*.tex
