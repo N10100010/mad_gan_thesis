@@ -180,6 +180,10 @@ notebooks/experiments/*
 # Ignore all zip files. This is mostly downloads from the server
 *.zip
 
-# whitelist some files in the latex folder
+# Ignore everything in the latex folder
+latex/*
+
+# Whitelist (allow tracking of) .pdf and .tex files
 !latex/*.pdf
 !latex/*.tex
+!latex/*.aux
