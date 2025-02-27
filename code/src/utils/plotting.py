@@ -54,7 +54,7 @@ def plot_labels_histogram(
         plt.show()
 
 
-def process_experiment_folder(experiments_root: Path, plot_config_path: Path) -> None:
+def process_training_histories(experiments_root: Path, plot_config_path: Path) -> None:
     """
     Recursively searches for .npy files in the given experiment folder and
     calls `plot_training_history` for each one, saving plots in the same folder.
