@@ -42,14 +42,14 @@ experiments = [
         name="FASHION_MNIST_VanillaGAN_Experiment__",
         latent_dim=128,
         epochs=300,
-        experiment_suffix="adjusted";
+        experiment_suffix="adjusted",
         experiments_base_path="./experiments/VANILLA_GAN_MODELS"
     ),
     MNIST_VanillaGAN_Experiment(
         name="MNIST_VanillaGAN_Experiment__",
         latent_dim=128,
         epochs=250,
-        experiment_suffix="adjusted";
+        experiment_suffix="adjusted",
         experiments_base_path="./experiments/VANILLA_GAN_MODELS"
     )
 ]
