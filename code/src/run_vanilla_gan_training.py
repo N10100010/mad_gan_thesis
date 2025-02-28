@@ -2,12 +2,6 @@ from experiment.experiment_queue import ExperimentQueue
 from experiment.experiments.cifar_vanilla_gan.experiment import (
     CIFAR_VanillaGAN_Experiment,
 )
-from experiment.experiments.fashion_mnist_vanilla_gan.experiment import (
-    FASHION_MNIST_VanillaGAN_Experiment,
-)
-from experiment.experiments.mnist_vanilla_gan.experiment import (
-    MNIST_VanillaGAN_Experiment,
-)
 
 experiments = [
     # MNIST_VanillaGAN_Experiment(
@@ -38,20 +32,19 @@ experiments = [
     CIFAR_VanillaGAN_Experiment(
         name="CIFAR_VanillaGAN_Experiment__",
         latent_dim=200,
-        epochs=500,
+        epochs=5,
         experiment_suffix="latent_200_epochs_500",
     ),
-
     # FASHION_MNIST_VanillaGAN_Experiment(
-    #     name="FASHION_MNIST_VanillaGAN_Experiment__", 
-    #     latent_dim=128, 
-    #     epochs=300, 
+    #     name="FASHION_MNIST_VanillaGAN_Experiment__",
+    #     latent_dim=128,
+    #     epochs=300,
     #     experiment_suffix="latent_128_epoch_300"
     # ),
     # MNIST_VanillaGAN_Experiment(
-    #     name="MNIST_VanillaGAN_Experiment__", 
-    #     latent_dim=128, 
-    #     epochs=200, 
+    #     name="MNIST_VanillaGAN_Experiment__",
+    #     latent_dim=128,
+    #     epochs=200,
     #     experiment_suffix="latent_128_epoch_200"
     # )
 ]

@@ -15,7 +15,7 @@ from utils.plotting import plot_gan_training_history
 class CIFAR_VanillaGAN_Experiment(BaseGANExperiment):
     latent_dim: int = 100
     generator_training_samples_subfolder: str = "generators_examples"
-    generator_example_freq: int = 10
+    generator_example_freq: int = 1
     save_freq: int = 50
     size_dataset: int = 50_000
     batch_size: int = 256
@@ -51,11 +51,12 @@ class CIFAR_VanillaGAN_Experiment(BaseGANExperiment):
             0.0002, decay_steps=1000, decay_rate=0.95
         )
 
-        self.gan = VanillaGAN(self.generator, self.discriminator, self.latent_dim)
+        self.gan: tf.keras.Model = VanillaGAN(
+            self.generator, self.discriminator, self.latent_dim
+        )
         self.gan.compile(
             generator_optimizer=tf.keras.optimizers.Adam(lr_schedule, beta_1=0.5),
             discriminator_optimizer=tf.keras.optimizers.Adam(lr_schedule, beta_1=0.5),
-            loss_fn=tf.keras.losses.BinaryCrossentropy(),
         )
 
     def _save_results(self):
