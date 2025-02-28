@@ -7,7 +7,7 @@ from experiment.experiment_queue import ExperimentQueue
 from experiment.experiments.classifier import StratifiedClassifierExperiment
 
 experiments_path = Path(
-    "/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments"
+    "/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/FASHIONMNIST_MADGAN_DATACREATION"
 )
 
 dataset_identifier = "MADGAN_FASHIONMNIST_"
@@ -17,7 +17,8 @@ all_experiments = os.listdir(experiments_path)
 creation_experiments = [
     exp
     for exp in all_experiments
-    if (f"{dataset_identifier}" in exp) and ("DataCreation_SPEC" in exp)
+    if (f"{dataset_identifier}" in exp) and ("DataCreation_SPEC" in exp) 
+    and ("7_GEN" in exp)
 ]
 
 experiments_to_run = []
@@ -42,7 +43,6 @@ for gen_img_pc, real_img_pc in n_images_per_class:
         experiments_to_run.append(
             StratifiedClassifierExperiment(
                 name=f"{experiment_name}_{generators_trained}_used_generator_{generator_used}__images_real_{N_REAL_IMAGES_PER_CLASS}_gen_{N_GENERATED_IMAGES_PER_CLASS}",
-                # name=f"{experiment_name}_BASE__images_real_{N_REAL_IMAGES_PER_CLASS}_gen_{N_GENERATED_IMAGES_PER_CLASS}",
                 epochs=50,
                 dataset="mnist",
                 creation_experiment_path=experiments_path / ex,

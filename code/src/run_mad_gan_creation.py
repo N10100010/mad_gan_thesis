@@ -424,7 +424,7 @@ experiments = [
     MADGAN_GenerativeCreationExperiment(
         name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_0",
         experiment_class=FASHION_MNIST_MADGAN_Experiment,
-        experiment_path="experiments/2025-02-26_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+        experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
         latent_point_generator=generate_latent_points,
         n_images=90_000,
         save_raw_image=True,
@@ -433,7 +433,7 @@ experiments = [
     MADGAN_GenerativeCreationExperiment(
         name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_1",
         experiment_class=FASHION_MNIST_MADGAN_Experiment,
-        experiment_path="experiments/2025-02-26_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+        experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
         latent_point_generator=generate_latent_points,
         n_images=90_000,
         save_raw_image=True,
@@ -442,7 +442,7 @@ experiments = [
     MADGAN_GenerativeCreationExperiment(
         name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_2",
         experiment_class=FASHION_MNIST_MADGAN_Experiment,
-        experiment_path="experiments/2025-02-26_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+        experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
         latent_point_generator=generate_latent_points,
         n_images=90_000,
         save_raw_image=True,
@@ -451,7 +451,7 @@ experiments = [
     MADGAN_GenerativeCreationExperiment(
         name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_3",
         experiment_class=FASHION_MNIST_MADGAN_Experiment,
-        experiment_path="experiments/2025-02-26_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+        experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
         latent_point_generator=generate_latent_points,
         n_images=90_000,
         save_raw_image=True,
@@ -460,7 +460,7 @@ experiments = [
     MADGAN_GenerativeCreationExperiment(
         name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_4",
         experiment_class=FASHION_MNIST_MADGAN_Experiment,
-        experiment_path="experiments/2025-02-26_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+        experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
         latent_point_generator=generate_latent_points,
         n_images=90_000,
         save_raw_image=True,
@@ -469,7 +469,7 @@ experiments = [
     MADGAN_GenerativeCreationExperiment(
         name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_5",
         experiment_class=FASHION_MNIST_MADGAN_Experiment,
-        experiment_path="experiments/2025-02-26_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+        experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
         latent_point_generator=generate_latent_points,
         n_images=90_000,
         save_raw_image=True,
@@ -478,7 +478,7 @@ experiments = [
     MADGAN_GenerativeCreationExperiment(
         name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_6",
         experiment_class=FASHION_MNIST_MADGAN_Experiment,
-        experiment_path="experiments/2025-02-26_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+        experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
         latent_point_generator=generate_latent_points,
         n_images=90_000,
         save_raw_image=True,

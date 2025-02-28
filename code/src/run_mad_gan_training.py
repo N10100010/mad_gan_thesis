@@ -24,6 +24,7 @@ experiments = [
     # ),
     FASHION_MNIST_MADGAN_Experiment(
         name="FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+        experiments_base_path="./experiments/FASHIONMNIST_MADGAN_MODELS",
         latent_dim=256,
         epochs=250,
         experiment_suffix="",
