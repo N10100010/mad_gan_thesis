@@ -57,7 +57,6 @@ class FASHION_MNIST_VanillaGAN_Experiment(BaseGANExperiment):
             discriminator_optimizer=tf.keras.optimizers.Adam(
                 learning_rate=0.0002, beta_1=0.5
             ),
-            loss_fn=tf.keras.losses.BinaryCrossentropy(),
         )
 
     def _save_results(self):
