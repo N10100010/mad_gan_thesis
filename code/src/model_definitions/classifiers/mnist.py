@@ -16,9 +16,7 @@ class MNISTClassifier(BaseClassifier):
         x = tf.keras.layers.Conv2D(64, (3, 3), activation="relu")(x)
         x = tf.keras.layers.MaxPooling2D((2, 2))(x)
         x = tf.keras.layers.Flatten()(x)
-        x = tf.keras.layers.Dense(128, activation="relu", name="feature_extractor")(
-            x
-        )  # ✅ Named Layer
+        x = tf.keras.layers.Dense(128, activation="relu", name="feature_extractor")(x)
         outputs = tf.keras.layers.Dense(num_classes, activation="softmax")(x)
 
         # Functional Model

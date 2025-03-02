@@ -21,7 +21,7 @@ def _load_real_images(dataset, num_samples=10000):
     return x_train[idx]
 
 
-def calculate_fid_score(generated_images, dataset, classifier, batch_size=32):
+def calculate_fid_score(generated_images, dataset, classifier, batch_size=32) -> float:
     """
     Computes the Fréchet Inception Distance (FID) between generated and real images.
 
@@ -89,7 +89,7 @@ def calculate_fid_score(generated_images, dataset, classifier, batch_size=32):
     # Extract features from an intermediate layer
     if dataset != "cifar10":
         # we assume that the passed classifier has a layer named "feature_extractor". This is assumed to be the last dense-layer in the deep net.
-        if "feature_extractor" not in [_.name for _ in classifier.layers]:
+        if "feature_extractor" not in [_.name for _ in classifier.model.layers]:
             raise ValueError(
                 "Classifier is not a model with a layer named `feature_extractor`."
             )
@@ -139,5 +139,5 @@ def calculate_fid_score(generated_images, dataset, classifier, batch_size=32):
         covmean = covmean.real  # Numerical stability fix
 
     # Compute final FID score
-    fid = diff_squared + np.trace(sigma_real + sigma_gen - 2 * covmean)
+    fid = float(diff_squared + np.trace(sigma_real + sigma_gen - 2 * covmean))
     return fid

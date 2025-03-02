@@ -3,10 +3,13 @@ from typing import Callable
 
 import numpy as np
 import tensorflow as tf
-from datasets.cifar import dataset_func
+from datasets.cifar import dataset_func as cifar_dataset_func
+from datasets.fasion_mnist import dataset_func as fashion_dataset_func
+from datasets.mnist import dataset_func as mnist_dataset_func
 from experiment.base_experiments import BaseGANExperiment
 from latent_points.utils import generate_latent_points
 from model_definitions.vanilla_gan.gan import VanillaGAN
+from monitors.score_generator import ScoreGANMonitor
 from monitors.vanilla_gan_geneator import VanillaGANMonitor
 from utils.plotting import plot_gan_training_history
 
@@ -15,7 +18,7 @@ class VanillaGAN_Experiment(BaseGANExperiment):
     latent_dim: int = 100
     generator_training_samples_subfolder: str = "generators_examples"
     generator_example_freq: int = 1
-    calculate_scores_freq: int = 10
+    score_calculation_freq: int = 1
     save_freq: int = 50
     size_dataset: int = 50_000
     batch_size: int = 256
@@ -23,6 +26,10 @@ class VanillaGAN_Experiment(BaseGANExperiment):
     lerning_rate: float = 0.0002
     discriminator_func: Callable
     generator_func: Callable
+
+    classifier_class: tf.keras.Model
+    dataset_name: str
+    classifier_model_path: str = None
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -34,7 +41,13 @@ class VanillaGAN_Experiment(BaseGANExperiment):
         pass
 
     def _load_data(self):
-        self.data, self.unique_labels = dataset_func()
+        if self.dataset_name == "mnist":
+            self.data, self.unique_labels = mnist_dataset_func()
+        elif self.dataset_name == "cifar":
+            self.data, self.unique_labels = cifar_dataset_func()
+        elif self.dataset_name == "fashion_mnist":
+            self.data, self.unique_labels = fashion_dataset_func()
+
         self.dataset = tf.data.Dataset.from_tensor_slices(self.data)
         self.dataset = (
             self.dataset.repeat()
@@ -92,7 +105,15 @@ class VanillaGAN_Experiment(BaseGANExperiment):
                 dir_name=self.dir_path,
                 samples_subfolder=self.generator_training_samples_subfolder,
                 generator_example_freq=self.generator_example_freq,
-                calculate_scores_freq=self.calculate_scores_freq,
+            ),
+            ScoreGANMonitor(
+                dir_name=self.dir_path,
+                latent_dim=self.latent_dim,
+                latent_point_generator=generate_latent_points,
+                dataset=self.dataset_name,
+                classifier_class=self.classifier_class,
+                model_path=self.classifier_model_path,
+                score_calculation_freq=self.score_calculation_freq,
             ),
             tf.keras.callbacks.ModelCheckpoint(
                 filepath=checkpoint_filepath.__str__() + "_epoch_{epoch}.weights.h5",

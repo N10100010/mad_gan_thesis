@@ -1,9 +1,13 @@
+from typing import Tuple
+
 import numpy as np
 import tensorflow as tf
 from scipy.stats import entropy
 
 
-def calculate_inception_score(generated_images, classifier, batch_size=32, splits=10):
+def calculate_inception_score(
+    generated_images, classifier, batch_size=32, splits=10
+) -> Tuple[float, float]:
     """
     Computes the Inception Score (IS) for generated generated_images using a given classifier.
 
@@ -87,4 +91,4 @@ def calculate_inception_score(generated_images, classifier, batch_size=32, split
         split_score = np.exp(np.mean(kl_divs))
         split_scores.append(split_score)
 
-    return np.mean(split_scores), np.std(split_scores)
+    return float(np.mean(split_scores)), float(np.std(split_scores))
