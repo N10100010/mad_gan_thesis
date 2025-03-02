@@ -55,6 +55,7 @@ experiments = [
     #     experiment_suffix="adjusted",
     #     experiments_base_path="./experiments/VANILLA_GAN_MODELS"
     # )
+    # GENERALIZED 
     VanillaGAN_Experiment(
         name="VanillaGAN_Experiment__MNIST",
         latent_dim=128,

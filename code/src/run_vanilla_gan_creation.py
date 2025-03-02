@@ -70,9 +70,10 @@ experiments = [
     #     n_images=20,
     # ),
     GAN_GenerativeCreationExperiment(
+        experiments_base_path="./experiments/VANILLA_GAN_DATACREATION",
         name="__CIFAR_GENERATIVE_VanillaGAN_Experiment",
         experiment_class=CIFAR_VanillaGAN_Experiment,
-        experiment_path="experiments/2025-02-18_CIFAR_VanillaGAN_Experiment___latent_200_epochs_500",
+        experiment_path="experiments/VANILLA_GAN_MODELS/2025-03-01_CIFAR_VanillaGAN_Experiment___adjusted",
         latent_point_generator=tf.random.normal,
         experiment_suffix="",
         save_raw_image=True,
@@ -81,9 +82,10 @@ experiments = [
 
     # MNIST data creation
     GAN_GenerativeCreationExperiment(
+        experiments_base_path="./experiments/VANILLA_GAN_DATACREATION",
         name="__MNIST_GENERATIVE_VanillaGAN_Experiment",
         experiment_class=MNIST_VanillaGAN_Experiment,
-        experiment_path="experiments/2025-02-16_MNIST_VanillaGAN_Experiment___latent_128_epoch_200",
+         experiment_path="experiments/VANILLA_GAN_MODELS/2025-03-01_MNIST_VanillaGAN_Experiment___adjusted",
         latent_point_generator=tf.random.normal,
         experiment_suffix="",
         save_raw_image=True,
@@ -92,9 +94,10 @@ experiments = [
 
     # FASHION-MNIST data creation
      GAN_GenerativeCreationExperiment(
+        experiments_base_path="./experiments/VANILLA_GAN_DATACREATION",
          name="__FASHION_MNIST_GENERATIVE_VanillaGAN_Experiment",
          experiment_class=FASHION_MNIST_VanillaGAN_Experiment,
-         experiment_path="experiments/2025-02-16_FASHION_MNIST_VanillaGAN_Experiment___latent_128_epoch_300",
+        experiment_path="experiments/VANILLA_GAN_MODELS/2025-03-01_FASHION_MNIST_VanillaGAN_Experiment___adjusted",
          latent_point_generator=tf.random.normal,
          experiment_suffix="",
          save_raw_image=True,
