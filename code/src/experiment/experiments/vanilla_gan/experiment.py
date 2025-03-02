@@ -27,6 +27,7 @@ class VanillaGAN_Experiment(BaseGANExperiment):
     discriminator_func: Callable
     generator_func: Callable
 
+    classifier: tf.keras.Model = None 
     classifier_class: tf.keras.Model
     dataset_name: str
     classifier_model_path: str = None
@@ -43,7 +44,7 @@ class VanillaGAN_Experiment(BaseGANExperiment):
     def _load_data(self):
         if self.dataset_name == "mnist":
             self.data, self.unique_labels = mnist_dataset_func()
-        elif self.dataset_name == "cifar":
+        elif self.dataset_name == "cifar10":
             self.data, self.unique_labels = cifar_dataset_func()
         elif self.dataset_name == "fashion_mnist":
             self.data, self.unique_labels = fashion_dataset_func()
@@ -112,6 +113,7 @@ class VanillaGAN_Experiment(BaseGANExperiment):
                 latent_point_generator=generate_latent_points,
                 dataset=self.dataset_name,
                 classifier_class=self.classifier_class,
+                classifier=self.classifier,
                 model_path=self.classifier_model_path,
                 score_calculation_freq=self.score_calculation_freq,
             ),

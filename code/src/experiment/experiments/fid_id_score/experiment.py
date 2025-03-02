@@ -63,7 +63,7 @@ class ScoringExperiment(BaseExperiment):
             selected_image_paths = all_image_paths
 
         images = []
-        for filename in selected_image_paths:
+        for filename in selected_image_paths[:100]:
             img_path = Path(folder_path) / filename
             try:
                 if self.dataset == BaseClassifier.CIFAR10:

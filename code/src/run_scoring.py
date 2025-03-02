@@ -22,7 +22,7 @@ experiments = [
         classifier=tf.keras.applications.InceptionV3(
             weights="imagenet", include_top=False, pooling="avg"
         ),
-        generation_experiment_path="C:\\Users\\NiXoN\\Desktop\\_thesis\\mad_gan_thesis\\code\\experiments\\2025-02-03_generative_creation_test_cifar10",
+        generation_experiment_path="/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/VANILLA_GAN_DATACREATION/2025-03-01___CIFAR_GENERATIVE_VanillaGAN_Experiment",
         n_generated_images=100,
     ),
 ]

@@ -31,7 +31,7 @@ class ScoreGANMonitor(tf.keras.callbacks.Callback):
         self.dataset = dataset
         self.classifier_class = classifier_class
         self.classifier = classifier
-        self.model_path = Path(model_path)
+        self.model_path = Path(model_path) if model_path else None 
         self.score_calculation_freq = score_calculation_freq
 
         if dataset == BaseClassifier.CIFAR10:
@@ -62,16 +62,33 @@ class ScoreGANMonitor(tf.keras.callbacks.Callback):
                 self.classifier: tf.keras.Model = self.classifier_class()
                 _ = self.classifier(tf.random.normal(shape=self.image_data_shape))
                 self.classifier.load_weights(self.model_path)
+            
+            if self.dataset == BaseClassifier.CIFAR10:
+                fid_score = calculate_fid_score(
+                    generated_images=generated_samples,
+                    dataset=self.dataset,
+                    classifier=tf.keras.applications.InceptionV3(
+                        weights="imagenet", include_top=False, pooling="avg"
+                    ),
+                )
+                is_score, is_std = calculate_inception_score(
+                    generated_images=generated_samples,
+                    classifier=tf.keras.applications.InceptionV3(
+                        weights="imagenet", include_top=True
+                    ),
+                )
+            else:
+                fid_score = calculate_fid_score(
+                    generated_images=generated_samples,
+                    dataset=self.dataset,
+                    classifier=self.classifier,
+                )
+                is_score, is_std = calculate_inception_score(
+                    generated_images=generated_samples,
+                    classifier=self.classifier,
+                )
 
-            fid_score = calculate_fid_score(
-                generated_images=generated_samples,
-                dataset=self.dataset,
-                classifier=self.classifier,
-            )
-            is_score, is_std = calculate_inception_score(
-                generated_images=generated_samples,
-                classifier=self.classifier,
-            )
+
             self.logger.info(
                 f"Epoch {epoch}: FID: {fid_score}, IS: {is_score} +/- {is_std}"
             )

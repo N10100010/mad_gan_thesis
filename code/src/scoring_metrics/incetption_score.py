@@ -59,10 +59,17 @@ def calculate_inception_score(
         generated_images.shape[1] != expected_height
         or generated_images.shape[2] != expected_width
     ):
-        # Convert generated_images to a TensorFlow tensor, resize, then convert back to numpy.
-        generated_images = tf.image.resize(
-            generated_images, (expected_height, expected_width)
-        ).numpy()
+        # Convert generated_images to a TensorFlow tensor, resize, then convert back to numpy
+        generated_images = tf.convert_to_tensor(generated_images)
+
+        breakpoint()
+
+        # Create the size tensor explicitly with int32 type
+        target_size = tf.constant([expected_height, expected_width], dtype=tf.int32)
+
+        # Resize the images using the target size
+        generated_images = tf.image.resize(generated_images, target_size).numpy()
+
 
     num_images = generated_images.shape[0]
     preds = []
