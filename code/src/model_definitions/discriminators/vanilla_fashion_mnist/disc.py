@@ -1,6 +1,6 @@
 import tensorflow as tf
-
 from model_definitions.custom_layers.minibatchnorm import MinibatchDiscrimination
+
 
 def define_discriminator():
     inp = tf.keras.layers.Input(shape=(28, 28, 1))
@@ -15,7 +15,7 @@ def define_discriminator():
     x = tf.keras.layers.Dropout(0.3)(x)
 
     x = tf.keras.layers.Flatten()(x)
-    
+
     x = MinibatchDiscrimination()(x)
     out = tf.keras.layers.Dense(1)(x)
 

@@ -1,5 +1,6 @@
 import tensorflow as tf
 
+
 class MinibatchDiscrimination(tf.keras.layers.Layer):
     """Encourages diversity by allowing discriminator to compare samples in a batch."""
 
