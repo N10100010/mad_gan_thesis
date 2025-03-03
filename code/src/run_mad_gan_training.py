@@ -1,6 +1,6 @@
 from experiment.experiment_queue import ExperimentQueue
 from experiment.experiments.cifar_madgan.experiment import CIFAR_MADGAN_Experiment
-from experiment.experiments.fashion_mnist_madgan.experiment import FASHION_MNIST_MADGAN_Experiment
+
 # from experiment.experiments.fashion_mnist_vanilla_gan.experiment import (
 #     FASHION_MNIST_VanillaGAN_Experiment,
 # )
@@ -30,17 +30,26 @@ experiments = [
     #     experiment_suffix="",
     #     n_gen=7
     # ),
-
-    
-    CIFAR_MADGAN_Experiment(
-        name="TEST_better_discriminator_CIFAR_MADGAN_Experiment_2",
-        n_gen=2,
-        latent_dim=256,
-        epochs=2,
-        experiment_suffix="n_gen_2",
-    ),
-
+    # CIFAR_MADGAN_Experiment(
+    #     name="TEST_better_discriminator_CIFAR_MADGAN_Experiment_2",
+    #     n_gen=2,
+    #     latent_dim=256,
+    #     epochs=2,
+    #     experiment_suffix="n_gen_2",
+    # ),
 ]
+
+for i in range(1, 11):
+    exp = CIFAR_MADGAN_Experiment(
+        name=f"CIFAR_MADGAN_Experiment__{i}",
+        n_gen=i,
+        latent_dim=256,
+        epochs=1,
+        experiment_suffix=f"n_gen_{i}",
+        experiments_base_path="./experiments/CIFAR_MADGAN_MODELS",
+    )
+
+    experiments.append(exp)
 
 queue = ExperimentQueue()
 for exp in experiments:

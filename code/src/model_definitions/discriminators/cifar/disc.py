@@ -1,5 +1,9 @@
 import tensorflow as tf
 
+"""
+MAD GAN DISCRIMINATOR for CIFAR-10
+"""
+
 
 def define_discriminator(n_gen, in_shape=(32, 32, 3)):
     """
@@ -26,19 +30,31 @@ def define_discriminator(n_gen, in_shape=(32, 32, 3)):
 
     # Downsampling Layers
     x = tf.keras.layers.Conv2D(
-        128, (3, 3), strides=(2, 2), padding="same", kernel_initializer=kernel_initializer
+        128,
+        (3, 3),
+        strides=(2, 2),
+        padding="same",
+        kernel_initializer=kernel_initializer,
     )(x)
     x = tf.keras.layers.BatchNormalization()(x)  # Normalize after convolutions
     x = tf.keras.layers.LeakyReLU(alpha=alpha)(x)
 
     x = tf.keras.layers.Conv2D(
-        128, (3, 3), strides=(2, 2), padding="same", kernel_initializer=kernel_initializer
+        128,
+        (3, 3),
+        strides=(2, 2),
+        padding="same",
+        kernel_initializer=kernel_initializer,
     )(x)
     x = tf.keras.layers.BatchNormalization()(x)
     x = tf.keras.layers.LeakyReLU(alpha=alpha)(x)
 
     x = tf.keras.layers.Conv2D(
-        256, (3, 3), strides=(2, 2), padding="same", kernel_initializer=kernel_initializer
+        256,
+        (3, 3),
+        strides=(2, 2),
+        padding="same",
+        kernel_initializer=kernel_initializer,
     )(x)
     x = tf.keras.layers.BatchNormalization()(x)
     x = tf.keras.layers.LeakyReLU(alpha=alpha)(x)

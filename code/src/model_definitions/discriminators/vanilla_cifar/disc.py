@@ -1,6 +1,10 @@
 import tensorflow as tf
 from model_definitions.custom_layers.minibatchnorm import MinibatchDiscrimination
 
+"""
+Vanilla GAN DISCRIMINATOR for CIFAR-10
+"""
+
 
 def define_discriminator(in_shape=(32, 32, 3)):
     # kernel_initializer = tf.keras.initializers.RandomNormal(mean=0.0, stddev=0.02)
