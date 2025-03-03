@@ -5,6 +5,9 @@ from experiment.experiments.fashion_mnist_madgan.experiment import (
 from experiment.experiments.mnist_madgan.experiment import (
     MNIST_MADGAN_Experiment,
 )
+from experiment.experiments.cifar_madgan.experiment import (
+    CIFAR_MADGAN_Experiment,
+)
 from experiment.experiments.generative_creation.madgan.experiment import (
     MADGAN_GenerativeCreationExperiment,
 )
@@ -421,69 +424,309 @@ experiments = [
     # ),
 
     # FASHION MNIST GENERATOR 7
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_0",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=0
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_1",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=1
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_2",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=2
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_3",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=3
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_4",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=4
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_5",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=5
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_6",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=6
+    # ),
+
+    
+    # FASHION MNIST GENERATOR 10
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_10_GEN_DataCreation_SPEC_GEN_0",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/2025-01-04_FASHION_MNIST_MADGAN_Experiment__10_n_gen_10",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=0
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_10_GEN_DataCreation_SPEC_GEN_1",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/2025-01-04_FASHION_MNIST_MADGAN_Experiment__10_n_gen_10",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=1
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_10_GEN_DataCreation_SPEC_GEN_2",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/2025-01-04_FASHION_MNIST_MADGAN_Experiment__10_n_gen_10",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=1_000,
+    #     save_raw_image=True,
+    #     use_generator=2
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_10_GEN_DataCreation_SPEC_GEN_3",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/2025-01-04_FASHION_MNIST_MADGAN_Experiment__10_n_gen_10",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=3
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_10_GEN_DataCreation_SPEC_GEN_4",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/2025-01-04_FASHION_MNIST_MADGAN_Experiment__10_n_gen_10",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=4
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_10_GEN_DataCreation_SPEC_GEN_5",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/2025-01-04_FASHION_MNIST_MADGAN_Experiment__10_n_gen_10",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=5
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_10_GEN_DataCreation_SPEC_GEN_6",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/2025-01-04_FASHION_MNIST_MADGAN_Experiment__10_n_gen_10",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=6
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_10_GEN_DataCreation_SPEC_GEN_7",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/2025-01-04_FASHION_MNIST_MADGAN_Experiment__10_n_gen_10",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=7
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_10_GEN_DataCreation_SPEC_GEN_8",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/2025-01-04_FASHION_MNIST_MADGAN_Experiment__10_n_gen_10",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=8
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_10_GEN_DataCreation_SPEC_GEN_9",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/2025-01-04_FASHION_MNIST_MADGAN_Experiment__10_n_gen_10",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=9
+    # ),
+
+    
+
+    ######################################################################################################################
+    ################################################### CIFAR10 ##########################################################
+    ######################################################################################################################
+    ## GENERATE IMAGES FOR THE cifar10 DATASET USING THE MADGAN WITH 3 GENERATORS, USING A SPECIFIC ONE FOR EACH CREATION
+    
     MADGAN_GenerativeCreationExperiment(
-        name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_0",
-        experiment_class=FASHION_MNIST_MADGAN_Experiment,
-        experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+        name="MADGAN_FASHIONMNIST_DataCreation_SPEC_GEN_0",
+        experiment_class=CIFAR_MADGAN_Experiment,
+        experiment_path="experiments/2025-01-06_CIFAR_MADGAN_Experiment_3_n_gen_3",
         latent_point_generator=generate_latent_points,
-        n_images=90_000,
+        n_images=10,
         save_raw_image=True,
         use_generator=0
     ),
     MADGAN_GenerativeCreationExperiment(
-        name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_1",
-        experiment_class=FASHION_MNIST_MADGAN_Experiment,
-        experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+        name="MADGAN_FASHIONMNIST_DataCreation_SPEC_GEN_1",
+        experiment_class=CIFAR_MADGAN_Experiment,
+        experiment_path="experiments/2025-01-06_CIFAR_MADGAN_Experiment_3_n_gen_3",
         latent_point_generator=generate_latent_points,
-        n_images=90_000,
+        n_images=10,
         save_raw_image=True,
         use_generator=1
     ),
     MADGAN_GenerativeCreationExperiment(
-        name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_2",
-        experiment_class=FASHION_MNIST_MADGAN_Experiment,
-        experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+        name="MADGAN_FASHIONMNIST_DataCreation_SPEC_GEN_2",
+        experiment_class=CIFAR_MADGAN_Experiment,
+        experiment_path="experiments/2025-01-06_CIFAR_MADGAN_Experiment_3_n_gen_3",
         latent_point_generator=generate_latent_points,
-        n_images=90_000,
+        n_images=10,
         save_raw_image=True,
         use_generator=2
     ),
-    MADGAN_GenerativeCreationExperiment(
-        name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_3",
-        experiment_class=FASHION_MNIST_MADGAN_Experiment,
-        experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
-        latent_point_generator=generate_latent_points,
-        n_images=90_000,
-        save_raw_image=True,
-        use_generator=3
-    ),
-    MADGAN_GenerativeCreationExperiment(
-        name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_4",
-        experiment_class=FASHION_MNIST_MADGAN_Experiment,
-        experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
-        latent_point_generator=generate_latent_points,
-        n_images=90_000,
-        save_raw_image=True,
-        use_generator=4
-    ),
-    MADGAN_GenerativeCreationExperiment(
-        name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_5",
-        experiment_class=FASHION_MNIST_MADGAN_Experiment,
-        experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
-        latent_point_generator=generate_latent_points,
-        n_images=90_000,
-        save_raw_image=True,
-        use_generator=5
-    ),
-    MADGAN_GenerativeCreationExperiment(
-        name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_6",
-        experiment_class=FASHION_MNIST_MADGAN_Experiment,
-        experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
-        latent_point_generator=generate_latent_points,
-        n_images=90_000,
-        save_raw_image=True,
-        use_generator=6
-    ),
+
+    ## GENERATE IMAGES FOR THE MNIST DATASET USING THE MADGAN WITH 5 GENERATORS, USING A SPECIFIC ONE FOR EACH CREATION
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_5_GEN_DataCreation_SPEC_GEN_0",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/2025-01-02_FASHION_MNIST_MADGAN_Experiment__5_n_gen_5",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=0
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_5_GEN_DataCreation_SPEC_GEN_1",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/2025-01-02_FASHION_MNIST_MADGAN_Experiment__5_n_gen_5",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=1
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_5_GEN_DataCreation_SPEC_GEN_2",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/2025-01-02_FASHION_MNIST_MADGAN_Experiment__5_n_gen_5",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=2
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_5_GEN_DataCreation_SPEC_GEN_3",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/2025-01-02_FASHION_MNIST_MADGAN_Experiment__5_n_gen_5",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=3
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_5_GEN_DataCreation_SPEC_GEN_4",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/2025-01-02_FASHION_MNIST_MADGAN_Experiment__5_n_gen_5",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=4
+    # ),
+
+    # FASHION MNIST GENERATOR 7
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_0",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=0
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_1",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=1
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_2",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=2
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_3",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=3
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_4",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=4
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_5",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=5
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_6",
+    #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
+    #     experiment_path="experiments/FASHIONMNIST_MADGAN_MODELS/2025-02-27_FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=6
+    # ),
 
     
     # FASHION MNIST GENERATOR 10

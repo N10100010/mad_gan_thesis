@@ -52,7 +52,6 @@ class GAN_GenerativeCreationExperiment(BaseExperiment):
         image_data = []
         for i in range(self.n_images):
             image_data.append(self.gan.generator(self.latent_point_generator([1, self.experiment.latent_dim])))
-            # breakpoint()
 
         self.image_data: np.ndarray = image_data
 

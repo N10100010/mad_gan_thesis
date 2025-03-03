@@ -22,14 +22,24 @@ experiments = [
     #     epochs=150,
     #     experiment_suffix="",
     # ),
-    FASHION_MNIST_MADGAN_Experiment(
-        name="FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
-        experiments_base_path="./experiments/FASHIONMNIST_MADGAN_MODELS",
+    # FASHION_MNIST_MADGAN_Experiment(
+    #     name="FASHION_MNIST_MADGAN_Experiment__7_n_gen_7",
+    #     experiments_base_path="./experiments/FASHIONMNIST_MADGAN_MODELS",
+    #     latent_dim=256,
+    #     epochs=250,
+    #     experiment_suffix="",
+    #     n_gen=7
+    # ),
+
+    
+    CIFAR_MADGAN_Experiment(
+        name="TEST_better_discriminator_CIFAR_MADGAN_Experiment_2",
+        n_gen=2,
         latent_dim=256,
-        epochs=250,
-        experiment_suffix="",
-        n_gen=7
+        epochs=2,
+        experiment_suffix="n_gen_2",
     ),
+
 ]
 
 queue = ExperimentQueue()

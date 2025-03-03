@@ -129,5 +129,5 @@ class VanillaGAN_Experiment(BaseGANExperiment):
             epochs=self.epochs,
             steps_per_epoch=self.size_dataset // self.batch_size,
             callbacks=self.callbacks,
-            verbose=1,
+            verbose=0,
         )
