@@ -35,7 +35,9 @@ done &
 ```
 
 _As a one liner_
-`python src/run_mad_gan_creation.py 2>&1 | while IFS= read -r line; do   echo "$line" >> output.log;   tail -n 100 output.log > output.log.tmp; mv output.log.tmp output.log; done &`
+```
+python src/run_mad_gan_training.py 2>&1 | while IFS= read -r line; do   echo "$line" >> output.log;   tail -n 100 output.log > output.log.tmp; mv output.log.tmp output.log; done &
+```
 
 ### how to
 

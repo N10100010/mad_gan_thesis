@@ -589,32 +589,74 @@ experiments = [
     ## GENERATE IMAGES FOR THE cifar10 DATASET USING THE MADGAN WITH 3 GENERATORS, USING A SPECIFIC ONE FOR EACH CREATION
     
     MADGAN_GenerativeCreationExperiment(
-        name="MADGAN_FASHIONMNIST_DataCreation_SPEC_GEN_0",
+        name="MADGAN_CIFAR_1_GEN_DataCreation_SPEC_GEN_0",
         experiment_class=CIFAR_MADGAN_Experiment,
-        experiment_path="experiments/2025-01-06_CIFAR_MADGAN_Experiment_3_n_gen_3",
+        experiment_path="./experiments/CIFAR_MADGAN_MODELS/2025-03-04_CIFAR_MADGAN_Experiment__1_n_gen_1",
+        experiments_base_path="./experiments/CIFAR_MADGAN_DATACREATION",
         latent_point_generator=generate_latent_points,
-        n_images=10,
+        n_images=90_000,
         save_raw_image=True,
         use_generator=0
     ),
     MADGAN_GenerativeCreationExperiment(
-        name="MADGAN_FASHIONMNIST_DataCreation_SPEC_GEN_1",
+        name="MADGAN_CIFAR_2_GEN_DataCreation_SPEC_GEN_0",
         experiment_class=CIFAR_MADGAN_Experiment,
-        experiment_path="experiments/2025-01-06_CIFAR_MADGAN_Experiment_3_n_gen_3",
+        experiment_path="./experiments/CIFAR_MADGAN_MODELS/2025-03-04_CIFAR_MADGAN_Experiment__2_n_gen_2",
+        experiments_base_path="./experiments/CIFAR_MADGAN_DATACREATION",
         latent_point_generator=generate_latent_points,
-        n_images=10,
+        n_images=90_000,
+        save_raw_image=True,
+        use_generator=0
+    ),
+    MADGAN_GenerativeCreationExperiment(
+        name="MADGAN_CIFAR_2_GEN_DataCreation_SPEC_GEN_1",
+        experiment_class=CIFAR_MADGAN_Experiment,
+        experiment_path="./experiments/CIFAR_MADGAN_MODELS/2025-03-04_CIFAR_MADGAN_Experiment__2_n_gen_2",
+        experiments_base_path="./experiments/CIFAR_MADGAN_DATACREATION",
+        latent_point_generator=generate_latent_points,
+        n_images=90_000,
         save_raw_image=True,
         use_generator=1
     ),
     MADGAN_GenerativeCreationExperiment(
-        name="MADGAN_FASHIONMNIST_DataCreation_SPEC_GEN_2",
+        name="MADGAN_CIFAR_3_GEN_DataCreation_SPEC_GEN_0",
         experiment_class=CIFAR_MADGAN_Experiment,
-        experiment_path="experiments/2025-01-06_CIFAR_MADGAN_Experiment_3_n_gen_3",
+        experiment_path="./experiments/CIFAR_MADGAN_MODELS/2025-03-04_CIFAR_MADGAN_Experiment__3_n_gen_3",
+        experiments_base_path="./experiments/CIFAR_MADGAN_DATACREATION",
         latent_point_generator=generate_latent_points,
-        n_images=10,
+        n_images=90_000,
+        save_raw_image=True,
+        use_generator=0
+    ),
+    MADGAN_GenerativeCreationExperiment(
+        name="MADGAN_CIFAR_3_GEN_DataCreation_SPEC_GEN_1",
+        experiment_class=CIFAR_MADGAN_Experiment,
+        experiment_path="./experiments/CIFAR_MADGAN_MODELS/2025-03-04_CIFAR_MADGAN_Experiment__3_n_gen_3",
+        experiments_base_path="./experiments/CIFAR_MADGAN_DATACREATION",
+        latent_point_generator=generate_latent_points,
+        n_images=90_000,
+        save_raw_image=True,
+        use_generator=1
+    ),
+    MADGAN_GenerativeCreationExperiment(
+        name="MADGAN_CIFAR_3_GEN_DataCreation_SPEC_GEN_2",
+        experiment_class=CIFAR_MADGAN_Experiment,
+        experiment_path="./experiments/CIFAR_MADGAN_MODELS/2025-03-04_CIFAR_MADGAN_Experiment__3_n_gen_3",
+        experiments_base_path="./experiments/CIFAR_MADGAN_DATACREATION",
+        latent_point_generator=generate_latent_points,
+        n_images=90_000,
         save_raw_image=True,
         use_generator=2
     ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_FASHIONMNIST_DataCreation_SPEC_GEN_2",
+    #     experiment_class=CIFAR_MADGAN_Experiment,
+    #     experiment_path="experiments/2025-01-06_CIFAR_MADGAN_Experiment_3_n_gen_3",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=10,
+    #     save_raw_image=True,
+    #     use_generator=2
+    # ),
 
     ## GENERATE IMAGES FOR THE MNIST DATASET USING THE MADGAN WITH 5 GENERATORS, USING A SPECIFIC ONE FOR EACH CREATION
     # MADGAN_GenerativeCreationExperiment(
