@@ -111,7 +111,7 @@ class CLASSIFICATION_Experiment(BaseExperiment):
         self.classifier = self.classifier_class()
 
         _ = self.classifier(tf.random.normal(shape=self.image_data_shape))
-        self.classifier.load_weights(self.model_path)
+        self.classifier = tf.keras.models.load_model(self.model_path)
 
     def _run(self):
         self.classifications = {}

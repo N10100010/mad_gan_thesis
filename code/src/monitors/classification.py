@@ -36,5 +36,5 @@ class ClassificationSaveCallback(tf.keras.callbacks.Callback):
         # Save the model if the combined score improves
         if combined_score > self.best_score:
             self.best_score = combined_score
-            self.model.save_weights(self.save_path)
+            self.model.model.save_weights(self.save_path)
             self.logger.info(f"New best model saved with score {self.best_score:.4f}")

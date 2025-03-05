@@ -92,7 +92,7 @@ class CLASS_MNIST_Experiment(BaseExperiment):
 
     def _save_results(self):
         model_weights_path = Path(self.dir_path, "final_model.weights.h5")
-        self.classifier.save_weights(model_weights_path)
+        self.classifier.model.save_weights(model_weights_path)
         self.logger.info(f"Model saved to: {model_weights_path}")
 
         history_path = Path(self.dir_path, "training_history.npy")

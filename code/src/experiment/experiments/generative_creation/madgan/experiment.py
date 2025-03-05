@@ -2,6 +2,7 @@ from pathlib import Path
 from typing import Dict, Type, TypeVar
 
 import numpy as np
+import tensorflow as tf
 from experiment.base_experiments.base_experiment import BaseExperiment
 from experiment.base_experiments.base_mad_gan_experiment import BaseMADGANExperiment
 from matplotlib import pyplot as plt
@@ -100,7 +101,16 @@ class MADGAN_GenerativeCreationExperiment(BaseExperiment):
             for batch_number, _images in enumerate(batch):
                 for image_number, image in enumerate(_images):
                     if self.save_raw_image: 
-                        plt.imsave(saving_path / f"gen_{gen_idx}_{batch_number}__{image_number}.png", np.squeeze(image, axis=-1), cmap='gray')
+                        if isinstance(image, tf.Tensor): 
+                            image = image.numpy()
+                        if image.shape[-1] == 3: 
+                            image = np.clip(image, -1, 1)
+                            image = (image + 1) / 2
+
+                            plt.imsave(saving_path / f"gen_{gen_idx}_{batch_number}__{image_number}.png", image)
+
+                        else: 
+                            plt.imsave(saving_path / f"gen_{gen_idx}_{batch_number}__{image_number}.png", np.squeeze(image, axis=-1), cmap='gray')
                     else: 
                         plt.imshow(image)
                         plt.title(f"Generator {gen_idx}")
