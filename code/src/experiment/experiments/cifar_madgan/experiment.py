@@ -1,10 +1,13 @@
+from typing import Callable
+
 import tensorflow as tf
 from datasets.cifar import dataset_func
 from experiment.base_experiments import BaseMADGANExperiment
 from latent_points.utils import generate_latent_points
 from loss_functions.generator import generators_loss_function
-from model_definitions.discriminators.cifar.disc import define_discriminator
-from model_definitions.generators.cifar.gen import define_generators
+
+# from model_definitions.discriminators.cifar.disc import define_discriminator
+# from model_definitions.generators.cifar.gen import define_generators
 from model_definitions.mad_gan import MADGAN
 from monitors.madgan_generator import MADGANMonitor
 
@@ -24,6 +27,11 @@ class CIFAR_MADGAN_Experiment(BaseMADGANExperiment):
     steps_per_epoch: int = (size_dataset // batch_size) // n_gen
     generator_training_samples_subfolder: str = "generators_examples"
     generate_after_epochs = 1
+
+    # the functions defining the discriminator and generator models
+    # are passed as arguments to the MADGAN class, for rapid prototyping
+    define_discriminator = Callable
+    define_generators = Callable
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -47,8 +55,8 @@ class CIFAR_MADGAN_Experiment(BaseMADGANExperiment):
         self.logger.info(f"Data loaded with shape: {self.data.shape}")
 
     def _initialize_models(self):
-        self.discriminator = define_discriminator(self.n_gen)
-        self.generators = define_generators(self.n_gen, self.latent_dim)
+        self.discriminator = self.define_discriminator(self.n_gen)
+        self.generators = self.define_generators(self.n_gen, self.latent_dim)
 
         self.madgan: MADGAN = MADGAN(
             discriminator=self.discriminator,
@@ -57,10 +65,24 @@ class CIFAR_MADGAN_Experiment(BaseMADGANExperiment):
             n_gen=self.n_gen,
         )
 
+        # Apply learning rate decay
+        d_lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(
+            initial_learning_rate=1e-4,
+            decay_steps=10000,
+            decay_rate=0.95,
+            staircase=True,
+        )
+        g_lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(
+            initial_learning_rate=2e-4,
+            decay_steps=10000,
+            decay_rate=0.95,
+            staircase=True,
+        )
+
         self.madgan.compile(
-            d_optimizer=tf.optimizers.Adam(learning_rate=2e-4, beta_1=0.5),
+            d_optimizer=tf.optimizers.Adam(learning_rate=d_lr_schedule, beta_1=0.5),
             g_optimizer=[
-                tf.optimizers.Adam(learning_rate=1e-4, beta_1=0.5)
+                tf.optimizers.Adam(learning_rate=g_lr_schedule, beta_1=0.5)
                 for _ in range(self.n_gen)
             ],
             d_loss_fn=tf.keras.losses.CategoricalCrossentropy(),

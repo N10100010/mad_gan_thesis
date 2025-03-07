@@ -13,6 +13,8 @@ def define_generators(n_gen, latent_dim):
     - List of generator models.
     """
     kernel_initializer = tf.keras.initializers.RandomNormal(mean=0.0, stddev=0.02)
+    alpha = 0.2  # LeakyReLU alpha
+
     models = []
 
     for label in range(n_gen):
@@ -23,7 +25,7 @@ def define_generators(n_gen, latent_dim):
             8 * 8 * 128, use_bias=False, kernel_initializer=kernel_initializer
         )(inp)
         x = tf.keras.layers.BatchNormalization()(x)
-        x = tf.keras.layers.ReLU()(x)
+        x = tf.keras.layers.LeakyReLU(alpha=alpha)(x)
         x = tf.keras.layers.Reshape((8, 8, 128))(x)
 
         # Upsample to 16x16
@@ -36,7 +38,7 @@ def define_generators(n_gen, latent_dim):
             kernel_initializer=kernel_initializer,
         )(x)
         x = tf.keras.layers.BatchNormalization()(x)
-        x = tf.keras.layers.ReLU()(x)
+        x = tf.keras.layers.LeakyReLU(alpha=alpha)(x)
 
         # Upsample to 32x32
         x = tf.keras.layers.Conv2DTranspose(
@@ -48,7 +50,7 @@ def define_generators(n_gen, latent_dim):
             kernel_initializer=kernel_initializer,
         )(x)
         x = tf.keras.layers.BatchNormalization()(x)
-        x = tf.keras.layers.ReLU()(x)
+        x = tf.keras.layers.LeakyReLU(alpha=alpha)(x)
 
         # Output layer: produce 32x32x3 image with tanh activation
         out = tf.keras.layers.Conv2DTranspose(
