@@ -3,16 +3,16 @@ import os
 import zipfile
 
 # Define the root experiments folder
-experiments_folder = "/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/FASHIONMNIST_MADGAN_DATACREATION"
+experiments_folder = "/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/CIFAR_MADGAN_DATACREATION"
 
 
 # Define the output zip file name
-output_zip = "./vanilla_data_creation_jsons.zip"
+output_zip = "./cifar_data_creation_jsons.zip"
 
 # Collect JSON files from folders containing "_DataCreation_"
 json_files = []
 for root, dirs, files in os.walk(experiments_folder):
-    if "MADGAN_FASHIONMNIST" in os.path.basename(root):  #  "_DataCreation_" in os.path.basename(root):
+    if "MADGAN_" in os.path.basename(root):  #  "_DataCreation_" in os.path.basename(root):
         json_files.extend([os.path.join(root, f) for f in files if f.endswith(".json") and "labels" in f])
 
 

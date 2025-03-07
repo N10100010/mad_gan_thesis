@@ -39,7 +39,7 @@ experiments = [
     # ),
 ]
 
-for i in range(3, 11):
+for i in range(4, 11):
     exp = CIFAR_MADGAN_Experiment(
         name=f"CIFAR_MADGAN_Experiment__{i}",
         n_gen=i,

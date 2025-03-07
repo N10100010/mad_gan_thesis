@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Dict
 
 import tensorflow as tf
+from tensorflow.keras.models import load_model
 from experiment.base_experiments import BaseExperiment
 from experiment.experiments.classification.utils import preprocess_image
 
@@ -111,7 +112,7 @@ class CLASSIFICATION_Experiment(BaseExperiment):
         self.classifier = self.classifier_class()
 
         _ = self.classifier(tf.random.normal(shape=self.image_data_shape))
-        self.classifier = tf.keras.models.load_model(self.model_path)
+        self.classifier = load_model(self.model_path)
 
     def _run(self):
         self.classifications = {}

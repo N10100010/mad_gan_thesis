@@ -6,14 +6,14 @@ from experiment.experiments.classifier import (
 )
 
 experiments = [
+    CLASS_CIFAR10_Experiment(
+        name="CLASSFIER_CIFAR10", epochs=75, traditional_data_augmentation=True
+    ),
     CLASS_MNIST_Experiment(
        name="CLASSFIER_MNIST", epochs=35, traditional_data_augmentation=True
     ),
     CLASS_FashionMNIST_Experiment(
         name="CLASSFIER_FashionMNIST", epochs=40, traditional_data_augmentation=True
-    ),
-    CLASS_CIFAR10_Experiment(
-        name="CLASSFIER_CIFAR10", epochs=100, traditional_data_augmentation=True
     ),
 ]
 

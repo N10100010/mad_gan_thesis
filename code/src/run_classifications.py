@@ -12,7 +12,7 @@ from model_definitions.classifiers import CIFAR10Classifier
 experiments_path = Path("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/CIFAR_MADGAN_DATACREATION")
 
 ## classify madgan mnist experiments. 
-classifier_path = "experiments/2025-02-12_CLASSFIER_CIFAR10/checkpoints/best_weights.h5"
+classifier_path = "experiments/2025-03-05_CLASSFIER_CIFAR10/checkpoints/best_weights.h5"
 classification_experiment_name = "ClassificationExperiment_CIFAR10_MADGAN"
 classifier_class = CIFAR10Classifier
 all_experiments = os.listdir(experiments_path)
