@@ -1,7 +1,7 @@
-from typing import Callable
-
 import tensorflow as tf
-from datasets.cifar import dataset_func
+
+# from datasets.cifar import dataset_func
+from datasets.cifar import dataset_func_black_and_white
 from experiment.base_experiments import BaseMADGANExperiment
 from latent_points.utils import generate_latent_points
 from loss_functions.generator import generators_loss_function
@@ -30,8 +30,8 @@ class CIFAR_MADGAN_Experiment(BaseMADGANExperiment):
 
     # the functions defining the discriminator and generator models
     # are passed as arguments to the MADGAN class, for rapid prototyping
-    define_discriminator = None 
-    define_generators = None 
+    define_discriminator = None
+    define_generators = None
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -43,7 +43,8 @@ class CIFAR_MADGAN_Experiment(BaseMADGANExperiment):
         pass
 
     def _load_data(self):
-        self.data, self.unique_labels = dataset_func()
+        self.data, self.unique_labels = dataset_func_black_and_white()
+
         self.dataset = tf.data.Dataset.from_tensor_slices(self.data)
         self.dataset = (
             self.dataset.repeat()
