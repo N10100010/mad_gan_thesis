@@ -30,8 +30,8 @@ class CIFAR_MADGAN_Experiment(BaseMADGANExperiment):
 
     # the functions defining the discriminator and generator models
     # are passed as arguments to the MADGAN class, for rapid prototyping
-    define_discriminator = Callable
-    define_generators = Callable
+    define_discriminator = None 
+    define_generators = None 
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

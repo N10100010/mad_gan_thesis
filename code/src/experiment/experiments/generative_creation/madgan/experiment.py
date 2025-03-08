@@ -23,6 +23,8 @@ class MADGAN_GenerativeCreationExperiment(BaseExperiment):
     save: bool = True
     
     save_raw_image: bool = True
+    define_discriminator = None 
+    define_generators = None
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -36,6 +38,8 @@ class MADGAN_GenerativeCreationExperiment(BaseExperiment):
         self.experiment: BaseMADGANExperiment = self.experiment_class.load_from_path(
             Path(self.experiment_path)
         )
+        self.experiment.define_discriminator = self.define_discriminator
+        self.experiment.define_generators = self.define_generators
 
     def _load_data(self):
         if self.use_generator is not None: 

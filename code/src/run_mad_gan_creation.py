@@ -13,6 +13,26 @@ from experiment.experiments.generative_creation.madgan.experiment import (
 )
 from latent_points.utils import generate_latent_points
 
+from model_definitions.discriminators.cifar.disc import (
+    define_discriminator as define_discriminator_base,
+)
+from model_definitions.discriminators.cifar.new_disc_big import (
+    define_discriminator as define_discriminator_big,
+)
+from model_definitions.discriminators.cifar.new_disc_small import (
+    define_discriminator as define_discriminator_small,
+)
+from model_definitions.generators.cifar.gen import (
+    define_generators as define_generators_base,
+)
+from model_definitions.generators.cifar.new_gen_big import (
+    define_generators as define_generators_big,
+)
+from model_definitions.generators.cifar.new_gen_small import (
+    define_generators as define_generators_small,
+)
+
+
 experiments = [
     ## GENERATE IMAGES FOR THE MNIST DATASET USING N-GENERATORS [1...10] (pretrained)
     # MADGAN_GenerativeCreationExperiment(
@@ -588,66 +608,106 @@ experiments = [
     ######################################################################################################################
     ## GENERATE IMAGES FOR THE cifar10 DATASET USING THE MADGAN WITH 3 GENERATORS, USING A SPECIFIC ONE FOR EACH CREATION
     
+
+    
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_CIFAR_PROTOTYPE_big",
+    #     experiment_class=CIFAR_MADGAN_Experiment,
+    #     experiment_path="./experiments/CIFAR_MADGAN_MODELS_PROTOTYPES/2025-03-07_CIFAR_MADGAN_Experiment___big",
+    #     experiments_base_path="./experiments/CIFAR_MADGAN_DATACREATION_PROTOTYPES",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=10_000,
+    #     save_raw_image=True,
+    #     use_generator=0,
+    #     define_discriminator=define_discriminator_big,
+    #     define_generators=define_generators_big
+    # ),
+    
     MADGAN_GenerativeCreationExperiment(
-        name="MADGAN_CIFAR_1_GEN_DataCreation_SPEC_GEN_0",
+        name="MADGAN_CIFAR_PROTOTYPE_small",
         experiment_class=CIFAR_MADGAN_Experiment,
-        experiment_path="./experiments/CIFAR_MADGAN_MODELS/2025-03-04_CIFAR_MADGAN_Experiment__1_n_gen_1",
-        experiments_base_path="./experiments/CIFAR_MADGAN_DATACREATION",
+        experiment_path="./experiments/CIFAR_MADGAN_MODELS_PROTOTYPES/2025-03-07_CIFAR_MADGAN_Experiment___small",
+        experiments_base_path="./experiments/CIFAR_MADGAN_DATACREATION_PROTOTYPES",
         latent_point_generator=generate_latent_points,
-        n_images=90_000,
+        n_images=10_000,
         save_raw_image=True,
-        use_generator=0
+        use_generator=0, 
+        define_discriminator=define_discriminator_small,
+        define_generators=define_generators_small
     ),
     MADGAN_GenerativeCreationExperiment(
-        name="MADGAN_CIFAR_2_GEN_DataCreation_SPEC_GEN_0",
+        name="MADGAN_CIFAR_PROTOTYPE_base",
         experiment_class=CIFAR_MADGAN_Experiment,
-        experiment_path="./experiments/CIFAR_MADGAN_MODELS/2025-03-04_CIFAR_MADGAN_Experiment__2_n_gen_2",
-        experiments_base_path="./experiments/CIFAR_MADGAN_DATACREATION",
+        experiment_path="./experiments/CIFAR_MADGAN_MODELS_PROTOTYPES/2025-03-07_CIFAR_MADGAN_Experiment___base",
+        experiments_base_path="./experiments/CIFAR_MADGAN_DATACREATION_PROTOTYPES",
         latent_point_generator=generate_latent_points,
-        n_images=90_000,
+        n_images=10_000,
         save_raw_image=True,
-        use_generator=0
+        use_generator=0, 
+        define_discriminator=define_discriminator_base,
+        define_generators=define_generators_base
     ),
-    MADGAN_GenerativeCreationExperiment(
-        name="MADGAN_CIFAR_2_GEN_DataCreation_SPEC_GEN_1",
-        experiment_class=CIFAR_MADGAN_Experiment,
-        experiment_path="./experiments/CIFAR_MADGAN_MODELS/2025-03-04_CIFAR_MADGAN_Experiment__2_n_gen_2",
-        experiments_base_path="./experiments/CIFAR_MADGAN_DATACREATION",
-        latent_point_generator=generate_latent_points,
-        n_images=90_000,
-        save_raw_image=True,
-        use_generator=1
-    ),
-    MADGAN_GenerativeCreationExperiment(
-        name="MADGAN_CIFAR_3_GEN_DataCreation_SPEC_GEN_0",
-        experiment_class=CIFAR_MADGAN_Experiment,
-        experiment_path="./experiments/CIFAR_MADGAN_MODELS/2025-03-04_CIFAR_MADGAN_Experiment__3_n_gen_3",
-        experiments_base_path="./experiments/CIFAR_MADGAN_DATACREATION",
-        latent_point_generator=generate_latent_points,
-        n_images=90_000,
-        save_raw_image=True,
-        use_generator=0
-    ),
-    MADGAN_GenerativeCreationExperiment(
-        name="MADGAN_CIFAR_3_GEN_DataCreation_SPEC_GEN_1",
-        experiment_class=CIFAR_MADGAN_Experiment,
-        experiment_path="./experiments/CIFAR_MADGAN_MODELS/2025-03-04_CIFAR_MADGAN_Experiment__3_n_gen_3",
-        experiments_base_path="./experiments/CIFAR_MADGAN_DATACREATION",
-        latent_point_generator=generate_latent_points,
-        n_images=90_000,
-        save_raw_image=True,
-        use_generator=1
-    ),
-    MADGAN_GenerativeCreationExperiment(
-        name="MADGAN_CIFAR_3_GEN_DataCreation_SPEC_GEN_2",
-        experiment_class=CIFAR_MADGAN_Experiment,
-        experiment_path="./experiments/CIFAR_MADGAN_MODELS/2025-03-04_CIFAR_MADGAN_Experiment__3_n_gen_3",
-        experiments_base_path="./experiments/CIFAR_MADGAN_DATACREATION",
-        latent_point_generator=generate_latent_points,
-        n_images=90_000,
-        save_raw_image=True,
-        use_generator=2
-    ),
+
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_CIFAR_1_GEN_DataCreation_SPEC_GEN_0",
+    #     experiment_class=CIFAR_MADGAN_Experiment,
+    #     experiment_path="./experiments/CIFAR_MADGAN_MODELS/2025-03-04_CIFAR_MADGAN_Experiment__1_n_gen_1",
+    #     experiments_base_path="./experiments/CIFAR_MADGAN_DATACREATION",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=0
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_CIFAR_2_GEN_DataCreation_SPEC_GEN_0",
+    #     experiment_class=CIFAR_MADGAN_Experiment,
+    #     experiment_path="./experiments/CIFAR_MADGAN_MODELS/2025-03-04_CIFAR_MADGAN_Experiment__2_n_gen_2",
+    #     experiments_base_path="./experiments/CIFAR_MADGAN_DATACREATION",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=0
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_CIFAR_2_GEN_DataCreation_SPEC_GEN_1",
+    #     experiment_class=CIFAR_MADGAN_Experiment,
+    #     experiment_path="./experiments/CIFAR_MADGAN_MODELS/2025-03-04_CIFAR_MADGAN_Experiment__2_n_gen_2",
+    #     experiments_base_path="./experiments/CIFAR_MADGAN_DATACREATION",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=1
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_CIFAR_3_GEN_DataCreation_SPEC_GEN_0",
+    #     experiment_class=CIFAR_MADGAN_Experiment,
+    #     experiment_path="./experiments/CIFAR_MADGAN_MODELS/2025-03-04_CIFAR_MADGAN_Experiment__3_n_gen_3",
+    #     experiments_base_path="./experiments/CIFAR_MADGAN_DATACREATION",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=0
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_CIFAR_3_GEN_DataCreation_SPEC_GEN_1",
+    #     experiment_class=CIFAR_MADGAN_Experiment,
+    #     experiment_path="./experiments/CIFAR_MADGAN_MODELS/2025-03-04_CIFAR_MADGAN_Experiment__3_n_gen_3",
+    #     experiments_base_path="./experiments/CIFAR_MADGAN_DATACREATION",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=1
+    # ),
+    # MADGAN_GenerativeCreationExperiment(
+    #     name="MADGAN_CIFAR_3_GEN_DataCreation_SPEC_GEN_2",
+    #     experiment_class=CIFAR_MADGAN_Experiment,
+    #     experiment_path="./experiments/CIFAR_MADGAN_MODELS/2025-03-04_CIFAR_MADGAN_Experiment__3_n_gen_3",
+    #     experiments_base_path="./experiments/CIFAR_MADGAN_DATACREATION",
+    #     latent_point_generator=generate_latent_points,
+    #     n_images=90_000,
+    #     save_raw_image=True,
+    #     use_generator=2
+    # ),
     # MADGAN_GenerativeCreationExperiment(
     #     name="MADGAN_FASHIONMNIST_DataCreation_SPEC_GEN_2",
     #     experiment_class=CIFAR_MADGAN_Experiment,

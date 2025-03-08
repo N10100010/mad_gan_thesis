@@ -9,7 +9,7 @@ from model_definitions.classifiers import MNISTClassifier
 from model_definitions.classifiers import CIFAR10Classifier
 
 
-experiments_path = Path("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/CIFAR_MADGAN_DATACREATION")
+experiments_path = Path("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/CIFAR_MADGAN_DATACREATION_PROTOTYPES")
 
 ## classify madgan mnist experiments. 
 classifier_path = "experiments/2025-03-05_CLASSFIER_CIFAR10/checkpoints/best_weights.h5"
@@ -19,16 +19,19 @@ all_experiments = os.listdir(experiments_path)
 experiments_to_run = []
 for ex in all_experiments: 
     # Extract number of trained generators
-    match1 = re.search(r'(\d+)_GEN', ex)
-    generators_trained = int(match1.group(1)) if match1 else None
+    # match1 = re.search(r'(\d+)_GEN', ex)
+    # generators_trained = int(match1.group(1)) if match1 else None
+# 
+    # # Extract the generator used
+    # match2 = re.search(r'_GEN_(\d+)', ex)
+    # generator_used = int(match2.group(1)) if match2 else None
 
-    # Extract the generator used
-    match2 = re.search(r'_GEN_(\d+)', ex)
-    generator_used = int(match2.group(1)) if match2 else None
+    t = ex.split('_')
+    t = t[-1]
 
     experiments_to_run.append(
         CLASSIFICATION_Experiment(
-            name=f"{classification_experiment_name}_{generators_trained}_used_generator_{generator_used}",
+            name=f"{classification_experiment_name}_{t}",
             created_images_folder_path=experiments_path / ex / "generated_images",
             model_path=Path(classifier_path),
             classifier_class=classifier_class
