@@ -1,22 +1,14 @@
 import tensorflow as tf
 from experiment.experiment_queue import ExperimentQueue
-from experiment.experiments.vanilla_gan.experiment import VanillaGAN_Experiment
-from model_definitions.classifiers import MNISTClassifier
-from model_definitions.classifiers import FashionMNISTClassifier
-from model_definitions.discriminators.vanilla_mnist.disc import (
-    define_discriminator as define_discriminator_mnist,
+from experiment.experiments.vanilla_gan.experiment_test import (
+    VanillaGAN_Experiment as VanillaGAN_Experiment_Test,
 )
-from model_definitions.generators.vanilla_mnist.gen import (
-    define_generator as define_generator_mnist,
+from model_definitions.discriminators.vanilla_cifar.new_disc import (
+    define_discriminator as define_discriminator_cifar_new,
 )
-from model_definitions.discriminators.vanilla_fashion_mnist.disc import (
-    define_discriminator as define_discriminator_fashion,
+from model_definitions.generators.vanilla_cifar.new_gen import (
+    define_generator as define_generator_cifar_new,
 )
-from model_definitions.generators.vanilla_mnist.gen import (
-    define_generator as define_generator_fashion,
-)
-from model_definitions.discriminators.vanilla_cifar.disc import define_discriminator as define_discriminator_cifar
-from model_definitions.generators.vanilla_cifar.gen import define_generator as define_generator_cifar
 
 experiments = [
     # MNIST_VanillaGAN_Experiment(
@@ -65,7 +57,7 @@ experiments = [
     #     experiment_suffix="adjusted",
     #     experiments_base_path="./experiments/VANILLA_GAN_MODELS"
     # )
-    # GENERALIZED 
+    # GENERALIZED
     # VanillaGAN_Experiment(
     #     name="MNIST_VanillaGAN_Experiment",
     #     latent_dim=128,
@@ -92,15 +84,29 @@ experiments = [
     #     classifier_model_path="/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/2025-03-01_CLASSFIER_FashionMNIST/checkpoints/best_weights.h5",
     #     score_calculation_freq=5,
     # ),
-    VanillaGAN_Experiment(
+    # VanillaGAN_Experiment(
+    #     name="CIFAR_VanillaGAN_Experiment",
+    #     latent_dim=256,
+    #     epochs=150,
+    #     experiment_suffix="_mnibatchnorm",
+    #     experiments_base_path="./experiments/VANILLA_GAN_MODELS",
+    #     dataset_name="cifar10",
+    #     discriminator_func=define_discriminator_cifar,
+    #     generator_func=define_generator_cifar,
+    #     classifier=tf.keras.applications.InceptionV3,
+    #     classifier_class=None,
+    #     score_calculation_freq=5,
+    # ),
+    VanillaGAN_Experiment_Test(  # github.com/carpedm20/DCGAN-tensorflow
         name="CIFAR_VanillaGAN_Experiment",
-        latent_dim=256,
-        epochs=150,
-        experiment_suffix="_mnibatchnorm",
+        latent_dim=100,
+        batch_size=64,
+        epochs=2,
+        experiment_suffix="dcgan_paper_like",
         experiments_base_path="./experiments/VANILLA_GAN_MODELS",
         dataset_name="cifar10",
-        discriminator_func=define_discriminator_cifar,
-        generator_func=define_generator_cifar,
+        discriminator_func=define_discriminator_cifar_new,
+        generator_func=define_generator_cifar_new,
         classifier=tf.keras.applications.InceptionV3,
         classifier_class=None,
         score_calculation_freq=5,
