@@ -12,7 +12,6 @@ from model_definitions.vanilla_gan.gan_test import VanillaGAN as VanillaGAN
 
 # from model_definitions.vanilla_gan.gan import VanillaGAN as VanillaGAN
 from monitors.vanilla_gan_geneator_test import VanillaGANMonitor
-from monitors.score_generator_test import ScoreGANMonitor
 from utils.plotting import plot_gan_training_history
 
 
@@ -79,6 +78,7 @@ class VanillaGAN_Experiment(BaseGANExperiment):
 
     def _save_results(self):
         model_weights_path = Path(self.dir_path, "final_model.weights.h5")
+        # self.gan.save(model_weights_path)
         self.gan.save_weights(model_weights_path)
         self.logger.info(f"Model saved to: {model_weights_path}")
 
@@ -119,9 +119,9 @@ class VanillaGAN_Experiment(BaseGANExperiment):
             #     score_calculation_freq=self.score_calculation_freq,
             # ),
             tf.keras.callbacks.ModelCheckpoint(
-                filepath=checkpoint_filepath.__str__() + "_epoch_{epoch}.weights.h5",
+                filepath=checkpoint_filepath.__str__() + "_epoch_{epoch}.h5",
                 save_freq=234 * self.save_freq,
-                save_weights_only=True,
+                # save_weights_only=True,
             ),
         ]
 
@@ -130,5 +130,5 @@ class VanillaGAN_Experiment(BaseGANExperiment):
             epochs=self.epochs,
             steps_per_epoch=self.size_dataset // self.batch_size,
             callbacks=self.callbacks,
-            verbose=0,
+            verbose=1,
         )

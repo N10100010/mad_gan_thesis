@@ -31,7 +31,7 @@ class ScoreGANMonitor(tf.keras.callbacks.Callback):
         self.dataset = dataset
         self.classifier_class = classifier_class
         self.classifier = classifier
-        self.model_path = Path(model_path) if model_path else None 
+        self.model_path = Path(model_path) if model_path else None
         self.score_calculation_freq = score_calculation_freq
 
         if dataset == BaseClassifier.CIFAR10:
@@ -45,10 +45,13 @@ class ScoreGANMonitor(tf.keras.callbacks.Callback):
     def on_epoch_end(self, epoch: int, logs: dict = None) -> None:
         self.logger.info(f"Calculating scores for epoch {epoch}...")
         if epoch % self.score_calculation_freq == 0:
-            random_latent_vectors = tf.random.normal(shape=(1000, 1, 1, self.latent_dim))
+            random_latent_vectors = tf.random.normal(
+                shape=(1000, 1, 1, self.latent_dim)
+            )
             generated_samples = self.model.generator(random_latent_vectors)
             generated_samples = generated_samples.numpy()
             generated_samples = np.clip(generated_samples, 0, 1)
+            ## TODO: ensure that the generated samples are in the correct scale
             generated_samples = generated_samples.reshape(
                 -1, *self.image_data_shape[1:]
             )
@@ -60,7 +63,7 @@ class ScoreGANMonitor(tf.keras.callbacks.Callback):
                 self.classifier: tf.keras.Model = self.classifier_class()
                 _ = self.classifier(tf.random.normal(shape=self.image_data_shape))
                 self.classifier.load_weights(self.model_path)
-            
+
             if self.dataset == BaseClassifier.CIFAR10:
                 fid_score = calculate_fid_score(
                     generated_images=generated_samples,
@@ -85,7 +88,6 @@ class ScoreGANMonitor(tf.keras.callbacks.Callback):
                     generated_images=generated_samples,
                     classifier=self.classifier,
                 )
-
 
             self.logger.info(
                 f"Epoch {epoch}: FID: {fid_score}, IS: {is_score} +/- {is_std}"

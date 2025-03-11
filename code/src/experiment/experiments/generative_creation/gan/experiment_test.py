@@ -34,9 +34,6 @@ class GAN_GenerativeCreationExperiment(BaseExperiment):
             Path(self.experiment_path)
         )
 
-        self.experiment.generator_func = self.generator_func
-        self.experiment.discriminator_func = self.discriminator_func
-
     def _load_data(self):
         # self.latent_vectors = self.latent_point_generator(
         #    [self.n_images, self.experiment.latent_dim]
@@ -56,7 +53,7 @@ class GAN_GenerativeCreationExperiment(BaseExperiment):
         for i in range(self.n_images):
             image_data.append(
                 self.gan.generator(
-                    self.latent_point_generator([1, 1, 1, self.experiment.latent_dim])
+                    self.latent_point_generator([1, self.experiment.latent_dim])
                 )
             )
 

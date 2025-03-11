@@ -1,17 +1,16 @@
 import tensorflow as tf
-import numpy as np 
 from experiment.experiment_queue import ExperimentQueue
-from experiment.experiments.cifar_vanilla_gan.experiment import (
-    CIFAR_VanillaGAN_Experiment,
-)
-from experiment.experiments.fashion_mnist_vanilla_gan.experiment import (
-    FASHION_MNIST_VanillaGAN_Experiment,
-)
 from experiment.experiments.generative_creation.gan.experiment import (
     GAN_GenerativeCreationExperiment,
 )
-from experiment.experiments.mnist_vanilla_gan.experiment import (
-    MNIST_VanillaGAN_Experiment,
+from experiment.experiments.vanilla_gan.experiment_test import (
+    VanillaGAN_Experiment as VanillaGAN_Experiment_Test,
+)
+from model_definitions.discriminators.vanilla_cifar.new_disc import (
+    define_discriminator as define_discriminator_cifar_new,
+)
+from model_definitions.generators.vanilla_cifar.new_gen import (
+    define_generator as define_generator_cifar_new,
 )
 
 experiments = [
@@ -79,7 +78,7 @@ experiments = [
     #     save_raw_image=True,
     #     n_images=90_000,
     # ),
-# 
+    #
     # # MNIST data creation
     # GAN_GenerativeCreationExperiment(
     #     experiments_base_path="./experiments/VANILLA_GAN_DATACREATION",
@@ -91,7 +90,7 @@ experiments = [
     #     save_raw_image=True,
     #     n_images=90_000,
     # ),
-# 
+    #
     # # FASHION-MNIST data creation
     #  GAN_GenerativeCreationExperiment(
     #     experiments_base_path="./experiments/VANILLA_GAN_DATACREATION",
@@ -103,21 +102,18 @@ experiments = [
     #      save_raw_image=True,
     #      n_images=90_000,
     #  ),
-
-
     GAN_GenerativeCreationExperiment(
         experiments_base_path="./experiments/VANILLA_GAN_DATACREATION",
         name="__CIFAR_GENERATIVE_VanillaGAN_Experiment_dc_paper_like",
-        experiment_class=CIFAR_VanillaGAN_Experiment,
+        experiment_class=VanillaGAN_Experiment_Test,
         experiment_path="experiments/VANILLA_GAN_MODELS/2025-03-11_CIFAR_VanillaGAN_Experiment_dcgan_paper_like_no_score",
         latent_point_generator=tf.random.normal,
         experiment_suffix="",
         save_raw_image=True,
-        n_images=10_000,
+        n_images=10,
+        discriminator_func=define_discriminator_cifar_new,
+        generator_func=define_generator_cifar_new,
     ),
-
-
-
 ]
 
 queue = ExperimentQueue()

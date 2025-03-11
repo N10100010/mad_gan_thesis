@@ -60,7 +60,6 @@ class BaseGANExperiment(BaseExperiment):
         self.gan.built = True
         if isinstance(self.dir_path, str):
             self.dir_path = Path(self.dir_path)
-
         if checkpoint is not None:
             file_path = (
                 self.dir_path / "checkpoints" / f"backup_epoch_{checkpoint}.weights.h5"
