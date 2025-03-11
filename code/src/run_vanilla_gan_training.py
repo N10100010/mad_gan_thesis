@@ -1,7 +1,7 @@
 import tensorflow as tf
 from experiment.experiment_queue import ExperimentQueue
-from experiment.experiments.vanilla_gan.experiment_test import (
-    VanillaGAN_Experiment as VanillaGAN_Experiment_Test,
+from experiment.experiments.vanilla_gan.experiment_gan_hacks import (
+    VanillaGAN_Experiment as VanillaGAN_Experiment_GAN_Hacks,
 )
 from model_definitions.discriminators.vanilla_cifar.new_disc import (
     define_discriminator as define_discriminator_cifar_new,
@@ -97,12 +97,26 @@ experiments = [
     #     classifier_class=None,
     #     score_calculation_freq=5,
     # ),
-    VanillaGAN_Experiment_Test(  # github.com/carpedm20/DCGAN-tensorflow
+    # VanillaGAN_Experiment_Test(  # github.com/carpedm20/DCGAN-tensorflow
+    #     name="CIFAR_VanillaGAN_Experiment",
+    #     latent_dim=100,
+    #     batch_size=64,
+    #     epochs=1,
+    #     experiment_suffix="dcgan_paper_like",
+    #     experiments_base_path="./experiments/VANILLA_GAN_MODELS",
+    #     dataset_name="cifar10",
+    #     discriminator_func=define_discriminator_cifar_new,
+    #     generator_func=define_generator_cifar_new,
+    #     classifier=tf.keras.applications.InceptionV3,
+    #     classifier_class=None,
+    #     score_calculation_freq=0.5,
+    # ),
+    VanillaGAN_Experiment_GAN_Hacks(  # github.com/carpedm20/DCGAN-tensorflow
         name="CIFAR_VanillaGAN_Experiment",
         latent_dim=100,
         batch_size=64,
         epochs=1,
-        experiment_suffix="dcgan_paper_like_test",
+        experiment_suffix="dcgan_paper_like_with_gan_hacks",
         experiments_base_path="./experiments/VANILLA_GAN_MODELS",
         dataset_name="cifar10",
         discriminator_func=define_discriminator_cifar_new,
