@@ -108,16 +108,16 @@ class VanillaGAN_Experiment(BaseGANExperiment):
                 samples_subfolder=self.generator_training_samples_subfolder,
                 generator_example_freq=self.generator_example_freq,
             ),
-            ScoreGANMonitor(
-                dir_name=self.dir_path,
-                latent_dim=self.latent_dim,
-                latent_point_generator=generate_latent_points,
-                dataset=self.dataset_name,
-                classifier_class=self.classifier_class,
-                classifier=self.classifier,
-                model_path=self.classifier_model_path,
-                score_calculation_freq=self.score_calculation_freq,
-            ),
+            # ScoreGANMonitor(
+            #     dir_name=self.dir_path,
+            #     latent_dim=self.latent_dim,
+            #     latent_point_generator=generate_latent_points,
+            #     dataset=self.dataset_name,
+            #     classifier_class=self.classifier_class,
+            #     classifier=self.classifier,
+            #     model_path=self.classifier_model_path,
+            #     score_calculation_freq=self.score_calculation_freq,
+            # ),
             tf.keras.callbacks.ModelCheckpoint(
                 filepath=checkpoint_filepath.__str__() + "_epoch_{epoch}.weights.h5",
                 save_freq=234 * self.save_freq,
@@ -130,5 +130,5 @@ class VanillaGAN_Experiment(BaseGANExperiment):
             epochs=self.epochs,
             steps_per_epoch=self.size_dataset // self.batch_size,
             callbacks=self.callbacks,
-            verbose=1,
+            verbose=0,
         )

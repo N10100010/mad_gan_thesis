@@ -101,15 +101,15 @@ experiments = [
         name="CIFAR_VanillaGAN_Experiment",
         latent_dim=100,
         batch_size=64,
-        epochs=2,
-        experiment_suffix="dcgan_paper_like",
+        epochs=400,
+        experiment_suffix="dcgan_paper_like_no_score",
         experiments_base_path="./experiments/VANILLA_GAN_MODELS",
         dataset_name="cifar10",
         discriminator_func=define_discriminator_cifar_new,
         generator_func=define_generator_cifar_new,
         classifier=tf.keras.applications.InceptionV3,
         classifier_class=None,
-        score_calculation_freq=5,
+        score_calculation_freq=20,
     ),
 ]
 
