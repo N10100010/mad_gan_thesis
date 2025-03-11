@@ -104,15 +104,16 @@ experiments = [
     #  ),
     GAN_GenerativeCreationExperiment(
         experiments_base_path="./experiments/VANILLA_GAN_DATACREATION",
-        name="__CIFAR_GENERATIVE_VanillaGAN_Experiment_dc_paper_like",
+        name="__CIFAR_GENERATIVE_VanillaGAN_Experiment_dc_paper_like_epch_15",
         experiment_class=VanillaGAN_Experiment_Test,
         experiment_path="experiments/VANILLA_GAN_MODELS/2025-03-11_CIFAR_VanillaGAN_Experiment_dcgan_paper_like_no_score",
         latent_point_generator=tf.random.normal,
         experiment_suffix="",
         save_raw_image=True,
-        n_images=10,
+        n_images=1_000,
         discriminator_func=define_discriminator_cifar_new,
         generator_func=define_generator_cifar_new,
+        checkpoint=15
     ),
 ]
 
