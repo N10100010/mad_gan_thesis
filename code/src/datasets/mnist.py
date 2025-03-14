@@ -20,6 +20,19 @@ def dataset_func(random_state=None):
     return train_images, np.unique(train_labels)
 
 
+def conditional_dataset_func(random_state=None):
+    (train_images, train_labels), (_, _) = tf.keras.datasets.mnist.load_data()
+
+    # Normalize images to [-1, 1]
+    train_images = (train_images.astype("float32") - 127.5) / 127.5
+
+    # One-hot encode labels
+    num_classes = 10
+    train_labels = tf.keras.utils.to_categorical(train_labels, num_classes)
+
+    return train_images, train_labels
+
+
 def get_dataset(
     size_dataset: int, n_gen: int, batch_size: int
 ) -> Tuple[tf.data.Dataset, np.ndarray, np.ndarray]:
