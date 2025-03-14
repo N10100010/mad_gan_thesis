@@ -1,7 +1,7 @@
 import json 
 from matplotlib import pyplot as plt 
 
-with open("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/VANILLA_GAN_DATACREATION/2025-03-11___CIFAR_GENERATIVE_VanillaGAN_Experiment_dc_paper_like_epch_15/labels.json") as f:
+with open("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/CIFAR_MADGAN_DATACREATION//labels.json") as f:
     d = json.load(f)
 
 labels = d.values()
