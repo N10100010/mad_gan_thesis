@@ -15,7 +15,7 @@ class ConditionalGAN_Experiment(BaseGANExperiment):
     n_classes: int = 10
     latent_dim: int = 100
     batch_size: int = 64
-    save_freq: int = 50
+    save_freq: int = 1
     size_dataset: int = 50_000
     batch_size: int = 64
     epochs: int = 2
@@ -90,7 +90,7 @@ class ConditionalGAN_Experiment(BaseGANExperiment):
             tf.keras.callbacks.ModelCheckpoint(
                 filepath=checkpoint_filepath.__str__() + "_epoch_{epoch}.h5",
                 save_freq=234 * self.save_freq,
-                # save_weights_only=True,
+                save_weights_only=True,
             ),
         ]
 
