@@ -19,7 +19,8 @@ class ConditionalGAN_Experiment(BaseGANExperiment):
     size_dataset: int = 50_000
     batch_size: int = 64
     epochs: int = 2
-    learning_rate: float = 0.0002
+    learning_rate_disc: float = 0.0002
+    learning_rate_gen: float = 0.001
     discriminator_func: Callable
     generator_func: Callable
     generator_example_freq: int = 1
@@ -53,10 +54,8 @@ class ConditionalGAN_Experiment(BaseGANExperiment):
         self.dataset = dataset
 
     def _initialize_models(self):
-        generator = self.generator_func(
-            latent_dim=self.latent_dim, n_classes=self.n_classes
-        )
-        discriminator = self.discriminator_func(n_classes=self.n_classes)
+        generator = self.generator_func()
+        discriminator = self.discriminator_func()
 
         self.gan: tf.keras.Model = ConditionalGAN(
             generator=generator,
@@ -66,9 +65,18 @@ class ConditionalGAN_Experiment(BaseGANExperiment):
         )
 
         self.gan.compile(
-            loss=tf.keras.losses.BinaryCrossentropy(from_logits=False),
-            discriminator_optimizer=tf.keras.optimizers.Adam(self.learning_rate),
-            generator_optimizer=tf.keras.optimizers.Adam(self.learning_rate),
+            generator_optimizer=tf.keras.optimizers.Adam(
+                learning_rate=tf.keras.optimizers.schedules.ExponentialDecay(
+                    self.learning_rate_gen, decay_steps=1000, decay_rate=0.95
+                ),
+                beta_1=0.5,
+            ),
+            discriminator_optimizer=tf.keras.optimizers.Adam(
+                learning_rate=tf.keras.optimizers.schedules.ExponentialDecay(
+                    self.learning_rate_disc, decay_steps=1000, decay_rate=0.95
+                ),
+                beta_1=0.5,
+            ),
         )
 
     def _run(self):

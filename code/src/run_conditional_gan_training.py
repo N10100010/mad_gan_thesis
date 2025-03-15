@@ -10,8 +10,8 @@ from model_definitions.generators.conditional_cifar.gen import (
 experiments = [
     ConditionalGAN_Experiment(
         name="CIFAR_ConditionalGAN_Experiment",
-        latent_dim=100,
-        epochs=150,
+        latent_dim=2048,
+        epochs=20,
         batch_size=64,
         discriminator_func=define_discriminator_cifar,
         generator_func=define_generator_cifar,

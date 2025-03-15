@@ -1,3 +1,4 @@
+import numpy as np
 import tensorflow as tf
 
 cross_entropy = tf.keras.losses.BinaryCrossentropy(from_logits=False)
@@ -26,7 +27,6 @@ class ConditionalGAN(tf.keras.Model):
         discriminator,
         latent_dim: int,
         n_classes: int,
-        input_noise_stddev: float = 0.1,
     ):
         super(ConditionalGAN, self).__init__()
         self.generator = generator
@@ -34,7 +34,6 @@ class ConditionalGAN(tf.keras.Model):
         self.latent_dim = latent_dim
         self.n_classes = n_classes
         self.batch_size = 64
-        self.input_noise_stddev = input_noise_stddev
 
     def compile(self, generator_optimizer, discriminator_optimizer, **kwargs):
         super(ConditionalGAN, self).compile(**kwargs)
@@ -45,8 +44,18 @@ class ConditionalGAN(tf.keras.Model):
         real_images, labels = data
         batch_size = tf.shape(real_images)[0]
 
+        # Generate random noise for generator input
         batch_z = tf.random.normal(shape=(batch_size, self.latent_dim))
 
+        # Label smoothing
+        valid = tf.ones((batch_size, 1)) - tf.random.uniform((batch_size, 1), 0, 0.1)
+        fake = tf.zeros((batch_size, 1)) + tf.random.uniform((batch_size, 1), 0, 0.1)
+
+        # Random label flipping every 100 steps
+        if np.random.randint(0, 100) == 0:
+            valid, fake = fake, valid
+
+        # Generate fake images
         fake_images = self.generator(
             [batch_z, tf.reshape(labels, (-1, 1))], training=True
         )

@@ -1,35 +1,35 @@
 import tensorflow as tf
 
 
-def define_generator(latent_dim, n_classes):
-    # Label input
-    label_input = tf.keras.layers.Input(shape=(1,), dtype=tf.int32)
-    li = tf.keras.layers.Embedding(n_classes, 50)(label_input)
-    li = tf.keras.layers.Flatten()(li)
+def define_generator(latent_dim: int = 2048, n_classes: int = 10):
+    noise = tf.keras.layers.Input(shape=(latent_dim,))
+    label = tf.keras.layers.Input(shape=(1,))
 
-    li = tf.keras.layers.Dense(8 * 8 * 64)(li)
-    li = tf.keras.layers.LeakyReLU(alpha=0.2)(li)
-    li = tf.keras.layers.Reshape((8, 8, 64))(li)
-
-    # Noise input
-    noise_input = tf.keras.layers.Input(shape=(latent_dim,))
-    n_nodes = 128 * 8 * 8
-    gen = tf.keras.layers.Dense(n_nodes)(noise_input)
-    gen = tf.keras.layers.LeakyReLU(alpha=0.2)(gen)
-    gen = tf.keras.layers.Reshape((8, 8, 128))(gen)
-
-    li = tf.keras.layers.Reshape((8, 8, 64))(li)
-
-    merge = tf.keras.layers.Concatenate(axis=-1)([gen, li])
-
-    x = tf.keras.layers.Conv2DTranspose(128, (4, 4), strides=(2, 2), padding="same")(
-        merge
+    label_embedding = tf.keras.layers.Flatten()(
+        tf.keras.layers.Embedding(n_classes, latent_dim)(label)
     )
-    x = tf.keras.layers.LeakyReLU(alpha=0.2)(x)
 
-    x = tf.keras.layers.Conv2DTranspose(128, (4, 4), strides=(2, 2), padding="same")(x)
-    x = tf.keras.layers.LeakyReLU(alpha=0.2)(x)
+    model_input = tf.keras.layers.multiply([noise, label_embedding])
 
-    x = tf.keras.layers.Conv2D(3, (8, 8), activation="tanh", padding="same")(x)
+    x = tf.keras.layers.Dense(2048)(model_input)
 
-    return tf.keras.Model([noise_input, label_input], x, name="Conditional_Generator")
+    x = tf.keras.layers.Reshape((2, 2, 512))(x)
+    x = tf.keras.layers.BatchNormalization(momentum=0.9)(x)
+    x = tf.keras.layers.LeakyReLU(0.1)(x)
+
+    x = tf.keras.layers.Conv2DTranspose(256, (5, 5), padding="same", strides=2)(x)
+    x = tf.keras.layers.BatchNormalization(momentum=0.9)(x)
+    x = tf.keras.layers.LeakyReLU(0.1)(x)
+
+    x = tf.keras.layers.Conv2DTranspose(128, (5, 5), padding="same", strides=2)(x)
+    x = tf.keras.layers.BatchNormalization(momentum=0.9)(x)
+    x = tf.keras.layers.LeakyReLU(0.1)(x)
+
+    x = tf.keras.layers.Conv2DTranspose(64, (5, 5), padding="same", strides=2)(x)
+    x = tf.keras.layers.BatchNormalization(momentum=0.9)(x)
+    x = tf.keras.layers.LeakyReLU(0.1)(x)
+
+    x = tf.keras.layers.Conv2DTranspose(3, (5, 5), padding="same", strides=2)(x)
+    img = tf.keras.layers.Activation("tanh")(x)
+
+    return tf.keras.Model([noise, label], img)
