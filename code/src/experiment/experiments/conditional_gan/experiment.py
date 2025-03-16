@@ -45,11 +45,25 @@ class ConditionalGAN_Experiment(BaseGANExperiment):
 
         # Create a tf.data.Dataset
         dataset = tf.data.Dataset.from_tensor_slices((train_images, train_labels))
+
+        def augment_image(image, label):
+            image = tf.image.random_flip_left_right(image)  # Horizontal flip
+            image = tf.image.random_brightness(image, 0.1)  # Small brightness change
+            image = tf.image.random_contrast(image, 0.9, 1.1)  # Small contrast variation
+            noise = tf.random.normal(shape=tf.shape(image), mean=0.0, stddev=0.05, dtype=tf.float64)  # Match dtype
+            image = image + noise
+            image = tf.clip_by_value(image, -1.0, 1.0)  # Keep pixel values valid
+            return image, label
+
+        # Apply augmentations when loading the dataset
+        dataset = tf.data.Dataset.from_tensor_slices((train_images, train_labels))
         dataset = (
             dataset.shuffle(10000)
+            .map(augment_image, num_parallel_calls=tf.data.experimental.AUTOTUNE)
             .batch(self.batch_size, drop_remainder=True)
             .prefetch(tf.data.experimental.AUTOTUNE)
         )
+
 
         self.dataset = dataset
 
