@@ -1,0 +1,37 @@
+\section{Verwandte Arbeiten}\label{hauptabschnitt_2}
+%PROZEDURAL GEN
+
+
+
+%AUGMENTATION
+%DIESER ANFANG EVENTUELL INS ABSTERACT AUFNEHMEN
+Das Problem des Overfittings ist in der Welt des Machine Learnings weit verbreitet. RL hat die generelle Problematik, dass Agenten oft schlecht  generalisieren und somit innerhalb ihrer Trainingsumgebung zwar gute Leistungen erbringen, außerhalb jedoch nicht (\cite{cobbe2019procgen}, \cite{zhang2018study}). Diese Arbeit verwendet die Ansätze der prozeduralen Generierung und der Data Augmentation, um das Problem der Generalisierung zu untersuchen.
+
+%##########################################
+%##########################################
+%PROZEDURAL
+%\paragraph{par:ha2_procGen} 
+Die Idee von Procedural Content Generation (PCG) ist kein neuer Ansatz. Die Spieleindustrie macht sich die Eigenschaften von PCG bereits Ende der achtziger Jahre in \dq Dungeons \& Dragons\dq{} zu nutze. Durch die Anwendung von PCG in der Domäne Künstlicher Intelligenz (KI), kann die Generalisierung und Sample Efficiency in einigen Environments bereits stark verbessert werden. So war openAI mit Hilfe von PCG in der Lage, eine ausreichend große Level-Anzahl und Diversität bereitzustellen, um das Spiel \dq Capture the Flag\dq{} zu meistern. Weiter schaffen die Autoren es ebenso, dass die Spieler eines Teams in Kooperation arbeiten \cite{jaderberg2019human}. Inzwischen ist die Verwendung von PCG zur künstlichen Erweiterung der Trainingsumgebung bzw. des Trainingsdatensets eine etablierte Alternative zum händischen Erweitern. Arbeiten wie \cite{risi2019procedural} oder \cite{risi2019increasing}, beide von Sebastian Risi und Julian Togelius, zeigen die mögliche Anwendung für KI und Herrausforderungen, die dabei zu beachten sind. 
+Die hier aufgeführten Arbeiten stützen die These, dass eine prozedurale Erstellung des Trainingsenvironments positive Auswirkungen auf die Generalisierung hat. Die Experimente in \ref{sec:absch_EXP_durch_reproduktion} und \ref{subsec:absch_EXP_durch_reproduktion_generalisierung}, sowie einige Experimente in Unterkapitel \ref{absch_EXP_durch_serie1} liefern empirische Beweise für die positive Auswirkung.
+%##########################################
+%##########################################
+
+%##########################################
+%##########################################
+%DATA AUGMENTATION
+%\paragraph{par:ha2_dataAug} 
+Data Augmentation wird typischerweise im Supervised Learning eingesetzt. Arbeiten wie \cite{geirhos2018imagenet} zeigen, welche Erfolge mittels künstlicher visueller Erweiterung eines bereits vorhandenen Datensatzes erzielt werden können. Die Autoren erweitern das \emph{ImageNet} \cite{imagenet_cvpr09} zu ihrem eigenen \emph{Stylized ImageNet}. In ihrer Arbeit zeigen sie, dass das eingesetzte CNN, im Fall des ImageNets, Texturen mit größerem Fokus als Formen lernen. Um diese Einseitigkeit zu verbessern, fügt ihre Optimierung dem zugrunde liegenden Datensatz bspw. Bilder hinzu, bei denen Texturen anderer Bilder auf die vorhandenen Bilder multipliziert sind. Was danach vom eigentlichen Bild übrig ist, sind lediglich die Form und die Kontraststufen. Das Training auf den erweiterten Daten resultiert in einer \dq  [...] improved object detection performance and previously unseen robustness towards a wide range of image distortions, highlighting advantages of a shape-based representation\dq{}  \cite{geirhos2018imagenet}[S. 1] \footnote{\label{foot:absch_RL_mdp_ubersetzung}Übersetzung des Verfassers: verbesserten Leistungen bei Bilderkennung und bisher ungesehen Robustheit bezüglich einer weiten Spanne an verschiedenen Bildverzerrungen, was auf die Vorteile von formbasierter Repräsentation hinweist.}. Diese Arbeit ist nur ein Beispiel für die Empfindlichkeit von CNNs gegenüber optischer Änderung. Ein weiteres Beispiel liefert die Arbeit \cite{reith2019convolutional}. Hier untersuchen die Autoren anhand spezifischer, optischer Stimuli, welche Muster potentiell besser erkannt werden können, als andere. 
+Auch die Verwendung von Data Augmentation in RL ist nicht neu. Die Arbeit \cite{raileanu2020automatic} untersucht die Auswirkungen verschiedener Arten von visuellen Augmentationen und erzielt mit ihrem Ansatz in den 16 Environments von Procgen eine bessere Performance um bis zu ca. 40\%.  Auch ältere Arbeiten, wie \cite{zhang2018natural}, sind ein Beleg für die Relevanz von Data Augmentation in RL. 
+
+Die in dieser Arbeit durchgeführten Experimente sind grundlegend durch die Arbeit \cite{dubey2018investigating} und die darin behandelten Experimente inspiriert. In der Arbeit werden die Auswirkungen von Vorwissen des Menschen auf die Performance, die der Mensch in einem Spiel erbringen kann, gemessen und mit einem RL-Agenten verglichen. Darüber hinaus testen sie die Kenntnis grundlegender Interaktionen mit Gegenständen, wie bspw. einer Leiter. So wird in dieser Arbeit das Sprite der Leiter durch ein einfarbiges Bild ersetzt, welches dieselben x- und y-Dimensionen wie das Bild der Leiter hat. Hierdurch soll die Semantik und Identität des Objekts maskiert werden. Ebenso haben sie die Semantik von zwei Objekten vertauscht. Das Bild der Leiter wird dann bspw. durch ein Bild aus mehreren kleinen Flammen ersetzt. Die Herausforderungen, die dem Menschen gestellt wurden, wurden in abgewandelter Form ebenfalls dem RL-Agenten gestellt. Hier ist die These, dass visuelle Änderungen, die Menschen vor eine schwierige Aufgabe stellen, für einen RL-Agenten, welcher mit der Situation im Training konfrontiert wurde, keine Rolle spielen, da er über keinerlei Vorwissen verfügt. Die von den Autoren aufgestellte These stellt sich nach ihrer Auswertung als wahr heraus. Die Experimente der Arbeit \cite{dubey2018investigating} bieten Potential herauszufinden, wie relevant gewisse visuelle Stimuli für den Agenten sind. So lässt sich bspw. mittels visueller Maskierung mancher Spielelemente testen, wie relevant diese Information für den Abschluss eines Environments sind. 
+
+%In einer Arbeit von Amy Zhang, Yuxin Wu und Joelle Pineau \cite{zhang2018natural} wird bspw. der Hintergrund von Atari-Spielen durch verschiedenste Videos der realen Welt ersetzt. Das Hinzufügen der natürlichen Diversität realer Umgebungen soll zur Generalisierung beitragen. 
+
+
+%Arbeiten wie \cite{kostrikov2020image} bedienen sich Techniken der klassischen Augmentation, wie sie aus dem Bereich Computer Vision bekannt sind. Erweiterungen wie das Abschneiden außen liegender Teile des Bildes, rotieren, grau-skalieren oder mit Farben multiplizieren und Random Noise alleine, führen schon zu verbesserter Generalisierung und teilweise zu besserer Sample Efficiency. 
+%##########################################
+%##########################################
+
+
+
+\newpage

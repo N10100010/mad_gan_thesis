@@ -1,0 +1,14 @@
+%\section*{Zusammenfassung}
+%&Hier steht der Text, welcher den Inhalte der Arbeit zusammenfasst...
+
+
+\section*{Abstract}
+\pagestyle{empty}
+Heutzutage sind für viele Reinforcement Learning Benchmark-Umgebungen, wie Gym \cite{brockman2016openAI_gym} von openAI der Goldstandard. Das Team von Procgen, ebenfalls von openAI, ging noch einen Schritt weiter und implementiert für einige der Atari Spiele eine prozedurale Generierung der Level. Das allein führt bei einigen Algorithmen bereits zu besserer Sample Efficiency und einer besseren Generalisierung. 
+
+In dieser Arbeit wird untersucht, wie sich eine visuelle Augmentation der Environments im Training oder während der Evaluation auf den allgemeinen Erfolg, den Reward und die Generalisierung auswirkt. Experimente mit maskierten Informationen oder invertierter Semantik untersuchen darüberhinaus die Relevanz bestimmter visueller Informationen und die Generalisierung von Konzepten.
+Durchgeführt werden die Experimente im Chaser-Environment von Procgen. Dieses Spiel ist angelehnt an den Atari-Klassiker \dq Ms. Pac-Man\dq. Wie im Original ist es das Ziel, alle Orbs einzusammeln und auf dem Weg nicht von den Geistern gefressen zu werden.
+
+Die Experimente der vorliegenden Arbeit zur farblichen Änderungen des Environments zeigen, dass bspw. die Existenz einer gewissen Farbe für die Erkennung eines Objekts große Relevanz besitzt, wenn das Objekt diese Farbe im Training hat. So nimmt die Performance eines Agenten rapide ab, wenn die Farbe der Orbs in der Evaluation eine andere ist, verglichen mit der zu Trainingsbedingungen. Des Weiteren zeigt sich über die Arbeit hinweg immer wieder, dass die Änderungen der Evaluationsumgebung und die daraus resultierenden Änderungen der Pixel-Verteilung, welche der Agent als Input bekommt, ebenfalls fatale Auswirkungen auf die Performance des Agenten haben. 
+
+Experimente mit Änderung der Semantik von Objekten zwischen Training und Evaluation zeigen eindeutig, dass das der Architektur vorangestellte Convolutional Neural Network (CNN) stark auf die optische Erscheinung der Objekte fixiert ist. Das Vertauschen zweier Sprites stellt eine unüberwindbare Hürde für den Agenten dar. Die Feature Extraction des CNN scheint stark auf die Texturen und die Formen der jeweiligen Objekte angewiesen zu sein, um diese korrekt zu erkennen. So scheut sich der Agent, bei Experimenten mit invertierter Semantik der großen Orbs und der Geister, einen statischen Gegner einzusammeln - ein großen Orb, welcher ihn mit den Bewegungen eines Geistes verfolgt, wird hingegen gedankenlos eingesammelt. 
