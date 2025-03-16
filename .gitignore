@@ -187,3 +187,4 @@ latex/*
 !latex/*.pdf
 !latex/*.tex
 !latex/*.aux
+!latex/bachelor_thesis
