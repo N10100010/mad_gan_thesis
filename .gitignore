@@ -188,3 +188,4 @@ latex/*
 !latex/*.tex
 !latex/*.aux
 !latex/bachelor_thesis
+!latex/master_thesis

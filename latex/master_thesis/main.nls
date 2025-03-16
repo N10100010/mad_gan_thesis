@@ -1,0 +1,16 @@
+
+\begin{thenomenclature}
+\nomgroup{A}
+  \item [{CNN}]\begingroup Convolutional Neural Network\nomeqref {0}\nompageref{4}
+  \item [{CNNs}]\begingroup Convolutional Neural Networks\nomeqref {0}\nompageref{4}
+  \item [{DNN}]\begingroup Deep Neural Network\nomeqref {0}\nompageref{4}
+  \item [{FFN}]\begingroup Feed Forward Netzwerk\nomeqref {0}\nompageref{4}
+  \item [{GAN}]\begingroup Generative Adversarial Network\nomeqref {0}\nompageref{4}
+  \item [{GANs}]\begingroup Generative Adversarial Networks\nomeqref {0}\nompageref{4}
+  \item [{GANsa}]\begingroup Generative Adversarial Networksaaaaaaaaaaaaaaaa\nomeqref {0}\nompageref{4}
+  \item [{GDA}]\begingroup Generative Data Augmentation\nomeqref {0}\nompageref{4}
+  \item [{MLP}]\begingroup Multi Layer Perceptron\nomeqref {0}\nompageref{4}
+  \item [{NN}]\begingroup Neural Netzwerk\nomeqref {0}\nompageref{4}
+  \item [{SLP}]\begingroup Single Layer Perceptron\nomeqref {0}\nompageref{4}
+
+\end{thenomenclature}
