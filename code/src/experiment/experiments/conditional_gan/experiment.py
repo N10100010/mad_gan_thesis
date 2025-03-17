@@ -47,10 +47,18 @@ class ConditionalGAN_Experiment(BaseGANExperiment):
         dataset = tf.data.Dataset.from_tensor_slices((train_images, train_labels))
 
         def augment_image(image, label):
+            if self.dataset_name in ["mnist", "fashion_mnist"]:
+                image = tf.image.grayscale_to_rgb(image)
             image = tf.image.random_flip_left_right(image)  # Horizontal flip
+            if self.dataset_name in ["mnist", "fashion_mnist"]:
+                image = tf.image.rgb_to_grayscale(image)
             image = tf.image.random_brightness(image, 0.1)  # Small brightness change
-            image = tf.image.random_contrast(image, 0.9, 1.1)  # Small contrast variation
-            noise = tf.random.normal(shape=tf.shape(image), mean=0.0, stddev=0.05, dtype=tf.float64)  # Match dtype
+            image = tf.image.random_contrast(
+                image, 0.9, 1.1
+            )  # Small contrast variation
+            noise = tf.random.normal(
+                shape=tf.shape(image), mean=0.0, stddev=0.05, dtype=tf.float64
+            )  # Match dtype
             image = image + noise
             image = tf.clip_by_value(image, -1.0, 1.0)  # Keep pixel values valid
             return image, label
@@ -63,7 +71,6 @@ class ConditionalGAN_Experiment(BaseGANExperiment):
             .batch(self.batch_size, drop_remainder=True)
             .prefetch(tf.data.experimental.AUTOTUNE)
         )
-
 
         self.dataset = dataset
 

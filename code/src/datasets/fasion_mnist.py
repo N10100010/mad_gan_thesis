@@ -18,12 +18,12 @@ def dataset_func(random_state=None):
 def conditional_dataset_func(random_state=None):
     (train_images, train_labels), (_, _) = tf.keras.datasets.fashion_mnist.load_data()
 
-    # Normalize images to [-1, 1]
-    train_images = (train_images.astype("float32") - 127.5) / 127.5
+    train_images = train_images.reshape(train_images.shape[0], 28, 28, 1).astype(
+        "float32"
+    )
 
-    # One-hot encode labels
-    num_classes = 10
-    train_labels = tf.keras.utils.to_categorical(train_labels, num_classes)
+    # Normalize images to [-1, 1]
+    train_images = (train_images.astype("float64") - 127.5) / 127.5
 
     return train_images, train_labels
 
