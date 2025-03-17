@@ -1,7 +1,7 @@
 import tensorflow as tf
 
-# from datasets.cifar import dataset_func
-from datasets.cifar import dataset_func_black_and_white
+from datasets.cifar import dataset_func
+#from datasets.cifar import dataset_func_black_and_white
 from experiment.base_experiments import BaseMADGANExperiment
 from latent_points.utils import generate_latent_points
 from loss_functions.generator import generators_loss_function
@@ -43,11 +43,23 @@ class CIFAR_MADGAN_Experiment(BaseMADGANExperiment):
         pass
 
     def _load_data(self):
-        self.data, self.unique_labels = dataset_func_black_and_white()
+
+        
+        def augment_image(image):
+            image = tf.image.random_flip_left_right(image)  # Horizontal flip
+            image = tf.image.random_brightness(image, 0.1)  # Small brightness change
+            image = tf.image.random_contrast(image, 0.9, 1.1)  # Small contrast variation
+            noise = tf.random.normal(shape=tf.shape(image), mean=0.0, stddev=0.05, dtype=tf.float64)  # Match dtype
+            image = image + noise
+            image = tf.clip_by_value(image, -1.0, 1.0)  # Keep pixel values valid
+            return image
+
+        self.data, self.unique_labels = dataset_func()
 
         self.dataset = tf.data.Dataset.from_tensor_slices(self.data)
         self.dataset = (
             self.dataset.repeat()
+            .map(augment_image, num_parallel_calls=tf.data.experimental.AUTOTUNE)
             .shuffle(10 * self.size_dataset, reshuffle_each_iteration=True)
             .batch(self.n_gen * self.batch_size, drop_remainder=True)
         )
