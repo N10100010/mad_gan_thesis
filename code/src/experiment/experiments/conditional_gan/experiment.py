@@ -47,10 +47,10 @@ class ConditionalGAN_Experiment(BaseGANExperiment):
         dataset = tf.data.Dataset.from_tensor_slices((train_images, train_labels))
 
         def augment_image(image, label):
-            if self.dataset_name in ["mnist", "fashion_mnist"]:
+            if self.dataset_name in ["fashion_mnist"]:
                 image = tf.image.grayscale_to_rgb(image)
             image = tf.image.random_flip_left_right(image)  # Horizontal flip
-            if self.dataset_name in ["mnist", "fashion_mnist"]:
+            if self.dataset_name in ["fashion_mnist"]:
                 image = tf.image.rgb_to_grayscale(image)
             image = tf.image.random_brightness(image, 0.1)  # Small brightness change
             image = tf.image.random_contrast(
@@ -75,7 +75,7 @@ class ConditionalGAN_Experiment(BaseGANExperiment):
         self.dataset = dataset
 
     def _initialize_models(self):
-        generator = self.generator_func()
+        generator = self.generator_func(latent_dim=self.latent_dim)
         discriminator = self.discriminator_func()
 
         self.gan: tf.keras.Model = ConditionalGAN(

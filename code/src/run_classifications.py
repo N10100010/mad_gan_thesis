@@ -10,16 +10,15 @@ from model_definitions.classifiers import CIFAR10Classifier
 
 
 experiments_path = Path("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/CIFAR_MADGAN_DATACREATION_PROTOTYPES")
-experiments_path = Path("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/VANILLA_GAN_DATACREATION")
+experiments_path = Path("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/CONDITIONAL_GAN_DATACREATION")
 
 ## classify madgan mnist experiments. 
-classifier_path = "experiments/2025-03-05_CLASSFIER_CIFAR10/checkpoints/best_weights.h5"
-classification_experiment_name = "ClassificationExperiment_CIFAR10_MADGAN"
-classifier_class = CIFAR10Classifier
+classifier_path = "experiments/2025-03-05_CLASSFIER_FashionMNIST/checkpoints/best_weights.h5"
+classification_experiment_name = "ClassificationExperiment_CondGAN_"
+classifier_class = MNISTClassifier
 all_experiments = os.listdir(experiments_path)
 
-
-all_experiments = [exp for exp in all_experiments if '15' in exp]
+all_experiments = [exp for exp in all_experiments if 'MNIST' in exp]
 
 experiments_to_run = []
 for ex in all_experiments: 
@@ -32,7 +31,7 @@ for ex in all_experiments:
     # generator_used = int(match2.group(1)) if match2 else None
 
     t = ex.split('_')
-    t = t[-1]
+    t = t[1]
 
     experiments_to_run.append(
         CLASSIFICATION_Experiment(
