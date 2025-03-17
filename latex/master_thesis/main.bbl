@@ -24,6 +24,21 @@
 \newblock \url{https://arxiv.org/abs/1611.07004}.
 \newblock \,Version:\,2018
 
+\bibitem[JLR25]{Li2025comprehensivesurvedeepimages}
+\textsc{Jun~Li}, Wei~Z. Chenyang~Zhang~Z. Chenyang~Zhang ; \textsc{Ren}, Yawei:
+\newblock A Comprehensive Survey of Image Generation Models Based on Deep
+  Learning.
+\newblock {In: }\emph{Annals of Data Science} 12 (2025), February, 141–170.
+\newblock \url{http://dx.doi.org/10.1007/s40745-024-00544-1}. --
+\newblock DOI 10.1007/s40745--024--00544--1
+
+\bibitem[JLY20]{ji2020comprehensivesurveydeepmusic}
+\textsc{Ji}, Shulei ; \textsc{Luo}, Jing  ; \textsc{Yang}, Xinyu:
+\newblock \emph{A Comprehensive Survey on Deep Music Generation: Multi-level
+  Representations, Algorithms, Evaluations, and Future Directions}.
+\newblock \url{https://arxiv.org/abs/2011.06801}.
+\newblock \,Version:\,2020
+
 \bibitem[LTH{\etalchar{+}}17]{ledig2017photorealisticsingleimagesuperresolution}
 \textsc{Ledig}, Christian ; \textsc{Theis}, Lucas ; \textsc{Huszar}, Ferenc ;
   \textsc{Caballero}, Jose ; \textsc{Cunningham}, Andrew ; \textsc{Acosta},

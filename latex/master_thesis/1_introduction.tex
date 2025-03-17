@@ -1,10 +1,24 @@
 \section{Introduction and Motivation}\label{introduction_and_motivation}
 \pagestyle{fancy}
 %\setcounter{page}{1}
-Generative Adverserial Netwrorks (GANs) \cite{goodfellow2014generativeadversarialnetworks} and their variants revolutionized the field of computer vision in the year of 2014, enabling advacements in multiple areas of generating data. From \textit{Text to Image Synthesis} \cite{reed2016generativeadversarialtextimage}, \textit{Image Translation} \cite{isola2018imagetoimagetranslationconditionaladversarial}, \textit{Super Resolution} \cite{ledig2017photorealisticsingleimagesuperresolution}, \textit{Image Inpainting} \cite{pathak2016contextencodersfeaturelearning}, \textit{Style Transfer} \cite{wang2023multimodalityguidedimagestyletransfer} to \textit{Data Augmentation} \cite{shorten2019survey}, GANs have been used in a variety of applications. The idea of using GANs for Generative Data Augmentation (GDA) is to generate additional training data for machine learning models. This can be especially useful when the amount of available training data is limited. Data augmentation is a common technique in machine learning to artificially increase the size of the training dataset. It is used to improve the generalization of machine learning models and to prevent overfitting. The idea is to create new training examples by applying transformations to the existing training data. These transformations can include rotations, translations, scaling, flipping, cropping, and color changes. The goal is to create new training examples that are similar to the original examples but different enough to improve the generalization of the model. In this thesis, we will investigate the potential of generative data augmentation for the task of image classification. The goal is to improve the performance of a convolutional neural network (CNN) by generating additional training data. The thesis will focus on the following research questions:
+Generative Adverserial Netwrorks (GANs) \cite{goodfellow2014generativeadversarialnetworks} and their variants revolutionized the field of computer vision in the year of 2014, enabling advacements in multiple areas of generating data. From \textit{Text to Image Synthesis} \cite{reed2016generativeadversarialtextimage}, \textit{Image Translation} \cite{isola2018imagetoimagetranslationconditionaladversarial}, \textit{Super Resolution} \cite{ledig2017photorealisticsingleimagesuperresolution}, \textit{Image Inpainting} \cite{pathak2016contextencodersfeaturelearning}, \textit{Style Transfer} \cite{wang2023multimodalityguidedimagestyletransfer} to \textit{Data Augmentation} \cite{shorten2019survey}, GANs have been used in a variety of applications.
 
-\paragraph{Ziel der Arbeit}\label{ziel_der_arbeit}
-The aim of this thesis is to investigate the potential of generative data augmentation for the task of image classification. The goal is to improve the performance of a convolutional neural network (CNN) by generating additional training data. The thesis will focus on the following research questions:
+The idea of using GANs for Generative Data Augmentation (GDA) has already been applied sucessfully, e.g.: in computer vision \cite{Li2025comprehensivesurvedeepimages} or for creating music \cite{ji2020comprehensivesurveydeepmusic}. Especially the former survey \textit{A Comprehensive Survey of Image Generation Models Based on Deep Learning} has, along Variational Auto Encoders (VAEs), a dedicated focus on GANs.
+
+Regardless of the achievements of GANs they suffer from multiple problems:
+
+\begin{itemize}
+    \item Failure to Converge
+    \item Mode Collapse
+    \item Vanishing Gradiants
+    \item Unstable Gradiants
+    \item Imbalance between Generator and Discriminator
+\end{itemize}
+
+% \cite{espeholt2018impala}, in the field of computer vision \cite{espeholt2019seed} and in the field of music \cite{espeholt2020music}.
+
+\paragraph{Aim of the Thesis}\label{aim_of_the_thesis}
+The aim of the thesis is to investigate the potential use....
 
 
 \newpage

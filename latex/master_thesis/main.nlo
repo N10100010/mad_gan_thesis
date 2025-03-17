@@ -9,3 +9,5 @@
 \nomenclatureentry{aGAN@[{GAN}]\begingroup Generative Adversarial Network\nomeqref {0}|nompageref}{4}
 \nomenclatureentry{aGANs@[{GANs}]\begingroup Generative Adversarial Networks\nomeqref {0}|nompageref}{4}
 \nomenclatureentry{aGANsa@[{GANsa}]\begingroup Generative Adversarial Networksaaaaaaaaaaaaaaaa\nomeqref {0}|nompageref}{4}
+\nomenclatureentry{aVAE@[{VAE}]\begingroup Variational Auto Encoder\nomeqref {0}|nompageref}{4}
+\nomenclatureentry{aVAEs@[{VAEs}]\begingroup Variational Auto Encoders\nomeqref {0}|nompageref}{4}
