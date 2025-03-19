@@ -13,12 +13,12 @@ experiments_path = Path("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/exp
 experiments_path = Path("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/CONDITIONAL_GAN_DATACREATION")
 
 ## classify madgan mnist experiments. 
-classifier_path = "experiments/2025-03-05_CLASSFIER_FashionMNIST/checkpoints/best_weights.h5"
+classifier_path = "experiments/2025-03-05_CLASSFIER_CIFAR10/checkpoints/best_weights.h5"
 classification_experiment_name = "ClassificationExperiment_CondGAN_"
-classifier_class = MNISTClassifier
+classifier_class = CIFAR10Classifier
 all_experiments = os.listdir(experiments_path)
 
-all_experiments = [exp for exp in all_experiments if 'MNIST' in exp]
+all_experiments = [exp for exp in all_experiments if 'CIFAR' in exp]
 
 experiments_to_run = []
 for ex in all_experiments: 

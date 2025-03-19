@@ -14,17 +14,17 @@ from model_definitions.generators.conditional_mnists.gen import (
 )
 
 experiments = [
-    # ConditionalGAN_Experiment(
-    #     name="CIFAR_ConditionalGAN_Experiment",
-    #     latent_dim=2048,
-    #     epochs=250,
-    #     batch_size=64,
-    #     discriminator_func=define_discriminator_cifar,
-    #     generator_func=define_generator_cifar,
-    #     dataset_name="cifar10",
-    #     experiments_base_path="./experiments/CONDITIONAL_GAN_MODELS",
-    #     experiment_suffix="latent_2048",
-    # ),
+    ConditionalGAN_Experiment(
+        name="CIFAR_ConditionalGAN_Experiment",
+        latent_dim=2048,
+        epochs=250,
+        batch_size=64,
+        discriminator_func=define_discriminator_cifar,
+        generator_func=define_generator_cifar,
+        dataset_name="cifar10",
+        experiments_base_path="./experiments/CONDITIONAL_GAN_MODELS",
+        experiment_suffix="latent_2048",
+    ),
     ConditionalGAN_Experiment(
         name="MNIST_ConditionalGAN_Experiment",
         latent_dim=256,
