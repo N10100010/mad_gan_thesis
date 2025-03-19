@@ -1,0 +1,18 @@
+\babel@toc {english}{}\relax
+\contentsline {section}{List of Figures}{4}{section*.3}%
+\contentsline {section}{List of Tables}{4}{section*.4}%
+\contentsline {section}{List of Abbreviations}{4}{section*.5}%
+\contentsline {section}{\numberline {1}Introduction and Motivation}{5}{section.1}%
+\contentsline {paragraph}{\nonumberline Aim of the Thesis}{5}{paragraph*.8}%
+\contentsline {section}{\numberline {2}Related Work}{6}{section.2}%
+\contentsline {section}{\numberline {3}Preliminary Remarks}{7}{section.3}%
+\contentsline {section}{\numberline {4}Theoretical Background}{8}{section.4}%
+\contentsline {section}{\numberline {5}Theoretical Background}{9}{section.5}%
+\contentsline {section}{\numberline {6}Experiments Results}{10}{section.6}%
+\contentsline {paragraph}{\nonumberline Motivation}{10}{paragraph*.10}%
+\contentsline {section}{\numberline {7}Outlook}{11}{section.7}%
+\contentsline {section}{\numberline {8}Conclusion}{12}{section.8}%
+\contentsline {section}{List of References}{13}{section.8}%
+\contentsline {section}{Appendix}{1}{section*.11}%
+\contentsline {section}{Declaration of Oath}{2}{section*.12}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file

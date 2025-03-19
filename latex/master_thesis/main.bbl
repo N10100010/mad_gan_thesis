@@ -8,6 +8,13 @@
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
+\bibitem[GKN{\etalchar{+}}18]{ghosh2018multiagentdiversegenerativeadversarial}
+\textsc{Ghosh}, Arnab ; \textsc{Kulharia}, Viveka ; \textsc{Namboodiri}, Vinay
+  ; \textsc{Torr}, Philip H.~S.  ; \textsc{Dokania}, Puneet~K.:
+\newblock \emph{Multi-Agent Diverse Generative Adversarial Networks}.
+\newblock \url{https://arxiv.org/abs/1704.02906}.
+\newblock \,Version:\,2018
+
 \bibitem[GPAM{\etalchar{+}}14]{goodfellow2014generativeadversarialnetworks}
 \textsc{Goodfellow}, Ian~J. ; \textsc{Pouget-Abadie}, Jean ; \textsc{Mirza},
   Mehdi ; \textsc{Xu}, Bing ; \textsc{Warde-Farley}, David ; \textsc{Ozair},

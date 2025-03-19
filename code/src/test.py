@@ -1,87 +1,148 @@
+from typing import Tuple
+
+import numpy as np
 import tensorflow as tf
-from tensorflow.keras.layers import (
-    BatchNormalization,
-    Concatenate,
-    Conv2D,
-    Conv2DTranspose,
-    Dense,
-    Dropout,
-    Embedding,
-    Flatten,
-    Input,
-    LeakyReLU,
-    Multiply,
-    Reshape,
-)
-from tensorflow.keras.models import Model
+from model_definitions.classifiers.base import BaseClassifier
+from scipy.stats import entropy
 
 
-def define_generator(latent_dim: int = 100, n_classes: int = 10):
-    noise = Input(shape=(latent_dim,))
-    label = Input(shape=(1,), dtype="int32")
+def calculate_inception_score(
+    generated_images, classifier, batch_size=32, splits=10
+) -> Tuple[float, float]:
+    """
+    Computes the Inception Score (IS) for generated generated_images using a given classifier.
 
-    label_embedding = Embedding(n_classes, latent_dim)(label)
-    label_embedding = Flatten()(label_embedding)
+    Parameters:
+        generated_images (numpy.ndarray):
+            Generated generated_images with shape (N, H, W, C).
+            For example, MNIST, FASION: (N, 28, 28, 1), CIFAR: (N, 32, 32, 3).
+        classifier (tf.keras.Model):
+            A pretrained classifier (e.g., Inception-V3 for CIFAR or a CNN for MNIST/Fashion-MNIST).
+        batch_size (int):
+            Batch size for model predictions.
+        splits (int):
+            Number of splits for IS computation.
 
-    merged = Multiply()([noise, label_embedding])
+    Returns:
+        tuple: (mean_inception_score, std_inception_score)
+    """
+    # Determine the expected number of channels and spatial dimensions from the classifier's input shape.
+    # classifier.input_shape is generally like (None, H_expected, W_expected, C_expected)
+    if len(classifier.input_shape) == 4:
+        expected_height, expected_width, expected_channels = classifier.input_shape[1:4]
+    elif len(classifier.input_shape) == 3:
+        expected_height, expected_width, expected_channels = classifier.input_shape
+    else:
+        raise ValueError("Invalid input shape for classifier.")
 
-    x = Dense(128 * 7 * 7, activation="relu")(merged)
-    x = Reshape((7, 7, 128))(x)
-    x = BatchNormalization(momentum=0.8)(x)
+    # Adjust the channel dimension if needed:
+    if generated_images.shape[-1] != expected_channels:
+        if generated_images.shape[-1] == 1 and expected_channels == 3:
+            generated_images = np.repeat(generated_images, 3, axis=-1)
+        elif generated_images.shape[-1] == 3 and expected_channels == 1:
+            generated_images = np.mean(generated_images, axis=-1, keepdims=True)
+        else:
+            raise ValueError(
+                f"Incompatible channel dimensions: images have {generated_images.shape[-1]} channels, but classifier expects {expected_channels}."
+            )
 
-    x = Conv2DTranspose(
-        128, kernel_size=3, strides=2, padding="same", activation="relu"
-    )(x)
-    x = BatchNormalization(momentum=0.8)(x)
+    # Normalize generated_images to [0, 1] if they are not already
+    if generated_images.max() > 1:
+        generated_images = generated_images.astype(np.float32) / 255.0
 
-    x = Conv2DTranspose(
-        64, kernel_size=3, strides=2, padding="same", activation="relu"
-    )(x)
-    x = BatchNormalization(momentum=0.8)(x)
+    if (
+        generated_images.shape[1] == 1
+    ):  # we have a not needed batch dimension, so we can remove it.
+        generated_images = np.squeeze(generated_images, axis=1)
 
-    x = Conv2DTranspose(1, kernel_size=3, strides=1, padding="same", activation="tanh")(
-        x
-    )
+    # Resize generated_images if their spatial dimensions don't match the classifier's expected dimensions.
+    if (
+        generated_images.shape[1] != expected_height
+        or generated_images.shape[2] != expected_width
+    ):
+        # Convert generated_images to a TensorFlow tensor, resize, then convert back to numpy
+        generated_images = tf.convert_to_tensor(generated_images)
 
-    return Model([noise, label], x)
+        # Create the size tensor explicitly with int32 type
+        target_size = tf.constant([expected_height, expected_width], dtype=tf.int32)
+
+        # Resize the images using the target size
+        generated_images = tf.image.resize(generated_images, target_size).numpy()
+
+    num_images = generated_images.shape[0]
+    preds = []
+
+    # Process generated_images in batches.
+    for i in range(0, num_images, batch_size):
+        batch = generated_images[i : i + batch_size]
+        # Get classifier predictions (logits)
+        logits = classifier.predict(batch, verbose=0)
+        # Convert logits to probabilities via softmax
+        prob = tf.nn.softmax(logits).numpy()
+        preds.append(prob)
+
+    # free memory of the feature extractor
+    classifier = None
+
+    preds = np.concatenate(preds, axis=0)  # Shape: (N, num_classes)
+
+    # Compute the Inception Score using KL divergence
+    split_scores = []
+    split_size = num_images // splits
+    for i in range(splits):
+        part = preds[i * split_size : (i + 1) * split_size]
+        p_y = np.mean(part, axis=0)  # Marginal distribution over classes
+        kl_divs = [entropy(p, p_y) for p in part]
+        split_score = np.exp(np.mean(kl_divs))
+        split_scores.append(split_score)
+
+    return float(np.mean(split_scores)), float(np.std(split_scores))
 
 
-def define_discriminator(image_shape=(28, 28, 1), n_classes: int = 10):
-    img = Input(shape=image_shape)
-    label = Input(shape=(1,), dtype="int32")
+def test_calculate_inception_score():
+    """Tests the calculate_inception_score function with a dummy classifier and synthetic images."""
 
-    label_embedding = Embedding(n_classes, tf.math.reduce_prod(image_shape))(label)
-    label_embedding = Dense(tf.math.reduce_prod(image_shape))(label_embedding)
-    label_embedding = Reshape(image_shape)(label_embedding)
+    class MNISTClassifier(BaseClassifier):
+        dataset = BaseClassifier.MNIST
+        input_shape = (28, 28, 1)
 
-    merged = Concatenate(axis=-1)([img, label_embedding])
+        def __init__(self, num_classes=10):
+            super().__init__()
 
-    x = Conv2D(64, kernel_size=3, strides=2, padding="same")(merged)
-    x = LeakyReLU(alpha=0.2)(x)
-    x = Dropout(0.3)(x)
+            # Functional Model Definition
+            inputs = tf.keras.Input(shape=self.input_shape, name="classifier_input")
+            x = tf.keras.layers.Conv2D(32, (3, 3), activation="relu")(inputs)
+            x = tf.keras.layers.MaxPooling2D((2, 2))(x)
+            x = tf.keras.layers.Conv2D(64, (3, 3), activation="relu")(x)
+            x = tf.keras.layers.MaxPooling2D((2, 2))(x)
+            x = tf.keras.layers.Flatten()(x)
+            x = tf.keras.layers.Dense(128, activation="relu", name="feature_extractor")(
+                x
+            )
+            outputs = tf.keras.layers.Dense(num_classes, activation="softmax")(x)
 
-    x = Conv2D(128, kernel_size=3, strides=2, padding="same")(x)
-    x = LeakyReLU(alpha=0.2)(x)
-    x = Dropout(0.3)(x)
+            # Functional Model
+            self.model = tf.keras.Model(
+                inputs=inputs, outputs=outputs, name="MNISTClassifier"
+            )
 
-    x = Flatten()(x)
-    x = Dense(1, activation="sigmoid")(x)
+        def call(self, inputs, training=False):
+            return self.model(inputs, training=training)
 
-    return Model([img, label], x)
+    num_samples = 100
+    image_shape = (28, 28, 1)
+    generated_images = np.random.rand(num_samples, *image_shape).astype(np.float32)
+
+    # Instantiate the classifier and explicitly call it to define input shape
+    classifier = MNISTClassifier()
+    classifier(
+        np.random.rand(1, *image_shape).astype(np.float32)
+    )  # Call once with dummy input
+
+    mean_is, std_is = calculate_inception_score(generated_images, classifier)
+    assert mean_is > 0, "Mean inception score should be positive"
+    assert std_is >= 0, "Standard deviation should be non-negative"
+    print(f"Test passed! Mean IS: {mean_is:.4f}, Std IS: {std_is:.4f}")
 
 
-# Example usage
-generator = define_generator()
-discriminator = define_discriminator()
-
-generator.summary()
-discriminator.summary()
-
-# generator = define_generator()
-# discriminator = define_discriminator()
-# gan: tf.keras.Model = ConditionalGAN(
-#     generator=generator,
-#     discriminator=discriminator,
-#     latent_dim=100,
-#     n_classes=10,
-# )
+test_calculate_inception_score()
