@@ -58,7 +58,7 @@ class CIFAR_MADGAN_Experiment(BaseMADGANExperiment):
         self.dataset = (
             self.dataset.repeat()
             .map(augment_image, num_parallel_calls=tf.data.experimental.AUTOTUNE)
-            .shuffle(10 * self.size_dataset, reshuffle_each_iteration=True)
+            #.shuffle(10 * self.size_dataset, reshuffle_each_iteration=True)
             .batch(self.n_gen * self.batch_size, drop_remainder=True)
         )
         # The cifar dataset is loaded as float64, but the model expects float32
@@ -118,11 +118,11 @@ class CIFAR_MADGAN_Experiment(BaseMADGANExperiment):
                 generate_after_epochs=self.generate_after_epochs,
             ),
             ScoreMADGANMonitor(
-                dataset=self.data,
+                dataset="cifar10",
                 latent_dim=self.latent_dim,
                 dir_name=self.dir_path,
-                # sub_folder=self.generator_training_samples_subfolder,
-                # generate_after_epochs=self.generate_after_epochs,
+                score_calculation_freq=5,
+                total_epochs=self.epochs
             ),
             # the epoch variable in the f-string is available in the callback
             tf.keras.callbacks.ModelCheckpoint(
