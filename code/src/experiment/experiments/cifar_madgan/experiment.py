@@ -1,15 +1,11 @@
 import tensorflow as tf
-
 from datasets.cifar import dataset_func
-#from datasets.cifar import dataset_func_black_and_white
 from experiment.base_experiments import BaseMADGANExperiment
 from latent_points.utils import generate_latent_points
 from loss_functions.generator import generators_loss_function
-
-# from model_definitions.discriminators.cifar.disc import define_discriminator
-# from model_definitions.generators.cifar.gen import define_generators
 from model_definitions.mad_gan import MADGAN
 from monitors.madgan_generator import MADGANMonitor
+from monitors.score_mad_gan_generator import ScoreMADGANMonitor
 
 
 class CIFAR_MADGAN_Experiment(BaseMADGANExperiment):
@@ -43,13 +39,15 @@ class CIFAR_MADGAN_Experiment(BaseMADGANExperiment):
         pass
 
     def _load_data(self):
-
-        
         def augment_image(image):
             image = tf.image.random_flip_left_right(image)  # Horizontal flip
             image = tf.image.random_brightness(image, 0.1)  # Small brightness change
-            image = tf.image.random_contrast(image, 0.9, 1.1)  # Small contrast variation
-            noise = tf.random.normal(shape=tf.shape(image), mean=0.0, stddev=0.05, dtype=tf.float64)  # Match dtype
+            image = tf.image.random_contrast(
+                image, 0.9, 1.1
+            )  # Small contrast variation
+            noise = tf.random.normal(
+                shape=tf.shape(image), mean=0.0, stddev=0.05, dtype=tf.float64
+            )  # Match dtype
             image = image + noise
             image = tf.clip_by_value(image, -1.0, 1.0)  # Keep pixel values valid
             return image
@@ -118,6 +116,13 @@ class CIFAR_MADGAN_Experiment(BaseMADGANExperiment):
                 dir_name=self.dir_path,
                 sub_folder=self.generator_training_samples_subfolder,
                 generate_after_epochs=self.generate_after_epochs,
+            ),
+            ScoreMADGANMonitor(
+                dataset=self.data,
+                latent_dim=self.latent_dim,
+                dir_name=self.dir_path,
+                # sub_folder=self.generator_training_samples_subfolder,
+                # generate_after_epochs=self.generate_after_epochs,
             ),
             # the epoch variable in the f-string is available in the callback
             tf.keras.callbacks.ModelCheckpoint(

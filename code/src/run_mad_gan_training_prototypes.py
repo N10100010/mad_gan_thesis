@@ -1,22 +1,10 @@
 from experiment.experiment_queue import ExperimentQueue
 from experiment.experiments.cifar_madgan.experiment import CIFAR_MADGAN_Experiment
-from model_definitions.discriminators.cifar.disc import (
-    define_discriminator as define_discriminator_base,
-)
 from model_definitions.discriminators.cifar.new_disc_big import (
     define_discriminator as define_discriminator_big,
 )
-from model_definitions.discriminators.cifar.new_disc_small import (
-    define_discriminator as define_discriminator_small,
-)
-from model_definitions.generators.cifar.gen import (
-    define_generators as define_generators_base,
-)
 from model_definitions.generators.cifar.new_gen_big import (
     define_generators as define_generators_big,
-)
-from model_definitions.generators.cifar.new_gen_small import (
-    define_generators as define_generators_small,
 )
 
 # from model_definitions.discriminators.cifar.disc import (
@@ -54,7 +42,7 @@ experiments = [
         name="CIFAR_MADGAN_Experiment__",
         n_gen=3,
         latent_dim=2048,
-        epochs=500,
+        epochs=2,
         experiment_suffix="big__latent_2048_3_gen",
         experiments_base_path="./experiments/CIFAR_MADGAN_MODELS_PROTOTYPES",
         define_discriminator=define_discriminator_big,
