@@ -139,3 +139,6 @@ class CIFAR_MADGAN_Experiment(BaseMADGANExperiment):
             verbose=1,
             callbacks=self.callbacks,
         )
+
+
+

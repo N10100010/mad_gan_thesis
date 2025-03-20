@@ -93,55 +93,57 @@ class ScoreMADGANMonitor(tf.keras.callbacks.Callback):
 
 
     def plot_scores(self, data):
-        scores_dir = self.dir_name / "scores"
+
+        scores_folder = self.dir_name / "scores"
+
+        # Convert string keys to integers if necessary
         data = {
-            int(k) if isinstance(k, str) and k.isdigit() else k: {
-                int(k1) if isinstance(k1, str) and k1.isdigit() else k1: v
-                for k1, v in v1.items()
+            int(epoch): {
+                int(gen): values for gen, values in gen_data.items()
+            }
+            for epoch, gen_data in data.items()
         }
-        for k, v1 in data.items()
-        }
-        epochs = sorted([int(k) for k in data.keys()])
-        num_generators = len(next(iter(data.values())))
 
-        fid_scores = {gen: [] for gen in range(num_generators)}
-        is_scores = {gen: [] for gen in range(num_generators)}
-        is_stds = {gen: [] for gen in range(num_generators)}
+        epochs = sorted(data.keys())
+        num_generators = len(next(iter(data.values())))  # Assumes all epochs have the same number of generators
 
-        for epoch in epochs:
-            for gen in range(num_generators):
-                fid_scores[gen].append(data[epoch][gen]["FID"])
-                is_scores[gen].append(data[epoch][gen]["IS"])
-                is_stds[gen].append(data[epoch][gen]["IS_std"])
-
-        # Plot FID scores
-        plt.figure(figsize=(10, 6))
+        # FID Scores Plot (Single Figure)
+        plt.figure(figsize=(10, 5))
         for gen in range(num_generators):
-            plt.plot(epochs, fid_scores[gen], label=f"Generator {gen}")
+            fid_scores = [data[epoch][gen]["FID"] for epoch in epochs]
+            plt.plot(epochs, fid_scores, marker="o", label=f"Generator {gen}")
+
         plt.xlabel("Epochs")
         plt.ylabel("FID Score")
-        plt.title("FID Score Over Epochs")
+        plt.title("FID Scores Over Epochs")
         plt.legend()
-        plt.savefig(scores_dir / "fid_plot.png")
+        plt.grid(True)
+
+        plt.savefig(scores_folder / "FID.png")
+
         plt.close()
 
-        # Plot IS scores with uncertainty bands
-        fig, axes = plt.subplots(1, num_generators, figsize=(18, 6))
-        gens_per_plot = (num_generators + 2) // num_generators
+        # IS Scores Plot (Subplots for each Generator)
+        fig, axes = plt.subplots(num_generators, 1, figsize=(10, 5 * num_generators), sharex=True)
 
-        for i, ax in enumerate(axes):
-            for gen in range(i * gens_per_plot, min((i + 1) * gens_per_plot, num_generators)):
-                ax.plot(epochs, is_scores[gen], label=f"Generator {gen}")
-                ax.fill_between(
-                    epochs,
-                    np.array(is_scores[gen]) - np.array(is_stds[gen]),
-                    np.array(is_scores[gen]) + np.array(is_stds[gen]),
-                    alpha=0.2,
-                )
-            ax.set_xlabel("Epochs")
-            ax.set_ylabel("Inception Score")
-            ax.set_title(f"Inception Score (Generators {i * gens_per_plot}-{min((i + 1) * gens_per_plot - 1, num_generators - 1)})")
-            ax.legend()
+        if num_generators == 1:
+            axes = [axes]  # Ensure axes is iterable even for one generator
+
+        for gen in range(num_generators):
+            is_scores = [data[epoch][gen]["IS"] for epoch in epochs]
+            is_stds = [data[epoch][gen]["IS_std"] for epoch in epochs]
+
+            axes[gen].plot(epochs, is_scores, marker="o", label=f"Generator {gen}", color=f"C{gen}")
+            axes[gen].fill_between(epochs, np.array(is_scores) - np.array(is_stds),
+                                   np.array(is_scores) + np.array(is_stds), alpha=0.2, color=f"C{gen}")
+
+            axes[gen].set_ylabel("IS Score")
+            axes[gen].set_title(f"IS Score - Generator {gen}")
+            axes[gen].legend()
+            axes[gen].grid(True)
+
+        axes[-1].set_xlabel("Epochs")
         plt.tight_layout()
-        plt.savefig(scores_dir / "is_plot.png")
-        plt.close()
+        
+        plt.savefig(scores_folder / "IS.png")
+
