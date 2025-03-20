@@ -60,12 +60,11 @@ class ScoreMADGANMonitor(tf.keras.callbacks.Callback):
                     generated_samples.append(img)
                 generated_samples = np.array(generated_samples)
 
+
                 fid_score = calculate_fid_score(
                     generated_images=generated_samples, dataset=self.dataset, classifier=fid_classifier
                 )
-                is_score, is_std = calculate_inception_score(
-                    generated_images=generated_samples, classifier=is_classifier
-                )
+                is_score, is_std = calculate_inception_score(generated_images=np.squeeze(generated_samples, axis=1))
 
                 self.logger.info(
                     f"Epoch {epoch} - Generator {gen_nr}: FID: {fid_score}, IS: {is_score} +/- {is_std}"
@@ -84,7 +83,7 @@ class ScoreMADGANMonitor(tf.keras.callbacks.Callback):
                 data = {}
 
             data[epoch] = scores_by_gen
-
+            
             with open(self.scores_file, "w") as f:
                 json.dump(data, f, indent=4)
 
@@ -92,10 +91,17 @@ class ScoreMADGANMonitor(tf.keras.callbacks.Callback):
             if epoch + 1 == self.total_epochs:
                 self.plot_scores(data)
 
+
     def plot_scores(self, data):
         scores_dir = self.dir_name / "scores"
-
-        epochs = sorted(data.keys())
+        data = {
+            int(k) if isinstance(k, str) and k.isdigit() else k: {
+                int(k1) if isinstance(k1, str) and k1.isdigit() else k1: v
+                for k1, v in v1.items()
+        }
+        for k, v1 in data.items()
+        }
+        epochs = sorted([int(k) for k in data.keys()])
         num_generators = len(next(iter(data.values())))
 
         fid_scores = {gen: [] for gen in range(num_generators)}

@@ -65,6 +65,7 @@ def calculate_inception_score(
 
         # Create the size tensor explicitly with int32 type
         target_size = tf.constant([expected_height, expected_width], dtype=tf.int32)
+<<<<<<< HEAD
 
         # Resize the images using the target size
         generated_images = tf.image.resize(generated_images, target_size).numpy()
@@ -97,8 +98,13 @@ def calculate_inception_score(
         split_scores.append(split_score)
 
     return float(np.mean(split_scores)), float(np.std(split_scores))
+=======
+>>>>>>> b4dc9f6 (Add is and fid score to madgan)
 
+        # Resize the images using the target size
+        generated_images = tf.image.resize(generated_images, target_size).numpy()
 
+<<<<<<< HEAD
 def test_calculate_inception_score():
     """Tests the calculate_inception_score function with a dummy classifier and synthetic images."""
 
@@ -143,6 +149,65 @@ def test_calculate_inception_score():
     assert mean_is > 0, "Mean inception score should be positive"
     assert std_is >= 0, "Standard deviation should be non-negative"
     print(f"Test passed! Mean IS: {mean_is:.4f}, Std IS: {std_is:.4f}")
+=======
+    num_images = generated_images.shape[0]
+    preds = []
 
+    # Process generated_images in batches.
+    for i in range(0, num_images, batch_size):
+        batch = generated_images[i : i + batch_size]
+        # Get classifier predictions (logits)
+        logits = classifier.predict(batch, verbose=0)
+        # Convert logits to probabilities via softmax
+        prob = tf.nn.softmax(logits).numpy()
+        preds.append(prob)
 
+    # free memory of the feature extractor
+    classifier = None
+
+    preds = np.concatenate(preds, axis=0)  # Shape: (N, num_classes)
+
+    # Compute the Inception Score using KL divergence
+    split_scores = []
+    split_size = num_images // splits
+    for i in range(splits):
+        part = preds[i * split_size : (i + 1) * split_size]
+        p_y = np.mean(part, axis=0)  # Marginal distribution over classes
+        kl_divs = [entropy(p, p_y) for p in part]
+        split_score = np.exp(np.mean(kl_divs))
+        split_scores.append(split_score)
+
+    return float(np.mean(split_scores)), float(np.std(split_scores))
+
+import numpy as np
+from tensorflow.keras.datasets import cifar10
+>>>>>>> b4dc9f6 (Add is and fid score to madgan)
+
+import tensorflow as tf
+from tensorflow.keras.applications import InceptionV3
+from tensorflow.keras.datasets import cifar10
+# Load CIFAR-10 dataset
+(x_train, _), (_, _) = cifar10.load_data()
+
+<<<<<<< HEAD
 test_calculate_inception_score()
+=======
+# Define sample size
+num_samples = 1_000
+
+# Randomly select 10K indices
+random_indices = np.random.choice(x_train.shape[0], num_samples, replace=False)
+
+# Get the sampled images
+x_sampled = x_train[random_indices]
+
+print(f"Original dataset size: {x_train.shape[0]}")
+print(f"Sampled dataset size: {x_sampled.shape[0]}")
+
+# Load InceptionV3 (pretrained on ImageNet) without the top layer for feature extraction
+inception_model = InceptionV3(weights="imagenet", include_top=True)
+
+# Compute Inception Score
+is_mean, is_std = calculate_inception_score(x_sampled, inception_model)
+print(f"Inception Score: {is_mean} ± {is_std}")
+>>>>>>> b4dc9f6 (Add is and fid score to madgan)
