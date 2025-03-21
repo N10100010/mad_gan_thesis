@@ -10,44 +10,47 @@ Reallocating 'wiz_functions' (item size: 4) to 6000 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Database file #1: main.bib
-You've used 10 entries,
+Warning--entry type for "Tanno2022repairingneuralnetworkfromcorrupt" isn't style-file defined
+--line 223 of file main.bib
+You've used 12 entries,
             4793 wiz_defined-function locations,
-            948 strings with 8735 characters,
-and the built_in function-call counts, 9813 in all, are:
-= -- 994
-> -- 354
-< -- 447
-+ -- 527
-- -- 139
-* -- 687
-:= -- 1759
-add.period$ -- 20
-call.type$ -- 10
-change.case$ -- 81
-chr.to.int$ -- 10
-cite$ -- 10
-duplicate$ -- 192
-empty$ -- 465
-format.name$ -- 237
-if$ -- 1747
+            960 strings with 9243 characters,
+and the built_in function-call counts, 11715 in all, are:
+= -- 1189
+> -- 430
+< -- 550
++ -- 648
+- -- 170
+* -- 812
+:= -- 2116
+add.period$ -- 22
+call.type$ -- 12
+change.case$ -- 98
+chr.to.int$ -- 12
+cite$ -- 12
+duplicate$ -- 226
+empty$ -- 531
+format.name$ -- 289
+if$ -- 2063
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 60
-newline$ -- 74
-num.names$ -- 30
-pop$ -- 100
+missing$ -- 70
+newline$ -- 84
+num.names$ -- 36
+pop$ -- 122
 preamble$ -- 1
-purify$ -- 101
+purify$ -- 122
 quote$ -- 0
-skip$ -- 592
+skip$ -- 719
 stack$ -- 0
-substring$ -- 713
-swap$ -- 66
-text.length$ -- 54
+substring$ -- 833
+swap$ -- 79
+text.length$ -- 65
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 100
+type$ -- 120
 warning$ -- 0
-while$ -- 84
-width$ -- 12
-write$ -- 146
+while$ -- 101
+width$ -- 14
+write$ -- 168
+(There was 1 warning)
