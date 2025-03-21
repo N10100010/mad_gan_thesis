@@ -21,20 +21,23 @@ def _load_real_images(dataset, num_samples=10000):
     return x_train[idx]
 
 
-def calculate_fid_score(generated_images, dataset, classifier, batch_size=32) -> float:
+def calculate_fid_score(generated_images, dataset, batch_size=32) -> float:
     """
     Computes the Fréchet Inception Distance (FID) between generated and real images.
 
     Parameters:
         generated_images (numpy.ndarray): Generated images with shape (N, H, W, C).
         dataset (str): One of ["mnist", "fashion-mnist", "cifar10"].
-        classifier (tf.keras.Model): Model for feature extraction.
-                                   For CIFAR-10, use InceptionV3 (include_top=False, pooling="avg").
         batch_size (int): Batch size for inference.
 
     Returns:
         float: FID score (lower is better).
     """
+
+    classifier = tf.keras.applications.InceptionV3(
+        weights="imagenet", include_top=False, pooling="avg"
+    )
+
     real_images = _load_real_images(dataset)
     input_shape = (
         classifier.input_shape
@@ -86,21 +89,9 @@ def calculate_fid_score(generated_images, dataset, classifier, batch_size=32) ->
             real_images * 255.0
         )
 
-    # Extract features from an intermediate layer
-    if dataset != "cifar10":
-        # we assume that the passed classifier has a layer named "feature_extractor". This is assumed to be the last dense-layer in the deep net.
-        if "feature_extractor" not in [_.name for _ in classifier.model.layers]:
-            raise ValueError(
-                "Classifier is not a model with a layer named `feature_extractor`."
-            )
-        feature_extractor = tf.keras.Model(
-            classifier.model.input,
-            classifier.model.get_layer("feature_extractor").output,
-        )
-    else:
-        # we assume the following definition for the classifier of the inception model:
-        # classifier = tf.keras.applications.InceptionV3(weights="imagenet", include_top=False, pooling="avg")
-        feature_extractor = classifier
+    # we assume the following definition for the classifier of the inception model:
+    # classifier = tf.keras.applications.InceptionV3(weights="imagenet", include_top=False, pooling="avg")
+    feature_extractor = classifier
 
     classifier = None
 

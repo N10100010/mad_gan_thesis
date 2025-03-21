@@ -3,8 +3,8 @@ from datasets.fasion_mnist import dataset_func
 from experiment.base_experiments import BaseMADGANExperiment
 from latent_points.utils import generate_latent_points
 from loss_functions.generator import generators_loss_function
-from model_definitions.discriminators.fashion_mnist.disc import define_discriminator
-from model_definitions.generators.fashion_mnist.gen import define_generators
+from model_definitions.discriminators.madgan_mnists.disc import define_discriminator
+from model_definitions.generators.madgan_mnists.gen import define_generators
 from model_definitions.mad_gan import MADGAN
 from monitors.madgan_generator import MADGANMonitor
 

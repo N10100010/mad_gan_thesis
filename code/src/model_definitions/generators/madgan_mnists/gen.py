@@ -3,7 +3,7 @@ import tensorflow as tf
 
 def define_generators(n_gen, latent_dim):
     dens = tf.keras.layers.Dense(
-        units=7 * 7 * 256, use_bias=False, input_shape=(latent_dim,)
+        units=7 * 7 * latent_dim, use_bias=False, input_shape=(latent_dim,)
     )
     batchnorm0 = tf.keras.layers.BatchNormalization()
     rel0 = tf.keras.layers.LeakyReLU()

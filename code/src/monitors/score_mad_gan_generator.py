@@ -1,7 +1,8 @@
 import json
-import numpy as np
-import matplotlib.pyplot as plt
 from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
 import tensorflow as tf
 from latent_points.utils import generate_latent_points
 from model_definitions.classifiers.base import BaseClassifier
@@ -44,12 +45,9 @@ class ScoreMADGANMonitor(tf.keras.callbacks.Callback):
         self.logger.info(f"Calculating scores for epoch {epoch}...")
 
         if epoch % self.score_calculation_freq == 0:
-            random_latent_vectors = np.array(generate_latent_points(self.latent_dim, 1, 1000))
-
-            fid_classifier = tf.keras.applications.InceptionV3(
-                weights="imagenet", include_top=False, pooling="avg"
+            random_latent_vectors = np.array(
+                generate_latent_points(self.latent_dim, 1, 1000)
             )
-            is_classifier = tf.keras.applications.InceptionV3(weights="imagenet", include_top=True)
 
             scores_by_gen = {}
             for gen_nr, generator in enumerate(self.model.generators):
@@ -60,12 +58,14 @@ class ScoreMADGANMonitor(tf.keras.callbacks.Callback):
                     img = img.reshape(-1, *self.image_data_shape[1:])
                     generated_samples.append(img)
                 generated_samples = np.array(generated_samples)
-
+                generated_samples = np.squeeze(generated_samples, axis=1)
 
                 fid_score = calculate_fid_score(
-                    generated_images=generated_samples, dataset=self.dataset, classifier=fid_classifier
+                    generated_images=generated_samples, dataset=self.dataset
                 )
-                is_score, is_std = calculate_inception_score(generated_images=np.squeeze(generated_samples, axis=1))
+                is_score, is_std = calculate_inception_score(
+                    generated_images=generated_samples
+                )
 
                 self.logger.info(
                     f"Epoch {epoch} - Generator {gen_nr}: FID: {fid_score}, IS: {is_score} +/- {is_std}"
@@ -84,7 +84,7 @@ class ScoreMADGANMonitor(tf.keras.callbacks.Callback):
                 data = {}
 
             data[epoch] = scores_by_gen
-            
+
             with open(self.scores_file, "w") as f:
                 json.dump(data, f, indent=4)
 
@@ -94,36 +94,37 @@ class ScoreMADGANMonitor(tf.keras.callbacks.Callback):
 
 
 def plot_scores(self, data):
-
     # Convert string keys to integers if necessary
     data = {
-        int(epoch): {
-            int(gen): values for gen, values in gen_data.items()
-        }
+        int(epoch): {int(gen): values for gen, values in gen_data.items()}
         for epoch, gen_data in data.items()
     }
-    
+
     epochs = sorted(data.keys())
-    num_generators = len(next(iter(data.values())))  # Assumes all epochs have the same number of generators
-    
+    num_generators = len(
+        next(iter(data.values()))
+    )  # Assumes all epochs have the same number of generators
+
     # FID Scores Plot (Single Figure)
     plt.figure(figsize=(10, 5))
     for gen in range(num_generators):
         fid_scores = [data[epoch][gen]["FID"] for epoch in epochs]
         plt.plot(epochs, fid_scores, marker="o", label=f"Generator {gen}")
-    
+
     plt.xlabel("Epochs")
     plt.ylabel("FID Score")
     plt.title("FID Scores Over Epochs")
     plt.legend()
     plt.grid(True)
-    
+
     plt.savefig(self.scores_folder / "FID.png")
 
     plt.close()
 
     # IS Scores Plot (Subplots for each Generator)
-    fig, axes = plt.subplots(num_generators, 1, figsize=(10, 5 * num_generators), sharex=True)
+    fig, axes = plt.subplots(
+        num_generators, 1, figsize=(10, 5 * num_generators), sharex=True
+    )
 
     if num_generators == 1:
         axes = [axes]  # Ensure axes is iterable even for one generator
@@ -132,9 +133,16 @@ def plot_scores(self, data):
         is_scores = [data[epoch][gen]["IS"] for epoch in epochs]
         is_stds = [data[epoch][gen]["IS_std"] for epoch in epochs]
 
-        axes[gen].plot(epochs, is_scores, marker="o", label=f"Generator {gen}", color=f"C{gen}")
-        axes[gen].fill_between(epochs, np.array(is_scores) - np.array(is_stds),
-                               np.array(is_scores) + np.array(is_stds), alpha=0.2, color=f"C{gen}")
+        axes[gen].plot(
+            epochs, is_scores, marker="o", label=f"Generator {gen}", color=f"C{gen}"
+        )
+        axes[gen].fill_between(
+            epochs,
+            np.array(is_scores) - np.array(is_stds),
+            np.array(is_scores) + np.array(is_stds),
+            alpha=0.2,
+            color=f"C{gen}",
+        )
 
         axes[gen].set_ylabel("IS Score")
         axes[gen].set_title(f"IS Score - Generator {gen}")

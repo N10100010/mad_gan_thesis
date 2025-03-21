@@ -1,37 +1,21 @@
 from experiment.experiment_queue import ExperimentQueue
-from experiment.experiments.fashion_mnist_madgan.experiment import (
-    FASHION_MNIST_MADGAN_Experiment,
-)
-from experiment.experiments.mnist_madgan.experiment import (
-    MNIST_MADGAN_Experiment,
-)
-from experiment.experiments.cifar_madgan.experiment import (
-    CIFAR_MADGAN_Experiment,
-)
+from experiment.experiments.cifar_madgan.experiment import CIFAR_MADGAN_Experiment
 from experiment.experiments.generative_creation.madgan.experiment import (
     MADGAN_GenerativeCreationExperiment,
 )
 from latent_points.utils import generate_latent_points
-
-from model_definitions.discriminators.cifar.disc import (
+from model_definitions.discriminators.madgan_cifar.disc import (
     define_discriminator as define_discriminator_base,
 )
-from model_definitions.discriminators.cifar.new_disc_big import (
-    define_discriminator as define_discriminator_big,
-)
-from model_definitions.discriminators.cifar.new_disc_small import (
+from model_definitions.discriminators.madgan_cifar.new_disc_small import (
     define_discriminator as define_discriminator_small,
 )
-from model_definitions.generators.cifar.gen import (
+from model_definitions.generators.madgan_cifar.gen import (
     define_generators as define_generators_base,
 )
-from model_definitions.generators.cifar.new_gen_big import (
-    define_generators as define_generators_big,
-)
-from model_definitions.generators.cifar.new_gen_small import (
+from model_definitions.generators.madgan_cifar.new_gen_small import (
     define_generators as define_generators_small,
 )
-
 
 experiments = [
     ## GENERATE IMAGES FOR THE MNIST DATASET USING N-GENERATORS [1...10] (pretrained)
@@ -115,9 +99,7 @@ experiments = [
     #     n_images=1,
     #     save_raw_image=True
     # ),
-
     ## GENERATE IMAGES FOR THE MNIST DATASET USING THE MADGAN WITH 3 GENERATORS, USING A SPECIFIC ONE FOR EACH CREATION
-    
     # MADGAN_GenerativeCreationExperiment(
     #     name="MADGAN_MNIST_DataCreation_SPEC_GEN_0",
     #     experiment_class=MNIST_MADGAN_Experiment,
@@ -145,8 +127,8 @@ experiments = [
     #     save_raw_image=True,
     #     use_generator=2
     # ),
-# 
-    # 
+    #
+    #
     # MADGAN_GenerativeCreationExperiment(
     #     name="MADGAN_MNIST_5_GEN_DataCreation_SPEC_GEN_0",
     #     experiment_class=MNIST_MADGAN_Experiment,
@@ -192,7 +174,6 @@ experiments = [
     #     save_raw_image=True,
     #     use_generator=4
     # ),
-
     # MNIST GENERATOR 7
     # MADGAN_GenerativeCreationExperiment(
     #     name="MADGAN_MNIST_7_GEN_DataCreation_SPEC_GEN_0",
@@ -257,8 +238,6 @@ experiments = [
     #     save_raw_image=True,
     #     use_generator=6
     # ),
-
-    
     # MNIST GENERATOR 10
     # MADGAN_GenerativeCreationExperiment(
     #     name="MADGAN_MNIST_10_GEN_DataCreation_SPEC_GEN_0",
@@ -350,7 +329,6 @@ experiments = [
     #     save_raw_image=True,
     #     use_generator=9
     # ),
-
     #
     # MADGAN_GenerativeCreationExperiment(
     #     name="MADGAN_FASHION_MNIST_5_GEN_DataCreation_SPEC_GEN_4",
@@ -361,13 +339,10 @@ experiments = [
     #     save_raw_image=True,
     #     use_generator=4
     # ),
-
-
     ######################################################################################################################
     ################################################ FASHOIN MNIST #######################################################
     ######################################################################################################################
     ## GENERATE IMAGES FOR THE MNIST DATASET USING THE MADGAN WITH 3 GENERATORS, USING A SPECIFIC ONE FOR EACH CREATION
-    
     # MADGAN_GenerativeCreationExperiment(
     #     name="MADGAN_FASHIONMNIST_DataCreation_SPEC_GEN_0",
     #     experiment_class=FASHION_MNIST_MADGAN_Experiment,
@@ -395,7 +370,6 @@ experiments = [
     #     save_raw_image=True,
     #     use_generator=2
     # ),
-
     ## GENERATE IMAGES FOR THE MNIST DATASET USING THE MADGAN WITH 5 GENERATORS, USING A SPECIFIC ONE FOR EACH CREATION
     # MADGAN_GenerativeCreationExperiment(
     #     name="MADGAN_FASHIONMNIST_5_GEN_DataCreation_SPEC_GEN_0",
@@ -442,7 +416,6 @@ experiments = [
     #     save_raw_image=True,
     #     use_generator=4
     # ),
-
     # FASHION MNIST GENERATOR 7
     # MADGAN_GenerativeCreationExperiment(
     #     name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_0",
@@ -507,8 +480,6 @@ experiments = [
     #     save_raw_image=True,
     #     use_generator=6
     # ),
-
-    
     # FASHION MNIST GENERATOR 10
     # MADGAN_GenerativeCreationExperiment(
     #     name="MADGAN_FASHIONMNIST_10_GEN_DataCreation_SPEC_GEN_0",
@@ -600,16 +571,10 @@ experiments = [
     #     save_raw_image=True,
     #     use_generator=9
     # ),
-
-    
-
     ######################################################################################################################
     ################################################### CIFAR10 ##########################################################
     ######################################################################################################################
     ## GENERATE IMAGES FOR THE cifar10 DATASET USING THE MADGAN WITH 3 GENERATORS, USING A SPECIFIC ONE FOR EACH CREATION
-    
-
-    
     # MADGAN_GenerativeCreationExperiment(
     #     name="MADGAN_CIFAR_PROTOTYPE_big",
     #     experiment_class=CIFAR_MADGAN_Experiment,
@@ -622,7 +587,6 @@ experiments = [
     #     define_discriminator=define_discriminator_big,
     #     define_generators=define_generators_big
     # ),
-    
     MADGAN_GenerativeCreationExperiment(
         name="MADGAN_CIFAR_PROTOTYPE_small",
         experiment_class=CIFAR_MADGAN_Experiment,
@@ -631,9 +595,9 @@ experiments = [
         latent_point_generator=generate_latent_points,
         n_images=10_000,
         save_raw_image=True,
-        use_generator=0, 
+        use_generator=0,
         define_discriminator=define_discriminator_small,
-        define_generators=define_generators_small
+        define_generators=define_generators_small,
     ),
     MADGAN_GenerativeCreationExperiment(
         name="MADGAN_CIFAR_PROTOTYPE_base",
@@ -643,11 +607,10 @@ experiments = [
         latent_point_generator=generate_latent_points,
         n_images=10_000,
         save_raw_image=True,
-        use_generator=0, 
+        use_generator=0,
         define_discriminator=define_discriminator_base,
-        define_generators=define_generators_base
+        define_generators=define_generators_base,
     ),
-
     # MADGAN_GenerativeCreationExperiment(
     #     name="MADGAN_CIFAR_1_GEN_DataCreation_SPEC_GEN_0",
     #     experiment_class=CIFAR_MADGAN_Experiment,
@@ -717,7 +680,6 @@ experiments = [
     #     save_raw_image=True,
     #     use_generator=2
     # ),
-
     ## GENERATE IMAGES FOR THE MNIST DATASET USING THE MADGAN WITH 5 GENERATORS, USING A SPECIFIC ONE FOR EACH CREATION
     # MADGAN_GenerativeCreationExperiment(
     #     name="MADGAN_FASHIONMNIST_5_GEN_DataCreation_SPEC_GEN_0",
@@ -764,7 +726,6 @@ experiments = [
     #     save_raw_image=True,
     #     use_generator=4
     # ),
-
     # FASHION MNIST GENERATOR 7
     # MADGAN_GenerativeCreationExperiment(
     #     name="MADGAN_FASHIONMNIST_7_GEN_DataCreation_SPEC_GEN_0",
@@ -829,8 +790,6 @@ experiments = [
     #     save_raw_image=True,
     #     use_generator=6
     # ),
-
-    
     # FASHION MNIST GENERATOR 10
     # MADGAN_GenerativeCreationExperiment(
     #     name="MADGAN_FASHIONMNIST_10_GEN_DataCreation_SPEC_GEN_0",
