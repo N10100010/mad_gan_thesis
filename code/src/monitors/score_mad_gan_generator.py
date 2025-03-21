@@ -33,7 +33,8 @@ class ScoreMADGANMonitor(tf.keras.callbacks.Callback):
             self.image_data_shape = (1, 28, 28, 1)
 
         (self.dir_name / "scores").mkdir(parents=True, exist_ok=True)
-        self.scores_file = self.dir_name / "scores" / "metrics.json"
+        self.scores_folder = self.dir_name / "scores"
+        self.scores_file = self.scores_folder / "metrics.json"
 
         # Delete the file for restarts
         if self.scores_file.exists():
@@ -92,58 +93,54 @@ class ScoreMADGANMonitor(tf.keras.callbacks.Callback):
                 self.plot_scores(data)
 
 
-    def plot_scores(self, data):
+def plot_scores(self, data):
 
-        scores_folder = self.dir_name / "scores"
-
-        # Convert string keys to integers if necessary
-        data = {
-            int(epoch): {
-                int(gen): values for gen, values in gen_data.items()
-            }
-            for epoch, gen_data in data.items()
+    # Convert string keys to integers if necessary
+    data = {
+        int(epoch): {
+            int(gen): values for gen, values in gen_data.items()
         }
+        for epoch, gen_data in data.items()
+    }
+    
+    epochs = sorted(data.keys())
+    num_generators = len(next(iter(data.values())))  # Assumes all epochs have the same number of generators
+    
+    # FID Scores Plot (Single Figure)
+    plt.figure(figsize=(10, 5))
+    for gen in range(num_generators):
+        fid_scores = [data[epoch][gen]["FID"] for epoch in epochs]
+        plt.plot(epochs, fid_scores, marker="o", label=f"Generator {gen}")
+    
+    plt.xlabel("Epochs")
+    plt.ylabel("FID Score")
+    plt.title("FID Scores Over Epochs")
+    plt.legend()
+    plt.grid(True)
+    
+    plt.savefig(self.scores_folder / "FID.png")
 
-        epochs = sorted(data.keys())
-        num_generators = len(next(iter(data.values())))  # Assumes all epochs have the same number of generators
+    plt.close()
 
-        # FID Scores Plot (Single Figure)
-        plt.figure(figsize=(10, 5))
-        for gen in range(num_generators):
-            fid_scores = [data[epoch][gen]["FID"] for epoch in epochs]
-            plt.plot(epochs, fid_scores, marker="o", label=f"Generator {gen}")
+    # IS Scores Plot (Subplots for each Generator)
+    fig, axes = plt.subplots(num_generators, 1, figsize=(10, 5 * num_generators), sharex=True)
 
-        plt.xlabel("Epochs")
-        plt.ylabel("FID Score")
-        plt.title("FID Scores Over Epochs")
-        plt.legend()
-        plt.grid(True)
+    if num_generators == 1:
+        axes = [axes]  # Ensure axes is iterable even for one generator
 
-        plt.savefig(scores_folder / "FID.png")
+    for gen in range(num_generators):
+        is_scores = [data[epoch][gen]["IS"] for epoch in epochs]
+        is_stds = [data[epoch][gen]["IS_std"] for epoch in epochs]
 
-        plt.close()
+        axes[gen].plot(epochs, is_scores, marker="o", label=f"Generator {gen}", color=f"C{gen}")
+        axes[gen].fill_between(epochs, np.array(is_scores) - np.array(is_stds),
+                               np.array(is_scores) + np.array(is_stds), alpha=0.2, color=f"C{gen}")
 
-        # IS Scores Plot (Subplots for each Generator)
-        fig, axes = plt.subplots(num_generators, 1, figsize=(10, 5 * num_generators), sharex=True)
+        axes[gen].set_ylabel("IS Score")
+        axes[gen].set_title(f"IS Score - Generator {gen}")
+        axes[gen].legend()
+        axes[gen].grid(True)
 
-        if num_generators == 1:
-            axes = [axes]  # Ensure axes is iterable even for one generator
-
-        for gen in range(num_generators):
-            is_scores = [data[epoch][gen]["IS"] for epoch in epochs]
-            is_stds = [data[epoch][gen]["IS_std"] for epoch in epochs]
-
-            axes[gen].plot(epochs, is_scores, marker="o", label=f"Generator {gen}", color=f"C{gen}")
-            axes[gen].fill_between(epochs, np.array(is_scores) - np.array(is_stds),
-                                   np.array(is_scores) + np.array(is_stds), alpha=0.2, color=f"C{gen}")
-
-            axes[gen].set_ylabel("IS Score")
-            axes[gen].set_title(f"IS Score - Generator {gen}")
-            axes[gen].legend()
-            axes[gen].grid(True)
-
-        axes[-1].set_xlabel("Epochs")
-        plt.tight_layout()
-        
-        plt.savefig(scores_folder / "IS.png")
-
+    axes[-1].set_xlabel("Epochs")
+    plt.tight_layout()
+    plt.savefig(self.scores_folder / "IS.png")
