@@ -16,14 +16,27 @@ The idea of using GANs for Generative Data Augmentation (GDA) has already been a
     \item Imbalance between Generator- and Discriminator Model
 \end{itemize}
 
-% \cite{espeholt2018impala}, in the field of computer vision \cite{espeholt2019seed} and in the field of music \cite{espeholt2020music}.
 
 This thesis investigates the potential of using GANs - specifically \textit{Multi-Agent Diverse Generative Adversarial Networks} (MADGANs) \cite{ghosh2018multiagentdiversegenerativeadversarial} - for Generative Data Augmentation. MADGANs aim to aid the first two of the afore mentioned in particular: Mode Collapse and Loss of inter-class Diversity. They, along other modifications, "\textit{propose to modify the objective function of the discriminator, in which, along with finding the real and the fake samples, the discriminator also has to correctly predict the generator that generated the given fake sample.}" \cite{ghosh2018multiagentdiversegenerativeadversarial}. The goal of this adjustment of the discriminator is, that the discriminator has to push the generators towards distinct identifiable modes. In their paper, they experimentally show, that their architectural adjustment of GANs is generally capable of giving providing assistance for first two of the mentioned problems.
 
-The experiments in this work...
+The experiments in this work are structured in to three major parts.
+The first set trains and analyses GANs, explicitly MADGANs and Conditional GANs (CGANs). Here, the quality of the resulting images during training will be judged by the Fréchet Inception Distance (FID) \cite{heusel2018ganstrainedtimescaleupdate} and the Inception Score (IS) \cite{salimans2016improvedtechniquestraininggans}.
+The secoond set uses the afore trained generative models to create images. Images without labels - images originating from MADGANs - will be classified using auxilary classifiers trained using classical data augmentation techniques.
+The third and most significant set of experiments traines classifiers, using the generated data. For this, stratified classifiers, with differing numbers of real and fake images are trained and evaluated on the respective validation set and their classification performance will be judged by standard metrics.
+% TODO: define standard metrics? maybe?
+
+
+All of the above described is executed on the following datasets:
+\begin{itemize}\label{used_datasets}
+    \setlength{\itemsep}{-5pt}
+    \item MNIST \cite{lecun2010mnist}
+    \item Fashion MNIST \cite{xiao2017fashionmnist}
+    \item CIFAR10 \cite{Krizhevsky2009learning}
+\end{itemize}
+
 
 \paragraph{Aim of the Thesis}\label{aim_of_the_thesis}
-The aim of the thesis is to investigate the potential use....
+The aim of the thesis is to investigate the potential use of MADGANs for GDA.
 
 
 \newpage

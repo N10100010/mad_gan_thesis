@@ -31,6 +31,14 @@
 \newblock \url{https://arxiv.org/abs/1406.2661}.
 \newblock \,Version:\,2014
 
+\bibitem[HRU{\etalchar{+}}18]{heusel2018ganstrainedtimescaleupdate}
+\textsc{Heusel}, Martin ; \textsc{Ramsauer}, Hubert ; \textsc{Unterthiner},
+  Thomas ; \textsc{Nessler}, Bernhard  ; \textsc{Hochreiter}, Sepp:
+\newblock \emph{GANs Trained by a Two Time-Scale Update Rule Converge to a
+  Local Nash Equilibrium}.
+\newblock \url{https://arxiv.org/abs/1706.08500}.
+\newblock \,Version:\,2018
+
 \bibitem[IZZE18]{isola2018imagetoimagetranslationconditionaladversarial}
 \textsc{Isola}, Phillip ; \textsc{Zhu}, Jun-Yan ; \textsc{Zhou}, Tinghui  ;
   \textsc{Efros}, Alexei~A.:
@@ -53,6 +61,21 @@
   Representations, Algorithms, Evaluations, and Future Directions}.
 \newblock \url{https://arxiv.org/abs/2011.06801}.
 \newblock \,Version:\,2020
+
+\bibitem[Kri09]{Krizhevsky2009learning}
+\textsc{Krizhevsky}, Alex:
+\newblock Learning Multiple Layers of Features from Tiny Images / University of
+  Toronto.
+\newblock \,Version:\,2009.
+\newblock \url{https://www.cs.toronto.edu/~kriz/learning-features-2009-TR.pdf}.
+\newblock 2009. --
+\newblock Forschungsbericht
+
+\bibitem[LCB10]{lecun2010mnist}
+\textsc{LeCun}, Yann ; \textsc{Cortes}, Corinna  ; \textsc{Burges}, CJ:
+\newblock MNIST handwritten digit database.
+\newblock {In: }\emph{ATT Labs [Online]. Available:
+  http://yann.lecun.com/exdb/mnist} 2 (2010)
 
 \bibitem[LTH{\etalchar{+}}17]{ledig2017photorealisticsingleimagesuperresolution}
 \textsc{Ledig}, Christian ; \textsc{Theis}, Lucas ; \textsc{Huszar}, Ferenc ;
@@ -79,6 +102,13 @@
 \newblock \url{https://arxiv.org/abs/1605.05396}.
 \newblock \,Version:\,2016
 
+\bibitem[SGZ{\etalchar{+}}16]{salimans2016improvedtechniquestraininggans}
+\textsc{Salimans}, Tim ; \textsc{Goodfellow}, Ian ; \textsc{Zaremba}, Wojciech
+  ; \textsc{Cheung}, Vicki ; \textsc{Radford}, Alec  ; \textsc{Chen}, Xi:
+\newblock \emph{Improved Techniques for Training GANs}.
+\newblock \url{https://arxiv.org/abs/1606.03498}.
+\newblock \,Version:\,2016
+
 \bibitem[SK19]{shorten2019survey}
 \textsc{Shorten}, Connor ; \textsc{Khoshgoftaar}, Taghi~M.:
 \newblock A survey on Image Data Augmentation for Deep Learning.
@@ -99,5 +129,11 @@
   Inversion}.
 \newblock \url{https://arxiv.org/abs/2312.01671}.
 \newblock \,Version:\,2023
+
+\bibitem[XRV17]{xiao2017fashionmnist}
+\textsc{Xiao}, Han ; \textsc{Rasul}, Kashif  ; \textsc{Vollgraf}, Roland:
+\newblock \emph{Fashion-MNIST: a Novel Image Dataset for Benchmarking Machine
+  Learning Algorithms}.
+\newblock 2017
 
 \end{thebibliography}

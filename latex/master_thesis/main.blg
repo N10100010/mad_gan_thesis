@@ -12,45 +12,47 @@ Reallocating 'singl_function' (item size: 4) to 100 items.
 Database file #1: main.bib
 Warning--entry type for "Tanno2022repairingneuralnetworkfromcorrupt" isn't style-file defined
 --line 223 of file main.bib
-You've used 12 entries,
+Warning--empty number in Krizhevsky2009learning
+Warning--empty note in Krizhevsky2009learning
+You've used 17 entries,
             4793 wiz_defined-function locations,
-            960 strings with 9243 characters,
-and the built_in function-call counts, 11715 in all, are:
-= -- 1189
-> -- 430
-< -- 550
-+ -- 648
-- -- 170
-* -- 812
-:= -- 2116
-add.period$ -- 22
-call.type$ -- 12
-change.case$ -- 98
-chr.to.int$ -- 12
-cite$ -- 12
-duplicate$ -- 226
-empty$ -- 531
-format.name$ -- 289
-if$ -- 2063
+            983 strings with 10201 characters,
+and the built_in function-call counts, 15188 in all, are:
+= -- 1531
+> -- 563
+< -- 674
++ -- 801
+- -- 218
+* -- 1041
+:= -- 2750
+add.period$ -- 31
+call.type$ -- 17
+change.case$ -- 131
+chr.to.int$ -- 17
+cite$ -- 19
+duplicate$ -- 312
+empty$ -- 731
+format.name$ -- 377
+if$ -- 2709
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 70
-newline$ -- 84
-num.names$ -- 36
-pop$ -- 122
+missing$ -- 93
+newline$ -- 114
+num.names$ -- 51
+pop$ -- 164
 preamble$ -- 1
-purify$ -- 122
+purify$ -- 165
 quote$ -- 0
-skip$ -- 719
+skip$ -- 932
 stack$ -- 0
-substring$ -- 833
-swap$ -- 79
-text.length$ -- 65
-text.prefix$ -- 0
+substring$ -- 998
+swap$ -- 102
+text.length$ -- 84
+text.prefix$ -- 1
 top$ -- 0
-type$ -- 120
-warning$ -- 0
-while$ -- 101
-width$ -- 14
-write$ -- 168
-(There was 1 warning)
+type$ -- 170
+warning$ -- 2
+while$ -- 133
+width$ -- 20
+write$ -- 235
+(There were 3 warnings)
