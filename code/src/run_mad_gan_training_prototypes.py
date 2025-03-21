@@ -1,5 +1,12 @@
 from experiment.experiment_queue import ExperimentQueue
+# from experiment.experiments.cifar_madgan.experiment import CIFAR_MADGAN_Experiment
 from experiment.experiments.mnists_madgan.experiments import MNISTS_MADGAN_Experiment
+# from model_definitions.discriminators.madgan_cifar.new_disc_big import (
+#     define_discriminator as define_cifar_discriminator_big,
+# )
+# from model_definitions.generators.madgan_cifar.new_gen_big import (
+#     define_generators as define_cifar_generators_big,
+# )
 from model_definitions.discriminators.madgan_mnists.disc import (
     define_discriminator as define_mnists_discriminator,
 )
@@ -12,7 +19,7 @@ experiments = [
     #     name="CIFAR_MADGAN_Experiment__",
     #     n_gen=3,
     #     latent_dim=2048,
-    #     epochs=500,
+    #     epochs=2,
     #     experiment_suffix="big__latent_2048_3_gen_500_epochs",
     #     experiments_base_path="./experiments/CIFAR_MADGAN_MODELS_PROTOTYPES",
     #     define_discriminator=define_cifar_discriminator_big,
@@ -22,24 +29,24 @@ experiments = [
         name="MNIST_MADGAN_Experiment__",
         n_gen=3,
         latent_dim=1024,
-        epochs=2,
+        epochs=500,
         experiment_suffix="latent_1024_3_gen_500_epochs",
         experiments_base_path="./experiments/CIFAR_MADGAN_MODELS_PROTOTYPES",
         define_discriminator=define_mnists_discriminator,
         define_generators=define_mnists_generators,
         dataset_name="mnist",
     ),
-    # MNISTS_MADGAN_Experiment(
-    #     name="FASHION_MADGAN_Experiment__",
-    #     n_gen=3,
-    #     latent_dim=1024,
-    #     epochs=2,
-    #     experiment_suffix="latent_1024_3_gen_500_epochs",
-    #     experiments_base_path="./experiments/CIFAR_MADGAN_MODELS_PROTOTYPES",
-    #     define_discriminator=define_mnists_discriminator,
-    #     define_generators=define_mnists_generators,
-    #     dataset_name="fashion_mnist",
-    # ),
+    MNISTS_MADGAN_Experiment(
+        name="FASHION_MADGAN_Experiment__",
+        n_gen=3,
+        latent_dim=1024,
+        epochs=500,
+        experiment_suffix="latent_1024_3_gen_500_epochs",
+        experiments_base_path="./experiments/CIFAR_MADGAN_MODELS_PROTOTYPES",
+        define_discriminator=define_mnists_discriminator,
+        define_generators=define_mnists_generators,
+        dataset_name="fashion_mnist",
+    ),
 ]
 
 queue = ExperimentQueue()

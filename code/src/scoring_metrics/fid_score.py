@@ -8,13 +8,18 @@ def _load_real_images(dataset, num_samples=10000):
     if dataset == "mnist":
         (x_train, _), _ = tf.keras.datasets.mnist.load_data()
         x_train = np.expand_dims(x_train, axis=-1)  # Add channel dimension
+        x_train = np.repeat(x_train, 3, axis=-1)
+
     elif dataset == "fashion_mnist":
         (x_train, _), _ = tf.keras.datasets.fashion_mnist.load_data()
         x_train = np.expand_dims(x_train, axis=-1)  # Add channel dimension
+        x_train = np.repeat(x_train, 3, axis=-1)
+
     elif dataset == "cifar10":
         (x_train, _), _ = tf.keras.datasets.cifar10.load_data()
     else:
         raise ValueError(f"Unknown dataset: {dataset}")
+
 
     x_train = x_train.astype(np.float32) / 255.0
     idx = np.random.choice(len(x_train), num_samples, replace=False)
@@ -39,20 +44,8 @@ def calculate_fid_score(generated_images, dataset, batch_size=32) -> float:
     )
 
     real_images = _load_real_images(dataset)
-    input_shape = (
-        classifier.input_shape
-    )  # e.g., (299, 299, 3) or (28, 28, 1) or (32, 32, 3)
-    expected_height, expected_width, expected_channels = (
-        input_shape[0],
-        input_shape[1],
-        input_shape[2],
-    )
 
-    if expected_height is None or expected_width is None or expected_channels is None:
-        if dataset == "cifar10":
-            expected_height, expected_width, expected_channels = 299, 299, 3
-        elif dataset in ["mnist", "fashion-mnist"]:
-            expected_height, expected_width, expected_channels = 28, 28, 1
+    expected_height, expected_width, expected_channels = 299, 299, 3
 
     if generated_images.shape[-1] != expected_channels:
         if generated_images.shape[-1] == 1 and expected_channels == 3:
@@ -81,13 +74,12 @@ def calculate_fid_score(generated_images, dataset, batch_size=32) -> float:
             generated_images = tf.image.resize(generated_images, resize_shape).numpy()
             real_images = tf.image.resize(real_images, resize_shape).numpy()
 
-    if dataset == "cifar10":
-        generated_images = tf.keras.applications.inception_v3.preprocess_input(
-            generated_images * 255.0
-        )
-        real_images = tf.keras.applications.inception_v3.preprocess_input(
-            real_images * 255.0
-        )
+    generated_images = tf.keras.applications.inception_v3.preprocess_input(
+        generated_images * 255.0
+    )
+    real_images = tf.keras.applications.inception_v3.preprocess_input(
+        real_images * 255.0
+    )
 
     # we assume the following definition for the classifier of the inception model:
     # classifier = tf.keras.applications.InceptionV3(weights="imagenet", include_top=False, pooling="avg")

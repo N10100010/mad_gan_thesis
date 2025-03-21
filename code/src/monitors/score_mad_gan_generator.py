@@ -56,6 +56,8 @@ class ScoreMADGANMonitor(tf.keras.callbacks.Callback):
                     img = generator(random_vector).numpy()
                     img = np.clip(img, -1, 1)
                     img = img.reshape(-1, *self.image_data_shape[1:])
+                    if img.shape[-1] == 1: 
+                        img = np.repeat(img, 3, axis=-1)
                     generated_samples.append(img)
                 generated_samples = np.array(generated_samples)
                 generated_samples = np.squeeze(generated_samples, axis=1)
@@ -118,7 +120,7 @@ def plot_scores(self, data):
     plt.grid(True)
 
     plt.savefig(self.scores_folder / "FID.png")
-
+    self.logger.info(f"Saving FID figure to: {self.scores_folder / "FID.png"}")
     plt.close()
 
     # IS Scores Plot (Subplots for each Generator)
@@ -151,4 +153,6 @@ def plot_scores(self, data):
 
     axes[-1].set_xlabel("Epochs")
     plt.tight_layout()
+    
+    self.logger.info(f"Saving IS figure to: {self.scores_folder / "IS.png"}")
     plt.savefig(self.scores_folder / "IS.png")
