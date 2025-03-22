@@ -1,18 +1,18 @@
-\babel@toc {english}{}\relax
+\babel@toc {english}{}\relax 
 \contentsline {section}{List of Figures}{4}{section*.3}%
 \contentsline {section}{List of Tables}{4}{section*.4}%
 \contentsline {section}{List of Abbreviations}{4}{section*.5}%
 \contentsline {section}{\numberline {1}Introduction and Motivation}{5}{section.1}%
-\contentsline {paragraph}{\nonumberline Aim of the Thesis}{6}{paragraph*.8}%
+\contentsline {paragraph}{\nonumberline Aim of the Thesis}{6}{paragraph*.7}%
 \contentsline {section}{\numberline {2}Related Work}{7}{section.2}%
 \contentsline {section}{\numberline {3}Preliminary Remarks}{8}{section.3}%
 \contentsline {section}{\numberline {4}Theoretical Background}{9}{section.4}%
-\contentsline {section}{\numberline {5}Theoretical Background}{10}{section.5}%
+\contentsline {section}{\numberline {5}Experiments Setup}{10}{section.5}%
 \contentsline {section}{\numberline {6}Experiments Results}{11}{section.6}%
-\contentsline {paragraph}{\nonumberline Motivation}{11}{paragraph*.10}%
+\contentsline {paragraph}{\nonumberline Motivation}{11}{paragraph*.9}%
 \contentsline {section}{\numberline {7}Outlook}{12}{section.7}%
 \contentsline {section}{\numberline {8}Conclusion}{13}{section.8}%
 \contentsline {section}{List of References}{14}{section.8}%
-\contentsline {section}{Appendix}{1}{section*.11}%
-\contentsline {section}{Declaration of Oath}{2}{section*.12}%
-\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file
+\contentsline {section}{Appendix}{1}{section*.10}%
+\contentsline {section}{Declaration of Oath}{2}{section*.11}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

@@ -4,18 +4,34 @@
 
 %##########################################
 % INTRO TO GDA
+The effectiveness of deep learning models is instrinsically linked to the availability of large and diverse datasets for training. Models with deep and complex architectures require extensive exposure to a wide range of data to learn underlying patterns and generalize well to unseen instances. Insufficient training data can lead to a phenomena called \textit{overfitting}, where a model becomes too specializied to the training data, failing to perfom accurately on previously unencountered data \cite{Ying2019overfittinganditssolutions}. 
+
+To mitigate the problem of data scarcity and improve generalization capabilities of deep learning models, data augmentation techniques became indispensable. Data augmentation artificially expands the amounts and diversity of training datasets by creating modified versions of existing data or by generating entirely new instances. \\
 %##########################################
 
 %##########################################
 % TRAD TECHNIQUES FOR GDA
+\textbf{Traditional Data Augmentation}\label{traditional_data_augmentation} \\
+Traditional data augmentation on images typically involves applying various tranformations to existing data. For image based data, augmentations can take a variaty of forms such as: 
+
+\textit{Geometric Augmentation}
+Modifying the shape, position and perspective: Rotation, Scaling, Flipping, Cropping, Shearing, Perspective Transform.
+
+\textit{Photometric Augmentation}
+Altering the pixel values while keeping the spatial structure: Brightness, Contrast, Hue Shift, Noise Injection, Blurring.
+
+\textit{Noise-Corruption Augmentation}
+Imitating real-world degradations and distorions of cameras and sensors: Gaussion Noise, Speckle Noise, Compression Artifacts, Salt-and-Pepper Noise.  
+
+\footnote{More traditional data augmentation techniques exists, e.g. Occlusion-Based, Composition-Based, Domain-Specific or Adversarial Augmentation. For the purpose of this work,  soley the afore mentioned are discussed in greater detail.}
+
+The sucess of the above mentioned augmentation techniques is established in many papers \cite{perez2017effectivenessdataaugmentationimage}, \cite{NIPS2012_c399862d}, \cite{Ying2019overfittinganditssolutions}, \cite{shorten2019survey}, \cite{WanLiZeiler2013}.
+
+
 %##########################################
 
 %##########################################
-% GANS FOR GDA
-%##########################################
-
-%##########################################
-% MADGANS FOR GDA
+% VANILLA GANS FOR GDA
 %##########################################
 
 %##########################################

@@ -64,12 +64,20 @@
 
 \bibitem[Kri09]{Krizhevsky2009learning}
 \textsc{Krizhevsky}, Alex:
-\newblock Learning Multiple Layers of Features from Tiny Images / University of
-  Toronto.
-\newblock \,Version:\,2009.
+\newblock \emph{Learning Multiple Layers of Features from Tiny Images}.
+\newblock Technical Report, University of Toronto.
 \newblock \url{https://www.cs.toronto.edu/~kriz/learning-features-2009-TR.pdf}.
-\newblock 2009. --
-\newblock Forschungsbericht
+\newblock \,Version:\,2009
+
+\bibitem[KSH12]{NIPS2012_c399862d}
+\textsc{Krizhevsky}, Alex ; \textsc{Sutskever}, Ilya  ; \textsc{Hinton},
+  Geoffrey~E. ; \textsc{Pereira}, F. (Hrsg.) ; \textsc{Burges}, C.J. (Hrsg.) ;
+  \textsc{Bottou}, L. (Hrsg.)  ; \textsc{Weinberger}, K.Q. (Hrsg.):
+\newblock \emph{ImageNet Classification with Deep Convolutional Neural
+  Networks}.
+\newblock
+  \url{https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf}.
+\newblock \,Version:\,2012
 
 \bibitem[LCB10]{lecun2010mnist}
 \textsc{LeCun}, Yann ; \textsc{Cortes}, Corinna  ; \textsc{Burges}, CJ:
@@ -94,13 +102,21 @@
 \newblock \url{https://arxiv.org/abs/1604.07379}.
 \newblock \,Version:\,2016
 
+\bibitem[PW17]{perez2017effectivenessdataaugmentationimage}
+\textsc{Perez}, Luis ; \textsc{Wang}, Jason:
+\newblock \emph{The Effectiveness of Data Augmentation in Image Classification
+  using Deep Learning}.
+\newblock \url{https://arxiv.org/abs/1712.04621}.
+\newblock \,Version:\,2017
+
 \bibitem[RAY{\etalchar{+}}16]{reed2016generativeadversarialtextimage}
 \textsc{Reed}, Scott ; \textsc{Akata}, Zeynep ; \textsc{Yan}, Xinchen ;
   \textsc{Logeswaran}, Lajanugen ; \textsc{Schiele}, Bernt  ; \textsc{Lee},
   Honglak:
 \newblock \emph{Generative Adversarial Text to Image Synthesis}.
 \newblock \url{https://arxiv.org/abs/1605.05396}.
-\newblock \,Version:\,2016
+\newblock \,Version:\,2016. --
+\newblock arXiv:1605.05396
 
 \bibitem[SGZ{\etalchar{+}}16]{salimans2016improvedtechniquestraininggans}
 \textsc{Salimans}, Tim ; \textsc{Goodfellow}, Ian ; \textsc{Zaremba}, Wojciech
@@ -120,7 +136,10 @@
 \bibitem[TFNL22]{Tanno2022repairingneuralnetworkfromcorrupt}
 \textsc{Tanno}, Ryutaro ; \textsc{F.Pradier}, Melanie ; \textsc{Nori}, Aditya
   ; \textsc{Li}, Yingzhen:
-\newblock \emph{Repairing Neural Networks by Leaving the Right Past Behind}
+\newblock Repairing Neural Networks by Leaving the Right Past Behind.
+\newblock   (2022), 07, S.~19.
+\newblock \url{http://dx.doi.org/10.48550/arXiv.2207.04806}. --
+\newblock DOI 10.48550/arXiv.2207.04806
 
 \bibitem[WWR{\etalchar{+}}23]{wang2023multimodalityguidedimagestyletransfer}
 \textsc{Wang}, Hanyu ; \textsc{Wu}, Pengxiang ; \textsc{Rosa}, Kevin~D. ;
@@ -130,10 +149,27 @@
 \newblock \url{https://arxiv.org/abs/2312.01671}.
 \newblock \,Version:\,2023
 
+\bibitem[WZZ{\etalchar{+}}13]{WanLiZeiler2013}
+\textsc{Wan}, Li ; \textsc{Zeiler}, Matthew ; \textsc{Zhang}, Sixin ;
+  \textsc{Le~Cun}, Yann  ; \textsc{Fergus}, Rob ; \textsc{Dasgupta}, Sanjoy
+  (Hrsg.) ; \textsc{McAllester}, David (Hrsg.):
+\newblock \emph{Regularization of Neural Networks using DropConnect}.
+\newblock \url{https://proceedings.mlr.press/v28/wan13.html}.
+\newblock \,Version:\,17--19 Jun 2013 (Proceedings of Machine Learning
+  Research)
+
 \bibitem[XRV17]{xiao2017fashionmnist}
 \textsc{Xiao}, Han ; \textsc{Rasul}, Kashif  ; \textsc{Vollgraf}, Roland:
 \newblock \emph{Fashion-MNIST: a Novel Image Dataset for Benchmarking Machine
   Learning Algorithms}.
 \newblock 2017
+
+\bibitem[Yin19]{Ying2019overfittinganditssolutions}
+\textsc{Ying}, Xue:
+\newblock An Overview of Overfitting and its Solutions.
+\newblock {In: }\emph{Journal of Physics: Conference Series} 1168 (2019), feb,
+  Nr. 2, 022022.
+\newblock \url{http://dx.doi.org/10.1088/1742-6596/1168/2/022022}. --
+\newblock DOI 10.1088/1742--6596/1168/2/022022
 
 \end{thebibliography}

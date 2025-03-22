@@ -10,49 +10,49 @@ Reallocating 'wiz_functions' (item size: 4) to 6000 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Database file #1: main.bib
-Warning--entry type for "Tanno2022repairingneuralnetworkfromcorrupt" isn't style-file defined
---line 223 of file main.bib
-Warning--empty number in Krizhevsky2009learning
-Warning--empty note in Krizhevsky2009learning
-You've used 17 entries,
+Warning--entry type for "NIPS2012_c399862d" isn't style-file defined
+--line 235 of file main.bib
+Warning--entry type for "WanLiZeiler2013" isn't style-file defined
+--line 413 of file main.bib
+You've used 21 entries,
             4793 wiz_defined-function locations,
-            983 strings with 10201 characters,
-and the built_in function-call counts, 15188 in all, are:
-= -- 1531
-> -- 563
-< -- 674
-+ -- 801
-- -- 218
-* -- 1041
-:= -- 2750
-add.period$ -- 31
-call.type$ -- 17
-change.case$ -- 131
-chr.to.int$ -- 17
-cite$ -- 19
-duplicate$ -- 312
-empty$ -- 731
-format.name$ -- 377
-if$ -- 2709
+            1022 strings with 11474 characters,
+and the built_in function-call counts, 18694 in all, are:
+= -- 1885
+> -- 670
+< -- 786
++ -- 930
+- -- 255
+* -- 1311
+:= -- 3363
+add.period$ -- 41
+call.type$ -- 21
+change.case$ -- 154
+chr.to.int$ -- 21
+cite$ -- 21
+duplicate$ -- 393
+empty$ -- 947
+format.name$ -- 451
+if$ -- 3379
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 93
-newline$ -- 114
-num.names$ -- 51
-pop$ -- 164
+missing$ -- 121
+newline$ -- 142
+num.names$ -- 65
+pop$ -- 193
 preamble$ -- 1
-purify$ -- 165
+purify$ -- 196
 quote$ -- 0
-skip$ -- 932
+skip$ -- 1096
 stack$ -- 0
-substring$ -- 998
-swap$ -- 102
-text.length$ -- 84
-text.prefix$ -- 1
+substring$ -- 1315
+swap$ -- 128
+text.length$ -- 105
+text.prefix$ -- 2
 top$ -- 0
-type$ -- 170
-warning$ -- 2
-while$ -- 133
-width$ -- 20
-write$ -- 235
-(There were 3 warnings)
+type$ -- 212
+warning$ -- 0
+while$ -- 166
+width$ -- 26
+write$ -- 297
+(There were 2 warnings)
