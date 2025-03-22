@@ -132,7 +132,7 @@ class MNISTS_MADGAN_Experiment(BaseMADGANExperiment):
                 dataset=self.dataset_name,
                 latent_dim=self.latent_dim,
                 dir_name=self.dir_path,
-                score_calculation_freq=5,
+                score_calculation_freq=1,
                 total_epochs=self.epochs,
             ),
             # the epoch variable in the f-string is available in the callback

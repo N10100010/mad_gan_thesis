@@ -26,7 +26,7 @@ def plot_scores(data):
     plt.legend()
     plt.grid(True)
     
-    plt.savefig("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/CIFAR_MADGAN_MODELS_PROTOTYPES/2025-03-20_CIFAR_MADGAN_Experiment___big__latent_2048_3_gen_500_epochs/scores/FID.png")
+    plt.savefig("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/CIFAR_MADGAN_MODELS_PROTOTYPES/2025-03-21_CIFAR_MADGAN_Experiment___big__latent_2048_3_gen_500_epochs/scores/FID.png")
 
     plt.close()
 
@@ -51,11 +51,11 @@ def plot_scores(data):
 
     axes[-1].set_xlabel("Epochs")
     plt.tight_layout()
-    plt.savefig("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/CIFAR_MADGAN_MODELS_PROTOTYPES/2025-03-20_CIFAR_MADGAN_Experiment___big__latent_2048_3_gen_500_epochs/scores/IS.png")
+    plt.savefig("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/CIFAR_MADGAN_MODELS_PROTOTYPES/2025-03-21_CIFAR_MADGAN_Experiment___big__latent_2048_3_gen_500_epochs/scores/IS.png")
 
 
 
-with open("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/CIFAR_MADGAN_MODELS_PROTOTYPES/2025-03-20_CIFAR_MADGAN_Experiment___big__latent_2048_3_gen_500_epochs/scores/metrics.json", "r") as f:
+with open("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/CIFAR_MADGAN_MODELS_PROTOTYPES/2025-03-21_CIFAR_MADGAN_Experiment___big__latent_2048_3_gen_500_epochs/scores/metrics.json", "r") as f:
     data = json.load(f)
 
 
