@@ -10,8 +10,10 @@
 \nomenclatureentry{aGANs@[{GANs}]\begingroup Generative Adversarial Networks\nomeqref {0}|nompageref}{4}
 \nomenclatureentry{aMADGAN@[{MADGAN}]\begingroup Multi-Agent Diverse Generative Adversarial Network\nomeqref {0}|nompageref}{4}
 \nomenclatureentry{aMADGANs@[{MADGANs}]\begingroup Multi-Agent Diverse Generative Adversarial Networks\nomeqref {0}|nompageref}{4}
-\nomenclatureentry{aCGAN@[{CGAN}]\begingroup Conditional Generative Adversarial Network\nomeqref {0}|nompageref}{4}
-\nomenclatureentry{aCGANs@[{CGANs}]\begingroup Conditional Generative Adversarial Networks\nomeqref {0}|nompageref}{4}
+\nomenclatureentry{acGAN@[{cGAN}]\begingroup Conditional Generative Adversarial Network\nomeqref {0}|nompageref}{4}
+\nomenclatureentry{acGANs@[{cGANs}]\begingroup Conditional Generative Adversarial Networks\nomeqref {0}|nompageref}{4}
+\nomenclatureentry{aDCGAN@[{DCGAN}]\begingroup Deep Convolutional Generative Adversarial Network\nomeqref {0}|nompageref}{4}
+\nomenclatureentry{aDCGANs@[{DCGANs}]\begingroup Deep Convolutional Generative Adversarial Networks\nomeqref {0}|nompageref}{4}
 \nomenclatureentry{aVAE@[{VAE}]\begingroup Variational Auto Encoder\nomeqref {0}|nompageref}{4}
 \nomenclatureentry{aVAEs@[{VAEs}]\begingroup Variational Auto Encoders\nomeqref {0}|nompageref}{4}
 \nomenclatureentry{aFID@[{FID}]\begingroup Fréchet Inception Distance\nomeqref {0}|nompageref}{4}

@@ -16,6 +16,14 @@
 \newblock \url{https://arxiv.org/abs/2306.02019}.
 \newblock \,Version:\,2023
 
+\bibitem[DHYY17]{dong2017museganmultitracksequentialgenerative}
+\textsc{Dong}, Hao-Wen ; \textsc{Hsiao}, Wen-Yi ; \textsc{Yang}, Li-Chia  ;
+  \textsc{Yang}, Yi-Hsuan:
+\newblock \emph{MuseGAN: Multi-track Sequential Generative Adversarial Networks
+  for Symbolic Music Generation and Accompaniment}.
+\newblock \url{https://arxiv.org/abs/1709.06298}.
+\newblock \,Version:\,2017
+
 \bibitem[GKN{\etalchar{+}}18]{ghosh2018multiagentdiversegenerativeadversarial}
 \textsc{Ghosh}, Arnab ; \textsc{Kulharia}, Viveka ; \textsc{Namboodiri}, Vinay
   ; \textsc{Torr}, Philip H.~S.  ; \textsc{Dokania}, Puneet~K.:
@@ -30,6 +38,15 @@
 \newblock \emph{Generative Adversarial Networks}.
 \newblock \url{https://arxiv.org/abs/1406.2661}.
 \newblock \,Version:\,2014
+
+\bibitem[HFM22]{huang2022tutorial}
+\textsc{Huang}, Y. ; \textsc{Fields}, K.~G.  ; \textsc{Ma}, Y.:
+\newblock A Tutorial on Generative Adversarial Networks with Application to
+  Classification of Imbalanced Data.
+\newblock {In: }\emph{Statistical Analysis and Data Mining} 15 (2022), Nr. 5,
+  S. 543--552.
+\newblock \url{http://dx.doi.org/10.1002/sam.11570}. --
+\newblock DOI 10.1002/sam.11570
 
 \bibitem[HRU{\etalchar{+}}18]{heusel2018ganstrainedtimescaleupdate}
 \textsc{Heusel}, Martin ; \textsc{Ramsauer}, Hubert ; \textsc{Unterthiner},
@@ -79,11 +96,28 @@
   \url{https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf}.
 \newblock \,Version:\,2012
 
+\bibitem[LBD{\etalchar{+}}89]{LeCun1989firstcnnpaper}
+\textsc{LeCun}, Y. ; \textsc{Boser}, B. ; \textsc{Denker}, J.~S. ;
+  \textsc{Henderson}, D. ; \textsc{Howard}, R.~E. ; \textsc{Hubbard}, W.  ;
+  \textsc{Jackel}, L.~D.:
+\newblock Backpropagation Applied to Handwritten Zip Code Recognition.
+\newblock {In: }\emph{Neural Computation} 1 (1989), Nr. 4, S. 541--551.
+\newblock \url{http://dx.doi.org/10.1162/neco.1989.1.4.541}. --
+\newblock DOI 10.1162/neco.1989.1.4.541
+
 \bibitem[LCB10]{lecun2010mnist}
 \textsc{LeCun}, Yann ; \textsc{Cortes}, Corinna  ; \textsc{Burges}, CJ:
 \newblock MNIST handwritten digit database.
 \newblock {In: }\emph{ATT Labs [Online]. Available:
   http://yann.lecun.com/exdb/mnist} 2 (2010)
+
+\bibitem[LMWN22]{li2022ttsgantransformerbasedtimeseriesgenerative}
+\textsc{Li}, Xiaomin ; \textsc{Metsis}, Vangelis ; \textsc{Wang}, Huangyingrui
+  ; \textsc{Ngu}, Anne Hee~H.:
+\newblock \emph{TTS-GAN: A Transformer-based Time-Series Generative Adversarial
+  Network}.
+\newblock \url{https://arxiv.org/abs/2202.02691}.
+\newblock \,Version:\,2022
 
 \bibitem[LTH{\etalchar{+}}17]{ledig2017photorealisticsingleimagesuperresolution}
 \textsc{Ledig}, Christian ; \textsc{Theis}, Lucas ; \textsc{Huszar}, Ferenc ;
@@ -164,6 +198,13 @@
   Learning Algorithms}.
 \newblock 2017
 
+\bibitem[XSCIV19]{xu2019modelingtabulardatausing}
+\textsc{Xu}, Lei ; \textsc{Skoularidou}, Maria ; \textsc{Cuesta-Infante},
+  Alfredo  ; \textsc{Veeramachaneni}, Kalyan:
+\newblock \emph{Modeling Tabular data using Conditional GAN}.
+\newblock \url{https://arxiv.org/abs/1907.00503}.
+\newblock \,Version:\,2019
+
 \bibitem[Yin19]{Ying2019overfittinganditssolutions}
 \textsc{Ying}, Xue:
 \newblock An Overview of Overfitting and its Solutions.
@@ -171,5 +212,21 @@
   Nr. 2, 022022.
 \newblock \url{http://dx.doi.org/10.1088/1742-6596/1168/2/022022}. --
 \newblock DOI 10.1088/1742--6596/1168/2/022022
+
+\bibitem[YZWY17]{yu2017seqgansequencegenerativeadversarial}
+\textsc{Yu}, Lantao ; \textsc{Zhang}, Weinan ; \textsc{Wang}, Jun  ;
+  \textsc{Yu}, Yong:
+\newblock \emph{SeqGAN: Sequence Generative Adversarial Nets with Policy
+  Gradient}.
+\newblock \url{https://arxiv.org/abs/1609.05473}.
+\newblock \,Version:\,2017
+
+\bibitem[ZCWD23]{zhao2023gan}
+\textsc{Zhao}, Gaochang ; \textsc{Cai}, Zhao ; \textsc{Wang}, Xin  ;
+  \textsc{Dang}, Xiaohu:
+\newblock GAN Data Augmentation Methods in Rock Classification.
+\newblock {In: }\emph{Applied Sciences} 13 (2023), Nr. 9, S. 5316.
+\newblock \url{http://dx.doi.org/10.3390/app13095316}. --
+\newblock DOI 10.3390/app13095316
 
 \end{thebibliography}

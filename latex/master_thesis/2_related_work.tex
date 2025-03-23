@@ -12,7 +12,9 @@ To mitigate the problem of data scarcity and improve generalization capabilities
 %##########################################
 % TRAD TECHNIQUES FOR GDA
 \textbf{Traditional Data Augmentation}\label{traditional_data_augmentation} \\
-Traditional data augmentation on images typically involves applying various tranformations to existing data. For image based data, augmentations can take a variaty of forms such as: 
+Traditional data augmentation on images typically involves applying various tranformations to existing data. For image based data, augmentations can take a variaty of forms such as
+\footnote{More traditional data augmentation techniques exists, such as Occlusion-Based, Composition-Based, Domain-Specific or Adversarial Augmentation. For the purpose of this work,  soley the afore mentioned are discussed in greater detail.}
+: 
 
 \textit{Geometric Augmentation}
 Modifying the shape, position and perspective: Rotation, Scaling, Flipping, Cropping, Shearing, Perspective Transform.
@@ -21,17 +23,34 @@ Modifying the shape, position and perspective: Rotation, Scaling, Flipping, Crop
 Altering the pixel values while keeping the spatial structure: Brightness, Contrast, Hue Shift, Noise Injection, Blurring.
 
 \textit{Noise-Corruption Augmentation}
-Imitating real-world degradations and distorions of cameras and sensors: Gaussion Noise, Speckle Noise, Compression Artifacts, Salt-and-Pepper Noise.  
+Imitating real-world degradations and distorions of cameras and sensors: Gaussion Noise, Speckle Noise, Salt-and-Pepper Noise.
 
-\footnote{More traditional data augmentation techniques exists, e.g. Occlusion-Based, Composition-Based, Domain-Specific or Adversarial Augmentation. For the purpose of this work,  soley the afore mentioned are discussed in greater detail.}
+The sucess of the above mentioned augmentation techniques is established in many papers \cite{perez2017effectivenessdataaugmentationimage}, \cite{NIPS2012_c399862d}, \cite{Ying2019overfittinganditssolutions}, \cite{shorten2019survey}, \cite{WanLiZeiler2013}.\\
 
-The sucess of the above mentioned augmentation techniques is established in many papers \cite{perez2017effectivenessdataaugmentationimage}, \cite{NIPS2012_c399862d}, \cite{Ying2019overfittinganditssolutions}, \cite{shorten2019survey}, \cite{WanLiZeiler2013}.
+
+
+%##########################################
 
 
 %##########################################
+% GANS Creating Data
+The basic GAN framework introduced by Goodfellow and collegues offers a high degree of flexibility and can be adapted for specific augmentation tasks. It can be applied to generate music \cite{dong2017museganmultitracksequentialgenerative}, speech \cite{li2022ttsgantransformerbasedtimeseriesgenerative}, text \cite{yu2017seqgansequencegenerativeadversarial}, images \cite{goodfellow2014generativeadversarialnetworks} or other instances of data, e.g. tabular data \cite{xu2019modelingtabulardatausing}. 
+%##########################################
 
 %##########################################
-% VANILLA GANS FOR GDA
+% GANS for GDA
+Especially for image data, \textit{Deep Convolutional GANs} (DCGANs) represent a significant advacement in applying GANs to iamge data augmentation \cite{huang2022tutorial}. Their architecture specifically utilizes \textit{Convolutional Neural Network} (CNNs) \cite{LeCun1989firstcnnpaper} in both, the generator and the discriminator. The use of CNNs allows DCGANs to learn hierarchical features from the input images and capture the spatial relationship and structure inherent in images. This leads to the generation of more realistic and coherent synthetic images. A study from Zhau et al. \cite{zhao2023gan} applied DCGANs, along their adjusted version of those on multiple dataset, including \textit{Fashion MNIST} and \textit{Cifar10}. With their experimental setup, they achieved consistent significant improvements over multiple datasets using the DCGAN-architechture, compared to their baseline. 
+
+% nice study failing to apply DCGANs to CIFAR10: https://www.researchgate.net/publication/383101057_Exploiting_Deep_Convolutional_Generative_Adversarial_Network_Generated_Images_for_Enhanced_Image_Classification/fulltext/66bce091311cbb094938deea/Exploiting-Deep-Convolutional-Generative-Adversarial-Network-Generated-Images-for-Enhanced-Image-Classification.pdf?origin=publication_detail&_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6InB1YmxpY2F0aW9uIiwicGFnZSI6InB1YmxpY2F0aW9uRG93bmxvYWQiLCJwcmV2aW91c1BhZ2UiOiJwdWJsaWNhdGlvbiJ9fQ&__cf_chl_tk=jOsX37wVwQerStwY02d0Dn.GJqfKfJdurmBpFfvIDmA-1742762383-1.0.1.1-Y2HfBG9ppzh.6K_kc.NyRkesLnTxRtvaVk_KZ2mzJn4
+%##########################################
+
+
+
+%##########################################
+% Transition to cGANs
+Inherently in the vanilla version of GANs or the DCGANs, the generators role is soley to learn the underlying data distribution of the training samples and produce instances of close resemblance to instances from the training data. This however results in unlabeled samples, not to be beneficial to expand data for a supervised classification task. 
+% Conditional GANS FOR GDA
+The introduction of \textit{Conditional Generative Adversarial Networks} (cGANs) allowed to condition the generative process by additional information, such as class labels. 
 %##########################################
 
 %##########################################
