@@ -79,6 +79,15 @@
 \newblock \url{https://arxiv.org/abs/2011.06801}.
 \newblock \,Version:\,2020
 
+\bibitem[JPB22]{jeong2022gan}
+\textsc{Jeong}, Jason ; \textsc{Patel}, B.  ; \textsc{Banerjee}, I.:
+\newblock GAN augmentation for multiclass image classification using hemorrhage
+  detection as a case-study.
+\newblock {In: }\emph{Journal of Medical Imaging (Bellingham, Wash.)} 9 (2022),
+  Nr. 3, S. 035504.
+\newblock \url{http://dx.doi.org/10.1117/1.JMI.9.3.035504}. --
+\newblock DOI 10.1117/1.JMI.9.3.035504
+
 \bibitem[Kri09]{Krizhevsky2009learning}
 \textsc{Krizhevsky}, Alex:
 \newblock \emph{Learning Multiple Layers of Features from Tiny Images}.
@@ -129,6 +138,12 @@
 \newblock \url{https://arxiv.org/abs/1609.04802}.
 \newblock \,Version:\,2017
 
+\bibitem[MO14]{mirza2014conditionalgenerativeadversarialnets}
+\textsc{Mirza}, Mehdi ; \textsc{Osindero}, Simon:
+\newblock \emph{Conditional Generative Adversarial Nets}.
+\newblock \url{https://arxiv.org/abs/1411.1784}.
+\newblock \,Version:\,2014
+
 \bibitem[PKD{\etalchar{+}}16]{pathak2016contextencodersfeaturelearning}
 \textsc{Pathak}, Deepak ; \textsc{Krahenbuhl}, Philipp ; \textsc{Donahue}, Jeff
   ; \textsc{Darrell}, Trevor  ; \textsc{Efros}, Alexei~A.:
@@ -152,6 +167,17 @@
 \newblock \,Version:\,2016. --
 \newblock arXiv:1605.05396
 
+\bibitem[RCF25]{cGANGDA2025asurveyreview}
+\textsc{Ribas}, Lucas~C. ; \textsc{Casaca}, Wallace  ; \textsc{Fares},
+  Ricardo~T.:
+\newblock Conditional Generative Adversarial Networks and Deep Learning Data
+  Augmentation: A Multi-Perspective Data-Driven Survey Across Multiple
+  Application Fields and Classification Architectures.
+\newblock {In: }\emph{AI} 6 (2025), Nr. 2.
+\newblock \url{http://dx.doi.org/10.3390/ai6020032}. --
+\newblock DOI 10.3390/ai6020032. --
+\newblock ISSN 2673--2688
+
 \bibitem[SGZ{\etalchar{+}}16]{salimans2016improvedtechniquestraininggans}
 \textsc{Salimans}, Tim ; \textsc{Goodfellow}, Ian ; \textsc{Zaremba}, Wojciech
   ; \textsc{Cheung}, Vicki ; \textsc{Radford}, Alec  ; \textsc{Chen}, Xi:
@@ -174,6 +200,14 @@
 \newblock   (2022), 07, S.~19.
 \newblock \url{http://dx.doi.org/10.48550/arXiv.2207.04806}. --
 \newblock DOI 10.48550/arXiv.2207.04806
+
+\bibitem[WM21]{wickramaratne2021conditional}
+\textsc{Wickramaratne}, S.~D. ; \textsc{Mahmud}, M.~S.:
+\newblock Conditional-GAN Based Data Augmentation for Deep Learning Task
+  Classifier Improvement Using fNIRS Data.
+\newblock {In: }\emph{Frontiers in Big Data} 4 (2021), S. 659146.
+\newblock \url{http://dx.doi.org/10.3389/fdata.2021.659146}. --
+\newblock DOI 10.3389/fdata.2021.659146
 
 \bibitem[WWR{\etalchar{+}}23]{wang2023multimodalityguidedimagestyletransfer}
 \textsc{Wang}, Hanyu ; \textsc{Wu}, Pengxiang ; \textsc{Rosa}, Kevin~D. ;
