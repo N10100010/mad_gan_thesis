@@ -53,27 +53,15 @@ Inherently in the vanilla version of GANs or the DCGANs realization of using con
 % Conditional GANS FOR GDA
 
 \noindent\textbf{Generative Data Augmentation using Conditional GANs}\label{cgans_data_augmentation} \\
-The introduction of \textit{Conditional Generative Adversarial Networks} (cGANs) \cite{mirza2014conditionalgenerativeadversarialnets} allows to condition the generative process by additional information, such as class labels or other modalities. The conditioning acts on both the generator and the discriminator, which means that both models have access to the same conditional information. The generator combines the random vector input and the conditioning information into a joint hidden representation. The discriminator, on the other hand, evaluates the created data from generator, given context of the conditining information, i.e. the class label passed. This approach enables the generator to create data that adheres to specific inputs, like creating specific digits from the MNIST dataset \ref{used_datasets}. Multiple papers were able to utilize the advantages of cGANs, to e.g. unify class distributions for a stratified classifier training or generatively increase the number of images and augmenting the training data
-%first the papsr for class imbalances
-%then the papers for improvement:
-\cite{jeong2022gan}
-\cite{zhao2023gan}
-\cite{cGANGDA2025asurveyreview}
-\cite{wickramaratne2021conditional}
-.
-
-
-
-% good reference: cGANGDA2025asurveyreview
-
+The introduction of \textit{Conditional Generative Adversarial Networks} (cGANs) \cite{mirza2014conditionalgenerativeadversarialnets} allows to condition the generative process by additional information, such as class labels or other modalities. The conditioning acts on both the generator and the discriminator, which means that both models have access to the same conditional information. The generator combines the random vector input and the conditioning information into a joint hidden representation. The discriminator, on the other hand, evaluates the created data from generator, given context of the conditining information, i.e. the class label passed. This approach enables the generator to create data that adheres to specific inputs, like creating specific digits from the MNIST dataset \ref{used_datasets}. Multiple papers were able to utilize the advantages of cGANs, to e.g. unify class distributions for a stratified classifier training or generatively increase the number of images and augmenting the training data\cite{jeong2022gan}\cite{zhao2023gan}\cite{cGANGDA2025asurveyreview}\cite{wickramaratne2021conditional}.
 %##########################################
 
 %##########################################
-% MADGANS FOR GDA
+% MADGANS FOR GDA ghosh2018madgan
+\noindent\textbf{Generative Data Augmentation using MADGANs}\label{madgans_data_augmentation} \\
+Regardless of the mentioned sucesses using GANs (DCGANs or cGANs) for GDA \ref{dcgans_data_augmentation} \ref{cgans_data_augmentation}, GANs in general have proven to be notoriously hard to train. "\textit{Among them, mode collapse stands out as one of the most daunting ones.}" \cite{durall2020combatingmodecollapsegan}, which limits the GANs ability to generate diverse samples, able to be assigned to all classes trained on. Another prominent problem with GANs is the Lack of inter-class diversity between generated samples.
+
+MADGANs \cite{ghosh2018madgan} emphasis on diversity, achieved through its multi-agent architecture and the modified discriminator objective function, directly addresses these limitations. By encouraging multiple generators to specialize in different modes of the data distribution, MADGAN aims to generate a more comprehensive and diverse set of synthetic samples compared to traditional GANs and potentially other generative data augmentation techniques that might be susceptible to mode collapse. The ability of MADGAN to disentangle different modalities i.e. classes, as suggested by experiments involving diverse-class datasets, indicates its potential to generate augmented data that effectively covers both intra-class and inter-class variations. This comprehensive coverage is crucial for training robust image classifiers that can generalize well to a wide range of real-world scenarios.
 %##########################################
-
-
-
-
 
 \newpage

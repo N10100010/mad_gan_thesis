@@ -16,6 +16,14 @@
 \newblock \url{https://arxiv.org/abs/2306.02019}.
 \newblock \,Version:\,2023
 
+\bibitem[DCLK20]{durall2020combatingmodecollapsegan}
+\textsc{Durall}, Ricard ; \textsc{Chatzimichailidis}, Avraam ; \textsc{Labus},
+  Peter  ; \textsc{Keuper}, Janis:
+\newblock \emph{Combating Mode Collapse in GAN training: An Empirical Analysis
+  using Hessian Eigenvalues}.
+\newblock \url{https://arxiv.org/abs/2012.09673}.
+\newblock \,Version:\,2020
+
 \bibitem[DHYY17]{dong2017museganmultitracksequentialgenerative}
 \textsc{Dong}, Hao-Wen ; \textsc{Hsiao}, Wen-Yi ; \textsc{Yang}, Li-Chia  ;
   \textsc{Yang}, Yi-Hsuan:
@@ -24,7 +32,7 @@
 \newblock \url{https://arxiv.org/abs/1709.06298}.
 \newblock \,Version:\,2017
 
-\bibitem[GKN{\etalchar{+}}18]{ghosh2018multiagentdiversegenerativeadversarial}
+\bibitem[GKN{\etalchar{+}}18]{ghosh2018madgan}
 \textsc{Ghosh}, Arnab ; \textsc{Kulharia}, Viveka ; \textsc{Namboodiri}, Vinay
   ; \textsc{Torr}, Philip H.~S.  ; \textsc{Dokania}, Puneet~K.:
 \newblock \emph{Multi-Agent Diverse Generative Adversarial Networks}.
