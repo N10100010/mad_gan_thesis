@@ -1,4 +1,4 @@
-\babel@toc {english}{}\relax
+\babel@toc {english}{}\relax 
 \contentsline {section}{List of Figures}{4}{section*.3}%
 \contentsline {section}{List of Tables}{4}{section*.4}%
 \contentsline {section}{List of Abbreviations}{4}{section*.5}%
@@ -35,4 +35,4 @@
 \contentsline {section}{List of References}{18}{section.8}%
 \contentsline {section}{Appendix}{1}{section*.16}%
 \contentsline {section}{Declaration of Oath}{2}{section*.17}%
-\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
