@@ -14,45 +14,45 @@ Warning--entry type for "NIPS2012_c399862d" isn't style-file defined
 --line 235 of file main.bib
 Warning--entry type for "WanLiZeiler2013" isn't style-file defined
 --line 413 of file main.bib
-You've used 33 entries,
+You've used 35 entries,
             4793 wiz_defined-function locations,
-            1090 strings with 14125 characters,
-and the built_in function-call counts, 29314 in all, are:
-= -- 2980
-> -- 1014
-< -- 1124
-+ -- 1341
-- -- 392
-* -- 2127
-:= -- 5155
-add.period$ -- 65
-call.type$ -- 33
-change.case$ -- 234
-chr.to.int$ -- 33
-cite$ -- 33
-duplicate$ -- 628
-empty$ -- 1604
-format.name$ -- 678
-if$ -- 5412
-int.to.chr$ -- 1
+            1101 strings with 14515 characters,
+and the built_in function-call counts, 30823 in all, are:
+= -- 3140
+> -- 1058
+< -- 1170
++ -- 1396
+- -- 408
+* -- 2234
+:= -- 5402
+add.period$ -- 69
+call.type$ -- 35
+change.case$ -- 245
+chr.to.int$ -- 34
+cite$ -- 35
+duplicate$ -- 665
+empty$ -- 1704
+format.name$ -- 705
+if$ -- 5710
+int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 192
-newline$ -- 221
-num.names$ -- 101
-pop$ -- 296
+missing$ -- 204
+newline$ -- 234
+num.names$ -- 107
+pop$ -- 311
 preamble$ -- 1
-purify$ -- 300
+purify$ -- 315
 quote$ -- 0
-skip$ -- 1621
+skip$ -- 1700
 stack$ -- 0
-substring$ -- 2262
-swap$ -- 202
-text.length$ -- 161
+substring$ -- 2391
+swap$ -- 212
+text.length$ -- 168
 text.prefix$ -- 2
 top$ -- 0
-type$ -- 332
+type$ -- 352
 warning$ -- 0
-while$ -- 259
-width$ -- 37
-write$ -- 473
+while$ -- 273
+width$ -- 39
+write$ -- 502
 (There were 2 warnings)

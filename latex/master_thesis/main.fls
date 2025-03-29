@@ -35,6 +35,16 @@ INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\tex\latex\algorithms\algorith
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\tex\latex\algorithms\algorithmic.sty
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\tex\latex\natbib\natbib.sty
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\tex\latex\natbib\natbib.sty
+INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amsmath.sty
+INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amsmath.sty
+INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amsopn.sty
+INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amstext.sty
+INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amstext.sty
+INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amsgen.sty
+INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amsgen.sty
+INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amsbsy.sty
+INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amsbsy.sty
+INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amsopn.sty
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\tex\latex\base\inputenc.sty
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\tex\latex\base\inputenc.sty
 INPUT .\tertiary_docs\variablen.tex
@@ -348,6 +358,9 @@ INPUT 3_body_background.tex
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmssbx10.tfm
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathit.enc
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathsy.enc
+INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbx8.tfm
+INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmr6.tfm
+INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbx6.tfm
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathex.enc
 INPUT .\4_body_prelim.tex
 INPUT .\4_body_prelim.tex

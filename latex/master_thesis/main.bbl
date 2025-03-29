@@ -64,6 +64,13 @@
 \newblock \url{https://arxiv.org/abs/1706.08500}.
 \newblock \,Version:\,2018
 
+\bibitem[IS15]{ioffe2015batchnormalizationacceleratingdeep}
+\textsc{Ioffe}, Sergey ; \textsc{Szegedy}, Christian:
+\newblock \emph{Batch Normalization: Accelerating Deep Network Training by
+  Reducing Internal Covariate Shift}.
+\newblock \url{https://arxiv.org/abs/1502.03167}.
+\newblock \,Version:\,2015
+
 \bibitem[IZZE18]{isola2018imagetoimagetranslationconditionaladversarial}
 \textsc{Isola}, Phillip ; \textsc{Zhu}, Jun-Yan ; \textsc{Zhou}, Tinghui  ;
   \textsc{Efros}, Alexei~A.:
@@ -103,7 +110,7 @@
 \newblock \url{https://www.cs.toronto.edu/~kriz/learning-features-2009-TR.pdf}.
 \newblock \,Version:\,2009
 
-\bibitem[KSH12]{NIPS2012_c399862d}
+\bibitem[KSH12a]{NIPS2012_c399862d}
 \textsc{Krizhevsky}, Alex ; \textsc{Sutskever}, Ilya  ; \textsc{Hinton},
   Geoffrey~E. ; \textsc{Pereira}, F. (Hrsg.) ; \textsc{Burges}, C.J. (Hrsg.) ;
   \textsc{Bottou}, L. (Hrsg.)  ; \textsc{Weinberger}, K.Q. (Hrsg.):
@@ -112,6 +119,14 @@
 \newblock
   \url{https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf}.
 \newblock \,Version:\,2012
+
+\bibitem[KSH12b]{Krizhevsky2012traditionaldataaugmentation}
+\textsc{Krizhevsky}, Alex ; \textsc{Sutskever}, Ilya  ; \textsc{Hinton},
+  Geoffrey~E.:
+\newblock ImageNet Classification with Deep Convolutional Neural Networks.
+\newblock {In: }\emph{Communications of the ACM} 60 (2012), Nr. 6, S. 84--90.
+\newblock \url{http://dx.doi.org/10.1145/3065386}. --
+\newblock DOI 10.1145/3065386
 
 \bibitem[LBD{\etalchar{+}}89]{LeCun1989firstcnnpaper}
 \textsc{LeCun}, Y. ; \textsc{Boser}, B. ; \textsc{Denker}, J.~S. ;

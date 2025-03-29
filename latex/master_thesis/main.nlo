@@ -18,3 +18,4 @@
 \nomenclatureentry{aVAEs@[{VAEs}]\begingroup Variational Auto Encoders\nomeqref {0}|nompageref}{4}
 \nomenclatureentry{aFID@[{FID}]\begingroup Fréchet Inception Distance\nomeqref {0}|nompageref}{4}
 \nomenclatureentry{aIS@[{IS}]\begingroup Inception Score\nomeqref {0}|nompageref}{4}
+\nomenclatureentry{abatchnorm@[{batchnorm}]\begingroup Batch Normalization\nomeqref {0}|nompageref}{4}

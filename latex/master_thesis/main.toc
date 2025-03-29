@@ -13,26 +13,27 @@
 \contentsline {subsubsection}{\numberline {3.1.1}Neural Networks for Classification}{9}{subsubsection.3.1.1}%
 \contentsline {subsubsection}{\numberline {3.1.2}Classification Models for augmented Training}{12}{subsubsection.3.1.2}%
 \contentsline {subsection}{\numberline {3.2}Data Augmentation - DA}{12}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Generative Data Augmentation - GDA}{12}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Generative Adversarial Network - GAN}{12}{subsection.3.4}%
-\contentsline {subsubsection}{\numberline {3.4.1}Challenges in GAN Training}{12}{subsubsection.3.4.1}%
-\contentsline {subsubsection}{\numberline {3.4.2}Mode Collapse}{12}{subsubsection.3.4.2}%
-\contentsline {subsubsection}{\numberline {3.4.3}Training Instability}{12}{subsubsection.3.4.3}%
-\contentsline {subsubsection}{\numberline {3.4.4}Evaluation Difficulties}{12}{subsubsection.3.4.4}%
-\contentsline {subsection}{\numberline {3.5}Deep Convolutional Generative Adversarial Network - DCGAN}{12}{subsection.3.5}%
-\contentsline {subsection}{\numberline {3.6}Conditional Generative Adversarial Network - cGAN}{12}{subsection.3.6}%
-\contentsline {subsection}{\numberline {3.7}Multi-Agent Diverse Generative Adversarial Network - MADGAN}{12}{subsection.3.7}%
-\contentsline {subsection}{\numberline {3.8}Image Scores}{12}{subsection.3.8}%
-\contentsline {subsubsection}{\numberline {3.8.1}Inception Score - IS}{12}{subsubsection.3.8.1}%
-\contentsline {subsubsection}{\numberline {3.8.2}Fréchet Inception Distance - FID}{12}{subsubsection.3.8.2}%
-\contentsline {subsubsection}{\numberline {3.8.3}InceptionV3 Model}{12}{subsubsection.3.8.3}%
-\contentsline {section}{\numberline {4}Preliminary Remarks}{13}{section.4}%
-\contentsline {section}{\numberline {5}Experiments Setup}{14}{section.5}%
-\contentsline {section}{\numberline {6}Experiments Results}{15}{section.6}%
-\contentsline {paragraph}{\nonumberline Motivation}{15}{paragraph*.15}%
-\contentsline {section}{\numberline {7}Outlook}{16}{section.7}%
-\contentsline {section}{\numberline {8}Conclusion}{17}{section.8}%
-\contentsline {section}{List of References}{18}{section.8}%
+\contentsline {subsubsection}{\numberline {3.2.1}Traditional Data Augmentation - TDA}{12}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Generative Data Augmentation - GDA}{13}{subsubsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.3}Generative Adversarial Network - GAN}{13}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Challenges in GAN Training}{13}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Mode Collapse}{13}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Training Instability}{13}{subsubsection.3.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.4}Evaluation Difficulties}{13}{subsubsection.3.3.4}%
+\contentsline {subsection}{\numberline {3.4}Deep Convolutional Generative Adversarial Network - DCGAN}{13}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Conditional Generative Adversarial Network - cGAN}{13}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Multi-Agent Diverse Generative Adversarial Network - MADGAN}{13}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Image Scores}{13}{subsection.3.7}%
+\contentsline {subsubsection}{\numberline {3.7.1}Inception Score - IS}{13}{subsubsection.3.7.1}%
+\contentsline {subsubsection}{\numberline {3.7.2}Fréchet Inception Distance - FID}{13}{subsubsection.3.7.2}%
+\contentsline {subsubsection}{\numberline {3.7.3}InceptionV3 Model}{13}{subsubsection.3.7.3}%
+\contentsline {section}{\numberline {4}Preliminary Remarks}{14}{section.4}%
+\contentsline {section}{\numberline {5}Experiments Setup}{15}{section.5}%
+\contentsline {section}{\numberline {6}Experiments Results}{16}{section.6}%
+\contentsline {paragraph}{\nonumberline Motivation}{16}{paragraph*.15}%
+\contentsline {section}{\numberline {7}Outlook}{17}{section.7}%
+\contentsline {section}{\numberline {8}Conclusion}{18}{section.8}%
+\contentsline {section}{List of References}{19}{section.8}%
 \contentsline {section}{Appendix}{1}{section*.16}%
 \contentsline {section}{Declaration of Oath}{2}{section*.17}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

@@ -41,50 +41,60 @@ Max pooling helps retain the most important features, providing some invariance 
 \vspace{1em}
 
 \textbf{Fully-Connected Layers}\label{theoretical_classification_fully_connected_layers}
-This layer computes the scores for the respective classes. In the case of ten classes, the result is a volume of size $[1 \times 1 \times 10]$\footnote{Typically, the output from the layer before the Fully-Connected one is "flattened" into a one-dimensional vector, preserving all information but removing spatial structure. For example, a $[2 \times 2]$ layer would become a vector of size $[1 \times 4]$.}. By this stage, all spatial information has been transformed, leaving a quasi-one-dimensional vector containing the ten class scores for the CIFAR-10 dataset.
+Fully-Connected (FC), also called \textit{Dense} layer, typically computes the scores for the respective classes. In the case of ten classes, the result is a volume of size $[1 \times 1 \times 10]$\footnote{Typically, the output from the layer before the FC one is "flattened" into a one-dimensional vector, preserving all information but removing spatial structure. For example, a $[2 \times 2]$ layer would become a vector of size $[1 \times 4]$.}. By this stage, all spatial information has been transformed, leaving a quasi-one-dimensional vector containing the ten class scores for the CIFAR-10 dataset.
 
-In a fully-connected layer, each input is connected to each output, meaning every neuron in the previous layer is connected to each neuron in the fully-connected layer. The output is the weighted sum of all inputs, followed by an activation function, leading to the final classification scores that represent the likelihood of the input belonging to each class. The spatial dimensions are collapsed into a single vector of class scores, which are then used for classification.
+In a FC layer, each input is connected to each output, meaning every neuron in the previous layer is connected to each neuron in the FC layer. The output is the weighted sum of all inputs, followed by an activation function, leading to the final classification scores that represent the likelihood of the input belonging to each class. The spatial dimensions are collapsed into a single vector of class scores, which are then used for classification.
+
+\textbf{Batch Normalization Layers}\label{theoretical_classification_batchnorm_layers}
+With their introduction in "\textit{Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift}" by Ioffe et al. \cite{ioffe2015batchnormalizationacceleratingdeep}, Batch Normalization (batchnorm) is an integreal part of convolutional networks. These layers normalize the inputs to subsequent layers and theirby stability the distribution of activations throughout the training process. This reduces the internal covariate shift, allowing for higher learning rates and faster convergence. By normalization of activation, batchnorm helps prevent gradients from vanishing or exploding. Additionally, it can provide regularization benefits and eliminate the need for Dropout, in some cases. With the afore mentioned benefits, batchnorm layers are particularily beneficial for deep learning networks with many layers. 
+
 
 \textbf{Typical Activation Functions for CNNs}
 
 \begin{itemize}
-    \item \textbf{ReLU (Rectified Linear Unit)}:
-    \[
+    \item \textbf{ReLU (Rectified Linear Unit)}: \label{theoretical_activations_relu}
+    \begin{equation}
     g(x) = \max(0, x)
-    \]
+    \end{equation}
     ReLU is the most widely used activation function in CNNs. It introduces non-linearity while maintaining efficiency by outputting zero for negative values and passing positive values unchanged.
 
-    \item \textbf{Leaky ReLU}:
-    \begin{equation} f(x) = \begin{cases} 0, \textit{if}\ x < 0 \\ x, \textit{otherwise} \\ \end{cases} \end{equation}
-
+    \item \textbf{Leaky ReLU}: \label{theoretical_activations_leakyrelu}
+    \begin{equation}
+        f(x) =
+        \begin{cases} 
+        0 \quad \text{if } x < 0 \\ 
+        x \quad \text{otherwise}
+        \end{cases}
+    \end{equation}
     A variant of ReLU, Leaky ReLU allows small negative values to flow through, addressing the "dying ReLU" problem where neurons can become inactive.
 
-    \item \textbf{Sigmoid (Logistic)}:
-    \[
-    g(x) = \frac{1}{1 + e^{-x}}
-    \]
+    \item \textbf{Sigmoid (Logistic)}:  \label{theoretical_activations_sigmoid}
+    \begin{equation}
+        g(x) = \frac{1}{1 + e^{-x}}
+    \end{equation}
     The sigmoid function squashes values between 0 and 1, commonly used for binary classification tasks. However, it can suffer from vanishing gradients for very large or small inputs.
 
-    \item \textbf{Tanh (Hyperbolic Tangent)}:
-    \[
+    \item \textbf{Tanh (Hyperbolic Tangent)}:  \label{theoretical_activations_tanh}
+    \begin{equation}
     g(x) = \frac{2}{1 + e^{-2x}} - 1
-    \]
+    \end{equation}
     Tanh outputs values between -1 and 1 and is similar to the sigmoid but with a wider output range, making it more effective in many scenarios compared to sigmoid.
 
-    \item \textbf{Softmax}:
-    \[
+    \item \textbf{Softmax}: \label{theoretical_activations_softmax}
+    \begin{equation}
     g(x_i) = \frac{e^{x_i}}{\sum_{j} e^{x_j}}
-    \]
+    \end{equation}
     Softmax is typically used in the output layer of CNNs for multi-class classification. It converts logits into probabilities, ensuring that the sum of the outputs is 1.
 \end{itemize}
 
-
-
 \subsubsection{Classification Models for augmented Training}
+The classification models, on which the data augmentation is tested, are simple CNN classifiers consisting of the described layers. For each dataset MNIST, Fashion MNIST and CIFAR10 \ref{used_datasets}, a dedicated classifier architecture is created. The main differences between these architectures is the number of blocks, made of two-dimensional \hyperref[theoretical_classification_conv_layers]{convolutional}, \hyperref[theoretical_classification_batchnorm_layers]{batchnorm} and \hyperref[theoretical_classification_pooling_layers]{pooling} layers. All three models use a use the \hyperref[theoretical_activations_relu]{ReLU} function for activation of the convolutional layers and the \hyperref[theoretical_activations_softmax]{Softmax} function for the activation at their respective output layer, resulting in probability distribution over the space of classes. More on the specifical model architectures can be found in chapter \ref{body_prelim}. %TODO: link the correct subsection 
 
 \subsection[Data Augmentation - DA]{Data Augmentation}\label{theoretical_da}
+\subsubsection[Traditional Data Augmentation - TDA]{Traditional Data Augmentation}\label{theoretical_tda}
+\cite{Krizhevsky2012traditionaldataaugmentation}
 
-\subsection[Generative Data Augmentation - GDA]{Generative Data Augmentation}\label{theoretical_gda}
+\subsubsection[Generative Data Augmentation - GDA]{Generative Data Augmentation}\label{theoretical_gda}
 
 \subsection[Generative Adversarial Network - GAN]{Generative Adversarial Network}\label{theoretical_gan}
 \subsubsection{Challenges in GAN Training}
