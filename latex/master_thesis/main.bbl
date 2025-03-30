@@ -24,6 +24,13 @@
 \newblock \url{https://arxiv.org/abs/2012.09673}.
 \newblock \,Version:\,2020
 
+\bibitem[DDS{\etalchar{+}}09]{ImageNetDataset5206848}
+\textsc{Deng}, Jia ; \textsc{Dong}, Wei ; \textsc{Socher}, Richard ;
+  \textsc{Li}, Li-Jia ; \textsc{Li}, Kai  ; \textsc{Fei-Fei}, Li:
+\newblock ImageNet: A large-scale hierarchical image database.
+\newblock {In: }\emph{2009 IEEE Conference on Computer Vision and Pattern
+  Recognition}, 2009, S. 248--255
+
 \bibitem[DHYY17]{dong2017museganmultitracksequentialgenerative}
 \textsc{Dong}, Hao-Wen ; \textsc{Hsiao}, Wen-Yi ; \textsc{Yang}, Li-Chia  ;
   \textsc{Yang}, Yi-Hsuan:
@@ -167,6 +174,14 @@
 \newblock \url{https://arxiv.org/abs/1411.1784}.
 \newblock \,Version:\,2014
 
+\bibitem[NS67]{Nagy1966}
+\textsc{Nagy}, George ; \textsc{Shelton}, Henry:
+\newblock Self-Corrective Character Recognition System.
+\newblock {In: }\emph{IBM Journal of Research and Development} 11 (1967), Nr.
+  6, S. 612--628.
+\newblock \url{http://dx.doi.org/10.1147/rd.116.0612}. --
+\newblock DOI 10.1147/rd.116.0612
+
 \bibitem[PKD{\etalchar{+}}16]{pathak2016contextencodersfeaturelearning}
 \textsc{Pathak}, Deepak ; \textsc{Krahenbuhl}, Philipp ; \textsc{Donahue}, Jeff
   ; \textsc{Darrell}, Trevor  ; \textsc{Efros}, Alexei~A.:
@@ -215,6 +230,14 @@
 \newblock \url{http://dx.doi.org/10.1186/s40537-019-0197-0}. --
 \newblock DOI 10.1186/s40537--019--0197--0. --
 \newblock ISSN 2196--1115
+
+\bibitem[SSP03]{Simard2003bestpracticesforcnns}
+\textsc{Simard}, Patrice~Y. ; \textsc{Steinkraus}, Dave  ; \textsc{Platt},
+  John~C.:
+\newblock Best Practices for Convolutional Neural Networks Applied to Visual
+  Document Analysis.
+\newblock {In: }\emph{Seventh International Conference on Document Analysis and
+  Recognition}, 2003, S. 958--963
 
 \bibitem[TFNL22]{Tanno2022repairingneuralnetworkfromcorrupt}
 \textsc{Tanno}, Ryutaro ; \textsc{F.Pradier}, Melanie ; \textsc{Nori}, Aditya

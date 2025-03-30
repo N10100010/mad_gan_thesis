@@ -4,7 +4,9 @@ Section \ref{theoretical_classification} discusses classification models used to
 Sections \ref{theoretical_da} and \ref{theoretical_gda} establish the foundation for data augmentation and generative data augmentation.
 Following sections \ref{theoretical_gan}, \ref{theoretical_dcgan}, \ref{theoretical_cgan}, and \ref{theoretical_madgan} provide theoretical knowledge necessary to understand the GAN architectures and their differences. The narrative follows their increasing complexity, starting from vanilla GANs, moving through deep convolutional GANs and conditional GANs, before diving into the background of multi-agent diverse GANs.
 The final section (\ref{theoretical_image_scores}) explains the theory behind the Inception Score and Fréchet Inception Distance, concluding with an examination of the state-of-the-art \textit{InceptionV3} model used to compute them.
-
+% ########################################################################################################
+% # START: IMAGE CLASSIFICATION MODELS
+% ########################################################################################################
 \subsection{Image Classification Models}\label{theoretical_classification}
 \subsubsection{Neural Networks for Classification}
 Convolutional Neural Networks (CNNs) have become the dominant architecture for image classification tasks due to their inherent ability to automatically learn hierarchical features from raw pixel data. At their core, CNNs are build up by a sequence of convolutional-, pooling- and fully connected layers to extract hierarchical features, and funneling the information, typically into the \(N\) classes defined by the training data. Convolutional layers employ learnable filters to detect local patterns in the two-dimensional information - two dimensional in the case of images specifically. Pooling layers reduce the spatial dimensions to small translations. Fully connected layers then map the extracted information into class probabilities, utilizing the \textit{Softmax} activation function. The afore mentioned layers are discussed in greater detail, in the following subsections.
@@ -20,6 +22,7 @@ The stride determines how far the filter is moved after each operation. For a st
 \[
 \left( \frac{r - a + s}{s} \right) \times \left( \frac{c - b + s}{s} \right).
 \]
+%TODO: point to the right figure
 An image of this process can be found in Figure X in the Appendix (7). This image shows an input of size $[10 \times 10]$ and a filter of size $[3 \times 3]$. With a stride of $s = 1$, the resulting layer has a size of $[8 \times 8]$ (computed as $\left(10 - 3 + 1\right) \times \left(10 - 3 + 1\right)$).
 
 The stride of the filter can also be greater than $1$. Additionally, there is the option to apply padding to the image. There are different ways to implement padding. When padding of size $p$ is applied, the output size for a square input and filter is calculated as follows:
@@ -46,7 +49,7 @@ Fully-Connected (FC), also called \textit{Dense} layer, typically computes the s
 In a FC layer, each input is connected to each output, meaning every neuron in the previous layer is connected to each neuron in the FC layer. The output is the weighted sum of all inputs, followed by an activation function, leading to the final classification scores that represent the likelihood of the input belonging to each class. The spatial dimensions are collapsed into a single vector of class scores, which are then used for classification.
 
 \textbf{Batch Normalization Layers}\label{theoretical_classification_batchnorm_layers}
-With their introduction in "\textit{Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift}" by Ioffe et al. \cite{ioffe2015batchnormalizationacceleratingdeep}, Batch Normalization (batchnorm) is an integreal part of convolutional networks. These layers normalize the inputs to subsequent layers and theirby stability the distribution of activations throughout the training process. This reduces the internal covariate shift, allowing for higher learning rates and faster convergence. By normalization of activation, batchnorm helps prevent gradients from vanishing or exploding. Additionally, it can provide regularization benefits and eliminate the need for Dropout, in some cases. With the afore mentioned benefits, batchnorm layers are particularily beneficial for deep learning networks with many layers. 
+With their introduction in "\textit{Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift}" by Ioffe et al. \cite{ioffe2015batchnormalizationacceleratingdeep}, Batch Normalization (batchnorm) is an integreal part of convolutional networks. These layers normalize the inputs to subsequent layers and theirby stability the distribution of activations throughout the training process. This reduces the internal covariate shift, allowing for higher learning rates and faster convergence. By normalization of activation, batchnorm helps prevent gradients from vanishing or exploding. Additionally, it can provide regularization benefits and eliminate the need for Dropout, in some cases. With the afore mentioned benefits, batchnorm layers are particularily beneficial for deep learning networks with many layers.
 
 
 \textbf{Typical Activation Functions for CNNs}
@@ -61,8 +64,8 @@ With their introduction in "\textit{Batch Normalization: Accelerating Deep Netwo
     \item \textbf{Leaky ReLU}: \label{theoretical_activations_leakyrelu}
     \begin{equation}
         f(x) =
-        \begin{cases} 
-        0 \quad \text{if } x < 0 \\ 
+        \begin{cases}
+        0 \quad \text{if } x < 0 \\
         x \quad \text{otherwise}
         \end{cases}
     \end{equation}
@@ -88,13 +91,53 @@ With their introduction in "\textit{Batch Normalization: Accelerating Deep Netwo
 \end{itemize}
 
 \subsubsection{Classification Models for augmented Training}
-The classification models, on which the data augmentation is tested, are simple CNN classifiers consisting of the described layers. For each dataset MNIST, Fashion MNIST and CIFAR10 \ref{used_datasets}, a dedicated classifier architecture is created. The main differences between these architectures is the number of blocks, made of two-dimensional \hyperref[theoretical_classification_conv_layers]{convolutional}, \hyperref[theoretical_classification_batchnorm_layers]{batchnorm} and \hyperref[theoretical_classification_pooling_layers]{pooling} layers. All three models use a use the \hyperref[theoretical_activations_relu]{ReLU} function for activation of the convolutional layers and the \hyperref[theoretical_activations_softmax]{Softmax} function for the activation at their respective output layer, resulting in probability distribution over the space of classes. More on the specifical model architectures can be found in chapter \ref{body_prelim}. %TODO: link the correct subsection 
+The classification models, on which the data augmentation is tested, are simple CNN classifiers consisting of the described layers. For each dataset MNIST, Fashion MNIST and CIFAR10 \ref{used_datasets}, a dedicated classifier architecture is created. The main differences between these architectures is the number of blocks, made of two-dimensional \hyperref[theoretical_classification_conv_layers]{convolutional}, \hyperref[theoretical_classification_batchnorm_layers]{batchnorm} and \hyperref[theoretical_classification_pooling_layers]{pooling} layers. All three models use a use the \hyperref[theoretical_activations_relu]{ReLU} function for activation of the convolutional layers and the \hyperref[theoretical_activations_softmax]{Softmax} function for the activation at their respective output layer, resulting in probability distribution over the space of classes. More on the specifical model architectures can be found in chapter \ref{body_prelim}. %TODO: link the correct subsection
+% ########################################################################################################
+% # END: IMAGE CLASSIFICATION MODELS
+% ########################################################################################################
+
+% ########################################################################################################
+% # START: DATA AUGMENTATION
+% ########################################################################################################
 
 \subsection[Data Augmentation - DA]{Data Augmentation}\label{theoretical_da}
+In this chapter, DA techiques in the context on images are discussed is greater detail. Starting with traditional augmentations e.g. rotating or cropping an image, ending on generative augmentations for which generative models are used to expand the training data of subsequent models.
+
 \subsubsection[Traditional Data Augmentation - TDA]{Traditional Data Augmentation}\label{theoretical_tda}
-\cite{Krizhevsky2012traditionaldataaugmentation}
+The need for data augmentation to make classification algorithms more resillient exists ever since. Early papers, mentioning the augmentation of data for classification tasks date back to the 70's \cite{Nagy1966}.For the context of deep learning however, the augmentation of images was popularized by Krizhevsky et al. in 2012 \cite{Krizhevsky2012traditionaldataaugmentation}, with the introduction of the \textit{AlexNet} - a deep CNN, to classify the images from the \textit{ImageNet} \cite{ImageNetDataset5206848} dataset, with 1000 classes. Although this paper too mentioned the work of Simard et al. from 2003 \cite{Simard2003bestpracticesforcnns}.
+
+Generally speaking, traditional data augmentation techiques can be described as enlarging initial training data by transformations preserving respective labels of single instances. These techiques soley focus on already existing data, without creating entirely new instances (see: \ref{theoretical_gda}). Such augmentations are categorized, based on their type of altering transformations:
+
+\noindent\textit{Geometric Augmentation}\\
+This category of augmentations modify the shape, position and perspective: Rotation, Scaling, Flipping, Cropping, Shearing, Perspective Transform.
+
+\noindent\textit{Photometric Augmentation}\\
+Altering the pixel values while keeping the spatial structure: Brightness, Contrast, Hue Shift, Blurring.
+
+\noindent\textit{Noise-Corruption Augmentation}\\
+Imitating real-world degradations and distorions of cameras and sensors: Gaussion Noise, Speckle Noise, Salt-and-Pepper Noise.\\
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=.9\textwidth]{abb/traditional_image_augmentation_examples.png}
+    \caption{Examplary use of traditional augmentation techniques from the categories \textit{geomentric} (first row), \textit{photometric} (second row) and \textit{noice-corruption} third row.}
+    \label{fig:figure_tda_examples}
+\end{figure}
+
+\noindent
+When applying the augmentations shown in Figure~\ref{fig:figure_tda_examples}, its mandatory to keep domain specific knowledge and constraints in mind. Flipping images originating from the MNIST dataset to train a generative model can result in an image, showing a horizontally flipped 9 which, in the domain of arabic numbers, is semantically false. Having to classify a plain, that can have differing shapes, colors three-dimensional orientations in space and images takes by a dusted lense, applying all of the above augmentations could be beneficial.
 
 \subsubsection[Generative Data Augmentation - GDA]{Generative Data Augmentation}\label{theoretical_gda}
+
+% ########################################################################################################
+% # END: DATA AUGMENTATION
+% ########################################################################################################
+
+
+
+% ########################################################################################################
+% # START: Generative Aderserial Networks
+% ########################################################################################################
 
 \subsection[Generative Adversarial Network - GAN]{Generative Adversarial Network}\label{theoretical_gan}
 \subsubsection{Challenges in GAN Training}
@@ -108,11 +151,23 @@ The classification models, on which the data augmentation is tested, are simple 
 
 \subsection[Multi-Agent Diverse Generative Adversarial Network - MADGAN]{Multi-Agent Diverse Generative Adversarial Network}\label{theoretical_madgan}
 
+% ########################################################################################################
+% # END: Generative Aderserial Networks
+% ########################################################################################################
+
+
+% ########################################################################################################
+% # START: Image Scores
+% ########################################################################################################
+
 \subsection{Image Scores}\label{theoretical_image_scores}
 \subsubsection[Inception Score - IS]{Inception Score}
 \subsubsection[Fréchet Inception Distance - FID]{Fréchet Inception Distance}
 \subsubsection[InceptionV3 Model]{InceptionV3 for Image Evaluation}
 
+% ########################################################################################################
+% # START: Image Scores
+% ########################################################################################################
 
 
 

@@ -311,6 +311,7 @@ OUTPUT main.toc
 INPUT .\main.lof
 INPUT .\main.lof
 INPUT main.lof
+INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmri12.tfm
 OUTPUT main.lof
 INPUT .\main.lot
 INPUT .\main.lot
@@ -324,7 +325,6 @@ INPUT tertiary_docs\abbreviations\abbreviations.tex
 INPUT .\1_introduction.tex
 INPUT .\1_introduction.tex
 INPUT 1_introduction.tex
-INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmri12.tfm
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\tex\latex\lm\ts1lmr.fd
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\tex\latex\lm\ts1lmr.fd
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\tex\latex\lm\ts1lmr.fd
@@ -362,6 +362,16 @@ INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbx8.
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmr6.tfm
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbx6.tfm
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathex.enc
+INPUT .\abb\traditional_image_augmentation_examples.png
+INPUT .\abb\traditional_image_augmentation_examples.png
+INPUT .\abb\traditional_image_augmentation_examples.png
+INPUT .\abb\traditional_image_augmentation_examples.png
+INPUT .\abb\traditional_image_augmentation_examples.png
+INPUT .\abb\traditional_image_augmentation_examples.png
+INPUT .\abb\traditional_image_augmentation_examples.png
+INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmr10.tfm
+INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbx10.tfm
+INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmri10.tfm
 INPUT .\4_body_prelim.tex
 INPUT .\4_body_prelim.tex
 INPUT 4_body_prelim.tex
@@ -391,6 +401,8 @@ INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmr17.
 INPUT main.aux
 INPUT .\main.out
 INPUT .\main.out
+INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmbx10.pfb
+INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmbx10.pfb
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmbx12.pfb
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmbx12.pfb
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmcsc10.pfb
@@ -413,6 +425,8 @@ INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr7.pf
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr7.pfb
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr8.pfb
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr8.pfb
+INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmri10.pfb
+INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmri10.pfb
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmri12.pfb
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmri12.pfb
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmssbx10.pfb
