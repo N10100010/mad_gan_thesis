@@ -14,45 +14,47 @@ Warning--entry type for "NIPS2012_c399862d" isn't style-file defined
 --line 235 of file main.bib
 Warning--entry type for "WanLiZeiler2013" isn't style-file defined
 --line 413 of file main.bib
-You've used 38 entries,
+Warning--empty booktitle in Radford2015DCGAN
+Warning--empty pages in Radford2015DCGAN
+You've used 45 entries,
             4793 wiz_defined-function locations,
-            1125 strings with 15256 characters,
-and the built_in function-call counts, 33445 in all, are:
-= -- 3428
-> -- 1142
-< -- 1252
-+ -- 1493
-- -- 440
-* -- 2434
-:= -- 5858
-add.period$ -- 73
-call.type$ -- 38
-change.case$ -- 265
-chr.to.int$ -- 37
-cite$ -- 38
-duplicate$ -- 725
-empty$ -- 1864
-format.name$ -- 759
-if$ -- 6212
+            1162 strings with 16574 characters,
+and the built_in function-call counts, 38550 in all, are:
+= -- 3961
+> -- 1315
+< -- 1455
++ -- 1734
+- -- 504
+* -- 2760
+:= -- 6758
+add.period$ -- 83
+call.type$ -- 45
+change.case$ -- 308
+chr.to.int$ -- 44
+cite$ -- 47
+duplicate$ -- 847
+empty$ -- 2148
+format.name$ -- 872
+if$ -- 7165
 int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 212
-newline$ -- 251
-num.names$ -- 116
-pop$ -- 333
+missing$ -- 244
+newline$ -- 289
+num.names$ -- 137
+pop$ -- 389
 preamble$ -- 1
-purify$ -- 341
+purify$ -- 398
 quote$ -- 0
-skip$ -- 1822
+skip$ -- 2141
 stack$ -- 0
-substring$ -- 2626
-swap$ -- 231
-text.length$ -- 183
-text.prefix$ -- 2
+substring$ -- 2951
+swap$ -- 262
+text.length$ -- 208
+text.prefix$ -- 3
 top$ -- 0
-type$ -- 382
-warning$ -- 0
-while$ -- 299
-width$ -- 42
-write$ -- 544
-(There were 2 warnings)
+type$ -- 452
+warning$ -- 2
+while$ -- 344
+width$ -- 49
+write$ -- 632
+(There were 4 warnings)

@@ -1,4 +1,4 @@
-\babel@toc {english}{}\relax
+\babel@toc {english}{}\relax 
 \contentsline {section}{List of Figures}{4}{section*.3}%
 \contentsline {section}{List of Tables}{4}{section*.4}%
 \contentsline {section}{List of Abbreviations}{4}{section*.5}%
@@ -14,26 +14,31 @@
 \contentsline {subsubsection}{\numberline {3.1.2}Classification Models for augmented Training}{12}{subsubsection.3.1.2}%
 \contentsline {subsection}{\numberline {3.2}Data Augmentation - DA}{12}{subsection.3.2}%
 \contentsline {subsubsection}{\numberline {3.2.1}Traditional Data Augmentation - TDA}{12}{subsubsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2}Generative Data Augmentation - GDA}{14}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.2}Generative Data Augmentation - GDA}{13}{subsubsection.3.2.2}%
 \contentsline {subsection}{\numberline {3.3}Generative Adversarial Network - GAN}{14}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}Challenges in GAN Training}{14}{subsubsection.3.3.1}%
-\contentsline {paragraph}{\nonumberline Mode Collapse}{14}{paragraph*.16}%
-\contentsline {paragraph}{\nonumberline Training Instability}{14}{paragraph*.18}%
-\contentsline {paragraph}{\nonumberline Evaluation Difficulties}{14}{paragraph*.20}%
-\contentsline {subsection}{\numberline {3.4}Deep Convolutional Generative Adversarial Network - DCGAN}{15}{subsection.3.4}%
-\contentsline {subsection}{\numberline {3.5}Conditional Generative Adversarial Network - cGAN}{15}{subsection.3.5}%
-\contentsline {subsection}{\numberline {3.6}Multi-Agent Diverse Generative Adversarial Network - MADGAN}{15}{subsection.3.6}%
-\contentsline {subsection}{\numberline {3.7}Image Scores}{15}{subsection.3.7}%
-\contentsline {subsubsection}{\numberline {3.7.1}Inception Score - IS}{15}{subsubsection.3.7.1}%
-\contentsline {subsubsection}{\numberline {3.7.2}Fréchet Inception Distance - FID}{15}{subsubsection.3.7.2}%
-\contentsline {subsubsection}{\numberline {3.7.3}InceptionV3 Model}{15}{subsubsection.3.7.3}%
-\contentsline {section}{\numberline {4}Preliminary Remarks}{16}{section.4}%
-\contentsline {section}{\numberline {5}Experiments Setup}{17}{section.5}%
-\contentsline {section}{\numberline {6}Experiments Results}{18}{section.6}%
-\contentsline {paragraph}{\nonumberline Motivation}{18}{paragraph*.22}%
-\contentsline {section}{\numberline {7}Outlook}{19}{section.7}%
-\contentsline {section}{\numberline {8}Conclusion}{20}{section.8}%
-\contentsline {section}{List of References}{21}{section.8}%
-\contentsline {section}{Appendix}{1}{section*.23}%
-\contentsline {section}{Declaration of Oath}{2}{section*.24}%
-\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file
+\contentsline {subsubsection}{\numberline {3.3.1}Mathematical Formulation}{15}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Training Process}{15}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Challenges in GAN Training}{16}{subsubsection.3.3.3}%
+\contentsline {paragraph}{\nonumberline Mode Collapse}{16}{paragraph*.16}%
+\contentsline {paragraph}{\nonumberline Lack of Inter-Class Diversity}{16}{paragraph*.18}%
+\contentsline {paragraph}{\nonumberline Failure to Converge}{16}{paragraph*.20}%
+\contentsline {paragraph}{\nonumberline Vanishing & unstable Gradients}{16}{paragraph*.22}%
+\contentsline {paragraph}{\nonumberline Imbalance between Generator and Discriminator}{16}{paragraph*.24}%
+\contentsline {subsection}{\numberline {3.4}Deep Convolutional Generative Adversarial Network - DCGAN}{16}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Architectural Improvements}{17}{subsubsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.5}Conditional Generative Adversarial Network - cGAN}{17}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Multi-Agent Diverse Generative Adversarial Network - MADGAN}{17}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Image Scores}{17}{subsection.3.7}%
+\contentsline {subsubsection}{\numberline {3.7.1}Inception Score - IS}{17}{subsubsection.3.7.1}%
+\contentsline {subsubsection}{\numberline {3.7.2}Fréchet Inception Distance - FID}{17}{subsubsection.3.7.2}%
+\contentsline {subsubsection}{\numberline {3.7.3}InceptionV3 Model}{17}{subsubsection.3.7.3}%
+\contentsline {section}{\numberline {4}Preliminary Remarks}{18}{section.4}%
+\contentsline {section}{\numberline {5}Experiments Setup}{19}{section.5}%
+\contentsline {section}{\numberline {6}Experiments Results}{20}{section.6}%
+\contentsline {paragraph}{\nonumberline Motivation}{20}{paragraph*.26}%
+\contentsline {section}{\numberline {7}Outlook}{21}{section.7}%
+\contentsline {section}{\numberline {8}Conclusion}{22}{section.8}%
+\contentsline {section}{List of References}{23}{section.8}%
+\contentsline {section}{Appendix}{1}{section*.27}%
+\contentsline {section}{Declaration of Oath}{2}{section*.28}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
