@@ -179,7 +179,7 @@ where \( P_G(X \mid y) \) represents the learned conditional distribution, aimin
 % ########################################################################################################
 
 \subsection[Generative Adversarial Network - GAN]{Generative Adversarial Network}\label{theoretical_gan}
-Generative Adversarial Network (GANs) have first been introduced by Goodfellow at al. in 2014 \cite{goodfellow2014generativeadversarialnetworks} GANs are a type of generative models designed to learn the underlying data distribution of their training data and generate new, realistic instances. The core idea of the framework is an adversarial training process between two NNs: the textit{Generator} \(G\) and the \textit{Discriminator} \(D\), competing against one another in a minimax game \cite{VonNeumann1928Minimax}. 
+Generative Adversarial Network (GANs) have first been introduced by Goodfellow at al. in 2014 \cite{goodfellow2014generativeadversarialnetworks} GANs are a type of generative models designed to learn the underlying data distribution of their training data and generate new, realistic instances. The core idea of the framework is an adversarial training process between two NNs: the textit{Generator} \(G\) and the \textit{Discriminator} \(D\), competing against one another in a minimax game \cite{VonNeumann1928Minimax}.
 
 \subsubsection{Mathematical Formulation}\label{theoretical_gan_math}
 Let \(X \sim P_{data}\) be samples drawn from the real data distribution, and let \(z \sim P_z\) be random noise sampled from a known prior (e.g., a Gaussian or uniform distribution). The generator \(G\) is a function \(G: \mathbb{R}^d \to \mathbb{R}^n\) that maps a noise vector \(z\) to a synthetic data instance \(\tilde{X}\), attempting to approximate \(P_{data}\):\(\tilde{X} = G(z), \quad z \sim P_z.\)
@@ -188,7 +188,7 @@ The discriminator \(D\) is a function \(D: \mathbb{R}^n \to [0,1]\) that outputs
 
 The training objective is formulated as the following minimax game:
 
-    \begin{equation}
+    \begin{equation}\label{theory_gan_vanilla_formula}
         \min_G \max_D \mathbb{E}_{X \sim P_{data}} [\log D(X)] + \mathbb{E}_{z \sim P_z} [\log (1 - D(G(z)))].
     \end{equation}
 
@@ -203,14 +203,14 @@ GAN training follows an alternating optimization approach:
     \item Update \(G\): Generate new fake samples and update \(G\) to minimize \\ \(\log(1 - D(G(z)))\), effectively pushing \(G\) to generate more realistic samples.
     \item Repeat the process iteratively, typically using stochastic gradient descent (SGD) or Adam optimization.
 \end{enumerate}
- 
+
 
 \newpage
 
 \subsubsection{Challenges in GAN Training}\label{theory_gan_problems}
-Following, challenges that can occur during the training of gans are discussed. These have already been mentioned in the introductionary section \ref{problems_of_gans}. Here, they are described in greater detail. 
+Following, challenges that can occur during the training of gans are discussed. These have already been mentioned in the introductionary section \ref{problems_of_gans}. Here, they are described in greater detail.
 \paragraph[Mode Collapse]{Mode Collapse}
-Mode collapse occurs when the generator produces only a small subset of the data distribution, leading to a lack of diversity. Instead of generating varied samples, it repeatedly produces similar ones that fool the discriminator. This happens when the generator finds an easy "shortcut" rather than learning the full distribution. More formally, \(G\) collapses many values of \(z\) to the same value of \(x\) \cite{goodfellow2014generativeadversarialnetworks}. A common technique to mitigate this issue is  minibatch discrimination \cite{salimans2016improvedtechniquestraininggans}. % TODO: I tried minibatch discrimination for the cifar madgan, but did not work 
+Mode collapse occurs when the generator produces only a small subset of the data distribution, leading to a lack of diversity. Instead of generating varied samples, it repeatedly produces similar ones that fool the discriminator. This happens when the generator finds an easy "shortcut" rather than learning the full distribution. More formally, \(G\) collapses many values of \(z\) to the same value of \(x\) \cite{goodfellow2014generativeadversarialnetworks}. A common technique to mitigate this issue is  minibatch discrimination \cite{salimans2016improvedtechniquestraininggans}. % TODO: I tried minibatch discrimination for the cifar madgan, but did not work
 \paragraph[Lack of Inter-Class Diversity]{Lack of Inter-Class Diversity}
 Even if mode collapse is avoided, GANs may struggle to generate samples that represent all data classes equally. This is a common issue in class-conditional GANs, where samples across different classes may overlap or lack distinct features. Causes include imbalanced datasets, poor class conditioning, or weak discriminator feedback \cite{Odena201710.5555/3305890.3305954}.
 \paragraph[Failure to Converge]{Failure to Converge}
@@ -239,7 +239,48 @@ To improve training stability and image quality, DCGANs implement the use of \hy
 
 \subsection[Conditional Generative Adversarial Network - cGAN]{Conditional Generative Adversarial Network}\label{theoretical_cgan}
 
-\subsection[Multi-Agent Diverse Generative Adversarial Network - MADGAN]{Multi-Agent Diverse Generative Adversarial Network}\label{theoretical_madgan}
+Conditional Generative Adversarial Networks (cGANs), introduced by Mirza and Osindero in 2014 \cite{mirza2014conditionalgenerativeadversarialnets}, extend the vanilla GAN framework by incorporating additional information \(y\), such as class labels, into both the generator and discriminator. This allows cGANs to generate samples conditioned on specific attributes, enabling controlled generation.
+
+\subsubsection{Mathematical Formulation}
+\label{theoretical_cgan_math}
+The core idea of cGANs is to condition both the generator \(G\) and the discriminator \(D\) on auxiliary information \(y\). Instead of generating data solely from a noise vector \(z\), the generator now takes \(y\) as an additional input:
+
+\begin{equation}
+\tilde{X} = G(z, y)
+\end{equation}
+
+\noindent
+Similarly, the discriminator receives both the real or generated sample and the corresponding condition:
+
+\begin{equation}
+D(X, y) \quad \text{and} \quad D(G(z, y), y)
+\end{equation}
+
+\noindent
+The adversarial objective function for cGANs extends the standard GAN loss to incorporate this conditional dependency:
+
+\begin{equation}\label{theory_gan_cond_formula}
+\min_G \max_D \mathbb{E}_{X, y \sim P_{data}} [\log D(X, y)] + \mathbb{E}_{z \sim P_z, y \sim P_y} [\log (1 - D(G(z, y), y))]
+\end{equation}
+
+\noindent
+This formulation forces to generate samples that align with the given condition , while  learns to discriminate between real and generated samples, considering their respective conditions.
+
+\subsubsection{Architectural Adjustments}
+\label{theory_cgan_architecture}
+To implement cGANs, architectural adjustments are necessary compared to vanilla GANs:
+
+\begin{itemize}
+    \item \textbf{Input Conditioning:} Both the generator and discriminator must receive the conditional information y as input. This is typically achieved by concatenating the condition y with the noise vector z in the generator's input and with the input image X in the discriminator's input.
+    \item \textbf{Embedding Conditional Information:} For categorical conditions (e.g., class labels), the condition y is often embedded into a lower-dimensional vector before concatenation. This embedding allows the network to learn meaningful representations of the conditions.
+    \item \textbf{Concatenation, Addition, or Multiplication:} The conditional information can be incorporated through concatenation, addition, or element-wise multiplication at various layers within the generator and discriminator, depending on the specific application and architecture.
+    \item \textbf{Preservation of Conditional Information:} Care must be taken, that the conditional information is preserved throughout the network. This means, that the information must traverse the network, all the way to the output layer.
+\end{itemize}
+
+These architectural modifications ensure that the generator and discriminator can effectively utilize the conditional information to generate and discriminate samples based on the given conditions.
+
+\subsection[Multi-Agent Diverse Generative Adversarial Network - MADGAN]{Multi-Agent Diverse Generative Adversarial Network}
+\label{theoretical_madgan}
 
 % ########################################################################################################
 % # END: Generative Aderserial Networks
