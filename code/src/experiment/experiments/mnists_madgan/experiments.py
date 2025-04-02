@@ -52,15 +52,15 @@ class MNISTS_MADGAN_Experiment(BaseMADGANExperiment):
             if self.dataset_name == "fashion_mnist":
                 image = tf.image.random_flip_left_right(image)  # Horizontal flip
 
-            image = tf.image.random_brightness(image, 0.1)  # Small brightness change
-            image = tf.image.random_contrast(
-                image, 0.9, 1.1
-            )  # Small contrast variation
-            noise = tf.random.normal(
-                shape=tf.shape(image), mean=0.0, stddev=0.05, dtype=tf.float32
-            )  # Match dtype
-            image = image + noise
-            image = tf.clip_by_value(image, -1.0, 1.0)  # Keep pixel values valid
+                image = tf.image.random_brightness(image, 0.1)  # Small brightness change
+                image = tf.image.random_contrast(
+                    image, 0.9, 1.1
+                )  # Small contrast variation
+                noise = tf.random.normal(
+                    shape=tf.shape(image), mean=0.0, stddev=0.05, dtype=tf.float32
+                )  # Match dtype
+                image = image + noise
+                image = tf.clip_by_value(image, -1.0, 1.0)  # Keep pixel values valid
             return image
 
         self.data, self.unique_labels = self.dataset_func()
@@ -132,13 +132,13 @@ class MNISTS_MADGAN_Experiment(BaseMADGANExperiment):
                 dataset=self.dataset_name,
                 latent_dim=self.latent_dim,
                 dir_name=self.dir_path,
-                score_calculation_freq=1,
+                score_calculation_freq=10,
                 total_epochs=self.epochs,
             ),
             # the epoch variable in the f-string is available in the callback
             tf.keras.callbacks.ModelCheckpoint(
                 filepath=checkpoint_filepath.__str__() + "_epoch_{epoch}.weights.h5",
-                save_freq=234 * 25,
+                save_freq=234 * 50,
                 save_weights_only=True,
             ),
         ]

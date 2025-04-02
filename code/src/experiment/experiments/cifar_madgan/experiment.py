@@ -121,7 +121,7 @@ class CIFAR_MADGAN_Experiment(BaseMADGANExperiment):
                 dataset="cifar10",
                 latent_dim=self.latent_dim,
                 dir_name=self.dir_path,
-                score_calculation_freq=5,
+                score_calculation_freq=10,
                 total_epochs=self.epochs,
             ),
             # the epoch variable in the f-string is available in the callback

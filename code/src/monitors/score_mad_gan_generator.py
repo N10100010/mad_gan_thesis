@@ -42,9 +42,9 @@ class ScoreMADGANMonitor(tf.keras.callbacks.Callback):
             self.scores_file.unlink()
 
     def on_epoch_end(self, epoch: int, logs: dict = None) -> None:
-        self.logger.info(f"Calculating scores for epoch {epoch}...")
 
         if epoch % self.score_calculation_freq == 0:
+            self.logger.info(f"Calculating scores for epoch {epoch}...")
             random_latent_vectors = np.array(
                 generate_latent_points(self.latent_dim, 1, 1000)
             )
