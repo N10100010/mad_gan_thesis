@@ -15,7 +15,7 @@ experiments = [
         define_discriminator=define_discriminator,
         define_generators=define_generators,
         conditional_dim=10,
-        batch_size=256,
+        score_calculation_freq=5,
     ),
 ]
 
