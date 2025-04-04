@@ -80,15 +80,23 @@ With their introduction in "\textit{Batch Normalization: Accelerating Deep Netwo
 
     \item \textbf{Tanh (Hyperbolic Tangent)}:  \label{theoretical_activations_tanh}
     \begin{equation}
-    g(x) = \frac{2}{1 + e^{-2x}} - 1
+        g(x) = \frac{2}{1 + e^{-2x}} - 1
     \end{equation}
     Tanh outputs values between -1 and 1 and is similar to the sigmoid but with a wider output range, making it more effective in many scenarios compared to sigmoid.
 
     \item \textbf{Softmax}: \label{theoretical_activations_softmax}
     \begin{equation}
-    g(x_i) = \frac{e^{x_i}}{\sum_{j} e^{x_j}}
+        g(x_i) = \frac{e^{x_i}}{\sum_{j} e^{x_j}}
     \end{equation}
     Softmax is typically used in the output layer of CNNs for multi-class classification. It converts logits into probabilities, ensuring that the sum of the outputs is 1.
+
+    \item \textbf{Cross-Entropy Loss:} \label{theoretical_loss_crossentropy}
+    \begin{equation}
+        g(y, \hat{y}) = -\sum_{i} y_i \log(\hat{y}_i)
+    \end{equation}
+    Cross-entropy is a common loss function for classification tasks. It measures the dissimilarity between the true label distribution \( y \) and the predicted probability distribution \( \hat{y} \). Lower values indicate a better alignment between the predicted and true classes. For consistency, the cross-entropy function is denoted with \( g \) here, although it is more commonly represented in the literature as \( H(y, \hat{y}) \) or \( H(p, q) \), where \( p \) refers to the true label distribution and \( q \) to the output of the discriminative model.
+
+
 \end{itemize}
 
 \subsubsection{Classification Models for augmented Training}
@@ -139,7 +147,7 @@ In the context of data augmentation pipelines, this can be generalized as:
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=.9\textwidth]{abb/traditional_image_augmentation_examples.png}
-    \caption{Exemplary use of traditional augmentation techniques from the categories \textit{geometric} (first row), \textit{photometric} (second row), and \textit{noise-corruption} (third row).}
+    \caption{Exemplary use of traditional augmentation techniques from the categories \textit{geometric} (first row), \textit{photometric} (second row), and \textit{noise-corruption} (third row). The image shown is an image from the \hyperref[used_datasets]{CIFAR10 dataset}, assigned to the class "airplane".}
     \label{fig:figure_tda_examples}
 \end{figure}
 
@@ -286,7 +294,36 @@ MADGAN is proposed as a generalized framework for the GAN architecture \cite{gho
 
 \subsubsection{Mathematical Formulation}
 \label{theoretical_madgan_math}
-As afore mentioned, the MADGAN architecture employs multiple generators and one discriminator. The goal the for \(K\) generators is to generate samples from differing high probability regions from the data \(P_{data}\). In order to lead the generators into their respective direction, the objective of the discriminator has been modified, in which it no longer has to just differentiate between real and fake images, but also identify the generator that produced a given fake instance. Intuitively, the discriminator thereby forces the generators into mostly disjoint regions within the real data distribution. Inspired by the formulation for the discriminator in the paper "\textit{Improved Techniques for Training GANs}" \cite{salimans2016improvedtechniquestraininggans}, their discriminator model has an output of \(k+1\), utilizing the \textit{Softmax} activation function \ref{theoretical_activations_softmax}, where \(k\) sets the number of used generators. The output at \(k+1\) represents the probability that the given samples belongs to the real data distribution \(P_{data}\), whereas the scores at \(j \in \{ 1, ..., k \}\) describe the probability of said sample originating from either of the generators. Thus, when learning the discriminators parameters \(\theta_d\), the cross-entropy between the softmax outputs and the \textit{Dirac delta distribution} (Ddd) \(\delta \in \{0, 1\}^{k+1}\) is optimized. Here, \(\delta(j) = 1\) is 1, if the sample belongs to the \(j\)-th generator, else \(\delta(k+1) = 1\) if the sample originates from \(P_{data}\). This means, that the Ddd \(\delta\) can be understood as a one-hot encoding indicating whether a given sample is real of, if not, from which generator it originates. 
+As afore mentioned, the MADGAN architecture employs multiple generators and one discriminator. The goal the for \(K\) generators is to generate samples from different high probability regions of the data \(P_{data}\). In order to guide the generators into their respective direction, the objective of the discriminator has been modified, in which it no longer has to just differentiate between real and fake images, but also identify the generator that produced a given fake instance. Intuitively, the discriminator thereby forces the generators into mostly disjoint regions within the real data distribution. Inspired by the formulation for the discriminator in the paper "\textit{Improved Techniques for Training GANs}" \cite{salimans2016improvedtechniquestraininggans}, their discriminator model has an output of \(k+1\), utilizing the \textit{Softmax} activation function \ref{theoretical_activations_softmax}, where \(k\) sets the number of used generators. The output at \(k+1\) represents the probability that the given samples belongs to the real data distribution \(P_{data}\), whereas the scores at \(j \in \{ 1, ..., k \}\) describe the probability of said sample originating from either of the generators. Thus, when learning the discriminators parameters \(\theta_d\), the cross-entropy between the softmax outputs and the \textit{Dirac delta distribution} (Ddd) \(\delta \in \{0, 1\}^{k+1}\) is optimized. Here, \(\delta(j) = 1\) is 1, if the sample belongs to the \(j\)-th generator, else \(\delta(k+1) = 1\) if the sample originates from \(P_{data}\). Following this definition, the Ddd \(\delta\) can be understood as a one-hot encoding indicating whether a given sample is real of, and if not, from which generator it originates
+\footnote{It is important to point out, that the Dirac delta distribution is actually continuous. Their usage of the Ddd reminds of the Kronecker delta function, which \( \delta(i,j) = 1 \text{ for } i=j; 0 \text{ for } i \ne j \).}
+. The objective function for the optimization of \(\theta_d\), with \(\theta_g\) freezed is therefore: 
+\begin{equation}
+    \max\limits_{\theta_d}\mathbb{E}_{x \sim p} H(\delta, D(x; \theta_d))
+\end{equation}
+
+\noindent
+\(H(...)\) here represents the negative cross-entropy function. Important to piont out here is that, "Intuitively, in order to correctly identify the generator that produced a given fake sample, the discriminator must learn to push different generators towards different identifiable modes." \cite{ghosh2018madgan}, page 4. The objective for the generators however, remains semantically the same as in the vanilla GAN \ref{theory_gan_vanilla_formula}. The difference here is that the objective function is generalized with an indexing \(i\) for the number of generators. That is, for the \(i\)-th generator, the objective function is to minimize: 
+
+\begin{equation}
+    \mathbf{E}_{x \sim P_{data}} [ \log D(X; \theta_d) ] + \mathbf{E}_{z \sim P_{z}} \log (1-D_{k+1}(G_i(z; \theta_{g}^{i}); \theta_x))
+\end{equation}
+
+\textbf{Enforing Diverse Modes:}
+The researchers provide a theorem demonstrating that the \(k\) generators collectively form a mixture model. In it, each generator represents a mixture compotonent to the global optimimum of \( -(k+1)\log(k+1)+1 \log k \). This is achieved, when \(p_{data} = \frac{1}{k}\sum_{i=1}^{k} p_{g_i}\). It is to point out that, for \(k = 1\), the case with one generator, one obtains the exact Jensen-Shannon divergence based objective, as shown in the vanilla GAN paper by Goodfellow et al. \cite{goodfellow2014generativeadversarialnetworks}. Following their proof, the objective function for all \(k\) generators is to minimize: 
+
+\begin{equation}
+    \mathbf{E}_{x \sim P_{data}} [ \log D_{k+1}(X) ] + \sum_{i=1}^{k}\mathbf{E}_{x \sim p_{g_i}} \log (1-D_{k+1}(x))
+\end{equation}
+
+\noindent
+The exact formulation of their theorem, proof and propositions can be found in Ghosh et al. \cite{ghosh2018madgan}, following formulas (3) through (9).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=.9\textwidth]{abb/madgan_diverse_mode_push.PNG}
+    \caption{Figre taken from the original paper \cite{ghosh2018madgan}. The visualization shows how different generators \(G_1\) and \(G_2\) are pushed to different modes \(M_1\) and \(M_2\)}
+    \label{fig:figure_maadgan_diverse_mode_push}
+\end{figure}
 
 \subsubsection{Architectural Adjustments}
 \label{theory_madgan_architecture}
