@@ -302,7 +302,7 @@ As afore mentioned, the MADGAN architecture employs multiple generators and one 
 \end{equation}
 
 \noindent
-\(H(...)\) here represents the negative cross-entropy function. Important to piont out here is that, "Intuitively, in order to correctly identify the generator that produced a given fake sample, the discriminator must learn to push different generators towards different identifiable modes." \cite{ghosh2018madgan}, page 4. The objective for the generators however, remains semantically the same as in the vanilla GAN \ref{theory_gan_vanilla_formula}. The difference here is that the objective function is generalized with an indexing \(i\) for the number of generators. That is, for the \(i\)-th generator, the objective function is to minimize: 
+\(H(...)\) here represents the negative cross-entropy function. Important to piont out here is that, "Intuitively, in order to correctly identify the generator that produced a given fake sample, the discriminator must learn to push different generators towards different identifiable modes." \cite{ghosh2018madgan}, page 4. \hyperref[fig:figure_madgan_diverse_mode_push]{Figure 2} shows a visualization of the generators being pushed to diffenret modes. The objective for the generators however, remains semantically the same as in the vanilla GAN \ref{theory_gan_vanilla_formula}. The difference here is that the objective function is generalized with an indexing \(i\) for the number of generators. That is, for the \(i\)-th generator, the objective function is to minimize: 
 
 \begin{equation}
     \mathbf{E}_{x \sim P_{data}} [ \log D(X; \theta_d) ] + \mathbf{E}_{z \sim P_{z}} \log (1-D_{k+1}(G_i(z; \theta_{g}^{i}); \theta_x))
@@ -322,7 +322,7 @@ The exact formulation of their theorem, proof and propositions can be found in G
     \centering
     \includegraphics[width=.9\textwidth]{abb/madgan_diverse_mode_push.PNG}
     \caption{Figre taken from the original paper \cite{ghosh2018madgan}. The visualization shows how different generators \(G_1\) and \(G_2\) are pushed to different modes \(M_1\) and \(M_2\)}
-    \label{fig:figure_maadgan_diverse_mode_push}
+    \label{fig:figure_madgan_diverse_mode_push}
 \end{figure}
 
 \subsubsection{Architectural Adjustments}
