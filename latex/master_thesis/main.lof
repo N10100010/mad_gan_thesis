@@ -1,4 +1,0 @@
-\babel@toc {english}{}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Exemplary use of traditional augmentation techniques from the categories \textit {geometric} (first row), \textit {photometric} (second row), and \textit {noise-corruption} (third row). The image shown is an image from the \hyperref [used_datasets]{CIFAR10 dataset}, assigned to the class "airplane".}}{15}{figure.caption.14}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Figre taken from the original paper \cite {ghosh2018madgan}. The visualization shows how different generators \(G_1\) and \(G_2\) are pushed to different modes \(M_1\) and \(M_2\)}}{22}{figure.caption.25}%
-\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

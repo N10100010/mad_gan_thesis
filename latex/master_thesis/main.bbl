@@ -304,6 +304,13 @@
 \newblock {In: }\emph{Seventh International Conference on Document Analysis and
   Recognition}, 2003, S. 958--963
 
+\bibitem[SVI{\etalchar{+}}16]{szegedy2016rethinking}
+\textsc{Szegedy}, Christian ; \textsc{Vanhoucke}, Vincent ; \textsc{Ioffe},
+  Sergey ; \textsc{Shlens}, Jon  ; \textsc{Wojna}, Zbigniew:
+\newblock Rethinking the Inception Architecture for Computer Vision.
+\newblock {In: }\emph{Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition (CVPR)}, 2016, S. 2818--2826
+
 \bibitem[TFNL22]{Tanno2022repairingneuralnetworkfromcorrupt}
 \textsc{Tanno}, Ryutaro ; \textsc{F.Pradier}, Melanie ; \textsc{Nori}, Aditya
   ; \textsc{Li}, Yingzhen:
