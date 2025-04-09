@@ -7,7 +7,6 @@ from experiment.base_experiments import BaseMADGANExperiment
 from matplotlib import pyplot as plt
 from model_definitions.cmadgan.cmadgan import CMADGAN
 from monitors.cmadgan_generator import CMADGANMonitor
-from monitors.score_cmadgan_generator import ScoreCMADGANMonitor
 
 
 def save_generated_images(
@@ -135,14 +134,14 @@ class MNISTS_CMADGAN_Experiment(BaseMADGANExperiment):
                 ],
                 real_dataset=self.data,
             ),
-            ScoreCMADGANMonitor(
-                dir_name=self.dir_path,
-                latent_dim=self.latent_dim,
-                dataset=self.dataset_name,
-                total_epochs=self.epochs,
-                num_samples_for_scoring=1000,
-                score_calculation_freq=self.score_calculation_freq,
-            ),
+            # ScoreCMADGANMonitor(
+            #     dir_name=self.dir_path,
+            #     latent_dim=self.latent_dim,
+            #     dataset=self.dataset_name,
+            #     total_epochs=self.epochs,
+            #     num_samples_for_scoring=1000,
+            #     score_calculation_freq=self.score_calculation_freq,
+            # ),
             # the epoch variable in the f-string is available in the callback
             tf.keras.callbacks.ModelCheckpoint(
                 filepath=checkpoint_filepath.__str__() + "_epoch_{epoch}.weights.h5",

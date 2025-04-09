@@ -17,7 +17,6 @@ def cmadgan_dataset_func(random_state=None, conddition_dim=10, batch_size=128):
 
     # One-hot encode labels
     all_labels_one_hot = tf.one_hot(all_labels, depth=conddition_dim)
-
     # Create tf.data.Dataset
     dataset = tf.data.Dataset.from_tensor_slices((all_digits, all_labels_one_hot))
     dataset = (

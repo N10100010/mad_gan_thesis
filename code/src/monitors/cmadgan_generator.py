@@ -208,34 +208,55 @@ class CMADGANMonitor(tf.keras.callbacks.Callback):
         print("Sampling fixed real examples for plotting...")
         real_examples = {}  # Dict to store one example per class index
         count = 0
-        target_set = set(target_labels_int)  # Unique labels we need
+        target_set = set(
+            target_labels_int
+        )  # Unique labels we need (contains standard ints)
         num_needed = (
             len(target_set) * self.num_examples_per_class
         )  # Total needed across all requests
 
+        # Define a reasonable limit to avoid infinite loops if dataset is small/unbalanced
+        search_limit = max(num_needed * 10, len(target_labels_int) * 50, 1000)
+
         # Iterate through the dataset to find examples
-        # This might be slow if the dataset is large and not shuffled ideally
-        # Assumes dataset yields (image, one_hot_label) or similar structure
-        for img_batch, label_batch_one_hot in (
-            dataset.unbatch().shuffle(1000).take(num_needed * 5)
-        ):  # Take more than needed
-            label_int = tf.argmax(label_batch_one_hot).numpy()
-            if label_int in target_set:
-                # If we need multiple examples per class, store them in lists
-                if label_int not in real_examples:
-                    real_examples[label_int] = []
-                if len(real_examples[label_int]) < self.num_examples_per_class:
-                    real_examples[label_int].append(img_batch.numpy())
-                    count += 1
-                    # Check if we have enough examples overall
-                    if count >= num_needed:
-                        break
+        try:
+            # Added .take(search_limit) for safety
+            for img_batch, label_batch_one_hot in (
+                dataset.unbatch().shuffle(1000).take(search_limit)
+            ):
+                # --- START FIX ---
+                label_int_np = tf.argmax(label_batch_one_hot).numpy()
+                # Explicitly convert potential numpy array/scalar to Python int
+                label_int = int(label_int_np)
+                # --- END FIX ---
 
-        if count < num_needed:
+                if label_int in target_set:
+                    # If we need multiple examples per class, store them in lists
+                    if label_int not in real_examples:
+                        real_examples[label_int] = []
+                    # Only add if we still need examples for this class
+                    if len(real_examples[label_int]) < self.num_examples_per_class:
+                        real_examples[label_int].append(img_batch.numpy())
+                        count += 1
+                        # Check if we have enough examples overall
+                        if count >= num_needed:
+                            print(f"Found required {num_needed} real examples.")
+                            break  # Exit loop once all needed examples are found
+            else:  # This else belongs to the for loop: executed if loop finishes without break
+                print(
+                    f"Warning: Dataset search finished. Found {count}/{num_needed} matching real examples after checking {search_limit} samples."
+                )
+
+        except tf.errors.OutOfRangeError:
             print(
-                f"Warning: Could only find {count}/{num_needed} matching real examples."
+                f"Warning: Reached end of dataset samples while searching. Found {count}/{num_needed} matching real examples."
             )
+        except Exception as e:
+            print(f"Error during real example sampling: {e}")
+            # Optional: re-raise or handle differently
+            # return None # Indicate failure
 
+        # --- Rest of the function (arranging examples) remains the same ---
         # Arrange examples in the same order as target_labels_int
         final_examples = []
         current_class_counts = {i: 0 for i in range(self.n_classes)}
@@ -255,6 +276,10 @@ class CMADGANMonitor(tf.keras.callbacks.Callback):
                 # Get expected shape from found examples or default
                 if final_examples:
                     h, w, c = final_examples[0].shape[-3:]  # Assuming N, H, W, C
+                elif hasattr(self, "model") and hasattr(
+                    self.model, "data_shape"
+                ):  # Try get shape from model
+                    h, w, c = self.model.data_shape
                 else:  # Guess shape (needs refinement based on dataset)
                     h, w, c = (32, 32, 3) if self.n_classes == 10 else (28, 28, 1)
                 final_examples.append(
