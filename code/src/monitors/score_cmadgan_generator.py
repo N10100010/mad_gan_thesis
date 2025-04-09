@@ -18,7 +18,7 @@ class ScoreCMADGANMonitor(tf.keras.callbacks.Callback):
         latent_dim: int,
         dataset: str,  # Should match BaseClassifier constants e.g., BaseClassifier.CIFAR10
         total_epochs: int,
-        num_samples_for_scoring: int = 5000,  # Standard is often higher (e.g., 10k or 50k for FID)
+        num_samples_for_scoring: int = 1000,  # Standard is often higher (e.g., 10k or 50k for FID)
         score_calculation_freq: int = 5,  # Calculate less frequently by default
     ):
         super().__init__()
@@ -33,17 +33,17 @@ class ScoreCMADGANMonitor(tf.keras.callbacks.Callback):
         # Determine image shape based on dataset name
         if self.dataset == BaseClassifier.CIFAR10:
             self.image_data_shape = (32, 32, 3)
-            # self.n_classes_assumed = 10 # Set based on dataset if not directly available from model
+            self.n_classes_assumed = 10 # Set based on dataset if not directly available from model
         elif self.dataset == BaseClassifier.MNIST:
             self.image_data_shape = (28, 28, 1)
-            # self.n_classes_assumed = 10
+            self.n_classes_assumed = 10
         else:
             # Default or raise error if dataset unknown
             self.logger.warning(
                 f"Unknown dataset '{self.dataset}'. Assuming MNIST shape/classes."
             )
             self.image_data_shape = (28, 28, 1)
-            # self.n_classes_assumed = 10
+            self.n_classes_assumed = 10
             # raise ValueError(f"Dataset '{self.dataset}' not recognized for image shape determination.")
 
         # Setup directories and files

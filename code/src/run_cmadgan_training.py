@@ -19,6 +19,24 @@ experiments = [
     ),
 ]
 
+for i in range(10, 11): 
+    experiments.append(
+        # MNISTS_CMADGAN_Experiment(
+        #     name="FASHION_CMADGAN_Experiment__",
+        #     n_gen=i,
+        #     latent_dim=100,
+        #     epochs=250,
+        #     experiment_suffix=f"latent_100_{i}_gen_250_epochs",
+        #     experiments_base_path="./experiments/CMADGAN_MODELS_PROTOTYPES/FASHION",
+        #     dataset_name="fashion_mnist",
+        #     define_discriminator=define_discriminator,
+        #     define_generators=define_generators,
+        #     conditional_dim=10,
+        #     score_calculation_freq=5,
+        # ),
+    )
+
+
 
 queue = ExperimentQueue()
 for exp in experiments:

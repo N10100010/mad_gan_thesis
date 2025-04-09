@@ -26,7 +26,7 @@ def plot_scores(data):
     plt.legend()
     plt.grid(True)
     
-    plt.savefig("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/CIFAR_MADGAN_MODELS_PROTOTYPES/2025-03-21_CIFAR_MADGAN_Experiment___big__latent_2048_3_gen_500_epochs/scores/FID.png")
+    plt.savefig("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/CMADGAN_MODELS_PROTOTYPES/MNIST/2025-04-02_TEST__MNIST_CMADGAN_Experiment___latent_100_1_gen_250_epochs/scores/FID.png")
 
     plt.close()
 
@@ -51,24 +51,11 @@ def plot_scores(data):
 
     axes[-1].set_xlabel("Epochs")
     plt.tight_layout()
-    plt.savefig("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/CIFAR_MADGAN_MODELS_PROTOTYPES/2025-03-21_CIFAR_MADGAN_Experiment___big__latent_2048_3_gen_500_epochs/scores/IS.png")
+    plt.savefig("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/CMADGAN_MODELS_PROTOTYPES/MNIST/2025-04-02_TEST__MNIST_CMADGAN_Experiment___latent_100_1_gen_250_epochs/scores/IS.png")
 
 
 
-# with open("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/CIFAR_MADGAN_MODELS_PROTOTYPES/2025-03-21_CIFAR_MADGAN_Experiment___big__latent_2048_3_gen_500_epochs/scores/metrics.json", "r") as f:
-#    data = json.load(f)
-# plot_scores(data)
-
-from model_definitions.classifiers import CIFAR10Classifier
-import tensorflow as tf
-model = CIFAR10Classifier()
-
-_ = model(tf.random.normal(shape=(1, 32,32,3)))
-
-from tensorflow.keras.utils import plot_model
-
-import pydot_ng as pydot
-print(pydot.find_graphviz())
-
-
+with open("/home/stud/n/nr063/mounted_home/mad_gan_thesis/code/experiments/CMADGAN_MODELS_PROTOTYPES/MNIST/2025-04-02_TEST__MNIST_CMADGAN_Experiment___latent_100_1_gen_250_epochs/scores/metrics.json", "r") as f:
+   data = json.load(f)
+plot_scores(data)
 # plot_model(model, to_file=".\model.png", show_shapes=True, show_layer_names=True)

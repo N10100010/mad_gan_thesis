@@ -1,7 +1,7 @@
 import os
 
 import tensorflow as tf
-from datasets.fasion_mnist import dataset_func as fashion_mnist_dataset_func
+from datasets.fasion_mnist import cmadgan_dataset_func as fashion_mnist_dataset_func
 from datasets.mnist import cmadgan_dataset_func as mnist_dataset_func
 from experiment.base_experiments import BaseMADGANExperiment
 from matplotlib import pyplot as plt
@@ -141,12 +141,12 @@ class MNISTS_CMADGAN_Experiment(BaseMADGANExperiment):
                 dataset=self.dataset_name,
                 total_epochs=self.epochs,
                 num_samples_for_scoring=1000,
-                score_calculation_freq=self.generate_after_epochs,
+                score_calculation_freq=self.score_calculation_freq,
             ),
             # the epoch variable in the f-string is available in the callback
             tf.keras.callbacks.ModelCheckpoint(
                 filepath=checkpoint_filepath.__str__() + "_epoch_{epoch}.weights.h5",
-                save_freq=234 * 25,
+                save_freq=469 * 25,
                 save_weights_only=True,
             ),
         ]

@@ -27,13 +27,15 @@ class ExperimentQueue:
             try:
                 experiment.run()
                 self.logger.info(f"### COMPLETED {experiment.name}.")
+                tf.keras.backend.clear_session()  # Clear TensorFlow session
+                gc.collect()  # Run garbage collector
                 self.successful_experiments.append(experiment.name)
             except Exception as e:
                 self.logger.error(f"### ERROR in {experiment.name}: {str(e)}")
                 self.failed_experiments.append(experiment.name)
             finally:
                 # Memory management
-                self.logger.info("### CLEARING SESSION AND COLLECTING GARBAGE...")
+                self.logger.info("### FINAL CLEARING SESSION AND COLLECTING GARBAGE...")
                 tf.keras.backend.clear_session()  # Clear TensorFlow session
                 gc.collect()  # Run garbage collector
 
