@@ -1,0 +1,52 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{List of Figures}{5}{section*.3}%
+\contentsline {section}{List of Tables}{5}{section*.4}%
+\contentsline {section}{List of Abbreviations}{5}{section*.5}%
+\contentsline {section}{\numberline {1}Introduction and Motivation}{6}{section.1}%
+\contentsline {paragraph}{\nonumberline Set 1: Training and Analysis of GANs}{6}{paragraph*.7}%
+\contentsline {paragraph}{\nonumberline Set 2: Generating and Classifying Unlabeled Images}{7}{paragraph*.9}%
+\contentsline {paragraph}{\nonumberline Set 3: Training and Evaluating Classifiers}{7}{paragraph*.11}%
+\contentsline {paragraph}{\nonumberline Aim of the Thesis}{7}{paragraph*.13}%
+\contentsline {section}{\numberline {2}Related Work}{8}{section.2}%
+\contentsline {section}{\numberline {3}Theoretical Background}{10}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Image Classification Models}{10}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Neural Networks for Classification}{10}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Classification Models for augmented Training}{13}{subsubsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.2}Data Augmentation - DA}{13}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Traditional Data Augmentation - TDA}{13}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Generative Data Augmentation - GDA}{15}{subsubsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.3}Generative Adversarial Network - GAN}{16}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Mathematical Formulation}{16}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Training Process}{17}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Challenges in GAN Training}{17}{subsubsection.3.3.3}%
+\contentsline {paragraph}{\nonumberline Mode Collapse}{17}{paragraph*.17}%
+\contentsline {paragraph}{\nonumberline Lack of Inter-Class Diversity}{17}{paragraph*.19}%
+\contentsline {paragraph}{\nonumberline Failure to Converge}{18}{paragraph*.21}%
+\contentsline {paragraph}{\nonumberline Vanishing & unstable Gradients}{18}{paragraph*.23}%
+\contentsline {paragraph}{\nonumberline Imbalance between Generator and Discriminator}{18}{paragraph*.25}%
+\contentsline {subsection}{\numberline {3.4}Deep Convolutional Generative Adversarial Network - DCGAN}{18}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Architectural Adjustments}{18}{subsubsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.5}Conditional Generative Adversarial Network - cGAN}{19}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}Mathematical Formulation}{19}{subsubsection.3.5.1}%
+\contentsline {subsubsection}{\numberline {3.5.2}Architectural Adjustments}{20}{subsubsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.6}Multi-Agent Diverse Generative Adversarial Network - MADGAN}{20}{subsection.3.6}%
+\contentsline {subsubsection}{\numberline {3.6.1}Mathematical Formulation}{20}{subsubsection.3.6.1}%
+\contentsline {subsubsection}{\numberline {3.6.2}Architectural Adjustments}{22}{subsubsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.7}Image Scores}{23}{subsection.3.7}%
+\contentsline {subsubsection}{\numberline {3.7.1}Inception Score - IS}{23}{subsubsection.3.7.1}%
+\contentsline {subsubsection}{\numberline {3.7.2}Fréchet Inception Distance - FID}{24}{subsubsection.3.7.2}%
+\contentsline {subsubsection}{\numberline {3.7.3}InceptionV3 Model}{24}{subsubsection.3.7.3}%
+\contentsline {section}{\numberline {4}Preliminary Remarks}{26}{section.4}%
+\contentsline {subsection}{\numberline {4.1}GAN: Architecture, Training, and Data Augmentation}{26}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Labeling unconditioned data}{26}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Calculation of FID and IS}{26}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Experiments Setup}{27}{section.5}%
+\contentsline {section}{\numberline {6}Experiments Results}{28}{section.6}%
+\contentsline {paragraph}{\nonumberline Motivation}{28}{paragraph*.29}%
+\contentsline {section}{\numberline {7}Remarks}{29}{section.7}%
+\contentsline {section}{\numberline {8}Outlook}{30}{section.8}%
+\contentsline {section}{\numberline {9}Conclusion}{31}{section.9}%
+\contentsline {section}{List of References}{32}{section.9}%
+\contentsline {section}{Appendix}{1}{section*.30}%
+\contentsline {section}{Declaration of Oath}{2}{section*.31}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
