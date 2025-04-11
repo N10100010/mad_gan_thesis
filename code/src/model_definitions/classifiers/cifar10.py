@@ -6,7 +6,7 @@ class CIFAR10Classifier(BaseClassifier):
     dataset = BaseClassifier.CIFAR10
     input_shape = (32, 32, 3)
 
-    def __init__(self, num_classes=10):
+    def __init__(self, num_classes=10): 
         super().__init__()
 
         # Define the model using Functional API
