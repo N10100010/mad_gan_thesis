@@ -60,6 +60,11 @@
 \newblock \url{https://arxiv.org/abs/1603.07285}.
 \newblock \,Version:\,2018
 
+\bibitem[Gav20]{Gavrikov2020VisualKeras}
+\textsc{Gavrikov}, Paul:
+\newblock \emph{visualkeras}.
+\newblock \url{https://github.com/paulgavrikov/visualkeras}, 2020
+
 \bibitem[GKN{\etalchar{+}}18]{ghosh2018madgan}
 \textsc{Ghosh}, Arnab ; \textsc{Kulharia}, Viveka ; \textsc{Namboodiri}, Vinay
   ; \textsc{Torr}, Philip H.~S.  ; \textsc{Dokania}, Puneet~K.:

@@ -16,9 +16,37 @@ Horizontal flips are applied with a probability of \(50\%\), except for the \tex
 
 
 \subsection{Labeling unconditioned data}
+Due to the fact, that multiple experiment using unconditioned GANs were executed (ref to the experiments), many images have been created with no corresponding label to them. To classify the unlabeled data, simple CNN classifiers, with adequate TDA. As afore mentioned, rotating images along the vertical axes is omitted for the MNIST dataset, due to semantical invalidity. the following three figures show the architectures used to classify the unlabeled images.
+
+\begin{figure}[htbp]
+    \centering
+    \vspace{-2em}
+    \includegraphics[width=.9\textwidth]{abb/netron_network_archs/classifying_Classifier_MNIST.png}
+    \caption{Depiction of the CNN achritecture used to classify unlabeled images from the MNIST GDA experiments. (Image created with \cite{Gavrikov2020VisualKeras})}
+    \label{fig:figure_class_mnist}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \vspace{-2em}
+    \includegraphics[width=.9\textwidth]{abb/netron_network_archs/classifying_Classifier_FashionMNIST.png}
+    \caption{Depiction of the CNN achritecture used to classify unlabeled images from the FashionMNIST GDA experiments. (Image created with \cite{Gavrikov2020VisualKeras})}
+    \label{fig:figure_class_fashion}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \vspace{-2em}
+    \includegraphics[width=.9\textwidth]{abb/netron_network_archs/classifying_Classifier_Cifar10.png}
+    \caption{Depiction of the CNN achritecture used to classify unlabeled images from the CIFAR10 GDA experiments. (Image created with \cite{Gavrikov2020VisualKeras})}
+    \label{fig:figure_class_cifar10}
+\end{figure}
+
 %Mention the classifiers trained and used to label the unlabeled data.
 
 \subsection{Calculation of FID and IS}
+
+asdfasdfasdfadfasdfasd 
 %TODO: mention the experiments made with basing a calculation of these scores on self trained classifiers?
 
 
