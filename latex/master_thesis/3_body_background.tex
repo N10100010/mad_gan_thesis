@@ -207,10 +207,10 @@ The discriminator \(D\) is a function \(D: \mathbb{R}^n \to [0,1]\) that outputs
 The training objective is formulated as the following minimax game:
 
     \begin{equation}\label{theory_gan_vanilla_formula}
-        \min_G \max_D \mathbb{E}_{X \sim P_{data}} [\log D(X)] + \mathbb{E}_{z \sim P_z} [\log (1 - D(G(z)))].
+        \mathcal{L}_{\text{adv}} = \min_G \max_D \mathbb{E}_{X \sim P_{data}} [\log D(X)] + \mathbb{E}_{z \sim P_z} [\log (1 - D(G(z)))].
     \end{equation}
 
-Here, the discriminator \(D\) aims to maximize the probability of correctly classifying real and fake samples, while the generator \(G\) aims to generate samples that fool \(D\), minimizing \(\log(1 - D(G(z)))\). In an ideal scenario, the game converges to a Nash equilibrium where \(G\) produces samples indistinguishable from real data, i.e., \(P_G \approx P_{data}\).
+Here, the discriminator \(D\) aims to maximize the probability of correctly classifying real and fake samples \(\hat{x}\), while the generator \(G\) aims to generate samples that fool \(D\), minimizing \(\log(1 - D(G(z)))\). In an ideal scenario, the game converges to a Nash equilibrium where \(G\) produces samples indistinguishable from real data, i.e., \(P_G \approx P_{data}\).
 
 \subsubsection{Training Process}\label{theoretical_gan_training}
 GAN training follows an alternating optimization approach:
@@ -262,6 +262,7 @@ The core idea of cGANs is to condition both the generator \(G\) and the discrimi
 \tilde{X} = G(z, y)
 \end{equation}
 
+
 \noindent
 Similarly, the discriminator receives both the real or generated sample and the corresponding condition:
 
@@ -273,7 +274,7 @@ D(X, y) \quad \text{and} \quad D(G(z, y), y)
 The adversarial objective function for cGANs extends the standard GAN loss to incorporate this conditional dependency:
 
 \begin{equation}\label{theory_gan_cond_formula}
-\min_G \max_D \mathbb{E}_{X, y \sim P_{data}} [\log D(X, y)] + \mathbb{E}_{z \sim P_z, y \sim P_y} [\log (1 - D(G(z, y), y))]
+\mathcal{L}_{\text{adv}} = \min_G \max_D \mathbb{E}_{X, y \sim P_{data}} [\log D(X, y)] + \mathbb{E}_{z \sim P_z, y \sim P_y} [\log (1 - D(G(z, y), y))]
 \end{equation}
 
 \noindent
@@ -294,7 +295,7 @@ These architectural modifications ensure that the generator and discriminator ca
 
 \subsection[Multi-Agent Diverse Generative Adversarial Network - MADGAN]{Multi-Agent Diverse Generative Adversarial Network}
 \label{theoretical_madgan}
-MADGAN is proposed as a generalized framework for the GAN architecture \cite{ghosh2018madgan}. The framework employs multiple generators, one discriminator and an adjusted objective for the discriminator. The adjusted objective aims to enforce the identifications of the generator creating given fake images. These changes specifically aim to ease the first two mentioned problems of GANs, namely \textit{Mode Collapse} and \textit{Lack of Inter-Class Diversity} \ref{theory_gan_problems}. This chapter delves into the specifics of this framework: integetration of multi-agent systems with diversity-promoting techniques, within the GAN framework. The following subsections will detail the architecture, objective function, and training procedure of the MADGAN framework.
+MADGAN is proposed as a generalized framework for the GAN architecture \cite{ghosh2018madgan}. The framework employs multiple generators, one discriminator and an adjusted objective for the discriminator. The adjusted objective aims to enforce the identifications of the generator creating given fake images \(G_{i} \hat{x}\). These changes specifically aim to ease the first two mentioned problems of GANs, namely \textit{Mode Collapse} and \textit{Lack of Inter-Class Diversity} \ref{theory_gan_problems}. This chapter delves into the specifics of this framework: integetration of multi-agent systems with diversity-promoting techniques, within the GAN framework. The following subsections will detail the architecture, objective function, and training procedure of the MADGAN framework.
 
 \begin{figure}[htbp]
     \centering
@@ -318,14 +319,14 @@ As afore mentioned, the MADGAN architecture employs multiple generators and one 
 \(H(...)\) here represents the negative cross-entropy function. Important to piont out here is that, "Intuitively, in order to correctly identify the generator that produced a given fake sample, the discriminator must learn to push different generators towards different identifiable modes." \cite{ghosh2018madgan}, page 4. \hyperref[fig:figure_madgan_diverse_mode_push]{Figure 2} shows a visualization of the generators being pushed to diffenret modes. The objective for the generators however, remains semantically the same as in the vanilla GAN \ref{theory_gan_vanilla_formula}. The difference here is that the objective function is generalized with an indexing \(i\) for the number of generators. That is, for the \(i\)-th generator, the objective function is to minimize:
 
 \begin{equation}
-    \mathbf{E}_{x \sim P_{data}} [ \log D(X; \theta_d) ] + \mathbf{E}_{z \sim P_{z}} \log (1-D_{k+1}(G_i(z; \theta_{g}^{i}); \theta_x))
+    \mathcal{L}_{Gen_i} = \mathbf{E}_{x \sim P_{data}} [ \log D(X; \theta_d) ] + \mathbf{E}_{z \sim P_{z}} \log (1-D_{k+1}(G_i(z; \theta_{g}^{i}); \theta_x))
 \end{equation}
 
 \textbf{Enforing Diverse Modes:}
 The researchers provide a theorem demonstrating that the \(k\) generators collectively form a mixture model. In it, each generator represents a mixture compotonent to the global optimimum of \( -(k+1)\log(k+1)+1 \log k \). This is achieved, when \(p_{data} = \frac{1}{k}\sum_{i=1}^{k} p_{g_i}\). It is to point out that, for \(k = 1\), the case with one generator, one obtains the exact Jensen-Shannon divergence based objective, as shown in the vanilla GAN paper by Goodfellow et al. \cite{goodfellow2014generativeadversarialnetworks}. Following their proof, the objective function for all \(k\) generators is to minimize:
 
 \begin{equation}
-    \mathbf{E}_{x \sim P_{data}} [ \log D_{k+1}(X) ] + \sum_{i=1}^{k}\mathbf{E}_{x \sim p_{g_i}} \log (1-D_{k+1}(x))
+    \mathcal{L}_{Gen_{[0...K]}} = \mathbf{E}_{x \sim P_{data}} [ \log D_{k+1}(X) ] + \sum_{i=1}^{k}\mathbf{E}_{x \sim p_{g_i}} \log (1-D_{k+1}(x))
 \end{equation}
 
 \noindent
@@ -348,6 +349,93 @@ The architecture changes can be summarized into three mayor changes applied to t
 
 \noindent\textbf{Parameter Sharing among Generators:} Generators in the MADGAN architecture share most of their layers between the \(k\) generators. This reducese redundant compute in the initial feature extraction layers capturing high-frequency structures common in many datasets. Especially in single-view data, this is recommended. For multi-view data it is not recommended, to allow each generator to capture mode-specific features.
 
+% Define placeholder architectural functions
+\newcommand{\definegenerator}{\texttt{define\_generator}}
+\newcommand{\definediscriminator}{\texttt{define\_discriminator}}
+% Define lambda symbol for diversity weight
+\newcommand{\lambdadiv}{\lambda_{\text{div}}} 
+\subsection[Adapting MAD-GAN for Conditional Generation with Explicit Diversity - CMADGAN]{Adapting MAD-GAN for Conditional Generation with Explicit Diversity}
+\label{theoretical_cmadgan}
+
+The inial gaol of this reasearch included exploring methods for generating diverse samples in the mentioned datasets \ref{used_datasets} to be used for data augemntations. While the multi-agent framework by Ghosh presents a potential approach, experiments revealed significant challanges in achieving stable training and satisfactory results in terms of image quality with the original method. Specifically the CIFAR10 datasets proofed to be challanging, which is the only colored dataset used. 
+
+Consequently, an alternative framework, termed Conditional Multi-Agent Diverse GAN (cMADGAN), was conceptualized. The adjustment aims to retain the multi-generator diversity principle while simplifying the task of the discriminator. The discriminator model is rolled back to its original objective to differentiate between real and fake images. However, initial experiments indicated that this approach also faced convergence difficulties when applied to the original CIFAR10 dataset. This specific is explained in more detail in the experiemnts section \textit{todo: reference the correct chapter}
+
+%the following shall be moved to the experiments section
+%Drawing parallels with successful applications of similar GAN architectures on simpler datasets like MNIST and Fashion-MNIST (28x28 pixels, grayscale), a strategic decision was made to evaluate the CMADGAN concept under conditions more amenable to stable training and analysis. To this end, the CIFAR-10 dataset was **modified** for subsequent experiments: images were converted to grayscale and resized to 28x28 pixels. 
+
+The following sections detail the cMADGAN framework as implemented. This approach utilizes multiple generators (\( G_1, \dots, G_K \)), a single conditional discriminator (\( D \)) performing standard real/fake classification, and incorporates an explicit diversity loss between generator outputs alongside the adversarial objective.
+
+\subsubsection{Mathematical Formulation}
+\label{theoretical_cmadgan_math}
+
+Let \( z \) be a latent vector sampled from a prior distribution \( p(z) \), typically a standard normal distribution . Let \( c \) be the condition variable (e.g., class label) sampled from a distribution \( p(c) \). The framework also employs \( K \) generator networks \( G_1, \dots, G_K \) and a single discriminator network \( D \). Each generator \( G_i \) maps an input pair \( (z, c) \) to the data space, producing a fake sample \( \hat{x}_i = G_i(z, c) \). The discriminator \( D \) takes an input pair \( (x, c) \) (where \( x \) can be a real sample from the true data distribution \( p_{\text{data}}(x|c) \) or a fake sample \( \hat{x}_i \)) and outputs a scalar probability estimating the likelihood that \( x \) is real given the condition \( c \).
+
+The training involves optimizing two competing objectives, \( \mathcal{L}_D \) for the discriminator and \( \mathcal{L}_G \) for the generators:
+
+\paragraph{Discriminator Loss:}
+The discriminator is trained to distinguish real samples from fake samples generated by \textit{any} of the \( K \) generators, given the condition \( c \). Using the binary cross-entropy (BCE) loss, the objective is:
+\begin{equation}
+\label{eq:cmadgan_loss_d}
+\begin{split}
+\mathcal{L}_D = & - \mathbb{E}_{x \sim p_{\text{data}}(x|c), c \sim p(c)} [\log D(x, c)] \\
+& - \frac{1}{K} \sum_{i=1}^{K} \mathbb{E}_{z \sim p(z), c \sim p(c)} [\log(1 - D(G_i(z, c), c))]
+\end{split}
+\end{equation}
+In practice, techniques like label smoothing might be applied to stabilize training. In its current implementation, it is set to \(0.9\) for real and \(0.1\) for fake samples.
+
+\paragraph{Generator Loss:}
+The generators are trained collectively to fool the discriminator and simultaneously produce diverse outputs. The combined loss function includes an adversarial term and an explicit diversity term:
+\begin{equation}
+\label{eq:cmadgan_loss_g}
+\mathcal{L}_G = \mathcal{L}_{\text{adv}} - \lambdadiv \mathcal{L}_{\text{sim}} 
+\end{equation}
+where \( \lambdadiv \) is a hyperparameter controlling the weight of the diversity component.
+
+The components are defined as:
+\begin{itemize}
+    \item \textbf{Adversarial Loss (\( \mathcal{L}_{\text{adv}} \)):} Encourages generators to produce samples that the discriminator classifies as real. The non-saturating formulation based on maximizing the probability of fake samples being classified as real is commonly used:
+    \begin{equation}
+    \label{eq:cmadgan_loss_g_adv}
+    \mathcal{L}_{\text{adv}} = - \frac{1}{K} \sum_{i=1}^{K} \mathbb{E}_{z \sim p(z), c \sim p(c)} [\log D(G_i(z, c), c)]
+    \end{equation}
+
+    \item \textbf{Similarity Loss (\( \mathcal{L}_{\text{sim}} \)):} This term quantifies the similarity between outputs of different generator pairs for the same input \( (z, c) \). The goal during optimization (\(\min \mathcal{L}_G\)) is to maximize diversity, which corresponds to minimizing the similarity term \( \mathcal{L}_{\text{sim}} \) when \( \lambdadiv > 0 \) due to the negative sign in Eq. \ref{eq:cmadgan_loss_g}. Cosine similarity between the flattened outputs is used:
+    \begin{equation}
+    \label{eq:cmadgan_cossim}
+    \text{CosSim}(a, b) = \frac{\text{vec}(a) \cdot \text{vec}(b)}{\|\text{vec}(a)\|_2 \|\text{vec}(b)\|_2} 
+    \end{equation}
+    where \( \text{vec}(\cdot) \) denotes flattening the image tensor into a vector. The similarity loss is the average pairwise cosine similarity:
+    \begin{equation}
+    \label{eq:cmadgan_loss_g_sim}
+    \mathcal{L}_{\text{sim}} = \frac{1}{N_p} \sum_{i=1}^{K} \sum_{j=i+1}^{K} \mathbb{E}_{z \sim p(z), c \sim p(c)} [\text{CosSim}(G_i(z, c), G_j(z, c))]
+    \end{equation}
+    where \( N_p = K(K-1)/2 \) is the number of unique generator pairs. Minimizing the combined \( \mathcal{L}_G \) in Eq. \ref{eq:cmadgan_loss_g} thus encourages fooling the discriminator (minimizing \( \mathcal{L}_{\text{adv}} \)) while discouraging similarity between generator outputs (by minimizing \( -\mathcal{L}_{\text{sim}} \)).
+\end{itemize}
+
+%\textbf{Note on Implementation:} The provided codebase calculates a `diversity_loss_term = mean(CosSim - 1)` and subtracts `diversity_weight * diversity_loss_term` from the adversarial sum. This is mathematically equivalent to `Sum(L_adv_i) + diversity_weight * mean(1 - CosSim)`, which, when minimized, correctly promotes diversity by minimizing the dissimilarity `(1 - CosSim)`. The formulation \( \mathcal{L}_G = \mathcal{L}_{\text{adv}} - \lambdadiv \mathcal{L}_{\text{sim}} \) presented here achieves the same goal.
+
+\subsubsection{Architectural Adjustments}
+\label{theory_cmadgan_architecture}
+
+The CMADGAN architecture makes specific adjustments compared to both standard conditional GANs and the original MAD-GAN:
+
+\begin{itemize}
+    \item \textbf{Multiple Generators:} 
+    As the original MADGAN framework propsed, the cMADGAN employs \(K\) distinct generator networks. As suggested in the original paper, the generators do not share their weights, du to the selction of datasets (cf. section 4.1 \cite{ghosh2018madgan}). Each generator takes both the latent vector \( z \) and the condition \( c \) as input.
+    \item \textbf{Conditional Discriminator:} 
+    Unlike the original MADGAN discriminator, the task of the cMADGAN discriminator performs the standard conditional GAN task \ref{theory_cgan_architecture}. \(D\) receives an image \( x \) (real or fake) and its corresponding condition \( c \), and outputs a single probability indicating whether the image is real given the condition.
+    \item \textbf{Conditioning Mechanism:} Class conditioning \( c \) is integrated into both generator and discriminator networks. There are multiple different ways to encode information \ref{theory_cgan_architecture}. 
+        \begin{itemize}
+            \item In the generators, this embedding is concatenated with the latent vector \( z \) before being processed by the main network layers (e.g., transposed convolutions).
+            \item In the discriminator, the condition embedding might be concatenated with intermediate feature maps or projected via learned linear layers and combined with image features before the final classification output, following common practices for conditional discriminators \cite{mirza2014conditionalgenerativeadversarialnets}.
+        \end{itemize}
+    \item \textbf{Explicit Diversity Enforcement:} Diversity is not solely an emergent property of competition but is explicitly encouraged via the \( \mathcal{L}_{\text{sim}} \) term in the generator objective (Eq. \ref{eq:cmadgan_loss_g}), directly penalizing high similarity between the outputs of different generators for the same input \( (z, c) \).
+\end{itemize}
+
+The specific convolutional layers, normalization techniques, and activation functions within the generator and discriminator networks follow standard deep convolutional GAN (DCGAN) \cite{Radford2015DCGAN} principles or other relevant architectural patterns suitable, as detailed in the experimental setup section (\textit{TODO: Cross-reference experiments section here}). This cMADGAN structure provides a framework for conditional generation that leverages multiple generators for diversity. 
+
+
 % ########################################################################################################
 % # END: Generative Aderserial Networks
 % ########################################################################################################
@@ -359,92 +447,86 @@ The architecture changes can be summarized into three mayor changes applied to t
 
 \subsection{Image Scores}\label{theoretical_image_scores}
 
-To quantitatively evaluate the quality and diversity of images generated by generative models, several metrics have been proposed in the literature. These image scores aim to provide an objective measure to compare generative models independently of human evaluation. This section introduces widely-used metrics for evaluating generative models: \textit{Inception Score} (IS), \textit{Fréchet Inception Distance} (FID), and the underlying InceptionV3 model employed for these metrics.
+To quantitatively evaluate the quality and diversity of images generated by generative models, several metrics have been proposed in the literature. These image scores aim to provide an objective measure to compare generative models independently of human evaluation. This section introduces widely-used metrics for evaluating generative models: \textit{Inception Score} (IS), \textit{Fréchet Inception Distance} (FID), and the underlying InceptionV3 model employed for these metrics.q
 
 \subsubsection[Inception Score - IS]{Inception Score}
 The Inception Score (IS) \cite{salimans2016improvedtechniquestraininggans} is one of the earliest and most commonly used metrics for evaluating generative models, especially GANs. It leverages a pretrained InceptionV3 classifier to assess two main criteria of generated images:
 
 \begin{itemize}
-    \item \textbf{Image Quality (Objectiveness)}: Each generated image should be classified into a specific class with high confidence. This corresponds to a low-entropy conditional label distribution \( p(y|x) \).
+    \item \textbf{Image Quality (Clarity)}: Each generated image should be classified into a specific class with high confidence. This corresponds to a low-entropy conditional label distribution \( p(y|x) \).
     \item \textbf{Diversity}: Across the entire set of generated images, the distribution of predicted classes should be diverse and cover many different labels. This corresponds to a high-entropy marginal label distribution \( p(y) \).
 \end{itemize}
 
-Mathematically, the Inception Score is computed as:
-% TODO: check them formulas
+\noindent 
+Mathematically, the Inception Score is computed over a set of generated images \(x\) drawn from the generator's distribution \(p_g\):
 \begin{equation}
 IS = \exp \left( \mathbb{E}_{x \sim p_g} \left[ D_{\text{KL}}(p(y|x) \| p(y)) \right] \right)
 \end{equation}
-
-where \( D_{\text{KL}} \) denotes the Kullback-Leibler divergence between the conditional class distribution and the marginal class distribution.
+where \( D_{\text{KL}} \) denotes the Kullback-Leibler divergence between the conditional class distribution \(p(y|x)\) for a specific image \(x\) and the marginal class distribution \(p(y)\) estimated over all generated images. A higher IS indicates that the model generates images that are confidently classified into diverse classes.
 
 \textbf{Limitations of IS}:
 \begin{itemize}
     \item Does not directly compare generated images with real images.
-    \item Insensitive to intra-class diversity.
-    \item Sensitive to the choice of the pretrained classifier.
+    \item Insensitive to intra-class diversity (e.g., generating only one type of dog within the 'dog' class).
+    \item Sensitive to the choice and specific training of the pretrained classifier.
 \end{itemize}
 
 \subsubsection[Fréchet Inception Distance - FID]{Fréchet Inception Distance}
 
-The Fréchet Inception Distance (FID) \cite{heusel2018ganstrainedtimescaleupdate} improves upon IS by directly comparing the feature distributions of real and generated images. FID embeds both real and generated images into a lower-dimensional feature space (obtained from a pretrained InceptionV3 network) and models these embeddings as multivariate Gaussians.
+The Fréchet Inception Distance (FID) \cite{heusel2018ganstrainedtimescaleupdate} improves upon IS by directly comparing the feature distributions of real and generated images. FID embeds both real (\(r\)) and generated (\(g\)) images into a lower-dimensional feature space using a pretrained InceptionV3 network (typically using the activations from the final average pooling layer, often referred to as 'pool3'). It then models the distributions of these embeddings as multivariate Gaussians.
 
-Let \( (\mu_r, \Sigma_r) \) and \( (\mu_g, \Sigma_g) \) denote the means and covariances of the real and generated image features, respectively. The FID score is computed as:
-% TODO: check them formulas
+Let \( (\mu_r, \Sigma_r) \) and \( (\mu_g, \Sigma_g) \) denote the means and covariance matrices of the real and generated image Inception feature embeddings, respectively. The FID score is computed as the Fréchet distance (also known as Wasserstein-2 distance) between these two Gaussian distributions:
 \begin{equation}
 FID = \| \mu_r - \mu_g \|^2_2 + \text{Tr} \left( \Sigma_r + \Sigma_g - 2(\Sigma_r \Sigma_g)^{1/2} \right)
 \end{equation}
+where \( \|\cdot\|^2_2 \) is the squared Euclidean norm, \( \text{Tr}(\cdot) \) is the trace of a matrix, and \( (\Sigma_r \Sigma_g)^{1/2} \) is the matrix square root of the product of the covariance matrices.
 
-\textbf{Interpretation}:
+\noindent\textbf{Interpretation}:
 \begin{itemize}
-    \item Lower FID indicates better quality and diversity.
-    \item Sensitive to both image quality and intra-class diversity.
+    \item Lower FID indicates that the distribution of generated image features is more similar to the distribution of real image features, suggesting better quality and diversity. A score of 0 indicates identical distributions.
+    \item Sensitive to both image quality (affecting feature representations) and diversity (affecting the mean and covariance of features).
 \end{itemize}
 
 \textbf{Advantages over IS}:
 \begin{itemize}
-    \item Considers real image distribution.
-    \item Sensitive to intra-class mode collapse.
+    \item Directly compares the generated image distribution to the real image distribution.
+    \item More sensitive to intra-class mode collapse (lack of diversity within classes) as this affects \(\Sigma_g\).
+    \item Generally found to correlate better with human judgment of image quality than IS.
 \end{itemize}
 
 \textbf{Limitations}:
 \begin{itemize}
-    \item Assumes Gaussian distribution of features.
-    \item Sensitive to the choice of feature extractor.
+    \item Assumes Gaussian distribution of features, which might be an approximation.
+    \item Sensitive to the choice of feature extractor network and the specific layer used.
+    \item Requires a sufficiently large number of samples (both real and generated) for stable estimation of moments (\(\mu, \Sigma\)).
 \end{itemize}
 
 \subsubsection[InceptionV3 Model]{InceptionV3 for Image Evaluation}
 
-Both IS and FID rely on the InceptionV3 model~\cite{szegedy2016rethinking}, a deep convolutional neural network trained on ImageNet. The InceptionV3 network serves two primary roles in generative image evaluation:
+Both IS and FID commonly rely on the InceptionV3 model~\cite{szegedy2016rethinking}, a deep convolutional neural network pretrained on the large-scale ImageNet dataset \cite{ImageNetDataset5206848}. The InceptionV3 network serves two primary roles in evaluating generative models:
 
 \begin{enumerate}
-    \item \textbf{Feature Extractor}: Intermediate activations (typically from the pool3 layer) are used as a semantic representation of the images for computing FID.
-    \item \textbf{Classifier}: The output class probabilities of InceptionV3 are used to compute IS.
+    \item \textbf{Feature Extractor (for FID)}: Intermediate activations, typically from the final average pooling layer (`pool3`), are used as a semantic feature representation of the images. The statistics (mean and covariance) of these features are then compared between real and generated image sets.
+    \item \textbf{Classifier (for IS)}: The output layer provides class probabilities for input images. These probabilities are used to calculate the entropy terms required for the Inception Score.
 \end{enumerate}
 
-\textbf{Properties of InceptionV3 relevant for image scoring}:
+\noindent\textbf{Properties of InceptionV3 relevant for image scoring}:
 \begin{itemize}
-    \item Trained on large-scale ImageNet dataset — providing a rich semantic feature space.
-    \item Fixed, non-trainable weights during evaluation — ensuring standardization.
-    \item Layer choice affects sensitivity — earlier layers capture texture, later layers capture semantics.
+    \item Trained on the diverse ImageNet dataset, providing a rich semantic feature space capable of capturing complex visual patterns.
+    \item Uses fixed, non-trainable weights during evaluation, ensuring standardization and comparability of scores across different studies (provided the same implementation is used).
+    \item The choice of layer for feature extraction (primarily for FID) impacts sensitivity; earlier layers capture lower-level features like texture, while later layers capture more abstract semantic information. The `pool3` layer is commonly chosen as a balance.
 \end{itemize}
 
-\textbf{Limitations of using InceptionV3}:
+\noindent\textbf{Limitations of using InceptionV3}:\label{theoretical_inception_model_limitaitions}
 \begin{itemize}
-    \item Domain gap between ImageNet images and domain-specific generative tasks (e.g., medical images, industrial images).
-    \item Performance can degrade if generated images differ significantly from ImageNet classes.
+    \item Domain Gap: The features learned on ImageNet (mostly natural images centered on objects) might not be optimally suited for evaluating images from significantly different domains, such as medical scans, satellite imagery, or abstract art.
+    \item Sensitivity to ImageNet Classes: Performance, particularly for IS, can be less meaningful if the generated images depict objects or scenes vastly different from the 1000 ImageNet classes.
+    \item Potential Bias: Potential biases present within the ImageNet dataset itself (e.g., representation bias) may be inherited by the features, potentially impacting evaluation fairness or relevance for specific target domains.
 \end{itemize}
 
 
 % ########################################################################################################
 % # STOP: Image Scores
 % ########################################################################################################
-
-
-
-
-
-
-
-
 
 \newpage

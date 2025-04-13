@@ -3,7 +3,7 @@
 \contentsline {figure}{\numberline {2}{\ignorespaces Visualization of the vanilla GAN architecture. The figure shows the noise vector, flowing into the discriminator, as well as the real sample from \(P_d\)}}{16}{figure.caption.15}%
 \contentsline {figure}{\numberline {3}{\ignorespaces Visualization of the MADGAN architecture. The figure shows the \(k+1\) outputs of the discriminator and the \(k\) generators, with tied weights in the middle of the network.}}{21}{figure.caption.26}%
 \contentsline {figure}{\numberline {4}{\ignorespaces Figure taken from the original paper \cite {ghosh2018madgan}. The visualization shows how different generators \(G_1\) and \(G_2\) are pushed to different modes \(M_1\) and \(M_2\)}}{22}{figure.caption.27}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Depiction of the CNN achritecture used to classify unlabeled images from the MNIST GDA experiments. (Image created with \cite {Gavrikov2020VisualKeras})}}{1}{figure.caption.32}%
-\contentsline {figure}{\numberline {6}{\ignorespaces Depiction of the CNN achritecture used to classify unlabeled images from the FashionMNIST GDA experiments. (Image created with \cite {Gavrikov2020VisualKeras})}}{1}{figure.caption.33}%
-\contentsline {figure}{\numberline {7}{\ignorespaces Depiction of the CNN achritecture used to classify unlabeled images from the CIFAR10 GDA experiments. (Image created with )}}{1}{figure.caption.34}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Depiction of the CNN achritecture used to classify unlabeled images from the MNIST GDA experiments. (Image created with \cite {Gavrikov2020VisualKeras})}}{1}{figure.caption.36}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Depiction of the CNN achritecture used to classify unlabeled images from the FashionMNIST GDA experiments. (Image created with \cite {Gavrikov2020VisualKeras})}}{1}{figure.caption.37}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Depiction of the CNN achritecture used to classify unlabeled images from the CIFAR10 GDA experiments. (Image created with )}}{1}{figure.caption.38}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
