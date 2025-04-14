@@ -100,7 +100,7 @@ With their introduction in "\textit{Batch Normalization: Accelerating Deep Netwo
 \end{itemize}
 
 \subsubsection{Classification Models for augmented Training}
-The classification models, on which the data augmentation is tested, are simple CNN classifiers consisting of the described layers. For each dataset MNIST, Fashion MNIST and CIFAR10 \ref{used_datasets}, a dedicated classifier architecture is created. The main differences between these architectures is the number of blocks, made of two-dimensional \hyperref[theoretical_classification_conv_layers]{convolutional}, \hyperref[theoretical_classification_batchnorm_layers]{batchnorm} and \hyperref[theoretical_classification_pooling_layers]{pooling} layers. All three models use a use the \hyperref[theoretical_activations_relu]{ReLU} function for activation of the convolutional layers and the \hyperref[theoretical_activations_softmax]{Softmax} function for the activation at their respective output layer, resulting in probability distribution over the space of classes. More on the specifical model architectures can be found in chapter \ref{body_prelim}. %TODO: link the correct subsection
+The classification models, on which the data augmentation is tested, are simple CNN classifiers consisting of the described layers. For each dataset MNIST, Fashion MNIST and CIFAR10 \ref{used_datasets}, a dedicated classifier architecture is created. The main differences between these architectures is the number of blocks, made of two-dimensional \hyperref[theoretical_classification_conv_layers]{convolutional}, \hyperref[theoretical_classification_batchnorm_layers]{batchnorm} and \hyperref[theoretical_classification_pooling_layers]{pooling} layers. All three models use a use the \hyperref[theoretical_activations_relu]{ReLU} function for activation of the convolutional layers and the \hyperref[theoretical_activations_softmax]{Softmax} function for the activation at their respective output layer, resulting in probability distribution over the space of classes. More on the specific model architectures and used metrics for evaluation can be found in chapter \ref{body_prelim}. %TODO: link the correct subsection
 % ########################################################################################################
 % # END: IMAGE CLASSIFICATION MODELS
 % ########################################################################################################
@@ -353,16 +353,16 @@ The architecture changes can be summarized into three mayor changes applied to t
 \newcommand{\definegenerator}{\texttt{define\_generator}}
 \newcommand{\definediscriminator}{\texttt{define\_discriminator}}
 % Define lambda symbol for diversity weight
-\newcommand{\lambdadiv}{\lambda_{\text{div}}} 
+\newcommand{\lambdadiv}{\lambda_{\text{div}}}
 \subsection[Adapting MAD-GAN for Conditional Generation with Explicit Diversity - CMADGAN]{Adapting MAD-GAN for Conditional Generation with Explicit Diversity}
 \label{theoretical_cmadgan}
 
-The inial gaol of this reasearch included exploring methods for generating diverse samples in the mentioned datasets \ref{used_datasets} to be used for data augemntations. While the multi-agent framework by Ghosh presents a potential approach, experiments revealed significant challanges in achieving stable training and satisfactory results in terms of image quality with the original method. Specifically the CIFAR10 datasets proofed to be challanging, which is the only colored dataset used. 
+The inial gaol of this reasearch included exploring methods for generating diverse samples in the mentioned datasets \ref{used_datasets} to be used for data augemntations. While the multi-agent framework by Ghosh presents a potential approach, experiments revealed significant challanges in achieving stable training and satisfactory results in terms of image quality with the original method. Specifically the CIFAR10 datasets proofed to be challanging, which is the only colored dataset used.
 
 Consequently, an alternative framework, termed Conditional Multi-Agent Diverse GAN (cMADGAN), was conceptualized. The adjustment aims to retain the multi-generator diversity principle while simplifying the task of the discriminator. The discriminator model is rolled back to its original objective to differentiate between real and fake images. However, initial experiments indicated that this approach also faced convergence difficulties when applied to the original CIFAR10 dataset. This specific is explained in more detail in the experiemnts section \textit{todo: reference the correct chapter}
 
 %the following shall be moved to the experiments section
-%Drawing parallels with successful applications of similar GAN architectures on simpler datasets like MNIST and Fashion-MNIST (28x28 pixels, grayscale), a strategic decision was made to evaluate the CMADGAN concept under conditions more amenable to stable training and analysis. To this end, the CIFAR-10 dataset was **modified** for subsequent experiments: images were converted to grayscale and resized to 28x28 pixels. 
+%Drawing parallels with successful applications of similar GAN architectures on simpler datasets like MNIST and Fashion-MNIST (28x28 pixels, grayscale), a strategic decision was made to evaluate the CMADGAN concept under conditions more amenable to stable training and analysis. To this end, the CIFAR-10 dataset was **modified** for subsequent experiments: images were converted to grayscale and resized to 28x28 pixels.
 
 The following sections detail the cMADGAN framework as implemented. This approach utilizes multiple generators (\( G_1, \dots, G_K \)), a single conditional discriminator (\( D \)) performing standard real/fake classification, and incorporates an explicit diversity loss between generator outputs alongside the adversarial objective.
 
@@ -388,7 +388,7 @@ In practice, techniques like label smoothing might be applied to stabilize train
 The generators are trained collectively to fool the discriminator and simultaneously produce diverse outputs. The combined loss function includes an adversarial term and an explicit diversity term:
 \begin{equation}
 \label{eq:cmadgan_loss_g}
-\mathcal{L}_G = \mathcal{L}_{\text{adv}} - \lambdadiv \mathcal{L}_{\text{sim}} 
+\mathcal{L}_G = \mathcal{L}_{\text{adv}} - \lambdadiv \mathcal{L}_{\text{sim}}
 \end{equation}
 where \( \lambdadiv \) is a hyperparameter controlling the weight of the diversity component.
 
@@ -403,7 +403,7 @@ The components are defined as:
     \item \textbf{Similarity Loss (\( \mathcal{L}_{\text{sim}} \)):} This term quantifies the similarity between outputs of different generator pairs for the same input \( (z, c) \). The goal during optimization (\(\min \mathcal{L}_G\)) is to maximize diversity, which corresponds to minimizing the similarity term \( \mathcal{L}_{\text{sim}} \) when \( \lambdadiv > 0 \) due to the negative sign in Eq. \ref{eq:cmadgan_loss_g}. Cosine similarity between the flattened outputs is used:
     \begin{equation}
     \label{eq:cmadgan_cossim}
-    \text{CosSim}(a, b) = \frac{\text{vec}(a) \cdot \text{vec}(b)}{\|\text{vec}(a)\|_2 \|\text{vec}(b)\|_2} 
+    \text{CosSim}(a, b) = \frac{\text{vec}(a) \cdot \text{vec}(b)}{\|\text{vec}(a)\|_2 \|\text{vec}(b)\|_2}
     \end{equation}
     where \( \text{vec}(\cdot) \) denotes flattening the image tensor into a vector. The similarity loss is the average pairwise cosine similarity:
     \begin{equation}
@@ -421,11 +421,11 @@ The components are defined as:
 The CMADGAN architecture makes specific adjustments compared to both standard conditional GANs and the original MAD-GAN:
 
 \begin{itemize}
-    \item \textbf{Multiple Generators:} 
+    \item \textbf{Multiple Generators:}
     As the original MADGAN framework propsed, the cMADGAN employs \(K\) distinct generator networks. As suggested in the original paper, the generators do not share their weights, du to the selction of datasets (cf. section 4.1 \cite{ghosh2018madgan}). Each generator takes both the latent vector \( z \) and the condition \( c \) as input.
-    \item \textbf{Conditional Discriminator:} 
+    \item \textbf{Conditional Discriminator:}
     Unlike the original MADGAN discriminator, the task of the cMADGAN discriminator performs the standard conditional GAN task \ref{theory_cgan_architecture}. \(D\) receives an image \( x \) (real or fake) and its corresponding condition \( c \), and outputs a single probability indicating whether the image is real given the condition.
-    \item \textbf{Conditioning Mechanism:} Class conditioning \( c \) is integrated into both generator and discriminator networks. There are multiple different ways to encode information \ref{theory_cgan_architecture}. 
+    \item \textbf{Conditioning Mechanism:} Class conditioning \( c \) is integrated into both generator and discriminator networks. There are multiple different ways to encode information \ref{theory_cgan_architecture}.
         \begin{itemize}
             \item In the generators, this embedding is concatenated with the latent vector \( z \) before being processed by the main network layers (e.g., transposed convolutions).
             \item In the discriminator, the condition embedding might be concatenated with intermediate feature maps or projected via learned linear layers and combined with image features before the final classification output, following common practices for conditional discriminators \cite{mirza2014conditionalgenerativeadversarialnets}.
@@ -433,7 +433,7 @@ The CMADGAN architecture makes specific adjustments compared to both standard co
     \item \textbf{Explicit Diversity Enforcement:} Diversity is not solely an emergent property of competition but is explicitly encouraged via the \( \mathcal{L}_{\text{sim}} \) term in the generator objective (Eq. \ref{eq:cmadgan_loss_g}), directly penalizing high similarity between the outputs of different generators for the same input \( (z, c) \).
 \end{itemize}
 
-The specific convolutional layers, normalization techniques, and activation functions within the generator and discriminator networks follow standard deep convolutional GAN (DCGAN) \cite{Radford2015DCGAN} principles or other relevant architectural patterns suitable, as detailed in the experimental setup section (\textit{TODO: Cross-reference experiments section here}). This cMADGAN structure provides a framework for conditional generation that leverages multiple generators for diversity. 
+The specific convolutional layers, normalization techniques, and activation functions within the generator and discriminator networks follow standard deep convolutional GAN (DCGAN) \cite{Radford2015DCGAN} principles or other relevant architectural patterns suitable, as detailed in the experimental setup section (\textit{TODO: Cross-reference experiments section here}). This cMADGAN structure provides a framework for conditional generation that leverages multiple generators for diversity.
 
 
 % ########################################################################################################
@@ -457,7 +457,7 @@ The Inception Score (IS) \cite{salimans2016improvedtechniquestraininggans} is on
     \item \textbf{Diversity}: Across the entire set of generated images, the distribution of predicted classes should be diverse and cover many different labels. This corresponds to a high-entropy marginal label distribution \( p(y) \).
 \end{itemize}
 
-\noindent 
+\noindent
 Mathematically, the Inception Score is computed over a set of generated images \(x\) drawn from the generator's distribution \(p_g\):
 \begin{equation}
 IS = \exp \left( \mathbb{E}_{x \sim p_g} \left[ D_{\text{KL}}(p(y|x) \| p(y)) \right] \right)
