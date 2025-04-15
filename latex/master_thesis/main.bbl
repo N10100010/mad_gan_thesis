@@ -60,6 +60,15 @@
 \newblock \url{https://arxiv.org/abs/1603.07285}.
 \newblock \,Version:\,2018
 
+\bibitem[FG19]{fridman2019Goodfellow}
+\textsc{Fridman}, Lex ; \textsc{Goodfellow}, Ian:
+\newblock \emph{Ian Goodfellow: Generative Adversarial Networks (GANs) | Lex
+  Fridman Podcast \#19}.
+\newblock Audio podcast episode, \emph{Lex Fridman Podcast}, YouTube.
+\newblock \url{https://www.youtube.com/watch?v=Z6rxFNMGdn0&t=3037s}.
+\newblock \,Version:\,apr 2019. --
+\newblock Accessed: 2025-03-14
+
 \bibitem[Gav20]{Gavrikov2020VisualKeras}
 \textsc{Gavrikov}, Paul:
 \newblock \emph{visualkeras}.
