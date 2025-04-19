@@ -1,4 +1,4 @@
-\babel@toc {english}{}\relax
+\babel@toc {english}{}\relax 
 \contentsline {figure}{\numberline {1}{\ignorespaces Exemplary use of traditional augmentation techniques from the categories \textit {geometric} (first row), \textit {photometric} (second row), and \textit {noise-corruption} (third row). The image shown is an image from the \hyperref [used_datasets]{CIFAR10 dataset}, assigned to the class "airplane".}}{15}{figure.caption.14}%
 \contentsline {figure}{\numberline {2}{\ignorespaces Visualization of the vanilla GAN architecture. The figure shows the noise vector, flowing into the discriminator, as well as the real sample from \(P_d\)}}{16}{figure.caption.15}%
 \contentsline {figure}{\numberline {3}{\ignorespaces Visualization of the MADGAN architecture. The figure shows the \(k+1\) outputs of the discriminator and the \(k\) generators, with tied weights in the middle of the network.}}{21}{figure.caption.26}%
@@ -6,4 +6,4 @@
 \contentsline {figure}{\numberline {5}{\ignorespaces Depiction of the CNN achritecture used to classify unlabeled images from the MNIST GDA experiments. (Image created with \cite {Gavrikov2020VisualKeras})}}{1}{figure.caption.37}%
 \contentsline {figure}{\numberline {6}{\ignorespaces Depiction of the CNN achritecture used to classify unlabeled images from the FashionMNIST GDA experiments. (Image created with \cite {Gavrikov2020VisualKeras})}}{1}{figure.caption.38}%
 \contentsline {figure}{\numberline {7}{\ignorespaces Depiction of the CNN achritecture used to classify unlabeled images from the CIFAR10 GDA experiments. (Image created with )}}{1}{figure.caption.39}%
-\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

@@ -1,14 +1,20 @@
 \section{Experiments Results}\label{body_experiments_results}
 \paragraph{Motivation}\label{par_EXP_durch_motiv}
-The primary motivation for investigating multi-generator GAN architecures for GDA arose from a specific suggestion by Ian Goodfellow during his appearance on the Lex Fridman Podcast \cite{fridman2019Goodfellow}. He proposed exploring the collective strength of multiple generative models trained on the same data:
+The primary motivation for investigating multi-generator GAN architectures for Generative Data Augmentation (GDA) stems from a suggestion by Ian Goodfellow on the Lex Fridman Podcast \cite{fridman2019Goodfellow}. He proposed leveraging the diversity inherent in multiple generative models trained on the same data to potentially improve downstream classifiers:
 
 \begin{quotation}
-    So one thing I think is worth trying [\dots] is, what if you trained a whole lot of different generative models on the same training set, create samples from all of them and then train a classifier on that. Because each of the generative models might generalize in a slightly different way, they might capture different axes of variation, that one individual model wouldn't and then the classifier can capture all of those ideas, by training on all of their data.
+    \noindent So one thing I think is worth trying [\dots] is, what if you trained a whole lot of different generative models on the same training set, create samples from all of them and then train a classifier on that. Because each of the generative models might generalize in a slightly different way, they might capture different axes of variation, that one individual model wouldn't and then the classifier can capture all of those ideas, by training on all of their data.
 \end{quotation}\citep[50:37]{fridman2019Goodfellow}
 
-This idea, suggesting that diversity in generation could lead to richer datasets for subsequent tasks, forms the conceptual basis for the experiments conducted in this work.
+\noindent Goodfellow's concept resonates strongly with the principles of Multi-Agent Diverse GANs (MADGANs) \cite{ghosh2018madgan}. The MADGAN architecture, with its explicit diversity-promoting objective and use of multiple generators, provides a suitable framework for realizing this augmentation strategy. Therefore, the work by Ghosh et al. laid the conceptual groundwork for this thesis.
 
-\subsection{Questions to answer}
+\subsection{Key Research Questions}
+This chapter investigates the following questions regarding MADGANs for data augmentation:
+\begin{itemize}
+    \item Does Generative Data Augmentation (GDA) with MADGANs enhance downstream classifier performance more effectively than Traditional Data Augmentation (TDA)?
+    \item How does the performance enhancement achieved with MADGAN-based GDA compare to that of GDA using standard GANs or conditional GANs?
+    \item What is the impact of varying the number of MADGAN generators on downstream classifier performance? 
+\end{itemize}
 
 
 

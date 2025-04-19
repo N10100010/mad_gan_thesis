@@ -1,109 +1,65 @@
-import tensorflow as tf
-# Assuming your model definition is correctly imported
-from model_definitions.classifiers.cifar10 import CIFAR10Classifier
-from model_definitions.classifiers.mnist import MNISTClassifier
-from model_definitions.classifiers.fashion_mnist import FashionMNISTClassifier
-import visualkeras
-from PIL import ImageFont # Optional: For font customization
-import os # To check font file existence
+import matplotlib.pyplot as plt
+import numpy as np
+from tensorflow.keras.datasets import mnist, fashion_mnist, cifar10
 
-classifier_instance = FashionMNISTClassifier(num_classes=10)
-output_filename = 'C:\\Users\\NiXoN\\Desktop\\_thesis\\mad_gan_thesis\\latex\\master_thesis\\abb\\netron_network_archs\\classifying_Classifier_FashionMNIST.png'
+# Set global plotting style for thesis-level aesthetics
+plt.style.use('seaborn-whitegrid')
+plt.rcParams.update({
+    'font.size': 12,
+    'axes.titlesize': 14,
+    'axes.labelsize': 12,
+    'xtick.labelsize': 11,
+    'ytick.labelsize': 11,
+    'figure.figsize': (6, 4),
+    'figure.dpi': 300,
+    'axes.edgecolor': 'black',
+    'axes.linewidth': 1,
+    'axes.labelweight': 'bold',
+    'text.usetex': False,  # Set to True if you compile with LaTeX
+})
 
+# Helper function to create a clean bar plot
+def plot_distribution(labels, dataset_name, class_names=None, save_path=None):
+    labels = labels.flatten()
+    classes, counts = np.unique(labels, return_counts=True)
 
-# --- Keep your text_callable function definition here ---
-def text_callable(layer_index, layer):
-    # (Your function definition as provided)
-    # Every other piece of text is drawn above the layer, the first one below
-    above = bool(layer_index%2)
+    fig, ax = plt.subplots()
+    bars = ax.bar(classes, counts, color='#4C72B0', edgecolor='black')
 
-    # Get the output shape of the layer
-    output_shape = []
-    try:
-        if hasattr(layer, 'output_shape'):
-             output_shape = [x for x in list(layer.output_shape) if x is not None]
-             # If the output shape is a list of tuples, we only take the first one
-             if output_shape and isinstance(output_shape[0], tuple):
-                 output_shape = list(output_shape[0])
-                 output_shape = [x for x in output_shape if x is not None]
-    except Exception: # Broad exception just in case shape access fails unexpectedly
-        pass # Leave output_shape as empty list
+    if class_names:
+        ax.set_xticks(classes)
+        ax.set_xticklabels(class_names, rotation=45, ha='right')
 
-    # Variable to store text which will be drawn
-    output_shape_txt = ""
+    ax.set_title(f"{dataset_name} – Class Distribution", pad=10, weight='bold')
+    ax.set_xlabel("Class")
+    ax.set_ylabel("Number of Samples")
+    ax.set_axisbelow(True)
+    ax.spines[['right', 'top']].set_visible(False)
+    ax.grid(axis='y', linestyle='--', linewidth=0.7)
 
-    # Create a string representation of the output shape
-    if len(output_shape) == 1:
-         output_shape_txt = str(output_shape[0])
-    elif len(output_shape) > 1:
-        for ii in range(len(output_shape)):
-            output_shape_txt += str(output_shape[ii])
-            if ii < len(output_shape) - 2: # Add an x between dimensions, e.g. 3x3
-                output_shape_txt += "x"
-            if ii == len(output_shape) - 2: # Add a newline between the last two dimensions, e.g. 3x3 \n 64
-                output_shape_txt += "\n"
+    for bar in bars:
+        height = bar.get_height()
+        ax.annotate(f'{height}', xy=(bar.get_x() + bar.get_width() / 2, height),
+                    xytext=(0, 3), textcoords="offset points",
+                    ha='center', va='bottom', fontsize=9)
 
-    # Add the name of the layer to the text, as a new line
-    layer_name = layer.name if hasattr(layer, 'name') and layer.name else layer.__class__.__name__
-    if layer_name.startswith(layer.__class__.__name__.lower()): # Use class name if default name
-        layer_name = layer.__class__.__name__
+    plt.tight_layout()
+    if save_path:
+        plt.savefig(save_path, bbox_inches='tight', dpi=300)
+    plt.show()
 
-    if output_shape_txt:
-        output_shape_txt += f"\n{layer_name}"
-    else:
-        output_shape_txt = layer_name # Fallback to just name if shape is empty/invalid
+# Load datasets
+(x_mnist, y_mnist), _ = mnist.load_data()
+(x_fashion, y_fashion), _ = fashion_mnist.load_data()
+(x_cifar, y_cifar), _ = cifar10.load_data()
 
-    # Return the text value and if it should be drawn above the layer
-    return output_shape_txt, above
+# Define class names
+fashion_labels = ["T-shirt/top", "Trouser", "Pullover", "Dress", "Coat",
+                  "Sandal", "Shirt", "Sneaker", "Bag", "Ankle boot"]
+cifar_labels = ["Airplane", "Automobile", "Bird", "Cat", "Deer",
+                "Dog", "Frog", "Horse", "Ship", "Truck"]
 
-
-# --- Instantiate your model ---
-try:
-    print("Instantiating CIFAR10Classifier model...")
-    # Ensure CIFAR10Classifier is correctly defined/imported before this line
-    model_to_visualize = classifier_instance.model
-
-    # --- Optional: Font setup (as before) ---
-    font = None
-    # ... (font loading code if needed) ...
-
-    # --- Generate visualization ---
-    # Use an absolute path or ensure the directory exists
-    # Create the directory if it doesn't exist
-    os.makedirs(os.path.dirname(output_filename), exist_ok=True)
-
-    print(f"Generating visualization using visualkeras to {output_filename}...")
-
-    visualkeras.layered_view(
-        model_to_visualize,
-        legend=True,
-        to_file=output_filename,
-        text_callable=text_callable,        # <<< Use the correct 'draw_text' argument
-        font=font,
-        spacing=20,
-        padding=50,
-        scale_xy=10,
-        scale_z=1.5,
-        min_z=20,
-        min_xy=20,
-        max_xy=100,
-        max_z=100
-    )
-
-    print(f"Architecture visualization saved successfully to: {output_filename}")
-
-
-except NameError as e:
-     print(f"ERROR: Could not instantiate model or find definition. Is CIFAR10Classifier correctly defined/imported? Details: {e}")
-except ImportError as e:
-     print(f"ERROR: visualkeras or Pillow might not be installed. Install using 'pip install visualkeras Pillow'. Details: {e}")
-except AttributeError as e:
-     print(f"ERROR: Problem accessing model attributes. Is the model definition correct? Details: {e}")
-except FileNotFoundError as e:
-     print(f"ERROR: Output directory path seems invalid or cannot be created. Check path: {output_filename}. Details: {e}")
-except OSError as e:
-     print(f"ERROR accessing font file (if specified) or writing PNG. Check permissions/path. Details: {e}")
-except Exception as e:
-     print(f"ERROR: An unexpected error occurred: {e}")
-     # import traceback
-     # traceback.print_exc()
+# Create and save the plots
+plot_distribution(y_mnist, "MNIST", save_path="C:\\Users\\NiXoN\\Desktop\\_thesis\\mad_gan_thesis\\latex\\master_thesis\\abb\\used_datasets_class_dist\\mnist_class_distribution.png")
+plot_distribution(y_fashion, "Fashion-MNIST", fashion_labels, "C:\\Users\\NiXoN\\Desktop\\_thesis\\mad_gan_thesis\\latex\\master_thesis\\abb\\used_datasets_class_dist\\fashion_mnist_class_distribution.png")
+plot_distribution(y_cifar, "CIFAR-10", cifar_labels, "C:\\Users\\NiXoN\\Desktop\\_thesis\\mad_gan_thesis\\latex\\master_thesis\\abb\\used_datasets_class_dist\\cifar10_class_distribution.png")
