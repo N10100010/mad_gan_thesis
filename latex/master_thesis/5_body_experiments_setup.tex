@@ -3,6 +3,25 @@
 \subsection{Preliminary Remarks}\label{body_prelim}
 Before presenting the specific experiments and corresponding results in Chapter \ref{body_experiments_results}, this section outlines essential preliminary remarks. These remarks cover common configurations, definitions, and methodological aspects that apply across the subsequent experimental evaluations, providing necessary context and avoiding repetition later.
 
+\subsubsection{Scope Limitation Regarding Standard CIFAR-10}
+\label{setup_cifar10_scope}
+
+The CIFAR-10 dataset, with its 32x32 pixel color images across 10 classes, represents a significant step up in complexity compared to MNIST or Fashion-MNIST and is a common benchmark in generative modeling. Consequently, initial plans involved evaluating the performance of multi-generator GAN approaches, including the original MAD-GAN \cite{ghosh2018madgan} and the adapted cMADGAN (Section \ref{theoretical_cmadgan}), on this standard dataset.
+
+However, preliminary investigations encountered substantial difficulties in achieving stable training and generating samples of sufficient quality and diversity using these frameworks directly on standard CIFAR-10. Extensive efforts were undertaken to address these challenges, spanning a range of common techniques and modifications found in GAN literature. These included, but were not limited to:
+
+\begin{itemize}
+    \item Testing multiple generator and discriminator architectures with varying depths and capacities.
+    \item Experimenting with different normalization layers (e.g., Batch Normalization, Spectral Normalization).
+    \item Adjusting hyperparameters related to the Adam optimizer, particularly the learning rates for the generator(s) and discriminator, including various decay schedules and relative magnitudes.
+    \item Implementing techniques designed to combat mode collapse and improve sample diversity, such as Mini-batch Discrimination.
+    \item Tuning framework-specific hyperparameters like the latent dimension size and the diversity weight (\( \lambdadiv \)) for cMADGAN.
+    \item Employing standard stabilization methods like label smoothing.
+\end{itemize}
+
+Despite these comprehensive attempts, persistent issues such as training instabilities (e.g., oscillating losses, vanishing or exploding gradients) or consistently poor quantitative results (e.g., low IS, high FID relative to benchmarks or simpler datasets) indicated that the models did not converge to a satisfactory performance level on the standard CIFAR-10 dataset within the practical constraints of this study.
+
+Given that the primary focus of this thesis is to investigate the comparative effects of different GAN-based data augmentation strategies (including MADGAN and cMADGAN), a pragmatic decision was made to exclude the standard CIFAR-10 dataset from the main comparative experiments presented in the subsequent results chapters. This allows the analysis to focus on datasets (MNIST, Fashion-MNIST, and modified CIFAR-10) where the generative models achieved more stable and interpretable performance, enabling a clearer evaluation of the core research questions related to data augmentation effectiveness. The challenges encountered with standard CIFAR-10, while informative about the limitations of these specific multi-generator approaches on more complex data, are not subjected to further detailed analysis herein.
 
 \subsubsection{Datasets}
 
@@ -20,17 +39,14 @@ Before presenting the specific experiments and corresponding results in Chapter 
         \hline
         Fashion-MNIST & 70,000 & $28 \times 28$ & 1 & Drop-in replacement for MNIST with grayscale images of clothing items. Offers increased complexity and class variability, better reflecting real-world visual tasks. \\
         \hline
-        CIFAR-10 & 60,000 & $32 \times 32$ & 3 & RGB images of real-world objects such as vehicles and animals. Frequently used for evaluating deep learning models under complex conditions with background noise and intra-class variation. While the dataset itself is static, data augmentation is commonly applied during training. \\
-        \hline
     \end{tabular}
 \end{table}
-
 
 
 \subsubsection{GAN: Architecture, Training and Data Augmentation}
 
 \noindent\textbf{Architecture of the GANs}
-In all experiments involving GAN models and their derivatives, the same network architecture has been employed for the \textit{MNIST} and \textit{Fashion MNIST} datasets. For initial experiments targeting the standard \textit{CIFAR-10} dataset (32, 32, 3), deeper architectures were utilized for both the generator and discriminator networks to account for the increased complexity of the data. However, for a specific set of experiments detailed in Section [todo: reference the correct section], where the CIFAR-10 dataset was modified (28, 28, 1) to facilitate analysis, architectures comparable to those used for MNIST/Fashion-MNIST were employed. These proofed to result in mostly stable training. The specific architecture relevant to each experiment will be reiterated in its respective section.\\
+In all experiments involving GAN models and their derivatives, the same network architecture has been employed for the \textit{MNIST} and \textit{Fashion MNIST} datasets. For initial experiments targeting the standard \textit{CIFAR-10} dataset (32, 32, 3), deeper architectures were utilized for both the generator and discriminator networks to account for the increased complexity of the data. However, for a specific set of experiments detailed in Section [todo: reference the correct section], where the CIFAR-10 dataset was modified (28, 28, 1) to facilitate analysis, architectures comparable to those used for MNIST/Fashion MNIST were employed. These proofed to result in mostly stable training. The specific architecture relevant to each experiment will be reiterated in its respective section.\\
 
 \noindent\textbf{Training}
 For training all GAN-based models, including DCGAN, cGAN, MADGAN and cMADGAN, the \textit{Adam} optimizer has been utilized. The learning rate follows an exponentially decaying schedule throughout the training process.\\
@@ -40,10 +56,10 @@ To increase the diversity of the training data for both generator and discrimina
 Horizontal flips are applied with a probability of \(50\%\), except for the \textit{MNIST} dataset, where flips are omitted due to the semantic relevance of digit orientation. Brightness and contrast adjustments are always applied within a uniform range of \([-0.1, 0.1]\). Gaussian noise is added by sampling from a normal distribution with mean \(0\) and standard deviation \(0.05\). Finally, the augmented images are clipped to the valid value range of \([-1, 1]\).
 
 \subsubsection{Stratified Classifiers as measure for augmentation Quality}
-To definitively evaluate the quality of the GDA, the fake images are used to replace and exapnd the underlying original datasets and train classification models on them. For this, the training datasets are specifically creafted to contain different ratios of real to fake images. To avoid biasing one class in the datasets over another, the datasets are stratified with respect to the number of samples per class. \footnote{Out of the three used datasets, only the MNIST dataset is not originally stratified. }
+To definitively evaluate the quality of the GDA, the fake images are used to replace and exapnd the underlying original datasets and train classification models on them. For this, the training datasets are specifically creafted to contain different ratios of real to fake images. To avoid biasing one class in the datasets over another, the datasets are stratified with respect to the number of samples per class. \footnote{Out of the used datasets, only the MNIST dataset is not originally stratified.}
 
 \subsubsection{Labeling unconditioned data}\label{body_experiment_labeling_data}
-Due to the fact, that multiple experiment using unconditioned GANs were executed (todo: ref to the experiments), many images have been created with no corresponding label to them. To classify the unlabeled data, simple CNN classifiers, with adequate TDA. The applied augemntations techniques are the as follows: horizontal- and vertical shift by 0.1 relativ to the absolute size of the image, rotation of up to 15 degree and vertical flipping. As afore mentioned, flipping images along the vertical axes is omitted for the MNIST dataset, due to semantical invalidity. Graphical depictions of the classiers used can be found in the appendix (\ref{appendix_classifiers}).\\
+Due to the fact, that multiple experiment using unconditioned GANs were executed (\ref{exp_results_research_questions}), many images have been created with no corresponding label to them. To classify the unlabeled data, simple CNN classifiers, with adequate TDA, were utilized. The applied augemntations techniques are the as follows: horizontal- and vertical shift by 0.1 relativ to the absolute size of the image, rotation of up to 15 degree and vertical flipping. As afore mentioned, flipping images along the vertical axes is omitted for the MNIST dataset, due to semantical invalidity. Graphical depictions of the classiers used can be found in the appendix (\ref{appendix_classifiers}). The auxiliary classifiers were optimized for their Accuracy on the held-out test set of the respective dataset.\\
 
 
 \subsubsection{Utilization of InceptionV3 for FID and IS}\label{body_experiment_inception_model}
@@ -54,12 +70,12 @@ It is crucial to note that the significant differences between the ImageNet doma
 Generally, the succession of experiments follows a strict pattern that can be described in the following order:
 \begin{enumerate}
     \item Train the current GAN model and track its performance via predefined metrics (IS, FID).
-    \item Using the resulting generative model, generate fake samples, such that, for every class in the original dataset, \(5000\) images per class are created.
+    \item Using the resulting generative model, generate fake samples, such that, for every class in the original dataset, at least \(6000\) images per class are created.
     \begin{itemize}
         \item If the samples originate from an unconditioned generative model, classify them using a pretrained classifiers \ref{body_experiment_labeling_data}.
     \end{itemize}
     \item Train the same classifier architecture, depending on the dataset, with different ratios of real and fake samples.
-    \item Evaluate the performance of the classification model using predefined metrics (todo: reference the correct following section)
+    \item Evaluate the performance of the classification model using predefined metrics.
 \end{enumerate}
 
 \subsection{Hardware and Software Environment}

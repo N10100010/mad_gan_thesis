@@ -462,9 +462,12 @@ Mathematically, the Inception Score is computed over a set of generated images \
 \begin{equation}
 IS = \exp \left( \mathbb{E}_{x \sim p_g} \left[ D_{\text{KL}}(p(y|x) \| p(y)) \right] \right)
 \end{equation}
-where \( D_{\text{KL}} \) denotes the Kullback-Leibler divergence between the conditional class distribution \(p(y|x)\) for a specific image \(x\) and the marginal class distribution \(p(y)\) estimated over all generated images. A higher IS indicates that the model generates images that are confidently classified into diverse classes.
+where \( D_{\text{KL}} \) denotes the Kullback-Leibler divergence between the conditional class distribution \(p(y|x)\) for a specific image \(x\) and the marginal class distribution \(p(y)\) estimated over all generated images. 
 
-\textbf{Limitations of IS}:
+\noindent\textbf{Interpretation}:
+A higher IS indicates that the model generates images that are confidently classified into diverse classes.
+
+\noindent\textbf{Limitations of IS}:
 \begin{itemize}
     \item Does not directly compare generated images with real images.
     \item Insensitive to intra-class diversity (e.g., generating only one type of dog within the 'dog' class).
@@ -482,22 +485,20 @@ FID = \| \mu_r - \mu_g \|^2_2 + \text{Tr} \left( \Sigma_r + \Sigma_g - 2(\Sigma_
 where \( \|\cdot\|^2_2 \) is the squared Euclidean norm, \( \text{Tr}(\cdot) \) is the trace of a matrix, and \( (\Sigma_r \Sigma_g)^{1/2} \) is the matrix square root of the product of the covariance matrices.
 
 \noindent\textbf{Interpretation}:
-\begin{itemize}
-    \item Lower FID indicates that the distribution of generated image features is more similar to the distribution of real image features, suggesting better quality and diversity. A score of 0 indicates identical distributions.
-    \item Sensitive to both image quality (affecting feature representations) and diversity (affecting the mean and covariance of features).
-\end{itemize}
+Lower FID indicates that the distribution of generated image features is more similar to the distribution of real image features, suggesting better quality and diversity. A score of 0 indicates identical distributions.
 
-\textbf{Advantages over IS}:
+\noindent\textbf{Advantages over IS}:
 \begin{itemize}
     \item Directly compares the generated image distribution to the real image distribution.
     \item More sensitive to intra-class mode collapse (lack of diversity within classes) as this affects \(\Sigma_g\).
     \item Generally found to correlate better with human judgment of image quality than IS.
 \end{itemize}
 
-\textbf{Limitations}:
+\noindent\textbf{Limitations}:
 \begin{itemize}
     \item Assumes Gaussian distribution of features, which might be an approximation.
     \item Sensitive to the choice of feature extractor network and the specific layer used.
+    \item Sensitive to both image quality (affecting feature representations) and diversity (affecting the mean and covariance of features).
     \item Requires a sufficiently large number of samples (both real and generated) for stable estimation of moments (\(\mu, \Sigma\)).
 \end{itemize}
 

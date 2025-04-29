@@ -6,14 +6,13 @@
 The following section includes graphical representations of NN referenced throughout the thesis. %TODO: briefly describe the kindf of archs shown in this section...
 
 \subsubsection{Classifiers}\label{appendix_classifiers}
-TODO: the caption of the classifiers needs to be adjusted to account for the fact that these are also used to run the stratifiedclassifiers task. 
 The graphical representations of the network architectures are created with the tool \textit{visual keras}, by Paul Gavrikov (\cite{Gavrikov2020VisualKeras}).
 
 \begin{figure}[htbp]
     \centering
     \vspace{-.5em}
     \includegraphics[width=.9\textwidth]{abb/netron_network_archs/classifying_Classifier_MNIST.png}
-    \caption{Depiction of the CNN achritecture used to classify unlabeled images from the MNIST GDA experiments. (Image created with \cite{Gavrikov2020VisualKeras})}
+    \caption{Depiction of the CNN achritecture used to classify unlabeled images from the MNIST GDA experiments and judge the effectiveness of said GDA. (Image created with \cite{Gavrikov2020VisualKeras})}
     \label{fig:figure_class_mnist}
 \end{figure}
 
@@ -21,7 +20,7 @@ The graphical representations of the network architectures are created with the 
     \centering
     \vspace{-2em}
     \includegraphics[width=.9\textwidth]{abb/netron_network_archs/classifying_Classifier_FashionMNIST.png}
-    \caption{Depiction of the CNN achritecture used to classify unlabeled images from the FashionMNIST GDA experiments. (Image created with \cite{Gavrikov2020VisualKeras})}
+    \caption{Depiction of the CNN achritecture used to classify unlabeled images from the FashionMNIST GDA experiments and judge the effectiveness of said GDA. (Image created with \cite{Gavrikov2020VisualKeras})}
     \label{fig:figure_class_fashion}
 \end{figure}
 
@@ -29,6 +28,349 @@ The graphical representations of the network architectures are created with the 
     \centering
     \vspace{-2em}
     \includegraphics[width=.9\textwidth]{abb/netron_network_archs/classifying_Classifier_Cifar10.png}
-    \caption{Depiction of the CNN achritecture used to classify unlabeled images from the CIFAR10 GDA experiments. (Image created with )}
+    \caption{Depiction of the CNN achritecture used to classify unlabeled images from the CIFAR10 GDA experiments and judge the effectiveness of said GDA. (Image created with )}
     \label{fig:figure_class_cifar10}
+\end{figure}
+\newpage
+
+\subsubsection{Generator Model Architectures}\label{appendix_generator_architectures}
+The graphical representations of the network architectures are created with the tool \textit{visual keras}, by Paul Gavrikov (\cite{Gavrikov2020VisualKeras}).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=.9\textwidth]{abb/netron_network_archs/define_vanilla_mnist_gen.png}
+    \caption{Depiction of the generator used in the Vanilla GAN dependent experiments. Used to train a generator and create fake image data based on the MNIST dataset.}
+    \label{fig:figure_gen_arch_vanilla_mnist}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=.9\textwidth]{abb/netron_network_archs/define_vanilla_fashion_mnist_gen.png}
+    \caption{Depiction of the generator used in the Vanilla GAN dependent experiments. Used to train a generator and create fake image data based on the Fashion-MNIST dataset.}
+    \label{fig:figure_gen_arch_vanilla_fashion}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \vspace{-2em}
+    \includegraphics[width=.9\textwidth]{abb/netron_network_archs/define_conditional_mnists_gen.png}
+    \caption{Depiction of the generator used in the Conditional GAN dependent experiments. Used to train a generator and create fake image data based on the MNIST and Fashion-MNIST datasets.}
+    \label{fig:figure_gen_arch_conditional}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \vspace{-2em}
+    \includegraphics[width=.9\textwidth]{abb/netron_network_archs/define_madgan_mnists_gen.png}
+    \caption{Depiction of the generators used in the MADGAN dependent experiments. Used to train a generator and create fake image data based on the MNIST and Fashion-MNIST datasets.}
+    \label{fig:figure_gen_arch_madgan}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \vspace{-2em}
+    \includegraphics[width=.9\textwidth]{abb/netron_network_archs/define_cmadgan_mnists_gen.png}
+    \caption{Depiction of the generators used in the cMADGAN dependent experiments. Used to train a generator and create fake image data based on the MNIST and Fashion-MNIST datasets.}
+    \label{fig:figure_gen_arch_cmadgan}
+\end{figure}
+\newpage
+
+
+\subsubsection{Discriminator Model Architectures}\label{appendix_discriminator_architectures}
+The graphical representations of the network architectures are created with the tool \textit{visual keras}, by Paul Gavrikov (\cite{Gavrikov2020VisualKeras}).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=.9\textwidth]{abb/netron_network_archs/define_vanilla_mnist_disc.png}
+    \caption{Depiction of the discriminator used in the Vanilla GAN dependent experiments. Used to train a generator based on the MNIST dataset.}
+    \label{fig:figure_disc_arch_vanilla_mnist}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=.9\textwidth]{abb/netron_network_archs/define_vanilla_fashion_mnist_disc.png}
+    \caption{Depiction of the disciminator used in the Vanilla GAN dependent experiments. Used to train a generator based on the Fashion-MNIST dataset.}
+    \label{fig:figure_disc_arch_vanilla_fashion}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \vspace{-2em}
+    \includegraphics[width=.9\textwidth]{abb/netron_network_archs/define_conditional_mnists_disc.png}
+    \caption{Depiction of the disciminator used in the Conditional GAN dependent experiments. Used to train a generator based on the MNIST and Fashion-MNIST datasets.}
+    \label{fig:figure_disc_arch_conditional}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \vspace{-2em}
+    \includegraphics[width=.9\textwidth]{abb/netron_network_archs/define_madgan_mnists_disc.png}
+    \caption{Depiction of the discriminator used in the MADGAN dependent experiments. Used to train a generator based on the MNIST and Fashion-MNIST datasets.}
+    \label{fig:figure_disc_arch_madgan}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \vspace{-2em}
+    \includegraphics[width=.9\textwidth]{abb/netron_network_archs/define_cmadgan_mnists_disc.png}
+    \caption{Depiction of the discriminator used in the cMADGAN dependent experiments. Used to train a generator based on the MNIST and Fashion-MNIST datasets.}
+    \label{fig:figure_disc_arch_cmadgan}
+\end{figure}
+
+\newpage
+
+
+\subsection{FID and Inception Scores from MADGAN Architectures}
+
+\subsubsection{MADGAN MNIST}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    N Generators & Index & FID & IS & IS-std \\
+    \hline
+    \textit{Baseline} & & $-0.004$ & $2.549$ & $0.036$ \\
+    \specialrule{.1em}{.05em}{.05em} 
+    & 0 &        $23.597$ & $2.519$ & $0.050$ \\
+    3 & 1 &      $22.682$ & $2.506$ & $0.027$ \\
+    & 2 &        $23.252$ & $2.509$ & $0.045$ \\
+    \hline
+    & 0 &        $23.304$ & $2.467$ & $0.030$ \\
+    & 1 &        $22.020$ & $2.446$ & $0.040$ \\
+    5 & 2 &      $23.076$ & $2.497$ & $0.046$ \\
+    & 3 &        $22.265$ & $2.467$ & $0.060$ \\
+    & 4 &        $22.614$ & $2.479$ & $0.045$ \\
+    \hline
+    & 0 &        $22.487$ & $2.513$ & $0.031$ \\
+    & 1 &        $21.076$ & $2.548$ & $0.087$ \\
+    & 2 &        $20.941$ & $2.530$ & $0.056$ \\
+    7 & 3 &      $22.250$ & $2.520$ & $0.035$ \\
+    & 4 &        $21.557$ & $2.530$ & $0.051$ \\
+    & 5 &        $21.297$ & $2.545$ & $0.035$ \\
+    & 6 &        $21.582$ & $2.541$ & $0.059$ \\
+    \hline
+    & 0 &        $21.338$ & $2.456$ & $0.045$ \\
+    & 1 &        $20.872$ & $2.462$ & $0.040$ \\
+    & 2 &        $20.680$ & $2.477$ & $0.028$ \\
+    & 3 &        $21.315$ & $2.470$ & $0.030$ \\
+    10 & 4 &     $21.158$ & $2.484$ & $0.027$ \\
+    & 5 &        $20.655$ & $2.473$ & $0.037$ \\
+    & 6 &        $21.090$ & $2.452$ & $0.039$ \\
+    & 7 &        $20.689$ & $2.508$ & $0.048$ \\
+    & 8 &        $21.471$ & $2.480$ & $0.044$ \\
+    & 9 &        $20.459$ & $2.477$ & $0.036$ \\
+    \hline
+\end{tabular}
+\caption{Effect of varying the number of generators ($N=3, 5, 7, 10$) in the MADGAN model on FID and Inception Score (IS $\pm$ Std Dev) for the \textbf{MNIST} dataset. Results for each generator index are presented alongside baseline metrics.}
+\label{tab:madgan_mnist_fid_is}
+\end{table}
+\newpage
+
+
+\subsubsection{MADGAN Fashion MNIST}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    N Generators & Index & FID & IS & IS-std \\
+    \hline
+    \textit{Baseline} & & $-0.004$ & $4.723$ & $0.056$ \\
+    \specialrule{.1em}{.05em}{.05em} 
+    & 0 &       $26.086$ & $4.463$ & $0.103$ \\
+    3 & 1 &     $25.884$ & $4.487$ & $0.099$ \\
+    & 2 &       $26.637$ & $4.538$ & $0.094$ \\
+    \hline
+    & 0 &       $23.393$ & $4.467$ & $0.119$ \\
+    & 1 &       $24.756$ & $4.520$ & $0.107$ \\
+    5 & 2 &     $25.663$ & $4.506$ & $0.123$ \\
+    & 3 &       $23.614$ & $4.487$ & $0.082$ \\
+    & 4 &       $23.665$ & $4.504$ & $0.061$ \\
+    \hline
+    & 0 &       $22.370$ & $4.558$ & $0.111$ \\
+    & 1 &       $21.838$ & $4.536$ & $0.087$ \\
+    & 2 &       $21.923$ & $4.508$ & $0.101$ \\
+    7 & 3 &     $25.403$ & $4.517$ & $0.112$ \\
+    & 4 &       $31.493$ & $4.372$ & $0.087$ \\
+    & 5 &       $22.158$ & $4.595$ & $0.075$ \\
+    & 6 &       $21.942$ & $4.577$ & $0.087$ \\
+    \hline
+    & 0 &       $22.454$ & $4.534$ & $0.117$ \\
+    & 1 &       $21.914$ & $4.524$ & $0.121$ \\
+    & 2 &       $21.327$ & $4.494$ & $0.089$ \\
+    & 3 &       $21.630$ & $4.455$ & $0.063$ \\
+    10 & 4 &    $20.851$ & $4.575$ & $0.097$ \\
+    & 5 &       $21.268$ & $4.561$ & $0.048$ \\
+    & 6 &       $22.324$ & $4.566$ & $0.127$ \\
+    & 7 &       $21.633$ & $4.542$ & $0.084$ \\
+    & 8 &       $21.503$ & $4.533$ & $0.127$ \\
+    & 9 &       $20.963$ & $4.552$ & $0.100$ \\
+    \hline
+    \end{tabular}
+    \caption{Effect of varying the number of generators ($N=3, 5, 7, 10$) in the MADGAN model on FID and Inception Score (IS $\pm$ Std Dev) for the \textbf{Fashion MNIST} dataset. Results for each generator index are presented alongside baseline metrics.}
+    \label{tab:madgan_fasion_mnist_fid_is}
+\end{table}
+\newpage
+
+\subsubsection{cMADGAN MNIST}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    N Generators & Index & FID & IS & IS-std \\
+    \hline
+    \textit{Baseline} & & $-0.004$ & $2.549$ & $0.036$ \\
+    \specialrule{.1em}{.05em}{.05em} 
+    & 0 &       $30.105$ & $\mathbf{2.494}$ & $0.034$ \\
+    3 & 1 &     $23.875$ & $2.317$ & $0.041$ \\
+    & 2 &       $\mathbf{22.753}$ & $2.384$ & $0.032$ \\
+    \hline
+    & 0 &       $37.638$ & $2.460$ & $0.039$ \\
+    & 1 &       $26.614$ & $2.378$ & $0.052$ \\
+    5 & 2 &     $26.739$ & $2.356$ & $0.025$ \\
+    & 3 &       $27.642$ & $2.309$ & $0.034$ \\
+    & 4 &       $26.722$ & $2.246$ & $0.043$ \\
+    \hline
+    & 0 &       $23.141$ & $2.418$ & $0.037$ \\
+    & 1 &       $28.071$ & $2.363$ & $0.036$ \\
+    & 2 &       $33.490$ & $2.340$ & $0.033$ \\
+    7 & 3 &     $28.333$ & $2.347$ & $0.031$ \\
+    & 4 &       $35.599$ & $2.296$ & $0.050$ \\
+    & 5 &       $36.075$ & $2.389$ & $0.047$ \\
+    & 6 &       $29.807$ & $2.326$ & $0.036$ \\
+    \hline
+    & 0 &       $108.079$ & $2.076$ & $0.011$ \\
+    & 1 &       $82.478$ & $2.250$ & $0.022$ \\
+    & 2 &       $153.369$ & $2.124$ & $0.023$ \\
+    & 3 &       $126.574$ & $1.846$ & $0.005$ \\
+    10 & 4 &    $110.012$ & $2.005$ & $0.013$ \\
+    & 5 &       $130.054$ & $1.861$ & $0.009$ \\
+    & 6 &       $103.016$ & $2.010$ & $0.011$ \\
+    & 7 &       $74.926$ & $2.383$ & $0.035$ \\
+    & 8 &       $110.265$ & $2.086$ & $0.014$ \\
+    & 9 &       $106.762$ & $1.975$ & $0.033$ \\
+    \hline
+    \end{tabular}
+    \caption{Effect of varying the number of generators ($N=3, 5, 7, 10$) in the cMADGAN model on FID and Inception Score (IS $\pm$ Std Dev) for the \textbf{MNIST} dataset. Results for each generator index are presented alongside baseline metrics.}
+    \label{tab:madgan_mnist_fid_is}
+\end{table}
+\newpage
+
+\subsubsection{cMADGAN Fashion MNIST}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    N Generators & Index & FID & IS & IS-std \\
+    \hline
+    \textit{Baseline} & & $-0.004$ & $4.723$ & $0.056$ \\
+    \specialrule{.1em}{.05em}{.05em} 
+    & 0 &       $25.874$ & $4.750$ & $0.132$ \\
+    3 & 1 &     $27.235$ & $4.068$ & $0.090$ \\
+    & 2 &       $23.556$ & $5.049$ & $0.093$ \\
+    \hline
+    & 0 &       $170.120$ & $2.938$ & $0.020$ \\
+    & 1 &       $167.446$ & $3.430$ & $0.052$ \\
+    5 & 2 &     $221.934$ & $3.325$ & $0.032$ \\
+    & 3 &       $187.293$ & $3.269$ & $0.029$ \\
+    & 4 &       $53.616$ & $3.770$ & $0.057$ \\
+    \hline
+    & 0 &       $156.601$ & $2.392$ & $0.016$ \\
+    & 1 &       $172.054$ & $3.325$ & $0.033$ \\
+    & 2 &       $171.505$ & $2.754$ & $0.024$ \\
+    7 & 3 &     $97.514$ & $3.273$ & $0.058$ \\
+    & 4 &       $155.474$ & $3.157$ & $0.063$ \\
+    & 5 &       $151.494$ & $2.623$ & $0.018$ \\
+    & 6 &       $174.161$ & $2.976$ & $0.028$ \\
+    \hline
+    & 0 &       $147.670$ & $3.650$ & $0.037$ \\
+    & 1 &       $167.407$ & $2.816$ & $0.026$ \\
+    & 2 &       $109.349$ & $3.914$ & $0.068$ \\
+    & 3 &       $160.305$ & $3.674$ & $0.040$ \\
+    10 & 4 &    $181.778$ & $2.961$ & $0.023$ \\
+    & 5 &       $154.633$ & $3.297$ & $0.022$ \\
+    & 6 &       $166.511$ & $2.759$ & $0.034$ \\
+    & 7 &       $156.135$ & $3.173$ & $0.027$ \\
+    & 8 &       $155.758$ & $3.853$ & $0.036$ \\
+    & 9 &       $191.126$ & $3.073$ & $0.034$ \\
+    \hline
+    \end{tabular}
+    \caption{Effect of varying the number of generators ($N=3, 5, 7, 10$) in the cMADGAN model on FID and Inception Score (IS $\pm$ Std Dev) for the \textbf{Fashion MNIST} dataset. Results for each generator index are presented alongside baseline metrics.}
+    \label{tab:cmadgan_fashnion_mnist_fid_is}
+\end{table}
+\newpage
+
+
+\subsubsection{DC MNIST}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    N Generators & FID & IS & IS-std \\
+    \hline
+    \textit{Baseline} & $-0.004$ & $2.549$ & $0.036$ \\
+    \specialrule{.1em}{.05em}{.05em} 
+    1 & $122.097$ & $2.611$ & $0.056$ \\
+    \hline
+    \end{tabular}
+    \caption{FID and Inception Score (Mean $\pm$ Std Dev) for a single DCGAN generator ($N=1$) trained on the \textbf{MNIST} dataset. Baseline scores are included for reference.}
+    \label{tab:dcgan_mnist_n1}
+\end{table}
+
+\subsubsection{DC Fashion MNIST}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    N Generators & FID & IS & IS-std \\
+    \hline
+    \textit{Baseline} & $-0.004$ & $4.723$ & $0.056$ \\
+    \specialrule{.1em}{.05em}{.05em} 
+    1 & $123.349$ & $3.573$ & $0.117$ \\
+    \end{tabular}
+    \caption{FID and Inception Score (Mean $\pm$ Std Dev) for a single DCGAN generator ($N=1$) trained on the \textbf{Fashion MNIST} dataset. Baseline scores are included for reference.}
+    \label{tab:dcgan_fashion_mnist_n1}
+\end{table}
+
+\subsubsection{Conditional MNIST}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    N Generators & FID & IS & IS-std \\
+    \midrule
+    \textit{Baseline} & $-0.004$ & $2.549$ & $0.036$ \\
+    \specialrule{.1em}{.05em}{.05em} 
+    1 & $28.721$ & $2.553$ & $0.022$ \\
+    \hline
+    \end{tabular}
+    \caption{FID and Inception Score (Mean $\pm$ Std Dev) for a single Conditional GAN generator ($N=1$) trained on the \textbf{MNIST} dataset. Baseline scores are included for reference.}
+    \label{tab:cgan_mnist_n1}
+\end{table}
+
+\subsubsection{Conditional Fashion MNIST}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    N Generators & FID & IS & IS-std \\
+    \hline
+    \textit{Baseline} & $-0.004$ & $4.723$ & $0.056$ \\
+    \specialrule{.1em}{.05em}{.05em} 
+    1 & $25.560$ & $4.210$ & $0.099$ \\
+    \hline
+    \end{tabular}
+    \caption{FID and Inception Score (Mean $\pm$ Std Dev) for a single Conditional GAN generator ($N=1$) trained on the \textbf{Fashion MNIST} dataset. Baseline scores are included for reference.}
+    \label{tab:cgan_fashion_mnist_n1}
+\end{table}
+
+\newpage
+
+\subsection{Datacreation Histograms}
+\subsubsection{DCGAN MNIST}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=.9\textwidth]{abb/datageneration_histograms/dc_mnist.png}
+    \caption{A histogram chart depicting the class distribution of the generated data with the DCGAN generator trained on the \textbf{MNIST} dataset. The labels result from an auxiliary classifier as mentioned in \ref{body_experiment_labeling_data}.}
+    \label{fig:figure_dcgan_datacreation_histogram}
 \end{figure}

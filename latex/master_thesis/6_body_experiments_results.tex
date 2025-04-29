@@ -1,5 +1,5 @@
 \section{Experiments Results}\label{body_experiments_results}
-\paragraph{Motivation}\label{par_EXP_durch_motiv}
+\paragraph{Motivation}\label{exp_results_motivation}
 The primary motivation for investigating multi-generator GAN architectures for Generative Data Augmentation (GDA) stems from a suggestion by Ian Goodfellow on the Lex Fridman Podcast \cite{fridman2019Goodfellow}. He proposed leveraging the diversity inherent in multiple generative models trained on the same data to potentially improve downstream classifiers:
 
 \begin{quotation}
@@ -8,13 +8,113 @@ The primary motivation for investigating multi-generator GAN architectures for G
 
 \noindent Goodfellow's concept resonates strongly with the principles of Multi-Agent Diverse GANs (MADGANs) \cite{ghosh2018madgan}. The MADGAN architecture, with its explicit diversity-promoting objective and use of multiple generators, provides a suitable framework for realizing this augmentation strategy. Therefore, the work by Ghosh et al. laid the conceptual groundwork for this thesis.
 
-\subsection{Key Research Questions}
+\subsection{Key Research Questions} \label{exp_results_research_questions}
 This chapter investigates the following questions regarding MADGANs for data augmentation:
 \begin{itemize}
-    \item Does Generative Data Augmentation (GDA) with MADGANs enhance downstream classifier performance more effectively than Traditional Data Augmentation (TDA)?
-    \item How does the performance enhancement achieved with MADGAN-based GDA compare to that of GDA using standard GANs or conditional GANs?
-    \item What is the impact of varying the number of MADGAN generators on downstream classifier performance? 
+    \item \textbf{Question 1}: How do the FID- and Inception Score compare between the generative methods?
+    \item \textbf{Question 2}: Does Generative Data Augmentation (GDA) with MADGANs enhance downstream classifier performance more effectively than Traditional Data Augmentation (TDA)?
+    \item \textbf{Question 3}: How does the performance enhancement achieved with MADGAN-based GDA compare to that of GDA using standard GANs or conditional GANs?
+    \item \textbf{Question 4}: How does the performance enhancement achieved with MADGAN-based GDA compare to that of cMADGAN-GDA?
+    \item \textbf{Question 5}: What is the impact of varying the number of MADGAN generators on downstream classifier performance? 
 \end{itemize}
+
+\subsection{Key Research Question Answers}
+\subsubsection[Question 1]{Comparison of FID- and Inception Scores}     \label{exp_results_ans_q1} 
+In order to compare the FID-Score and the means and standard deviations of the IS, $10.000$ generated samples are chosen by random selection. These fake images are drawn from the entirty of the generated data for a given generator, regardless of their assigned class.
+The comparison will be based on the the respective datasets used (MNIST, Fashion-MNIST) for data generation.\\
+\\
+\noindent\textbf{MNIST Dataset}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        Generator Type & Generators trained & FID & IS & IS-std \\
+        \hline
+        DC GAN & 1 & $122.097$ & $\mathbf{2.611}$ & $0.056$ \\
+        \hline
+        cGAN & 1 & $28.721$ & $2.553$ & $0.022$ \\
+        \hline
+        MADGAN & K=3 (avg) & $23.177$ & $2.511$ & $0.04$ \\
+        \hline
+        MADGAN & K=5 (avg) & $22.656$ & $2.471$ & $0.044$ \\
+        \hline
+        MADGAN & K=7 (avg) & $21.599$ & $2.533$ & $0.051$ \\
+        \hline
+        MADGAN & K=10 (avg) & $\mathbf{20.973}$ & $2.474$ & $0.037$ \\
+        \hline
+        cMADGAN & K=3 (avg) & $25.578$ & $2.398$ & $0.036$ \\
+        \hline
+        cMADGAN & K=5 (avg) & $29.071$ & $2.35$ & $0.039$ \\
+        \hline
+        cMADGAN & K=7 (avg) & $30.645$ & $2.354$ & $0.039$ \\
+        \hline
+        cMADGAN & K=10 (avg) & $110.553$ & $2.062$ & $0.018$ \\
+        \hline
+    \end{tabular}
+    \caption{FID and IS results for GAN models on MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches.}
+    \label{tab:exp_mnist_fid_is}
+\end{table}
+\textbf{Interpretation:} Table \ref{tab:exp_mnist_fid_is} presents the Fréchet Inception Distance (FID, lower is better) and Inception Score (IS, higher is better) for various GAN models evaluated on the MNIST dataset. The results reveal a trade-off between the two metrics across different architectures.
+
+The baseline DCGAN achieved the highest IS ($2.611$) but performed poorly in terms of FID ($122.097$). Introducing conditioning via cGAN significantly improved the FID to $28.721$ while maintaining a high IS ($2.553$). The results for the DCGAN point to an eventual mode collapse. A histogram of the resulting labels from this datageneration can confirm the mode collapse\footnote{A histogram of the resulting labels originating from the generation process of the DCGAN on MNIST can be found here \ref{fig:figure_dcgan_datacreation_histogram}.}.
+
+For unconditional models, the multi-generator MADGAN framework consistently yielded better FID scores than the baselines. Furthermore, MADGAN's FID improved monotonically as the number of generators increased, achieving the best overall FID of $20.973$ with 10 generators. However, its IS scores ($~2.5$) were slightly lower than the single-generator baselines.
+
+The conditional multi-generator adaptation, cMADGAN, showed a more complex relationship with the number of generators (K). It performed very poorly for K=3 (FID $110.553$) but improved substantially at K=5, achieving a competitive FID ($25.578$) - better than cGAN - albeit with a lower IS ($2.398$). Contrary to MADGAN, increasing generators beyond K=5 resulted in worse FID scores for cMADGAN ($29.071$ for K=7, $30.645$ for K=10). Consequently, for K>=5, the unconditional MADGAN consistently outperformed cMADGAN in FID within these experiments.
+
+In summary, on MNIST, standard conditioning (cGAN) greatly enhances baseline FID. The unconditional MADGAN framework effectively improves FID further, benefiting from more generators. The conditional cMADGAN variant demonstrates potential (peaking at K=5) but exhibits non-monotonic FID performance with increasing generator count in this setup, suggesting a more complex optimization landscape compared to its unconditional counterpart. \\
+
+\noindent\textbf{FashionMNIST Dataset}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        Generator Type & Generators trained & FID & IS & IS-std \\
+        \hline
+        DC GAN & 1 & $25.56$ & $4.21$ & $0.099$ \\
+        \hline
+        cGAN & 1 & $123.349$ & $3.573$ & $0.117$ \\
+        \hline
+        MADGAN & K=3 (avg) & $26.202$ & $4.496$ & $0.099$ \\
+        \hline
+        MADGAN & K=5 (avg) & $24.218$ & $4.497$ & $0.098$ \\
+        \hline
+        MADGAN & K=7 (avg) & $23.875$ & $4.523$ & $0.094$ \\
+        \hline
+        MADGAN & K=10 (avg) & $21.587$ & $4.534$ & $0.097$ \\
+        \hline
+        cMADGAN & K=3 (avg) & $25.555$ & $4.623$ & $0.105$ \\
+        \hline
+        cMADGAN & K=5 (avg) & $160.082$ & $3.346$ & $0.038$ \\
+        \hline
+        cMADGAN & K=7 (avg) & $154.115$ & $2.929$ & $0.034$ \\
+        \hline
+        cMADGAN & K=10 (avg) & $159.067$ & $3.317$ & $0.035$ \\
+        \hline
+    \end{tabular}
+    \caption{FID and IS results for GAN models on Fashion-MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches.}
+    \label{tab:exp_fashionmnist_fid_is}
+\end{table}
+\textbf{Interpretation:} The evaluation metrics for the various GAN models on the Fashion-MNIST dataset, presented in Table \ref{tab:exp_fashionmnist_fid_is}, reveal distinct performance patterns. The baseline DCGAN provided a reasonable starting point with an FID of $25.56$ and an IS of $4.21$. However, unlike observations on MNIST, standard conditioning via cGAN proved detrimental on this dataset within this setup, resulting in significantly degraded FID ($123.35$) and IS ($3.57$) compared to the unconditional DCGAN.
+
+In contrast, the unconditional MADGAN framework demonstrated robust and consistently improving performance. Its FID score, initially comparable to DCGAN at K=3 ($26.20$), improved monotonically as the number of generators increased, achieving the table's best FID of $21.59$ at K=10. Notably, MADGAN also maintained high IS scores (around $4.5$), which showed a slight tendency to increase with more generators.
+
+The conditional adaptation, cMADGAN, exhibited highly sensitive and divergent behavior on Fashion-MNIST compared to MNIST. Only the $K = 3$ configuration yielded strong results, achieving a competitive FID ($25.56$) while registering the table's highest IS ($4.62$). However, increasing the generator count further to $K = 5$, $7$, or $10$ led to a dramatic performance collapse, characterized by extremely high FID scores (approximately $154$–$160$) and substantially lower IS scores (around $2.9$–$3.3$).
+
+
+Overall, while cMADGAN K=3 achieved the best IS score, MADGAN K=10 attained the best FID score and offered a strong combination of both metrics. In conclusion, for FashionMNIST under these experimental conditions, standard conditioning failed to provide benefits, whereas the unconditional MADGAN framework scaled effectively, improving FID and IS with more generators. The conditional cMADGAN approach was only viable with a small number of generators (K=3) and did not exhibit the positive scaling or peak performance characteristics observed on MNIST.
+
+\subsubsection[Question 2]{Effectiveness of MADGAN GDA vs. TDA}         \label{exp_results_ans_q2} 
+ 
+
+\subsubsection[Question 3]{MADGAN GDA vs. Standard/Conditional GAN GDA} \label{exp_results_ans_q3} 
+ 
+
+\subsubsection[Question 4]{MADGAN GDA vs. cMADGAN GDA Performance}      \label{exp_results_ans_q4} 
+ 
+
+\subsubsection[Question 5]{Impact of MADGAN Generator Count}            \label{exp_results_ans_q5} 
+ 
 
 
 
