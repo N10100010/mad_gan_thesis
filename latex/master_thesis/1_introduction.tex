@@ -15,7 +15,6 @@ The idea of using GANs for \textit{Generative Data Augmentation} (GDA) has alrea
     \item Imbalance between Generator- and Discriminator Model
 \end{itemize}
 
-
 This thesis investigates the potential of using GANs - specifically \textit{Multi-Agent Diverse Generative Adversarial Networks} (MADGANs) \cite{ghosh2018madgan} - for Generative Data Augmentation. MADGANs aim to aid the first two of the afore mentioned in particular: Mode Collapse and Loss of inter-class Diversity. They, along other modifications, "\textit{propose to modify the objective function of the discriminator, in which, along with finding the real and the fake samples, the discriminator also has to correctly predict the generator that generated the given fake sample.}" \cite{ghosh2018madgan}. The goal of this adjustment of the discriminator is, that the discriminator has to push the generators towards distinct identifiable modes. While various strategies have been proposed to addrese mode collapse and inter-class diversity MADGANs explicitly enfocre mode seperation by introduction of multiple generators and the adjusted discriminator objective. This makes them particularly promising for GDA, as diverse samples and clear distinction of modes is crucial for training robust classifiers. In their paper, they experimentally show, that their architectural adjustment of GANs is generally capable of giving providing assistance for the first two of the mentioned problems.
 
 The experiments in this work are structured into three major parts.

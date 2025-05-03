@@ -113,7 +113,7 @@ The classification models, on which the data augmentation is tested, are simple 
 In this chapter, DA techiques in the context on images are discussed is greater detail. Starting with traditional augmentations e.g. rotating or cropping an image, ending on generative augmentations for which generative models are used to expand the training data of subsequent models.
 
 \subsubsection[Traditional Data Augmentation - TDA]{Traditional Data Augmentation}\label{theoretical_tda}
-The need for data augmentation to make classification algorithms more resilient has existed for decades. Early papers mentioning the augmentation of data for classification tasks date back to the 1970s \cite{Nagy1966}. For the context of deep learning, however, the augmentation of images was popularized by Krizhevsky et al. in 2012 \cite{Krizhevsky2012traditionaldataaugmentation}, with the introduction of \textit{AlexNet}—a deep CNN used to classify images from the \textit{ImageNet} dataset \cite{ImageNetDataset5206848}, containing 1000 classes. This paper also referenced the earlier work of Simard et al. from 2003 \cite{Simard2003bestpracticesforcnns}.
+The need for data augmentation to make classification algorithms more resilient has existed for decades. Early papers mentioning the augmentation of data for classification tasks date back to the 1970s \cite{Nagy1966}. For the context of deep learning, however, the augmentation of images was popularized by Krizhevsky et al. in 2012 \cite{Krizhevsky2012traditionaldataaugmentation}, with the introduction of \textit{AlexNet}—a deep CNN used to classify images from the \textit{ImageNet} dataset \cite{ImageNetDataset5206848}, containing $1.000$ classes. This paper also referenced the earlier work of Simard et al. from 2003 \cite{Simard2003bestpracticesforcnns}.
 
 Generally speaking, traditional data augmentation techniques can be described as enlarging the initial training data by applying transformations that preserve the respective labels of individual instances. These techniques solely focus on modifying already existing data without creating entirely new instances (see: \ref{theoretical_gda}). Augmentations are categorized based on the type of transformations applied:
 
@@ -521,7 +521,7 @@ Both IS and FID commonly rely on the InceptionV3 model~\cite{szegedy2016rethinki
 \noindent\textbf{Limitations of using InceptionV3}:\label{theoretical_inception_model_limitaitions}
 \begin{itemize}
     \item Domain Gap: The features learned on ImageNet (mostly natural images centered on objects) might not be optimally suited for evaluating images from significantly different domains, such as medical scans, satellite imagery, or abstract art.
-    \item Sensitivity to ImageNet Classes: Performance, particularly for IS, can be less meaningful if the generated images depict objects or scenes vastly different from the 1000 ImageNet classes.
+    \item Sensitivity to ImageNet Classes: Performance, particularly for IS, can be less meaningful if the generated images depict objects or scenes vastly different from the $1.000$ ImageNet classes.
     \item Potential Bias: Potential biases present within the ImageNet dataset itself (e.g., representation bias) may be inherited by the features, potentially impacting evaluation fairness or relevance for specific target domains.
 \end{itemize}
 

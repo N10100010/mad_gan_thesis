@@ -49,24 +49,25 @@
 \contentsline {subsubsection}{\numberline {4.1.4}Stratified Classifiers as measure for augmentation Quality}{33}{subsubsection.4.1.4}%
 \contentsline {subsubsection}{\numberline {4.1.5}Labeling unconditioned data}{33}{subsubsection.4.1.5}%
 \contentsline {subsubsection}{\numberline {4.1.6}Utilization of InceptionV3 for FID and IS}{33}{subsubsection.4.1.6}%
-\contentsline {subsection}{\numberline {4.2}Experimental Succession}{34}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Hardware and Software Environment}{34}{subsection.4.3}%
-\contentsline {subsubsection}{\numberline {4.3.1}Hardware}{34}{subsubsection.4.3.1}%
-\contentsline {subsubsection}{\numberline {4.3.2}Software}{34}{subsubsection.4.3.2}%
-\contentsline {section}{\numberline {5}Experiments Results}{35}{section.5}%
-\contentsline {paragraph}{\nonumberline Motivation}{35}{paragraph*.34}%
-\contentsline {subsection}{\numberline {5.1}Key Research Questions}{35}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Key Research Question Answers}{36}{subsection.5.2}%
-\contentsline {subsubsection}{\numberline {5.2.1}Question 1}{36}{subsubsection.5.2.1}%
-\contentsline {subsubsection}{\numberline {5.2.2}Question 2}{38}{subsubsection.5.2.2}%
-\contentsline {subsubsection}{\numberline {5.2.3}Question 3}{38}{subsubsection.5.2.3}%
-\contentsline {subsubsection}{\numberline {5.2.4}Question 4}{38}{subsubsection.5.2.4}%
-\contentsline {subsubsection}{\numberline {5.2.5}Question 5}{38}{subsubsection.5.2.5}%
-\contentsline {section}{\numberline {6}Remarks}{39}{section.6}%
-\contentsline {section}{\numberline {7}Outlook}{40}{section.7}%
-\contentsline {section}{\numberline {8}Conclusion}{41}{section.8}%
-\contentsline {section}{List of References}{42}{section.8}%
-\contentsline {section}{Appendix}{1}{section*.37}%
+\contentsline {subsection}{\numberline {4.2}Experimental Workflow}{34}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Comparison of Classifier Performance}{35}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Hardware and Software Environment}{35}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}Hardware}{35}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}Software}{36}{subsubsection.4.4.2}%
+\contentsline {section}{\numberline {5}Experiments Results}{37}{section.5}%
+\contentsline {paragraph}{\nonumberline Motivation}{37}{paragraph*.34}%
+\contentsline {subsection}{\numberline {5.1}Key Research Questions}{37}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Key Research Question Answers}{38}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Question 1}{38}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}Question 2}{40}{subsubsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.3}Question 3}{42}{subsubsection.5.2.3}%
+\contentsline {subsubsection}{\numberline {5.2.4}Question 4}{42}{subsubsection.5.2.4}%
+\contentsline {subsubsection}{\numberline {5.2.5}Question 5}{42}{subsubsection.5.2.5}%
+\contentsline {section}{\numberline {6}Remarks}{43}{section.6}%
+\contentsline {section}{\numberline {7}Outlook}{44}{section.7}%
+\contentsline {section}{\numberline {8}Conclusion}{45}{section.8}%
+\contentsline {section}{List of References}{46}{section.8}%
+\contentsline {section}{Appendix}{1}{section*.40}%
 \contentsline {subsection}{\numberline {8.1}Network Architectures}{1}{subsection.8.1}%
 \contentsline {subsubsection}{\numberline {8.1.1}Classifiers}{1}{subsubsection.8.1.1}%
 \contentsline {subsubsection}{\numberline {8.1.2}Generator Model Architectures}{2}{subsubsection.8.1.2}%
@@ -80,7 +81,18 @@
 \contentsline {subsubsection}{\numberline {8.2.6}DC Fashion MNIST}{9}{subsubsection.8.2.6}%
 \contentsline {subsubsection}{\numberline {8.2.7}Conditional MNIST}{9}{subsubsection.8.2.7}%
 \contentsline {subsubsection}{\numberline {8.2.8}Conditional Fashion MNIST}{9}{subsubsection.8.2.8}%
-\contentsline {subsection}{\numberline {8.3}Datacreation Histograms}{10}{subsection.8.3}%
-\contentsline {subsubsection}{\numberline {8.3.1}DCGAN MNIST}{10}{subsubsection.8.3.1}%
-\contentsline {section}{Declaration of Oath}{11}{figure.caption.60}%
+\contentsline {subsection}{\numberline {8.3}Stratified Classifier Performances and Graphs}{10}{subsection.8.3}%
+\contentsline {subsubsection}{\numberline {8.3.1}Dataset: MNIST, Architecture: MADGAN}{10}{subsubsection.8.3.1}%
+\contentsline {subsubsection}{\numberline {8.3.2}Dataset: MNIST, Architecture: cMADGAN}{14}{subsubsection.8.3.2}%
+\contentsline {subsubsection}{\numberline {8.3.3}Dataset: FASHION, Architecture: MADGAN}{18}{subsubsection.8.3.3}%
+\contentsline {subsubsection}{\numberline {8.3.4}Dataset: FASHION, Architecture: cMADGAN}{22}{subsubsection.8.3.4}%
+\contentsline {subsubsection}{\numberline {8.3.5}Dataset: MNIST, Architecture: VANILLA GAN}{26}{subsubsection.8.3.5}%
+\contentsline {subsubsection}{\numberline {8.3.6}Dataset: MNIST, Architecture: COND GAN}{27}{subsubsection.8.3.6}%
+\contentsline {subsubsection}{\numberline {8.3.7}Dataset: FASHION, Architecture: VANILLA GAN}{28}{subsubsection.8.3.7}%
+\contentsline {subsubsection}{\numberline {8.3.8}Dataset: FASHION, Architecture: COND GAN}{29}{subsubsection.8.3.8}%
+\contentsline {subsubsection}{\numberline {8.3.9}Dataset: MNIST, Architecture: TDA}{30}{subsubsection.8.3.9}%
+\contentsline {subsubsection}{\numberline {8.3.10}Dataset: FASHION, Architecture: TDA}{31}{subsubsection.8.3.10}%
+\contentsline {subsection}{\numberline {8.4}Data Creation Histograms}{32}{subsection.8.4}%
+\contentsline {subsubsection}{\numberline {8.4.1}DCGAN MNIST}{32}{subsubsection.8.4.1}%
+\contentsline {section}{Declaration of Oath}{33}{figure.caption.151}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
