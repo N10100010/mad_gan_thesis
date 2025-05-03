@@ -20,6 +20,7 @@ This chapter investigates the following questions regarding MADGANs for data aug
 
 \subsection{Key Research Question Answers}
 As mentioned in the subchapter about the experimental workflow, four sets of multi-agent generators models were trained  for the MADGAN and cMADGAN architectures (\ref{body_experiment_succession}). The four sets differ by \(K\), the number of generators trained, with \(K \in [3, 5, 7, 10]\). Onward, the generator of a discussion is identified explicitly by a suffix referencing the generator of a trained set \(G_{i, j}\) with \(i=K, j=0...(K-1)\) (e.g., \(\text{MADGAN}_{5, 0}\) for the first generator in the architecture trained with five generators). The set of generators however, is referenced via the notation: MADGAN \(K=5\) (e.g., if a discussion talks about the average performance of the generators \(0...4\)). Throughout this chapter, the experiment will be viewed with respect to afore mentioned differentiation between expansion and replacement scenarios \ref{exp_setup_difference_replace_expand}. The comparisons of FID- and Inception Score are excluded from this differentiation. Experiment not directly discussed in greater detail can be seen in the appendix \ref{app_strat_class_performance}.
+The generated graphs contain all respective runs of a given experimental setup for which, best, worst, average, median, and baseline are explicitly highlighted. Each gray line in a graph, that is not highlighted represents every other combination of the setup. Especially for the multi-agent generator setups, this results in many graphs, up to $60$ per figure. Therefore, a colorful highlighting of specific graphs is omitted as this would not benefit the overall readability of the respective graphs. This however removes the potential for interesting insights. TODO: maaah, important sentence... Could be phrased better
 
 
 \subsubsection[Question 1]{Comparison of FID- and Inception Scores}     \label{exp_results_ans_q1} 
@@ -108,9 +109,9 @@ Overall, while cMADGAN K=3 achieved the best IS score, MADGAN K=10 attained the 
 
 \subsubsection[Question 2]{Question 2: Effectiveness of MADGAN GDA vs. TDA}\label{exp_results_ans_q2} 
  As mentioned in the beginning of this chapter, four sets of generators with different numbers for \(K\) were trained, with \(K \in [3, 5, 7, 10]\), for the multi-agent architectures. For comparison against other GDA methods, the best performing set (e.g., MADGAN \(K=3\)) or the best performing generator (e.g., \(G_{3,2}\)) is used. All other experiments are present in the appendix \ref{app_strat_class_performance}. From here onward, the differentiation between replacement and expansion experiments will be used. 
-
-\noindent\textbf{Replacement Experiment, Dataset: MNIST}
-\begin{figure}[H]
+\newpage
+ \noindent\textbf{Replacement Experiment, Dataset: MNIST}
+\begin{figure}[H] 
 	\centering
 	\begin{subfigure}{.85\textwidth}
 		\includegraphics[width=\textwidth]{abb/strat_classifier_performance/tda_mnist/replacement_experiments/val_f1_score_tda_mnist_mnist_all.png}
@@ -127,7 +128,7 @@ Overall, while cMADGAN K=3 achieved the best IS score, MADGAN K=10 attained the 
 
 \begin{table}[H]
 	\centering
-	\vspace{-1em}
+	\vspace{-1.5em}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
 		Run Type & Metric & Performance \\ \hline
@@ -141,7 +142,7 @@ Overall, while cMADGAN K=3 achieved the best IS score, MADGAN K=10 attained the 
         \label{tab:res_replacement_mnist_tda_vs_madgan__tda}
 \end{table}
 \begin{table}[H]
-	\vspace{-1em}
+	\vspace{-1.5em}
 	\centering
 	\begin{tabular}{|c|c|c|c|}
 		\hline
@@ -161,6 +162,165 @@ The results for TDA, shown in figure \ref{fig:res_replacement_mnist_tda_vs_madga
 The performance using GDA with samples form MADGAN (K=10) model is presented in Figure \ref{fig:res_replacement_mnist_tda_vs_madgan__madgan} and Table \ref{tab:res_replacement_mnist_tda_vs_madgan__madgan}. It is important to note again, that the figure and the summary statistics encompass results across the 10 individual generators and across all replacement ratios resulting in a total of $60$ total classifiers. The graph shows convergence to a slightly lower F1 scores, compared to those from TDA. Here, the conclusion can be drawn that the replacement of real with augmented images resulted in an overall negative impact. The summary table quantifies this fact: the average final F1 score across ratios and generators is $0.9775$, which is significantly lower than the average of the traditional augmentation. While the best setup (\(G_{10,7}, R:4000, F:1000\)) reached a good score: $0.9889$; it is lower than the average performance across the different ratios in the TDA experiment. Even the worst performing classifier in the TDA experiment is better than the best score for GDA in this case. 
 
 In direct comparison, the TDA consistently outperforms GDA (with its best resulting setting, MADGAN (K=10)) in this replacement scenario. Replacing the real data with synthetic lead to a noticeable degradation of the classifiers' performance on the validation set. Taking the results from question 1 into account (\ref{exp_results_ans_q1}), even the MADGAN setup resulting in the best FID score are not as effective as traditional augmented real data, when substituting the real samples in the training set. 
+
+\newpage
+\noindent\textbf{Expansion Experiment, Dataset: MNIST}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{.85\textwidth}
+		\includegraphics[width=\textwidth]{abb/strat_classifier_performance/tda_mnist/expansion_experiments/val_f1_score_tda_mnist_mnist_all.png}
+		\caption{F1 Score on MNIST over 50 epochs. Augmentation Technique: TDA} 
+        \label{fig:res_expansion_mnist_tda_vs_madgan__tda}
+	\end{subfigure}
+%%%%%%%%%%%%%%
+	\begin{subfigure}{.85\textwidth}
+		\includegraphics[width=\textwidth]{abb/strat_classifier_performance/MNIST_STRATIFIED_CLASSIFIERS_MADGAN_NEW/expansion_experiments/val_f1_score_MADGAN_MNIST_n_gen_7_all.png}
+		\caption{F1 Score on MNIST over 50 epochs. Augmentation technique: MADGAN (K=7)} 
+        \label{fig:res_expansion_mnist_tda_vs_madgan__madgan}
+	\end{subfigure}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\vspace{-1.5em}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		Run Type & Experiment & Performance \\ \hline
+		best & TDA (R:5000, F:2000) & $0.9938$\\ \hline
+		worst & TDA (R:5000, F: 1000) & $0.9923$\\ \hline
+		median & TDA & $0.9934$\\ \hline
+		average & TDA & $0.9932$
+		\\ \hline
+	\end{tabular}
+    \caption{Final F1 Scores after 50 epochs. Augmentation technique: TDA}
+        \label{tab:res_expansion_mnist_tda_vs_madgan__tda}
+\end{table}
+\begin{table}[H]
+	\vspace{-1.5em}
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Run Type & Experiment & Val F1 \\ \hline
+		best & \(G_{7, 4}\), R:5000, F:1000 & $0.9902$\\ \hline
+		worst & \(G_{7, 2}\), R:5000, F:5000 & $0.9831$\\ \hline
+		median & - & $0.9860$\\ \hline
+		average & - & $0.9866$
+		\\ \hline
+	\end{tabular}
+    \caption{Final F1 Scores after 50 epochs. Augmentation technique: MADGAN}
+        \label{tab:res_expansion_mnist_tda_vs_madgan__madgan}
+\end{table}
+
+The results using TDA (Table \ref{tab:res_expansion_mnist_tda_vs_madgan__tda}) show consistently high performance. The average final F1 score across all expansion levels (adding 0 to 5,000 augmented samples per class) is 0.9932, with minimal variation between the best (0.9938, achieved when adding 2,000 augmented samples) and worst (0.9923) cases. This indicates that expanding the dataset with traditionally augmented samples maintains, and perhaps very slightly improves, the already high baseline performance on MNIST.
+
+In contrast, using GDA with samples generated by the MADGAN (K=7) model did not yield performance improvements over the baseline trained only on real data. To be noted explicitly, none of the expansion experiments using MADGAN GDA surpassed the baseline performance level (see: \ref{app_strat_class_performance_madgan_mnist}). The summary statistics in Table \ref{tab:res_expansion_mnist_tda_vs_madgan__madgan}, which cover results across all 7 generators and all expansion ratios, confirm this. The average final F1 score is 0.9866, noticeably lower than the TDA results. The best-performing run across all generators and expansion levels only reached 0.9902 (using generator \(G_{7,4}\) when adding 1,000 synthetic samples), which is below even the worst TDA result. Performance tended to decrease as more synthetic data was added, with the lowest score (0.9831) occurring when the maximum of 5,000 synthetic samples per class were added (using generator \(G_{7,2}\)).
+
+Comparing the two augmentation strategies in the expansion scenario, TDA is clearly superior on MNIST in this setup. Expanding the dataset with traditionally augmented data maintains excellent performance, whereas expanding with MADGAN-generated synthetic data fails to improve over the real-data baseline and leads to lower overall performance. This suggests that the synthetic samples from MADGAN (K=7), despite the model potentially having good generative scores, dilute rather than enhance the training data quality when added to the real MNIST dataset for this downstream classification task.
+
+
+\newpage
+\noindent\textbf{Replacement Experiment, Dataset: Fashion-MNIST}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{.85\textwidth}
+		\includegraphics[width=\textwidth]{abb/strat_classifier_performance/tda_fashion_mnist/replacement_experiments/val_f1_score_tda_fashion_mnist_fashion_all.png}
+		\caption{F1 Score on FASHION over 50 epochs. Augmentation Technique: TDA} 
+        \label{fig:res_replacement_fashion_tda_vs_madgan__tda}
+	\end{subfigure}
+%%%%%%%%%%%%%%
+	\begin{subfigure}{.85\textwidth}
+		\includegraphics[width=\textwidth]{abb/strat_classifier_performance/FASHION_STRATIFIED_CLASSIFIERS_MADGAN_NEW/replacement_experiments/val_f1_score_MADGAN_FASHION_n_gen_7_all.png}
+		\caption{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=7)} 
+        \label{fig:res_replacement_fashion_tda_vs_madgan__madgan}
+	\end{subfigure}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\vspace{-1.5em}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		Run Type & Experiment & Val F1 \\ \hline
+		best & TDA (R:3000, F:2000) & $0.9048$\\ \hline
+		worst & TDA (R:0, F:5000) & $0.8874$\\ \hline
+		median & TDA & $0.8934$\\ \hline
+		average & TDA & $0.8955$
+		\\ \hline
+	\end{tabular}
+    \caption{Final F1 Scores after 50 epochs. Augmentation technique: TDA}
+        \label{tab:res_replacement_fashion_tda_vs_madgan__tda}
+\end{table}
+\begin{table}[H]
+	\vspace{-1.5em}
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Run Type & Experiment & Val F1 \\ \hline
+		best & \(G_{7, 2}\), R:4000, F:1000 & $0.9079$\\ \hline
+		worst & \(G_{7, 0}\), R:0, F:5000 & $0.3419$\\ \hline
+		median & - & $0.8927$\\ \hline
+		average & - & $0.7993$
+		\\ \hline
+	\end{tabular}
+    \caption{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}
+        \label{tab:res_replacement_fashion_tda_vs_madgan__madgan}
+\end{table}
+For TDA (Table \ref{tab:res_replacement_fashion_tda_vs_madgan__tda}), the results indicate reasonably strong and relatively stable classifier performance as real data is replaced by traditionally augmented samples. The average final F1 score across all replacement ratios is 0.8955. Performance degrades moderately as more real data is substituted, with the best score (0.9048) observed at a mix of 3000 real and 2000 augmented samples per class, and the worst score (0.8874) occurring when using only augmented data (0 real, 5000 augmented). The overall range is narrow, suggesting TDA provides consistent results.
+
+The MADGAN (K=7) GDA results (Table \ref{tab:res_replacement_fashion_tda_vs_madgan__madgan}) reveal a much higher degree of variability. These summary statistics encompass results across all 7 individual generators and all replacement ratios. Notably, the best-performing run (generator \(G_{7,2}\) with 4000 real / 1000 fake samples) achieved an F1 score of 0.9079, slightly surpassing the best TDA result. However, extreme inconsistency offsets this potential advantage. The worst-performing run (generator \(G_{7,0}\) using only synthetic data) yielded a drastically low F1 score of 0.3419, far below the worst TDA score. This disparity heavily impacts the average F1 score for MADGAN GDA, bringing it down to 0.7993, significantly lower than the TDA average. Interestingly, the median F1 score for MADGAN GDA (0.8927) is quite close to the TDA median (0.8934), suggesting that while the average is poor due to outliers, typical performance might be closer to TDA.
+
+In direct comparison for the replacement scenario on Fashion-MNIST, TDA offers more reliable and consistent performance. While MADGAN GDA demonstrates the potential to slightly exceed TDA's peak performance under specific optimal conditions (best generator, limited replacement), it suffers from extreme variability. Relying solely on synthetic data from weaker generators leads to a catastrophic performance drop, making MADGAN GDA a much less robust strategy on average compared to TDA when replacing real data in this setup.
+
+
+\newpage
+\noindent\textbf{Expansion Experiment, Dataset: Fashion-MNIST}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{.85\textwidth}
+		\includegraphics[width=\textwidth]{abb/strat_classifier_performance/tda_fashion_mnist/expansion_experiments/val_f1_score_tda_fashion_mnist_fashion_all.png}
+		\caption{F1 Score on FASHION over 50 epochs. Augmentation Technique: TDA} 
+        \label{fig:res_expansion_fashion_tda_vs_madgan__tda}
+	\end{subfigure}
+%%%%%%%%%%%%%%
+	\begin{subfigure}{.85\textwidth}
+		\includegraphics[width=\textwidth]{abb/strat_classifier_performance/FASHION_STRATIFIED_CLASSIFIERS_MADGAN_NEW/expansion_experiments/val_f1_score_MADGAN_FASHION_n_gen_10_all.png}
+		\caption{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=10)} 
+        \label{fig:res_expansion_fashion_tda_vs_madgan__madgan}
+	\end{subfigure}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\vspace{-1.5em}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		Run Type & Experiment & Val F1 \\ \hline
+		best & TDA (R:5000, F:4000) & $0.9129$\\ \hline
+		worst & TDA (R:5000, F:5000) & $0.9108$\\ \hline
+		median & TDA & $0.9119$\\ \hline
+		average & TDA & $0.9118$
+		\\ \hline
+	\end{tabular}
+    \caption{Final F1 Scores after 50 epochs. Augmentation technique: TDA}
+        \label{tab:res_expansion_fashion_tda_vs_madgan__tda}
+\end{table}
+\begin{table}[H]
+	\vspace{-1.5em}
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Run Type & Experiment & Val F1 \\ \hline
+		best & \(G_{10, 4}\), R:5000, F:1000 & $0.9120$\\ \hline
+		worst & \(G_{10, 4}\), R:5000, F:5000 & $0.9001$\\ \hline
+		median & - & $0.9066$\\ \hline
+		average & - & $0.9060$
+		\\ \hline
+	\end{tabular}
+    \caption{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=X)}
+        \label{tab:res_expansion_fashion_tda_vs_madgan__madgan}
+\end{table}
+
+
 
 \subsubsection[Question 3]{MADGAN GDA vs. Standard/Conditional GAN GDA} \label{exp_results_ans_q3} 
  
