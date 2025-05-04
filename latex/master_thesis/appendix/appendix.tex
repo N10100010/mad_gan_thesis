@@ -39,14 +39,14 @@ The graphical representations of the network architectures are created with the 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=.9\textwidth]{abb/netron_network_archs/define_vanilla_mnist_gen.png}
-    \caption{Depiction of the generator used in the Vanilla GAN dependent experiments. Used to train a generator and create fake image data based on the MNIST dataset.}
+    \caption{Depiction of the generator used in the deep convolutional GAN dependent experiments. Used to train a generator and create fake image data based on the MNIST dataset.}
     \label{fig:figure_gen_arch_vanilla_mnist}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=.9\textwidth]{abb/netron_network_archs/define_vanilla_fashion_mnist_gen.png}
-    \caption{Depiction of the generator used in the Vanilla GAN dependent experiments. Used to train a generator and create fake image data based on the Fashion-MNIST dataset.}
+    \caption{Depiction of the generator used in the deep convolutional GAN dependent experiments. Used to train a generator and create fake image data based on the Fashion-MNIST dataset.}
     \label{fig:figure_gen_arch_vanilla_fashion}
 \end{figure}
 
@@ -82,14 +82,14 @@ The graphical representations of the network architectures are created with the 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=.9\textwidth]{abb/netron_network_archs/define_vanilla_mnist_disc.png}
-    \caption{Depiction of the discriminator used in the Vanilla GAN dependent experiments. Used to train a generator based on the MNIST dataset.}
+    \caption{Depiction of the discriminator used in the deep convolutional GAN dependent experiments. Used to train a generator based on the MNIST dataset.}
     \label{fig:figure_disc_arch_vanilla_mnist}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=.9\textwidth]{abb/netron_network_archs/define_vanilla_fashion_mnist_disc.png}
-    \caption{Depiction of the disciminator used in the Vanilla GAN dependent experiments. Used to train a generator based on the Fashion-MNIST dataset.}
+    \caption{Depiction of the discriminator used in the deep convolutional GAN dependent experiments. Used to train a generator based on the Fashion-MNIST dataset.}
     \label{fig:figure_disc_arch_vanilla_fashion}
 \end{figure}
 
@@ -97,7 +97,7 @@ The graphical representations of the network architectures are created with the 
     \centering
     \vspace{-2em}
     \includegraphics[width=.9\textwidth]{abb/netron_network_archs/define_conditional_mnists_disc.png}
-    \caption{Depiction of the disciminator used in the Conditional GAN dependent experiments. Used to train a generator based on the MNIST and Fashion-MNIST datasets.}
+    \caption{Depiction of the discriminator used in the Conditional GAN dependent experiments. Used to train a generator based on the MNIST and Fashion-MNIST datasets.}
     \label{fig:figure_disc_arch_conditional}
 \end{figure}
 
@@ -384,8 +384,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{3, 0}\), R:5000, F:1000 & $0.9899$\\ \hline
 		worst & \(G_{3, 0}\), R:5000, F:5000 & $0.9841$\\ \hline
-		median & - & $0.9864$\\ \hline
-		average & - & $0.9867$
+		median & G (K=3) & $0.9864$\\ \hline
+		average & G (K=3) & $0.9867$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -405,8 +405,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{3, 1}\), R:4000, F:1000 & $0.9886$\\ \hline
 		worst & \(G_{3, 0}\), R:0, F:5000 & $0.9593$\\ \hline
-		median & - & $0.9798$\\ \hline
-		average & - & $0.9767$
+		median & G (K=3) & $0.9798$\\ \hline
+		average & G (K=3) & $0.9767$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -427,8 +427,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{5, 4}\), R:5000, F:1000 & $0.9900$\\ \hline
 		worst & \(G_{5, 2}\), R:5000, F:5000 & $0.9836$\\ \hline
-		median & - & $0.9867$\\ \hline
-		average & - & $0.9866$
+		median & G (K=5) & $0.9867$\\ \hline
+		average & G (K=5) & $0.9866$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -448,8 +448,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{5, 0}\), R:4000, F:1000 & $0.9878$\\ \hline
 		worst & \(G_{5, 1}\), R:0, F:5000 & $0.9611$\\ \hline
-		median & - & $0.9799$\\ \hline
-		average & - & $0.9775$
+		median & G (K=5) & $0.9799$\\ \hline
+		average & G (K=5) & $0.9775$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -470,8 +470,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{7, 4}\), R:5000, F:1000 & $0.9902$\\ \hline
 		worst & \(G_{7, 2}\), R:5000, F:5000 & $0.9831$\\ \hline
-		median & - & $0.9860$\\ \hline
-		average & - & $0.9866$
+		median & G (K=7) & $0.9860$\\ \hline
+		average & G (K=7) & $0.9866$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -491,8 +491,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{7, 5}\), R:4000, F:1000 & $0.9884$\\ \hline
 		worst & \(G_{7, 0}\), R:0, F:5000 & $0.9616$\\ \hline
-		median & - & $0.9800$\\ \hline
-		average & - & $0.9780$
+		median & G (K=7) & $0.9800$\\ \hline
+		average & G (K=7) & $0.9780$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -513,8 +513,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{10, 8}\), R:5000, F:1000 & $0.9898$\\ \hline
 		worst & \(G_{10, 3}\), R:5000, F:5000 & $0.9835$\\ \hline
-		median & - & $0.9865$\\ \hline
-		average & - & $0.9866$
+		median & G (K=10) & $0.9865$\\ \hline
+		average & G (K=10) & $0.9866$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -534,8 +534,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{10, 7}\), R:4000, F:1000 & $0.9889$\\ \hline
 		worst & \(G_{10, 5}\), R:0, F:5000 & $0.9611$\\ \hline
-		median & - & $0.9795$\\ \hline
-		average & - & $0.9774$
+		median & G (K=10) & $0.9795$\\ \hline
+		average & G (K=10) & $0.9774$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -557,8 +557,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{3, 1}\), R:5000, F:4000 & $0.9931$\\ \hline
 		worst & \(G_{3, 2}\), R:5000, F:4000 & $0.9914$\\ \hline
-		median & - & $0.9920$\\ \hline
-		average & - & $0.9921$
+		median & G (K=3) & $0.9920$\\ \hline
+		average & G (K=3) & $0.9921$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -578,8 +578,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{3, 1}\), R:4000, F:1000 & $0.9911$\\ \hline
 		worst & \(G_{3, 1}\), R:0, F:5000 & $0.7778$\\ \hline
-		median & - & $0.9886$\\ \hline
-		average & - & $0.9566$
+		median & G (K=3) & $0.9886$\\ \hline
+		average & G (K=3) & $0.9566$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -600,8 +600,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{5, 2}\), R:5000, F:3000 & $0.9933$\\ \hline
 		worst & \(G_{5, 4}\), R:5000, F:1000 & $0.9905$\\ \hline
-		median & - & $0.9916$\\ \hline
-		average & - & $0.9917$
+		median & G (K=5) & $0.9916$\\ \hline
+		average & G (K=5) & $0.9917$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -621,8 +621,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{5, 2}\), R:3000, F:2000 & $0.9920$\\ \hline
 		worst & \(G_{5, 3}\), R:0, F:5000 & $0.7489$\\ \hline
-		median & - & $0.9874$\\ \hline
-		average & - & $0.9458$
+		median & G (K=5) & $0.9874$\\ \hline
+		average & G (K=5) & $0.9458$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -643,8 +643,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{7, 1}\), R:5000, F:2000 & $0.9933$\\ \hline
 		worst & \(G_{7, 0}\), R:5000, F:5000 & $0.9899$\\ \hline
-		median & - & $0.9916$\\ \hline
-		average & - & $0.9916$
+		median & G (K=7) & $0.9916$\\ \hline
+		average & G (K=7) & $0.9916$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -664,8 +664,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{7, 2}\), R:4000, F:1000 & $0.9924$\\ \hline
 		worst & \(G_{7, 2}\), R:0, F:5000 & $0.6152$\\ \hline
-		median & - & $0.9874$\\ \hline
-		average & - & $0.9325$
+		median & G (K=7) & $0.9874$\\ \hline
+		average & G (K=7) & $0.9325$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -686,8 +686,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{10, 3}\), R:5000, F:5000 & $0.9933$\\ \hline
 		worst & \(G_{10, 8}\), R:5000, F:2000 & $0.9902$\\ \hline
-		median & - & $0.9917$\\ \hline
-		average & - & $0.9917$
+		median & G (K=10) & $0.9917$\\ \hline
+		average & G (K=10) & $0.9917$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -707,8 +707,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{10, 1}\), R:4000, F:1000 & $0.9911$\\ \hline
 		worst & \(G_{10, 2}\), R:0, F:5000 & $0.3407$\\ \hline
-		median & - & $0.9872$\\ \hline
-		average & - & $0.8768$
+		median & G (K=10) & $0.9872$\\ \hline
+		average & G (K=10) & $0.8768$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -730,8 +730,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{3, 0}\), R:5000, F:1000 & $0.9105$\\ \hline
 		worst & \(G_{3, 0}\), R:5000, F:5000 & $0.8989$\\ \hline
-		median & - & $0.9046$\\ \hline
-		average & - & $0.9048$
+		median & G (K=3) & $0.9046$\\ \hline
+		average & G (K=3) & $0.9048$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -751,8 +751,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{3, 0}\), R:4000, F:1000 & $0.9055$\\ \hline
 		worst & \(G_{3, 0}\), R:0, F:5000 & $0.8430$\\ \hline
-		median & - & $0.8866$\\ \hline
-		average & - & $0.8824$
+		median & G (K=3) & $0.8866$\\ \hline
+		average & G (K=3) & $0.8824$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -773,8 +773,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{5, 0}\), R:5000, F:1000 & $0.9106$\\ \hline
 		worst & \(G_{5, 0}\), R:5000, F:5000 & $0.9017$\\ \hline
-		median & - & $0.9056$\\ \hline
-		average & - & $0.9059$
+		median & G (K=5) & $0.9056$\\ \hline
+		average & G (K=5) & $0.9059$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -794,8 +794,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{5, 1}\), R:4000, F:1000 & $0.9055$\\ \hline
 		worst & \(G_{5, 2}\), R:0, F:5000 & $0.8411$\\ \hline
-		median & - & $0.8886$\\ \hline
-		average & - & $0.8821$
+		median & G (K=5) & $0.8886$\\ \hline
+		average & G (K=5) & $0.8821$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -816,8 +816,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{7, 2}\), R:5000, F:1000 & $0.9114$\\ \hline
 		worst & \(G_{7, 2}\), R:5000, F:4000 & $0.9018$\\ \hline
-		median & - & $0.9066$\\ \hline
-		average & - & $0.9065$
+		median & G (K=7) & $0.9066$\\ \hline
+		average & G (K=7) & $0.9065$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -837,8 +837,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{7, 0}\), R:4000, F:1000 & $0.9090$\\ \hline
 		worst & \(G_{7, 4}\), R:0, F:5000 & $0.8384$\\ \hline
-		median & - & $0.8879$\\ \hline
-		average & - & $0.8813$
+		median & G (K=7) & $0.8879$\\ \hline
+		average & G (K=7) & $0.8813$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -859,8 +859,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{10, 4}\), R:5000, F:1000 & $0.9120$\\ \hline
 		worst & \(G_{10, 4}\), R:5000, F:5000 & $0.9001$\\ \hline
-		median & - & $0.9066$\\ \hline
-		average & - & $0.9060$
+		median & G (K=10) & $0.9066$\\ \hline
+		average & G (K=10) & $0.9060$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -880,8 +880,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{10, 5}\), R:4000, F:1000 & $0.9058$\\ \hline
 		worst & \(G_{10, 3}\), R:0, F:5000 & $0.8146$\\ \hline
-		median & - & $0.8869$\\ \hline
-		average & - & $0.8772$
+		median & G (K=10) & $0.8869$\\ \hline
+		average & G (K=10) & $0.8772$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -903,8 +903,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{3, 0}\), R:5000, F:2000 & $0.9127$\\ \hline
 		worst & \(G_{3, 2}\), R:5000, F:2000 & $0.9046$\\ \hline
-		median & - & $0.9077$\\ \hline
-		average & - & $0.9079$
+		median & G (K=3) & $0.9077$\\ \hline
+		average & G (K=3) & $0.9079$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -924,8 +924,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{3, 0}\), R:4000, F:1000 & $0.9076$\\ \hline
 		worst & \(G_{3, 0}\), R:0, F:5000 & $0.6390$\\ \hline
-		median & - & $0.8890$\\ \hline
-		average & - & $0.8431$
+		median & G (K=3) & $0.8890$\\ \hline
+		average & G (K=3) & $0.8431$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -946,8 +946,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{5, 0}\), R:5000, F:5000 & $0.9125$\\ \hline
 		worst & \(G_{5, 1}\), R:5000, F:2000 & $0.9050$\\ \hline
-		median & - & $0.9093$\\ \hline
-		average & - & $0.9094$
+		median & G (K=5) & $0.9093$\\ \hline
+		average & G (K=5) & $0.9094$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -967,8 +967,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{5, 3}\), R:4000, F:1000 & $0.9089$\\ \hline
 		worst & \(G_{5, 2}\), R:0, F:5000 & $0.2543$\\ \hline
-		median & - & $0.8909$\\ \hline
-		average & - & $0.8072$
+		median & G (K=5) & $0.8909$\\ \hline
+		average & G (K=5) & $0.8072$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -989,8 +989,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{7, 2}\), R:5000, F:5000 & $0.9138$\\ \hline
 		worst & \(G_{7, 4}\), R:5000, F:3000 & $0.9049$\\ \hline
-		median & - & $0.9095$\\ \hline
-		average & - & $0.9093$
+		median & G (K=7) & $0.9095$\\ \hline
+		average & G (K=7) & $0.9093$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -1010,8 +1010,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{7, 2}\), R:4000, F:1000 & $0.9079$\\ \hline
 		worst & \(G_{7, 0}\), R:0, F:5000 & $0.3419$\\ \hline
-		median & - & $0.8927$\\ \hline
-		average & - & $0.7993$
+		median & G (K=7) & $0.8927$\\ \hline
+		average & G (K=7) & $0.7993$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -1032,8 +1032,8 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{10, 3}\), R:5000, F:5000 & $0.9137$\\ \hline
 		worst & \(G_{10, 9}\), R:5000, F:2000 & $0.9043$\\ \hline
-		median & - & $0.9091$\\ \hline
-		average & - & $0.9095$
+		median & G (K=10) & $0.9091$\\ \hline
+		average & G (K=10) & $0.9095$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -1053,15 +1053,15 @@ The graphical representations of the network architectures are created with the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{10, 9}\), R:4000, F:1000 & $0.9058$\\ \hline
 		worst & \(G_{10, 9}\), R:0, F:5000 & $0.3821$\\ \hline
-		median & - & $0.8920$\\ \hline
-		average & - & $0.8056$
+		median & G (K=10) & $0.8920$\\ \hline
+		average & G (K=10) & $0.8056$
 		\\ \hline
 	\end{tabular}
 \end{table}
 % End LaTeX Table for Replacement Experiment:
 \newpage
 
-\subsubsection{Dataset: MNIST, Architecture: VANILLA GAN}
+\subsubsection{Dataset: MNIST, Architecture: Deep Convolutional GAN}
 % LaTeX Metrics Table for Expansion Experiment: - Metric: val_f1_score
 % LaTeX Metrics Table for Expansion Experiment: - Metric: val_f1_score - Target Gen Group: 10
 \noindent\textbf{Expansion Experiment:}
@@ -1075,11 +1075,11 @@ The graphical representations of the network architectures are created with the 
 	\vspace{-1em}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
-		Run Type & Metric & n-gen & n-used & Performance \\ \hline
-		best & Val F1 & 0 & 0 & $0.9884$\\ \hline
-		worst & Val F1 & 0 & 0 & $0.9837$\\ \hline
-		median & Val F1 & - & - & $0.9852$\\ \hline
-		average & Val F1 & - & - & $0.9857$
+		Run Type & Experiment & Val F1 \\ \hline
+		best & DC (R:5000, F:1000) & $0.9884$\\ \hline
+		worst & DC (R:5000, F:5000) & $0.9837$\\ \hline
+		median & DC & $0.9852$\\ \hline
+		average & DC & $0.9857$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -1097,11 +1097,11 @@ The graphical representations of the network architectures are created with the 
 	\vspace{-1em}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
-		Run Type & Metric & n-gen & n-used & Performance \\ \hline
-		best & Val F1 & 0 & 0 & $0.9871$\\ \hline
-		worst & Val F1 & 0 & 0 & $0.9520$\\ \hline
-		median & Val F1 & - & - & $0.9775$\\ \hline
-		average & Val F1 & - & - & $0.9736$
+		Run Type & Experiment & Val F1 \\ \hline
+		best & DC (R:4000:, F:1000) & $0.9871$\\ \hline
+		worst & DC (R:0, F:5000) & $0.9520$\\ \hline
+		median & DC & $0.9775$\\ \hline
+		average & DC & $0.9736$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -1121,11 +1121,11 @@ The graphical representations of the network architectures are created with the 
 	\vspace{-1em}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
-		Run Type & Metric & n-gen & n-used & Performance \\ \hline
-		best & Val F1 & 0 & 0 & $0.9918$\\ \hline
-		worst & Val F1 & 0 & 0 & $0.9898$\\ \hline
-		median & Val F1 & - & - & $0.9909$\\ \hline
-		average & Val F1 & - & - & $0.9910$
+		Run Type & Experiment & Val F1 \\ \hline
+		best & Conditional (R:5000, F:4000) & $0.9918$\\ \hline
+		worst & Conditional (R:5000, F:5000) & $0.9898$\\ \hline
+		median & Conditional & $0.9909$\\ \hline
+		average & Conditional & $0.9910$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -1143,17 +1143,17 @@ The graphical representations of the network architectures are created with the 
 	\vspace{-1em}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
-		Run Type & Metric & n-gen & n-used & Performance \\ \hline
-		best & Val F1 & 0 & 0 & $0.9896$\\ \hline
-		worst & Val F1 & 0 & 0 & $0.9177$\\ \hline
-		median & Val F1 & - & - & $0.9865$\\ \hline
-		average & Val F1 & - & - & $0.9726$
+		Run Type & Experiment & Val F1 \\ \hline
+		best & Conditional (R:4000, F:1000) & $0.9896$\\ \hline
+		worst & Conditional (R:0, F:5000) & $0.9177$\\ \hline
+		median & Conditional & $0.9865$\\ \hline
+		average & Conditional & $0.9726$
 		\\ \hline
 	\end{tabular}
 \end{table}
 % End LaTeX Table for Replacement Experiment:
 \newpage
-\subsubsection{Dataset: FASHION, Architecture: VANILLA GAN}
+\subsubsection{Dataset: FASHION, Architecture: DC GAN}
 % LaTeX Metrics Table for Expansion Experiment: - Metric: val_f1_score
 % LaTeX Metrics Table for Expansion Experiment: - Metric: val_f1_score - Target Gen Group: 10
 \noindent\textbf{Expansion Experiment:}
@@ -1167,11 +1167,11 @@ The graphical representations of the network architectures are created with the 
 	\vspace{-1em}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
-		Run Type & Metric & n-gen & n-used & Performance \\ \hline
-		best & Val F1 & 0 & 0 & $0.9092$\\ \hline
-		worst & Val F1 & 0 & 0 & $0.9056$\\ \hline
-		median & Val F1 & - & - & $0.9071$\\ \hline
-		average & Val F1 & - & - & $0.9072$
+		Run Type & Experiment & Performance \\ \hline
+		best & DC (R:5000, F:2000) & $0.9092$\\ \hline
+		worst & DC (R:5000, F:1000) & $0.9056$\\ \hline
+		median & DC & $0.9071$\\ \hline
+		average & DC & $0.9072$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -1189,11 +1189,11 @@ The graphical representations of the network architectures are created with the 
 	\vspace{-1em}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
-		Run Type & Metric & n-gen & n-used & Performance \\ \hline
-		best & Val F1 & 0 & 0 & $0.9046$\\ \hline
-		worst & Val F1 & 0 & 0 & $0.8470$\\ \hline
-		median & Val F1 & - & - & $0.8897$\\ \hline
-		average & Val F1 & - & - & $0.8823$
+		Run Type & Experiment & Performance \\ \hline
+		best & DC (R:5000, F:1000) & $0.9046$\\ \hline
+		worst & DC (R:0, F:5000) & $0.8470$\\ \hline
+		median & DC & $0.8897$\\ \hline
+		average & DC & $0.8823$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -1213,11 +1213,11 @@ The graphical representations of the network architectures are created with the 
 	\vspace{-1em}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
-		Run Type & Metric & n-gen & n-used & Performance \\ \hline
-		best & Val F1 & 0 & 0 & $0.9123$\\ \hline
-		worst & Val F1 & 0 & 0 & $0.9060$\\ \hline
-		median & Val F1 & - & - & $0.9085$\\ \hline
-		average & Val F1 & - & - & $0.9089$
+		Run Type & Experiment & Val F1 \\ \hline
+		best & Conditional (R:5000, F:1000) & $0.9123$\\ \hline
+		worst & Conditional (R:5000, F:3000) & $0.9060$\\ \hline
+		median & Conditional & $0.9085$\\ \hline
+		average & Conditional & $0.9089$
 		\\ \hline
 	\end{tabular}
 \end{table}
@@ -1235,11 +1235,11 @@ The graphical representations of the network architectures are created with the 
 	\vspace{-1em}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
-		Run Type & Metric & n-gen & n-used & Performance \\ \hline
-		best & Val F1 & 0 & 0 & $0.9023$\\ \hline
-		worst & Val F1 & 0 & 0 & $0.5962$\\ \hline
-		median & Val F1 & - & - & $0.8923$\\ \hline
-		average & Val F1 & - & - & $0.8427$
+		Run Type & Experiment & Val F1 \\ \hline
+		best & Conditional (R:4000, F:1000) & $0.9023$\\ \hline
+		worst & Conditional (R:0, F:5000) & $0.5962$\\ \hline
+		median & Conditional & $0.8923$\\ \hline
+		average & Conditional & $0.8427$
 		\\ \hline
 	\end{tabular}
 \end{table}
