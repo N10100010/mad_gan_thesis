@@ -23,24 +23,20 @@ Despite these comprehensive attempts, persistent issues such as training instabi
 
 Given that the primary focus of this thesis is to investigate the comparative effects of different GAN-based data augmentation strategies (including MADGAN and cMADGAN), a pragmatic decision was made to exclude the standard CIFAR-10 dataset from the main comparative experiments presented in the subsequent results chapters. This allows the analysis to focus on datasets (MNIST, Fashion-MNIST, and modified CIFAR-10) where the generative models achieved more stable and interpretable performance, enabling a clearer evaluation of the core research questions related to data augmentation effectiveness. The challenges encountered with standard CIFAR-10, while informative about the limitations of these specific multi-generator approaches on more complex data, are not subjected to further detailed analysis herein.
 
-\subsubsection{Datasets}
+\subsubsection{Used Datasets}
 
 \begin{table}[H]
     \centering
-    \vspace{-1.5em}
-    \caption{Summary of commonly used benchmark datasets for image classification.}
-    \label{tab:dataset_summary}
-    % Adjusted column widths: l{1.8cm} and p{6cm}
-    \begin{tabular}{|p{1.8cm}|c|c|c|p{6cm}|} % <-- Adjusted widths here
+    \begin{tabular}{|c|c|c|p{7.5cm}|}
         \hline
-        \textbf{Dataset} & \textbf{Samples} & \textbf{Image Size} & \textbf{Channels} & \textbf{Description} \\
-        \hline
-        MNIST $70.000$ & $28 \times 28$ & 1 & Contains grayscale images of handwritten digits (0–9). A widely used benchmark for evaluating fundamental classification algorithms. \\
-        \hline
-        Fashion-MNIST $70.000$ & $28 \times 28$ & 1 & Drop-in replacement for MNIST with grayscale images of clothing items. Offers increased complexity and class variability, better reflecting real-world visual tasks. \\
-        \hline
+        Dataset & N-Samples & Image Size & Description \\ \hline
+        MNIST & 70,000  & $28 \times 28 \times 1$ & Grayscale images of handwritten digits (0–9). A classic benchmark for basic image classification tasks.\\ \hline
+        Fashion-MNIST & 70,000  & $28 \times 28 \times 1$ & Grayscale images of clothing items. Provides more complexity and variability than MNIST, better reflecting real-world tasks.\\ \hline
     \end{tabular}
+    \caption{Description of the used datasets for benchmarking.}
+    \label{exp_setup_used_datasets}
 \end{table}
+
 
 
 \subsubsection{GAN: Architecture, Training and Data Augmentation}
@@ -85,10 +81,10 @@ The evaluation of each generative model adhered to a consistent experimental wor
         \end{itemize}
       Note that for each trained MADGAN or cMADGAN model with K generators, the full set of Replacement and Expansion classifier training experiments was performed K times, once for each generator's synthetic dataset.
 
-    \item \textbf{Downstream Classifier Evaluation:} The performance of all trained classifiers (baseline and those from the replacement and expansion scenarios for each generator set \(S_{\text{fake}, i}\)) was evaluated using predefined classification metrics [TODO: Add reference to metrics definition, e.g., Section X.Y on Evaluation Metrics]. Results for multi-generator models may be presented as averages across the K generators or by selecting representative examples of specific generators with specified ratios between real and fake images.  
+    \item \textbf{Downstream Classifier Evaluation:} The performance of all trained classifiers (baseline and those from the replacement and expansion scenarios for each generator set \(S_{\text{fake}, i}\)) was evaluated using predefined classification metrics [TODO: Add reference to metrics definition, e.g., Section X.Y on Evaluation Metrics]. Results for multi-generator models may be presented as averages across the K generators or by selecting representative examples of specific generators with specified ratios between real and fake images.
 \end{enumerate}
 
-\noindent In total, this setup results in $44$ (datasets (2) * augmentation types (4) * experiment setup (2) * n-generators trained ([3, 5, 7, 10])) experiment sets. Taking the different ratios of real to fake images in the expansion / replacement scenarios into account, a total of $1.166$ separate classifiers were trained to evaluate the potential of multi-agent architecture for GDA. 
+\noindent In total, this setup results in $44$ (datasets (2) * augmentation types (4) * experiment setup (2) * n-generators trained ([3, 5, 7, 10])) experiment sets. Taking the different ratios of real to fake images in the expansion / replacement scenarios into account, a total of $1.166$ separate classifiers were trained to evaluate the potential of multi-agent architecture for GDA.
 
 \subsection{Comparison of Classifier Performance}
 Due to the fact that the MADGAN and cMADGAN architectures apply a multi-agent strategy i.e., training multiple generators for one model, only the best run is selected for direct comparison to others. For example, when comparing MADGAN to cMADGAN in \ref{exp_results_ans_q4}, the best performing subset of the respective GAN architecture is used for comparison. The rest of the experiments not discussed explicitly or only mentioned can be seen in the appendix \ref{app_strat_class_performance}.
