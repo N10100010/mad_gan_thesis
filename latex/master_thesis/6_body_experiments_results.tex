@@ -109,6 +109,10 @@ Overall, while cMADGAN K=3 achieved the best IS score, MADGAN K=10 attained the 
 
 \subsubsection[Question 2]{Question 2: Effectiveness of MADGAN GDA vs. TDA}\label{exp_results_ans_q2}
  As mentioned in the beginning of this chapter, four sets of generators with different numbers for \(K\) were trained, with \(K \in [3, 5, 7, 10]\), for the multi-agent architectures. For comparison against other GDA methods, the best performing set (e.g., MADGAN \(K=3\)) or the best performing generator (e.g., \(G_{3,2}\)) is used. All other experiments are present in the appendix \ref{app_strat_class_performance}. From here onward, the differentiation between replacement and expansion experiments will be used.
+
+
+TODO: preamble the results of the following experiments
+
 \newpage
  \noindent\textbf{Replacement Experiment, Dataset: MNIST}
 \begin{figure}[H]
@@ -134,8 +138,8 @@ Overall, while cMADGAN K=3 achieved the best IS score, MADGAN K=10 attained the 
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{10, 7}\), R:4000, F:1000 & $0.9889$\\ \hline
 		worst & \(G_{10, 5}\), R:0, F:5000 & $0.9611$\\ \hline
-		median & - & $0.9795$\\ \hline
-		average & - & $0.9774$
+		median & G (K=10) & $0.9795$\\ \hline
+		average & G (K=10) & $0.9774$
 		\\ \hline
 	\end{tabular}
     \caption{Final F1 Scores after 50 epochs. Augmentation technique: MADGAN}
@@ -188,8 +192,8 @@ In direct comparison, the TDA consistently outperforms GDA (with its best result
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{7, 4}\), R:5000, F:1000 & $0.9902$\\ \hline
 		worst & \(G_{7, 2}\), R:5000, F:5000 & $0.9831$\\ \hline
-		median & - & $0.9860$\\ \hline
-		average & - & $0.9866$
+		median & G (K=7) & $0.9860$\\ \hline
+		average & G (K=7) & $0.9866$
 		\\ \hline
 	\end{tabular}
     \caption{Final F1 Scores after 50 epochs. Augmentation technique: MADGAN}
@@ -243,8 +247,8 @@ Comparing the two augmentation strategies in the expansion scenario, TDA is clea
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{7, 2}\), R:4000, F:1000 & $0.9079$\\ \hline
 		worst & \(G_{7, 0}\), R:0, F:5000 & $0.3419$\\ \hline
-		median & - & $0.8927$\\ \hline
-		average & - & $0.7993$
+		median & G (K=7) & $0.8927$\\ \hline
+		average & G (K=7) & $0.7993$
 		\\ \hline
 	\end{tabular}
     \caption{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}
@@ -297,11 +301,11 @@ In direct comparison for the replacement scenario on Fashion-MNIST, TDA offers m
 		Run Type & Experiment & Val F1 \\ \hline
 		best & \(G_{10, 4}\), R:5000, F:1000 & $0.9120$\\ \hline
 		worst & \(G_{10, 4}\), R:5000, F:5000 & $0.9001$\\ \hline
-		median & - & $0.9066$\\ \hline
-		average & - & $0.9060$
+		median & G (K=10) & $0.9066$\\ \hline
+		average & (K=10) & $0.9060$
 		\\ \hline
 	\end{tabular}
-    \caption{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=X)}
+    \caption{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}
         \label{tab:res_expansion_fashion_tda_vs_madgan__madgan}
 \end{table}
 \begin{table}[H]
@@ -320,15 +324,20 @@ In direct comparison for the replacement scenario on Fashion-MNIST, TDA offers m
         \label{tab:res_expansion_fashion_tda_vs_madgan__tda}
 \end{table}
 
-The results indicate that data expansion is beneficial on Fashion-MNIST for both augmentation techniques, unlike the observations on MNIST where MADGAN GDA did not surpass the baseline. Using TDA (Table \ref{tab:res_expansion_fashion_tda_vs_madgan__tda}), adding augmented samples improves performance over baseline (R:5000/F:0), achieving a peak F1 score of $0.9129$ when adding $4.000$ augmented samples per class. Performance remains very high and stable across different expansion levels, with an average F1 of $0.9118$ and even the worst case (adding $5.000$ samples) scoring $0.9108$.
+Above results show, that data expansion on Fashion-MNIST is beneficial for both augmentation techniques. Unlike observations on MNIST, for which MADGAN GDA did not surpass the respective baseline. Utilizing TDA (Table \ref{tab:res_expansion_fashion_tda_vs_madgan__tda}) to add samples improves the classifiers performance over the baseline, achieving a peak F1 score of $0.9129$ when adding $4.000$ augmented samples to each class. The F1 performance remains high, despite varying ratios or real to fake images. The setting achieved an average F1 score of $0.9118$ and even the worst case (adding $5.000$ samples) scored $0.9108$.
 
-Similarly, expansion using MADGAN (K=10) GDA also demonstrates the potential to improve performance over the baseline. The summary statistics in Table \ref{tab:res_expansion_fashion_tda_vs_madgan__madgan}, covering results across all 10 generators and expansion ratios, show a best-case F1 score of $0.9120$ (achieved by generator \(G_{10,4}\) when adding $1.000$ synthetic samples). This peak performance is very close to the TDA peak and suggests GDA can be effective in this scenario. However, MADGAN GDA performance is slightly less consistent than TDA. The average F1 score ($0.9060$) and median ($0.9066$) are marginally lower than TDA's averages. Furthermore, performance degrades more noticeably when adding the maximum number of synthetic samples, with the worst run dropping to $0.9001$, below TDA's worst case. The variability across generators and ratios, while present, is considerably less extreme than observed in the Fashion-MNIST replacement experiment.
+On the Fashion-MNIST dataset, data expansion proved advantageous for both augmentation strategies, a notable contrast to earlier MNIST findings where MADGAN GDA struggled to exceed baseline performance. With Traditional Data Augmentation (TDA), as detailed in \ref{tab:res_expansion_fashion_tda_vs_madgan__tda}, incorporating additional augmented samples demonstrably boosted classifier F1 scores over the R:5000/F:0 baseline. This enhancement culminated in a peak F1 score of $0.9129$ with the addition of $4.000$ augmented samples per class. TDA maintained remarkably high and stable performance throughout the expansion, evidenced by an average F1 score of $0.9118$ and a strong worst-case score of $0.9108$ even when $5.000$ augmented samples were added.
 
-In direct comparison for the expansion scenario on Fashion-MNIST, both TDA and MADGAN GDA (K=10) show benefits over using only the original real data. TDA maintains a slight edge, providing marginally higher peak performance and greater stability, especially when large amounts of augmented data are added. MADGAN GDA is highly competitive, achieving a peak performance nearly identical to TDA's, but exhibiting slightly lower average scores and greater performance degradation when maximally expanded. This suggests MADGAN GDA is a viable expansion technique on Fashion-MNIST, though TDA remains slightly more robust.
+Generative Data Augmentation using MADGAN (K=10) also improved performance over the presumed baseline, as indicated by the summary statistics in \ref{tab:res_expansion_fashion_tda_vs_madgan__madgan}. Its best-case F1 score reached $0.9120$, achieved by generator \(G_{10,4}\) with an addition of $1.000$ synthetic samples per class, closely rivaling TDA's peak and underscoring GDA's effectiveness in this scenario. While this peak is promising, MADGAN GDA exhibited slightly less consistency than TDA. Its average F1 score ($0.9060$) and median ($0.9066$) were marginally lower than TDA's equivalents. Furthermore, performance showed a more pronounced decline when maximally expanded with $5.000$ synthetic samples, dropping to $0.9001$ in the worst run—a score notably below TDA's worst case. Nevertheless, the variability across MADGAN's generators and expansion ratios was considerably less extreme than what was observed in the Fashion-MNIST replacement experiments.
+
+Ultimately, for data expansion on Fashion-MNIST, both TDA and MADGAN GDA (K=10) offered tangible benefits over relying solely on the original real data. TDA, however, maintained a slight overall advantage, delivering marginally higher peak performance ($0.9129$ for TDA vs. $0.9120$ for MADGAN GDA) and superior stability, particularly evident when large volumes of augmented data were incorporated. While MADGAN GDA proved highly competitive by nearly matching TDA's peak, its slightly lower average scores and more significant performance drop under maximum expansion conditions indicate that TDA remains the more robust expansion technique in this specific setup, though MADGAN GDA is clearly a viable alternative.
+
 
 \newpage
 \subsubsection[Question 3]{MADGAN GDA vs. Deep Convolutional/Conditional GAN GDA} \label{exp_results_ans_q3}
 In the foregoing chapter (\ref{exp_results_ans_q2}), the most successful setting for the MADGAN architecture has been set. MADGAN with K=10 for Replacement-, with K=7 for the Expansion scenario on MNIST and for Fashion-MNIST K=7 for Replacement- and K=10 for Expansion proved to perform best under given circumstances. Following, the same settings for the respective dataset and the corresponding experimental setup (replacement, expansion) will be used to compare against the best performing architecture of deep convolutional and conditional GANs. For both, the Replacement and Expansion scenario, the cGAN surpassed the performance of the DCGAN. Thus, the cGAN is selected for direct comparison. The DCGAN will only be described and linked were fit.
+
+TODO: preamble the results of the following experiments
 \newpage
 
 \noindent\textbf{Replacement Experiment, Dataset: MNIST}
@@ -441,10 +450,352 @@ Consistent with the earlier comparison against TDA, neither GDA method appears t
 Interestingly, taking the performance of the DCGAN into account (\ref{app_STRAT_CLASS_PERF_mnist_DCGAN}), it is clear, that its peak performance is in line with the highest score of the best MADGAN setup (K=7). The difference in peak F1 score is only $0.0005$ ($0.9889 - 0.9884$). Furthermore, the spread of performance is significantly smaller for the DCGAN
 
 In conclusion, for the task of expanding the MNIST training set, cGAN GDA is demonstrably more effective and stable than MADGAN (K=7) GDA. It achieves higher peak performance, maintains significantly better performance when large amounts of synthetic data are added, and exhibits less variability compared to the multi-generator approach in this configuration.
-% fig:app_strat_class_performance_expansion_exp._val_f1_score_DCGAN mention me
 
+\newpage
+\noindent\textbf{Replacement Experiment, Dataset: Fashion-MNIST}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{.85\textwidth}
+		\includegraphics[width=\textwidth]{abb/strat_classifier_performance/FASHION_STRATIFIED_CLASSIFIERS_MADGAN_NEW/replacement_experiments/val_f1_score_MADGAN_FASHION_n_gen_7_all.png}
+		\caption{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=7)}
+        \label{fig:res_replacement_fashion_cgan_vs_madgan__madgan}
+	\end{subfigure}
+	\begin{subfigure}{.85\textwidth}
+		\includegraphics[width=\textwidth]{abb/strat_classifier_performance/FASHION_STRATIFIED_CLASSIFIERS_COND_GAN/replacement_experiments/val_f1_score_['COND']_FASHION_all.png}
+		\caption{F1 Score on FASHION over 50 epochs. Augmentation Technique: cGAN}
+        \label{fig:res_replacement_fashion_cgan_vs_madgan__cgan}
+	\end{subfigure}
+%%%%%%%%%%%%%%
+\end{figure}
+
+\begin{table}[H]
+	\vspace{-1.5em}
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Run Type & Experiment & Val F1 \\ \hline
+		best & \(G_{7, 2}\), R:4000, F:1000 & $0.9079$\\ \hline
+		worst & \(G_{7, 0}\), R:0, F:5000 & $0.3419$\\ \hline
+		median & G = (K=7) & $0.8927$\\ \hline
+		average & G = (K=7) & $0.7993$
+		\\ \hline
+	\end{tabular}
+    \caption{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}
+        \label{tab:res_replacement_fashion_cgan_vs_madgan__madgan}
+\end{table}
+\begin{table}[H]
+	\centering
+	\vspace{-1.5em}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		Run Type & Experiment & Val F1 \\ \hline
+		best & Conditional (R:4000, F:1000) & $0.9023$\\ \hline
+		worst & Conditional (R:0, F:5000) & $0.5962$\\ \hline
+		median & Conditional & $0.8923$\\ \hline
+		average & Conditional & $0.8427$
+		\\ \hline
+	\end{tabular}
+    \caption{Final F1 Scores after 50 epochs. Augmentation technique: cGAN}
+        \label{tab:res_replacement_fashion_cgan_vs_madgan__cgan}
+\end{table}
+Examining the peak performances, MADGAN (K=7) achieved a slightly higher best F1 score ($0.9079$ with generator \(G_{7,2}\) at R:4000, F:1000) compared to cGAN's best ($0.9023$ at the same replacement ratio). This suggests that, under optimal conditions (specific generator and limited replacement), MADGAN GDA can potentially offer a marginal advantage.
+
+However, the performance when relying more heavily on synthetic data reveals significant differences in robustness. When all real data is replaced (R:0, F:5000), cGAN's F1 score drops to $0.5962$. While this is a substantial decrease, it is considerably better than the absolute worst-case for MADGAN (K=7), where using only synthetic data from its poorest performing generator (\(G_{7,0}\)) resulted in an F1 score of just $0.3419$.
+
+This disparity in worst-case performance heavily influences the average scores. The cGAN achieves an average F1 score of $0.8427$ across all replacement ratios, which is notably higher than MADGAN K=7's average of $0.7993$. Interestingly, the median F1 scores are very similar ($0.8923$ for cGAN and 0.8927 for MADGAN K=7), indicating that the typical performance of both methods (excluding extreme outliers) is quite comparable. However, MADGAN (K=7) exhibits a much larger overall spread in performance (range ~$0.566$) compared to cGAN (range $~0.306$), primarily due to its extremely low worst-case scores.
+
+In conclusion, for the replacement experiment on Fashion-MNIST, MADGAN (K=7) GDA can achieve a marginally higher peak F1 score than cGAN GDA with limited data replacement. However, cGAN demonstrates greater robustness on average and provides a significantly better worst-case performance when real data is fully substituted. The similar median scores suggest comparable typical performance, but MADGAN K=7 is less reliable overall due to the high variability among its individual generators, with some performing very poorly when used as the sole source of training data.
+
+\newpage
+\noindent\textbf{Expansion Experiment, Dataset: Fashion-MNIST}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{.85\textwidth}
+		\includegraphics[width=\textwidth]{abb/strat_classifier_performance/FASHION_STRATIFIED_CLASSIFIERS_MADGAN_NEW/expansion_experiments/val_f1_score_MADGAN_FASHION_n_gen_10_all.png}
+		\caption{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=10)}
+        \label{fig:res_expansion_fashion_cgan_vs_madgan__madgan}
+	\end{subfigure}
+	\begin{subfigure}{.85\textwidth}
+		\includegraphics[width=\textwidth]{abb/strat_classifier_performance/FASHION_STRATIFIED_CLASSIFIERS_COND_GAN/expansion_experiments/val_f1_score_['COND']_FASHION_all.png}
+		\caption{F1 Score on FASHION over 50 epochs. Augmentation Technique: cGAN}
+        \label{fig:res_expansion_fashion_cgan_vs_madgan__cgan}
+	\end{subfigure}
+%%%%%%%%%%%%%%
+\end{figure}
+
+\begin{table}[H]
+	\vspace{-1.5em}
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Run Type & Experiment & Val F1 \\ \hline
+		best & \(G_{10, 4}\), R:5000, F:1000 & $0.9120$\\ \hline
+		worst & \(G_{10, 4}\), R:5000, F:5000 & $0.9001$\\ \hline
+		median & G (K=10) & $0.9066$\\ \hline
+		average & (K=10) & $0.9060$
+		\\ \hline
+	\end{tabular}
+    \caption{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}
+        \label{tab:res_expansion_fashion_cgan_vs_madgan__madgan}
+\end{table}
+\begin{table}[H]
+	\centering
+	\vspace{-1.5em}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		Run Type & Experiment & Val F1 \\ \hline
+		best & Conditional (R:5000, F:1000) & $0.9123$\\ \hline
+		worst & Conditional (R:5000, F:3000) & $0.9060$\\ \hline
+		median & Conditional & $0.9085$\\ \hline
+		average & Conditional & $0.9089$
+		\\ \hline
+	\end{tabular}
+    \caption{Final F1 Scores after 50 epochs. Augmentation technique: cGAN}
+        \label{tab:res_expansion_fashion_cgan_vs_madgan__cgan}
+\end{table}
+
+Both GDA approaches demonstrate effectiveness in the expansion scenario on Fashion-MNIST, achieving high F1 scores that suggest an improvement over a baseline trained on real data alone. The peak performances are very competitive: cGAN achieved a best F1 score of $0.9123$ (when adding ,000 synthetic samples), marginally edging out MADGAN K=10's best F1 score of $0.9120$ (also achieved when adding 1000 synthetic samples from its best generator, \(G_{10,4}\)). These top scores are notably close to the peak performance observed with TDA in previous comparisons.
+
+However, cGAN exhibits slightly better overall consistency and robustness as more synthetic data is added. The average F1 score for cGAN across all expansion levels is $0.9089$, and its median is $0.9085$. These are slightly higher than MADGAN K=10's average ($0.9060$) and median ($0.9066$). More critically, cGAN's worst-case performance (F1 $0.9060$, when adding 3000 synthetic samples) is substantially better than MADGAN K=10's worst-case (F1 $0.9001$, occurring for generator \(G_{10,4}\) when adding 5000 synthetic samples). This indicates that cGAN's performance degrades less and remains more stable even with larger amounts of synthetic data compared to MADGAN K=10. Consequently, cGAN shows a tighter performance spread (range ~$0.0063$) than MADGAN K=10 (range ~$0.0119$).
+
+In conclusion, for expanding the Fashion-MNIST dataset, both cGAN and MADGAN (K=10) GDA can provide performance benefits, achieving F1 scores competitive with traditional augmentation methods at their peak. However, cGAN demonstrates a slight advantage in overall performance, offering higher average and median scores, and particularly showing greater stability and less degradation when larger volumes of synthetic data are incorporated.
+
+\newpage
 \subsubsection[Question 4]{MADGAN GDA vs. cMADGAN GDA Performance}      \label{exp_results_ans_q4}
+Ultimately, the final direct comparison sets MADGAN and the conditional adaptation cMADGAN side-by-side. As established before, the best selection of MADGAN experiments (K=10 for Replacement-, K=7 for Expansion scenario on MNIST and K=7 for Replacement-, K=10 for Expansion scenario on Fashion-MNIST) is directly compared against the best performing setting of cMADGAN. Orienting on the afore comparison against MADGAN vs. DCGAN/cGAN (\ref{exp_results_ans_q3}), other cMADGAN experiments are mentioned were fit.
 
+TODO: preamble the results of the following experiments
+
+\newpage
+
+\noindent\textbf{Replacement Experiment, Dataset: MNIST}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{.85\textwidth}
+		\includegraphics[width=\textwidth]{abb/strat_classifier_performance/MNIST_STRATIFIED_CLASSIFIERS_MADGAN_NEW/replacement_experiments/val_f1_score_MADGAN_MNIST_n_gen_10_all.png}
+		\caption{F1 Score on MNIST over 50 epochs. Augmentation technique: MADGAN (K=10)}
+        \label{fig:res_replacement_mnist_cmadgan_vs_madgan__madgan}
+	\end{subfigure}
+	\begin{subfigure}{.85\textwidth}
+		\includegraphics[width=\textwidth]{abb/strat_classifier_performance/MNIST_STRATIFIED_CLASSIFIERS_cMADGAN_NEW/replacement_experiments/val_f1_score_cMADGAN_MNIST_n_gen_5_all.png}
+		\caption{F1 Score on MNIST over 50 epochs. Augmentation technique: cMADGAN (K=5)}
+        \label{fig:res_replacement_mnist_cmadgan_vs_madgan__cmadgan}
+	\end{subfigure}
+%%%%%%%%%%%%%%
+\end{figure}
+
+\begin{table}[H]
+	\vspace{-1.5em}
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Run Type & Experiment & Val F1 \\ \hline
+		best & \(G_{10, 7}\), R:4000, F:1000 & $0.9889$\\ \hline
+		worst & \(G_{10, 5}\), R:0, F:5000 & $0.9611$\\ \hline
+		median & G (K=10) & $0.9795$\\ \hline
+		average & G (K=10) & $0.9774$
+		\\ \hline
+	\end{tabular}
+    \caption{Final F1 Scores after 50 epochs. Augmentation technique: MADGAN (K=10)}
+        \label{tab:res_replacement_mnist_cmadgan_vs_madgan__madgan}
+\end{table}
+\begin{table}[H]
+	\centering
+	\vspace{-1.5em}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		Run Type & Experiment & Val F1 \\ \hline
+		best & \(G_{5, 2}\), R:3000, F:2000 & $0.9920$\\ \hline
+		worst & \(G_{5, 3}\), R:0, F:5000 & $0.7489$\\ \hline
+		median & G (K=5) & $0.9874$\\ \hline
+		average & G (K=5) & $0.9458$
+		\\ \hline
+	\end{tabular}
+    \caption{Final F1 Scores after 50 epochs. Augmentation technique: cMADGAN (K=5)}
+        \label{tab:res_replacement_mnist_cmadgan_vs_madgan__cmadgan}
+\end{table}
+The comparison reveals a fascinating trade-off between peak performance potential and consistency. The cMADGAN (K=5) model achieved the highest individual F1 score in this set of experiments, reaching $0.9920$ (with generator \(G_{5,2}\) when replacing 2000 real samples with 2000 synthetic ones per class from the R:5000/F:0 baseline). This peak performance is notably high, surpassing the best score from MADGAN K=10 ($0.9889$) and even rivaling the top scores seen with Traditional Data Augmentation (TDA) in previous comparisons. This suggests that individual generators within the cMADGAN K=5 framework can produce highly effective synthetic data for replacement.
+
+However, cMADGAN K=5 exhibits extreme variability. Its worst-performing run (generator \(G_{5,3}\) when using only synthetic data, R:0, F:5000) resulted in a drastically low F1 score of $0.7489$. This catastrophic drop for at least one of its generators signifies a lack of reliability. In contrast, MADGAN K=10, while not reaching the same peak as cMADGAN K=5, demonstrated much greater consistency. Its worst-case F1 score was $0.9611$, indicating that even its poorest performing generator at full replacement maintained a high level of performance.
+
+This difference in variability heavily influences the average and median scores. MADGAN K=10 achieved a substantially better average F1 score ($0.9774$) compared to cMADGAN K=5 ($0.9458$), as the latter's average was significantly pulled down by its low outlier(s). Conversely, cMADGAN K=5 reported a higher median F1 score ($0.9874$) than MADGAN K=10 ($0.9795$), suggesting that the "typical" performance of a cMADGAN K=5 generator (excluding the worst cases) is very strong and even surpasses the typical MADGAN K=10 generator. The overall performance spread for cMADGAN K=5 (range ~$0.2431$) is vastly larger than that of MADGAN K=10 (range ~$0.0278$).
+
+To conclude, for the replacement task on MNIST, cMADGAN (K=5) offers the potential for superior peak GDA performance from its best generators, achieving results competitive with the best augmentation methods. However, it suffers from significant inconsistency, with some generators producing very poor quality synthetic data leading to a low average performance. MADGAN (K=10) provides more reliable and stable GDA performance, with a better average F1 score and a much more dependable worst-case outcome, though its peak performance is slightly lower than the best of cMADGAN (K=5).
+
+
+\newpage
+\noindent\textbf{Expansion Experiment, Dataset: MNIST}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{.85\textwidth}
+		\includegraphics[width=\textwidth]{abb/strat_classifier_performance/MNIST_STRATIFIED_CLASSIFIERS_MADGAN_NEW/expansion_experiments/val_f1_score_MADGAN_MNIST_n_gen_7_all.png}
+		\caption{F1 Score on MNIST over 50 epochs. Augmentation tech.: MADGAN (K=7)}
+        \label{fig:res_expansion_mnist_cmadgan_vs_madgan__madgan}
+	\end{subfigure}
+	\begin{subfigure}{.85\textwidth}
+		\includegraphics[width=\textwidth]{abb/strat_classifier_performance/MNIST_STRATIFIED_CLASSIFIERS_cMADGAN_NEW/expansion_experiments/val_f1_score_cMADGAN_MNIST_n_gen_10_all.png}
+		\caption{F1 Score on MNIST over 50 epochs. Augmentation tech.: cMADGAN (K=10)}
+        \label{fig:res_expansion_mnist_cmadgan_vs_madgan__cmadgan}
+	\end{subfigure}
+%%%%%%%%%%%%%%
+\end{figure}
+
+\begin{table}[H]
+	\vspace{-1.5em}
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Run Type & Experiment & Val F1 \\ \hline
+		best & \(G_{7, 4}\), R:5000, F:1000 & $0.9902$\\ \hline
+		worst & \(G_{7, 2}\), R:5000, F:5000 & $0.9831$\\ \hline
+		median & G (K=7) & $0.9860$\\ \hline
+		average & G (K=7) & $0.9866$
+		\\ \hline
+	\end{tabular}
+    \caption{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}
+        \label{tab:res_expansion_mnist_cmadgan_vs_madgan__madgan}
+\end{table}
+\begin{table}[H]
+	\centering
+	\vspace{-1.5em}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		Run Type & Experiment & Val F1 \\ \hline
+		best & \(G_{10, 3}\), R:5000, F:5000 & $0.9933$\\ \hline
+		worst & \(G_{10, 8}\), R:5000, F:2000 & $0.9902$\\ \hline
+		median & G (K=10) & $0.9917$\\ \hline
+		average & G (K=10) & $0.9917$
+		\\ \hline
+	\end{tabular}
+    \caption{Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=10)}
+        \label{tab:res_expansion_mnist_cmadgan_vs_madgan__cmadgan}
+\end{table}
+
+The results compellingly demonstrate the superiority of cMADGAN (K=10) over MADGAN (K=7) for data expansion on MNIST. Across all summary statistics, cMADGAN (K=10) achieves markedly better and more consistent F1 scores.
+
+Specifically, the best F1 score attained by cMADGAN (K=10) is $0.9933$ (generator \(G_{10,3}\) when adding 5000 synthetic samples), which is not only significantly higher than MADGAN K=7's best of $0.9902$ but is also highly competitive with the peak performance observed using Traditional Data Augmentation (TDA, previously around $0.9938$). Remarkably, this peak for cMADGAN K=10 occurs at the maximum level of data expansion (F:5000), indicating a strong positive contribution from the synthetic data.
+
+The robustness of cMADGAN K=10 is further highlighted by its worst-case performance. Its lowest F1 score across all its generators and expansion ratios is $0.9902$. Strikingly, this "worst" score for cMADGAN K=10 is identical to the "best" score achieved by MADGAN K=7. In contrast, MADGAN K=7's performance drops to $0.9831$ in its worst-case scenario.
+
+Consequently, the average ($0.9917$) and median ($0.9917$) F1 scores for cMADGAN K=10 are substantially higher than those for MADGAN K=7 (average $0.9866$, median $0.9860$). Moreover, cMADGAN K=10 exhibits a much tighter performance cluster, with a very small spread between its best and worst scores (range ~$0.0031$), indicating high consistency across its generators and different levels of augmentation. This contrasts with MADGAN K=7's larger spread (range ~$0.0071$).
+
+In conclusion, for the MNIST expansion task, cMADGAN (K=10) GDA proves to be a significantly more effective and reliable augmentation technique than MADGAN (K=7) GDA. It not only achieves higher peak performance that rivals traditional methods but also maintains excellent scores with minimal variability even when large volumes of synthetic data are introduced, showcasing its strong potential for enhancing classifier training.
+
+
+\newpage
+\noindent\textbf{Replacement Experiment, Dataset: Fashion-MNIST}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{.85\textwidth}
+		\includegraphics[width=\textwidth]{abb/strat_classifier_performance/FASHION_STRATIFIED_CLASSIFIERS_MADGAN_NEW/replacement_experiments/val_f1_score_MADGAN_FASHION_n_gen_7_all.png}
+		\caption{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=7)}
+        \label{fig:res_replacement_fashion_cmadgan_vs_madgan__madgan}
+	\end{subfigure}
+	\begin{subfigure}{.85\textwidth}
+		\includegraphics[width=\textwidth]{abb/strat_classifier_performance/FASHION_STRATIFIED_CLASSIFIERS_cMADGAN_NEW/replacement_experiments/val_f1_score_cMADGAN_FASHION_n_gen_5_all.png}
+		\caption{F1 Score on FASHION over 50 epochs. Augmentation tech.: cMADGAN (K=5)}
+        \label{fig:res_replacement_fashion_cmadgan_vs_madgan__cmadgan}
+	\end{subfigure}
+%%%%%%%%%%%%%%
+\end{figure}
+
+\begin{table}[H]
+	\vspace{-1.5em}
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Run Type & Experiment & Val F1 \\ \hline
+		best & \(G_{7, 2}\), R:4000, F:1000 & $0.9079$\\ \hline
+		worst & \(G_{7, 0}\), R:0, F:5000 & $0.3419$\\ \hline
+		median & G = (K=7) & $0.8927$\\ \hline
+		average & G = (K=7) & $0.7993$
+		\\ \hline
+	\end{tabular}
+    \caption{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}
+        \label{tab:res_replacement_fashion_cmadgan_vs_madgan__madgan}
+\end{table}
+\begin{table}[H]
+	\centering
+	\vspace{-1.5em}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		Run Type & Experiment & Val F1 \\ \hline
+		best & \(G_{5, 3}\), R:4000, F:1000 & $0.9089$\\ \hline
+		worst & \(G_{5, 2}\), R:0, F:5000 & $0.2543$\\ \hline
+		median & G (K=5) & $0.8909$\\ \hline
+		average & G (K=5) & $0.8072$
+		\\ \hline
+	\end{tabular}
+    \caption{Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=5)}
+        \label{tab:res_replacement_fashion_cmadgan_vs_madgan__cmadgan}
+\end{table}
+
+Both multi-generator approaches demonstrate the capability to achieve high peak F1 scores when a limited amount of real data is replaced. cMADGAN (K=5) achieved a slightly higher best F1 score of $0.9089$ (generator \(G_{5,3}\) with R:4000, F:.000), marginally surpassing MADGAN K=7's best of $0.9079$ (generator \(G_{7,2}\) with R:4000, F:1000). Notably, these peak performances from both models are competitive with, and even slightly exceed, the best scores previously observed with Traditional Data Augmentation (TDA) on this dataset.
+
+However, this high peak potential is starkly contrasted by extreme inconsistency and poor performance when relying heavily on synthetic data, particularly when all real data is substituted. cMADGAN (K=5) exhibited the lowest worst-case F1 score, dropping to a catastrophic $0.2543$ (generator \(G_{5,2}\) with R:0, F:5000). While MADGAN K=7's worst-case ($0.3419$ from generator \(G_{7,0}\) with R:0, F:5000) was also severely degraded, it remained slightly above cMADGAN K=5's absolute floor.
+
+These extreme low scores significantly impact the overall assessment. Despite its slightly lower absolute worst score, cMADGAN (K=5) managed a slightly higher average F1 score ($0.8072$) compared to MADGAN K=7 ($0.7993$). This suggests that, aside from its most extreme outliers, the bulk of cMADGAN K=5's generator/ratio combinations might perform marginally better than those of MADGAN K=7. Conversely, MADGAN K=7 shows a slightly better median F1 score ($0.8927$) than cMADGAN K=5 ($0.8909$), indicating its "typical" performance, discounting the severe negative outliers from both, might be marginally more consistent. Both models display very large performance spreads, with cMADGAN K=5 having a marginally wider range due to its lower floor.
+
+In conclusion, for the Fashion-MNIST replacement task, both MADGAN (K=7) and cMADGAN (K=5) can produce synthetic data from their best generators that lead to excellent, TDA-competitive classifier performance with limited replacement. However, both frameworks suffer from extreme variability and contain individual generators that produce very poor-quality data for this task, leading to unusable classifiers when real data is fully replaced. While cMADGAN K=5 achieved a marginally higher peak and average, its worst-case was more severe, making both models unreliable for extensive data replacement compared to more stable traditional methods, despite their promising best-case results.
+
+
+\newpage
+\noindent\textbf{Expansion Experiment, Dataset: Fashion-MNIST}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{.85\textwidth}
+		\includegraphics[width=\textwidth]{abb/strat_classifier_performance/FASHION_STRATIFIED_CLASSIFIERS_MADGAN_NEW/expansion_experiments/val_f1_score_MADGAN_FASHION_n_gen_10_all.png}
+		\caption{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=10)}
+        \label{fig:res_expansion_fashion_cmadgan_vs_madgan__madgan}
+	\end{subfigure}
+	\begin{subfigure}{.85\textwidth}
+		\includegraphics[width=\textwidth]{abb/strat_classifier_performance/FASHION_STRATIFIED_CLASSIFIERS_cMADGAN_NEW/expansion_experiments/val_f1_score_cMADGAN_FASHION_n_gen_7_all.png}
+		\caption{F1 Score on FASHION over 50 epochs. Augmentation tech.: cMADGAN (K=7)}
+        \label{fig:res_expansion_fashion_cmadgan_vs_madgan__cmadgan}
+	\end{subfigure}
+%%%%%%%%%%%%%%
+\end{figure}
+
+\begin{table}[H]
+	\vspace{-1.5em}
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Run Type & Experiment & Val F1 \\ \hline
+		best & \(G_{10, 4}\), R:5000, F:1000 & $0.9120$\\ \hline
+		worst & \(G_{10, 4}\), R:5000, F:5000 & $0.9001$\\ \hline
+		median & G (K=10) & $0.9066$\\ \hline
+		average & (K=10) & $0.9060$
+		\\ \hline
+	\end{tabular}
+    \caption{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}
+        \label{tab:res_expansion_fashion_cmadgan_vs_madgan__madgan}
+\end{table}
+\begin{table}[H]
+	\centering
+	\vspace{-1.5em}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		Run Type & Experiment & Val F1 \\ \hline
+		best & \(G_{7, 2}\), R:5000, F:5000 & $0.9138$\\ \hline
+		worst & \(G_{7, 4}\), R:5000, F:3000 & $0.9049$\\ \hline
+		median & G (K=7) & $0.9095$\\ \hline
+		average & G (K=7) & $0.9093$
+		\\ \hline
+	\end{tabular}
+    \caption{Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=7)}
+        \label{tab:res_expansion_fashion_cmadgan_vs_madgan__cmadgan}
+\end{table}
+
+The results indicate a clear advantage for cMADGAN (K=7) over MADGAN (K=10) in this expansion scenario on Fashion-MNIST, with cMADGAN (K=7) demonstrating superior performance across all aggregated metrics.
+
+cMADGAN (K=7) achieved a remarkable peak F1 score of $0.9138$ (with generator \(G_{7,2}\) when adding the maximum of 5000 synthetic samples per class). This is the highest F1 score recorded among all GDA methods on Fashion-MNIST in these expansion experiments and is highly competitive with the best scores from Traditional Data Augmentation (TDA, previously $0.9129$). The fact that this peak occurs at maximum data expansion is particularly noteworthy. Furthermore, cMADGAN K=7's worst-case F1 score ($0.9049$) is impressively high, indicating strong performance even from its least effective generator/ratio combination.
+
+In comparison, MADGAN (K=10) achieved a best F1 score of $0.9120$ (generator \(G_{10,4}\) with R:5000, F:1000), slightly below cMADGAN K=7's peak. More significantly, MADGAN K=10's worst-case F1 score dropped to $0.9001$, which, while still good, is notably lower than cMADGAN K=7's worst case.
+
+This superiority of cMADGAN K=7 is further reflected in its average ($0.9093$) and median ($0.9095$) F1 scores, both of which are higher than MADGAN K=10's average ($0.9060$) and median ($0.9066$). Additionally, cMADGAN (K=7) exhibited a tighter performance distribution, with a smaller spread between its best and worst scores (range ~$0.0089$) compared to MADGAN K=10 (range ~$0.0119$), signifying greater consistency.
+
+In conclusion, for the Fashion-MNIST expansion task, cMADGAN (K=7) emerges as the more effective and reliable GDA technique compared to MADGAN (K=10). It not only achieves a higher peak F1 score that rivals TDA but also delivers better average performance and greater robustness, maintaining strong results even when substantially expanding the dataset with synthetic samples.
 
 \subsubsection[Question 5]{Impact of MADGAN Generator Count}            \label{exp_results_ans_q5}
 

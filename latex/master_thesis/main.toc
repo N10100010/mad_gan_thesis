@@ -61,13 +61,13 @@
 \contentsline {subsubsection}{\numberline {5.2.1}Question 1}{39}{subsubsection.5.2.1}%
 \contentsline {subsubsection}{\numberline {5.2.2}Question 2}{42}{subsubsection.5.2.2}%
 \contentsline {subsubsection}{\numberline {5.2.3}Question 3}{51}{subsubsection.5.2.3}%
-\contentsline {subsubsection}{\numberline {5.2.4}Question 4}{55}{subsubsection.5.2.4}%
-\contentsline {subsubsection}{\numberline {5.2.5}Question 5}{55}{subsubsection.5.2.5}%
-\contentsline {section}{\numberline {6}Remarks}{56}{section.6}%
-\contentsline {section}{\numberline {7}Outlook}{57}{section.7}%
-\contentsline {section}{\numberline {8}Conclusion}{58}{section.8}%
-\contentsline {section}{List of References}{59}{section.8}%
-\contentsline {section}{Appendix}{1}{section*.55}%
+\contentsline {subsubsection}{\numberline {5.2.4}Question 4}{60}{subsubsection.5.2.4}%
+\contentsline {subsubsection}{\numberline {5.2.5}Question 5}{68}{subsubsection.5.2.5}%
+\contentsline {section}{\numberline {6}Remarks}{69}{section.6}%
+\contentsline {section}{\numberline {7}Outlook}{70}{section.7}%
+\contentsline {section}{\numberline {8}Conclusion}{71}{section.8}%
+\contentsline {section}{List of References}{72}{section.8}%
+\contentsline {section}{Appendix}{1}{section*.73}%
 \contentsline {subsection}{\numberline {8.1}Network Architectures}{1}{subsection.8.1}%
 \contentsline {subsubsection}{\numberline {8.1.1}Classifiers}{1}{subsubsection.8.1.1}%
 \contentsline {subsubsection}{\numberline {8.1.2}Generator Model Architectures}{2}{subsubsection.8.1.2}%
@@ -94,5 +94,5 @@
 \contentsline {subsubsection}{\numberline {8.3.10}Dataset: FASHION, Architecture: TDA}{31}{subsubsection.8.3.10}%
 \contentsline {subsection}{\numberline {8.4}Data Creation Histograms}{32}{subsection.8.4}%
 \contentsline {subsubsection}{\numberline {8.4.1}DCGAN MNIST}{32}{subsubsection.8.4.1}%
-\contentsline {section}{Declaration of Oath}{33}{figure.caption.166}%
+\contentsline {section}{Declaration of Oath}{33}{figure.caption.184}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file
