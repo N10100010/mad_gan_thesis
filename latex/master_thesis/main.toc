@@ -1,4 +1,4 @@
-\babel@toc {english}{}\relax
+\babel@toc {english}{}\relax 
 \contentsline {section}{List of Figures}{5}{section*.3}%
 \contentsline {section}{List of Tables}{6}{section*.4}%
 \contentsline {section}{List of Abbreviations}{7}{section*.5}%
@@ -13,14 +13,14 @@
 \contentsline {subsubsection}{\numberline {3.1.1}Neural Networks for Classification}{12}{subsubsection.3.1.1}%
 \contentsline {subsubsection}{\numberline {3.1.2}Classification Models for augmented Training}{15}{subsubsection.3.1.2}%
 \contentsline {subsection}{\numberline {3.2}Data Augmentation - DA}{15}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Traditional Data Augmentation - TDA}{16}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.1}Traditional Data Augmentation - TDA}{15}{subsubsection.3.2.1}%
 \contentsline {subsubsection}{\numberline {3.2.2}Generative Data Augmentation - GDA}{17}{subsubsection.3.2.2}%
 \contentsline {subsection}{\numberline {3.3}Generative Adversarial Network - GAN}{18}{subsection.3.3}%
 \contentsline {subsubsection}{\numberline {3.3.1}Mathematical Formulation}{18}{subsubsection.3.3.1}%
 \contentsline {subsubsection}{\numberline {3.3.2}Training Process}{19}{subsubsection.3.3.2}%
 \contentsline {subsubsection}{\numberline {3.3.3}Challenges in GAN Training}{19}{subsubsection.3.3.3}%
 \contentsline {paragraph}{\nonumberline Mode Collapse}{19}{paragraph*.17}%
-\contentsline {paragraph}{\nonumberline Lack of Inter-Class Diversity}{20}{paragraph*.19}%
+\contentsline {paragraph}{\nonumberline Lack of Inter-Class Diversity}{19}{paragraph*.19}%
 \contentsline {paragraph}{\nonumberline Failure to Converge}{20}{paragraph*.21}%
 \contentsline {paragraph}{\nonumberline Vanishing & unstable Gradients}{20}{paragraph*.23}%
 \contentsline {paragraph}{\nonumberline Imbalance between Generator and Discriminator}{20}{paragraph*.25}%
@@ -30,10 +30,10 @@
 \contentsline {subsubsection}{\numberline {3.5.1}Mathematical Formulation}{21}{subsubsection.3.5.1}%
 \contentsline {subsubsection}{\numberline {3.5.2}Architectural Adjustments}{22}{subsubsection.3.5.2}%
 \contentsline {subsection}{\numberline {3.6}Multi-Agent Diverse Generative Adversarial Network - MADGAN}{22}{subsection.3.6}%
-\contentsline {subsubsection}{\numberline {3.6.1}Mathematical Formulation}{23}{subsubsection.3.6.1}%
-\contentsline {subsubsection}{\numberline {3.6.2}Architectural Adjustments}{25}{subsubsection.3.6.2}%
+\contentsline {subsubsection}{\numberline {3.6.1}Mathematical Formulation}{22}{subsubsection.3.6.1}%
+\contentsline {subsubsection}{\numberline {3.6.2}Architectural Adjustments}{24}{subsubsection.3.6.2}%
 \contentsline {subsection}{\numberline {3.7}Adapting MAD-GAN for Conditional Generation with Explicit Diversity - CMADGAN}{25}{subsection.3.7}%
-\contentsline {subsubsection}{\numberline {3.7.1}Mathematical Formulation}{26}{subsubsection.3.7.1}%
+\contentsline {subsubsection}{\numberline {3.7.1}Mathematical Formulation}{25}{subsubsection.3.7.1}%
 \contentsline {paragraph}{\nonumberline Discriminator Loss:}{26}{paragraph*.29}%
 \contentsline {paragraph}{\nonumberline Generator Loss:}{26}{paragraph*.31}%
 \contentsline {subsubsection}{\numberline {3.7.2}Architectural Adjustments}{27}{subsubsection.3.7.2}%
@@ -95,4 +95,4 @@
 \contentsline {subsection}{\numberline {8.4}Data Creation Histograms}{32}{subsection.8.4}%
 \contentsline {subsubsection}{\numberline {8.4.1}DCGAN MNIST}{32}{subsubsection.8.4.1}%
 \contentsline {section}{Declaration of Oath}{33}{figure.caption.184}%
-\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

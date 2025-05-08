@@ -1,4 +1,4 @@
-\babel@toc {english}{}\relax
+\babel@toc {english}{}\relax 
 \contentsline {table}{\numberline {1}{\ignorespaces Description of the used datasets for benchmarking.}}{33}{table.caption.32}%
 \contentsline {table}{\numberline {2}{\ignorespaces FID and IS results for GAN models on MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches.}}{40}{table.caption.35}%
 \contentsline {table}{\numberline {3}{\ignorespaces FID and IS results for GAN models on Fashion-MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches.}}{41}{table.caption.36}%
@@ -34,4 +34,4 @@
 \contentsline {table}{\numberline {33}{\ignorespaces FID and Inception Score (Mean $\pm $ Std Dev) for a single DCGAN generator ($N=1$) trained on the \textbf {Fashion MNIST} dataset. Baseline scores are included for reference.}}{9}{table.caption.93}%
 \contentsline {table}{\numberline {34}{\ignorespaces FID and Inception Score (Mean $\pm $ Std Dev) for a single Conditional GAN generator ($N=1$) trained on the \textbf {MNIST} dataset. Baseline scores are included for reference.}}{9}{table.caption.94}%
 \contentsline {table}{\numberline {35}{\ignorespaces FID and Inception Score (Mean $\pm $ Std Dev) for a single Conditional GAN generator ($N=1$) trained on the \textbf {Fashion MNIST} dataset. Baseline scores are included for reference.}}{9}{table.caption.95}%
-\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
