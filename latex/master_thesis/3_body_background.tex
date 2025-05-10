@@ -9,7 +9,9 @@ The final section (\ref{theoretical_image_scores}) explains the theory behind th
 % ########################################################################################################
 \subsection{Image Classification Models}\label{theoretical_classification}
 \subsubsection{Neural Networks for Classification}
-Convolutional Neural Networks (CNNs) have become the dominant architecture for image classification tasks due to their inherent ability to automatically learn hierarchical features from raw pixel data. At their core, CNNs are build up by a sequence of convolutional-, pooling- and fully connected layers to extract hierarchical features, and funneling the information, typically into the \(N\) classes defined by the training data. Convolutional layers employ learnable filters to detect local patterns in the two-dimensional information - two dimensional in the case of images specifically. Pooling layers reduce the spatial dimensions to small translations. Fully connected layers then map the extracted information into class probabilities, utilizing the \textit{Softmax} activation function. The afore mentioned layers are discussed in greater detail, in the following subsections.
+Convolutional Neural Networks (CNNs) have become the dominant architecture for image classification tasks due to their inherent ability to automatically learn hierarchical features from raw pixel data. At their core, CNNs are build up by a sequence of convolutional-, pooling- and fully connected layers to extract hierarchical features, and funneling the information, typically into the \(N\) classes defined by the training data. That is, in case of classification tasks. 
+
+Convolutional layers employ learnable filters to detect local patterns in the two-dimensional information. The two dimensionality is inherent to image data. Pooling layers reduce the spatial dimensions to small translations. Fully connected layers then map the extracted information into class probabilities, utilizing the \textit{Softmax} activation function. The afore mentioned layers are discussed in greater detail, in the following subsections.
 
 \vspace{1em}
 
@@ -42,15 +44,15 @@ To give an example, starting with an input of size $[32 \times 32 \times 10]$, a
 \vspace{1em}
 
 \textbf{Fully-Connected Layers}\label{theoretical_classification_fully_connected_layers}
-Fully-Connected (FC), also called \textit{Dense} layer, typically computes the scores for the respective classes. In the case of ten classes, the result is a volume of size $[1 \times 1 \times 10]$\footnote{Typically, the output from the layer before the FC one is "flattened" into a one-dimensional vector, preserving all information but removing spatial structure. For example, a $[2 \times 2]$ layer would become a vector of size $[1 \times 4]$.}. By this stage, all spatial information has been transformed, leaving a quasi-one-dimensional vector containing the ten class scores for the CIFAR-10 dataset.
+Fully-Connected (FC), also called \textit{Dense} layer, typically computes the scores for the respective classes. In the case of ten classes, the result is a volume of size $[1 \times 1 \times 10]$\footnote{Typically, the output from the layer before the FC one is "flattened" into a one-dimensional vector, preserving all information but removing spatial structure. For example, a $[2 \times 2]$ layer would become a vector of size $[1 \times 4]$.}. By this stage, all spatial information has been transformed, leaving a quasi-one-dimensional vector. 
 
-In a FC layer, each input is connected to each output, meaning every neuron in the previous layer is connected to each neuron in the FC layer. The output is the weighted sum of all inputs, followed by an activation function, leading to the final classification scores that represent the likelihood of the input belonging to each class. The spatial dimensions are collapsed into a single vector of class scores, which are then used for classification.
+In a FC layer, each input is connected to each output, meaning every neuron in the previous layer is connected to each neuron in the FC layer. The output is the weighted sum of all inputs, followed by an activation function, leading to the final classification scores that represent the likelihood of the input belonging to each class. The spatial dimensions are collapsed into a single vector of class scores, which are then used for classification. The class probabilities are a result of applying the Soft-Max Function. [TODO: add a reference to the definition of the softmax function]
 
 \textbf{Batch Normalization Layers}\label{theoretical_classification_batchnorm_layers}
-With their introduction in \textit{Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift} by Ioffe et al. \cite{ioffe2015batchnormalizationacceleratingdeep}, Batch Normalization (batchnorm) established as an integral part of convolutional networks. This type of layer normalizes its inputs to subsequent layers and thereby stabilizing the distribution of activations throughout the training process. This reduces the internal covariate shift, allowing for higher learning rates and faster convergence. By normalization of activation, batchnorm helps prevent gradients from vanishing or exploding. Additionally, it can provide regularization benefits and eliminate the need for Dropout, in some cases. With the afore mentioned benefits, batchnorm layers are particularly beneficial for deep learning networks with many layers.
+With their introduction in \textit{Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift} by Ioffe et al. \cite{ioffe2015batchnormalizationacceleratingdeep}, Batch Normalization (batchnorm) established as an integral part of convolutional networks and neural networks in general. This type of layer normalizes its inputs to subsequent layers and thereby stabilizing the distribution of activations throughout the training process. This reduces the internal covariate shift, allowing for higher learning rates and faster convergence. By normalizing activations, batchnorm helps prevent gradients from vanishing or exploding. However, it does not prevent it entirely. Additionally, it can provide regularization benefits and eliminate the need for Dropout, in some cases. With the afore mentioned benefits, batchnorm layers are particularly beneficial for deep learning networks with many layers.
 
 
-\textbf{Typical Activation Functions for CNNs}
+\textbf{Typical Activation Functions in CNNs}
 
 \begin{itemize}
     \item \textbf{ReLU (Rectified Linear Unit)}: \label{theoretical_activations_relu}
@@ -67,7 +69,7 @@ With their introduction in \textit{Batch Normalization: Accelerating Deep Networ
         x \quad \text{otherwise}
         \end{cases}
     \end{equation}
-    A variant of ReLU, Leaky ReLU allows small negative values to flow through, addressing the "dying ReLU" problem where neurons can become inactive.
+    A variant of ReLU, Leaky ReLU allows small negative values to flow through, addressing the "dying ReLU" problem where neurons can become inactive. [TODO: do we need a reference for the dying ReLU problem?]
 
     \item \textbf{Sigmoid (Logistic)}:  \label{theoretical_activations_sigmoid}
     \begin{equation}
@@ -97,7 +99,7 @@ With their introduction in \textit{Batch Normalization: Accelerating Deep Networ
 \end{itemize}
 
 \subsubsection{Classification Models for augmented Training}
-The classification models, on which the data augmentation is tested, are simple CNN classifiers consisting of the described layers. For each dataset MNIST, Fashion MNIST and CIFAR10 \ref{used_datasets}, a dedicated classifier architecture is created. The main differences between these architectures is the number of blocks, made of two-dimensional \hyperref[theoretical_classification_conv_layers]{convolutional}, \hyperref[theoretical_classification_batchnorm_layers]{batchnorm} and \hyperref[theoretical_classification_pooling_layers]{pooling} layers. All three models use a use the \hyperref[theoretical_activations_relu]{ReLU} function for activation of the convolutional layers and the \hyperref[theoretical_activations_softmax]{Softmax} function for the activation at their respective output layer, resulting in probability distribution over the space of classes. More on the specific model architectures and used metrics for evaluation can be found in chapter \ref{body_prelim}. %TODO: link the correct subsection
+The classification models, on which the data augmentation is tested, are simple CNN classifiers consisting of the described layers. For each dataset MNIST, Fashion-MNIST \ref{used_datasets}, a dedicated classifier architecture is created. The main differences between these architectures is the number of blocks, made of two-dimensional \hyperref[theoretical_classification_conv_layers]{convolutional}, \hyperref[theoretical_classification_batchnorm_layers]{batchnorm} and \hyperref[theoretical_classification_pooling_layers]{pooling} layers. All models use a use the \hyperref[theoretical_activations_relu]{ReLU} function for activation of the convolutional layers and the \hyperref[theoretical_activations_softmax]{Softmax} function for the activation at their respective output layer, resulting in probability distribution over the space of classes. More on the specific model architectures and used metrics for evaluation can be found in chapter \ref{body_prelim}. [TODO: link the correct subsection]
 % ########################################################################################################
 % # END: IMAGE CLASSIFICATION MODELS
 % ########################################################################################################
@@ -107,12 +109,14 @@ The classification models, on which the data augmentation is tested, are simple 
 % ########################################################################################################
 
 \subsection[Data Augmentation - DA]{Data Augmentation}\label{theoretical_da}
-In this chapter, DA techiques in the context on images are discussed is greater detail. Starting with traditional augmentations e.g. rotating or cropping an image, ending on generative augmentations for which generative models are used to expand the training data of subsequent models.
+In this chapter, data augmentation (DA) techniques in the context of images are discussed is greater detail. Starting with traditional augmentations e.g., rotating or cropping an image, ending on generative augmentations for which generative models are used to expand the training data of subsequent classification models.
 
 \subsubsection[Traditional Data Augmentation - TDA]{Traditional Data Augmentation}\label{theoretical_tda}
-The need for data augmentation to make classification algorithms more resilient has existed for decades. Early papers mentioning the augmentation of data for classification tasks date back to the 1970s \cite{Nagy1966}. For the context of deep learning, however, the augmentation of images was popularized by Krizhevsky et al. in 2012 \cite{Krizhevsky2012traditionaldataaugmentation}, with the introduction of \textit{AlexNet}—a deep CNN used to classify images from the \textit{ImageNet} dataset \cite{ImageNetDataset5206848}, containing $1.000$ classes. This paper also referenced the earlier work of Simard et al. from 2003 \cite{Simard2003bestpracticesforcnns}.
+The need for data augmentation to make classification algorithms more resilient has existed for decades. Early papers mentioning the augmentation of data for classification tasks date back to the 1960s \cite{Nagy1966} (1966). For the context of deep learning, however, the augmentation of images was popularized by Krizhevsky et al. in 2012 \cite{Krizhevsky2012traditionaldataaugmentation}. This paper introduced the \textit{AlexNet}, a deep CNN used to classify images from the \textit{ImageNet} dataset \cite{ImageNetDataset5206848}, containing $1.000$ classes. This paper also referenced the earlier work of Simard et al. from 2003 \cite{Simard2003bestpracticesforcnns}.
 
-Generally speaking, traditional data augmentation techniques can be described as enlarging the initial training data by applying transformations that preserve the respective labels of individual instances. These techniques solely focus on modifying already existing data without creating entirely new instances (see: \ref{theoretical_gda}). Augmentations are categorized based on the type of transformations applied:
+Generally, traditional data augmentation (TDA) techniques can be described as applying transformations to the initial training data. These transformations preserve the respective labels \(y\) and only act on the data \(X\). \footnote{It is to point out, that there are also transformations to be applied to the labels. This can include operations like random flipping of the labels. Furthermore smoothning the labels, e.g., adjusting labels to not be strictly $0$ or $1$, but rather $0.1$ or $0.9$.} Applied transormations could either be used to enlargen the training data or be used to alter existing data altering the variability in it.
+
+Augmentations are categorized based on the type of transformations applied:
 
 \noindent\textit{Geometric Augmentation}
 This category modifies the shape, position, and perspective: Rotation, Scaling, Flipping, Cropping, Shearing, Perspective Transform.
@@ -149,13 +153,13 @@ In the context of data augmentation pipelines, this can be generalized as:
 \end{figure}
 
 \noindent
-When applying the augmentations shown in Figure~\ref{fig:figure_tda_examples}, it is mandatory to consider domain-specific knowledge and constraints. For example, flipping images from the MNIST dataset to train a generative model may result in an image where a horizontally flipped "9" appears, which, in the domain of Arabic numerals, is semantically incorrect. Conversely, when classifying an airplane, which can have varying shapes, colors, three-dimensional orientations in space, and images taken through a dusted lens, applying all of the above augmentations could be beneficial.
+When applying the augmentations shown in Figure~\ref{fig:figure_tda_examples}, it is mandatory to consider domain-specific knowledge and constraints. For example, flipping images from the MNIST dataset to train a generative model may result in an image where a horizontally flipped "9" appears, which, in the domain of Arabic numerals, is semantically incorrect. Further, flipping a $9$ along both axes would result in a $6$. Conversely, when classifying an airplane, which can have varying shapes, colors, three-dimensional orientations in space, and images taken through a dusted lens, applying all of the above augmentations could be beneficial.
 
 
 \subsubsection[Generative Data Augmentation - GDA]{Generative Data Augmentation}\label{theoretical_gda}
-Differing from the previously mentioned TDA \ref{theoretical_tda}, GDA does not focus on altering existing data instances but rather on creating entirely new samples that match the underlying data distribution of the training data. These generated instances may or may not include labels.
+Differing from the previously mentioned TDA \ref{theoretical_tda}, generative data augmentation (GDA) techniques do not focus on altering existing data instances. Rather, it focuses on creating entirely new samples that match the underlying data distribution of the training data. These generated instances may or may not include labels.
 
-The goal is to train a generative model \( G \) that produces instances \( X_1 \), for example, from a noise vector \( z \), such that the distribution of the generated data approximates the true distribution \( P(X) \) of the original dataset. In this context, \( G \) can be viewed as a function:
+The goal is to train a generative model \( G \) that produces instances \( X_1 \), for example, from a noise vector \( z \) \footnote{A noise vector may serve as input for a Generative Adversarial Network \ref{theoretical_gan}}, such that the distribution of the generated data approximates the true distribution \( P(X) \) of the original dataset. In this context, \( G \) can be viewed as a function:
 
 \[
 G: z \mapsto X_1, \quad X_1 \sim P_G(X) \approx P(X),
@@ -167,11 +171,11 @@ where \( P_G(X) \) is the learned distribution of the generative model, aiming t
 In the case of \textit{conditional} generative data augmentation, additional information such as class labels \( y \) is incorporated into the generation process. This allows the model to generate samples corresponding to specific categories within the data. The conditional generative model \( G \) then follows:
 
 \[
-G: (z, y) \mapsto X_1, \quad X_1 \sim P_G(X \mid y) \approx P(X \mid y),
+G: (z, y) \mapsto X_{fake}, \quad X_{fake} \sim P_G(X_{fake} \mid y) \approx P(X \mid y),
 \]
 
 \noindent
-where \( P_G(X \mid y) \) represents the learned conditional distribution, aiming to approximate the real class-conditioned data distribution \( P(X \mid y) \). This enables targeted data generation for specific categories, enhancing data diversity while maintaining class consistency.
+where \( P_G(X{fake} \mid y) \) represents the learned conditional distribution, aiming to approximate the real class-conditioned data distribution \( P(X \mid y) \). This can enable targeted data generation for specific categories, enhancing data diversity while maintaining class consistency.
 
 % ########################################################################################################
 % # END: DATA AUGMENTATION
@@ -184,14 +188,13 @@ where \( P_G(X \mid y) \) represents the learned conditional distribution, aimin
 % ########################################################################################################
 
 \subsection[Generative Adversarial Network - GAN]{Generative Adversarial Network}\label{theoretical_gan}
-Generative Adversarial Network (GANs) have first been introduced by Goodfellow at al. in 2014 \cite{goodfellow2014generativeadversarialnetworks} GANs are a type of generative models designed to learn the underlying data distribution of their training data and generate new, realistic instances. The core idea of the framework is an adversarial training process between two NNs: the textit{Generator} \(G\) and the \textit{Discriminator} \(D\), competing against one another in a minimax game \cite{VonNeumann1928Minimax}. The following figure (\ref{fig:figure_gan_arch}) shows a visualization of the vanilla gan architecture.
+Generative Adversarial Network (GANs) have first been introduced by Goodfellow et al. in 2014 \cite{goodfellow2014generativeadversarialnetworks} GANs are a type of generative models designed to learn the underlying data distribution of their training data and generate new, realistic instances. The core idea of the framework is an adversarial training process between two NNs: the \textit{Generator} \(G\) and \textit{Discriminator} \(D\), are competing against one another in a minimax game \cite{VonNeumann1928Minimax}. The following figure (\ref{fig:figure_gan_arch}) shows a visualization of the vanilla gan architecture.
 
-% TODO: inconsistencies between text and image rega
 \begin{figure}[htbp]
     \centering
     \vspace{-4em}
     \includegraphics[width=.9\textwidth]{abb/arch_gan.png}
-    \caption{Visualization of the vanilla GAN architecture. The figure shows the noise vector, flowing into the discriminator, as well as the real sample from \(P_d\)}
+    \caption{Visualization of the vanilla GAN architecture. The figure shows the noise vector flowing into the generator. The generators output, as well as the real sample from \(P_{data}\), flow into the discriminator.}
     \label{fig:figure_gan_arch}
 \end{figure}
 
@@ -199,7 +202,7 @@ Generative Adversarial Network (GANs) have first been introduced by Goodfellow a
 \subsubsection{Mathematical Formulation}\label{theoretical_gan_math}
 Let \(X \sim P_{data}\) be samples drawn from the real data distribution, and let \(z \sim P_z\) be random noise sampled from a known prior (e.g., a Gaussian or uniform distribution). The generator \(G\) is a function \(G: \mathbb{R}^d \to \mathbb{R}^n\) that maps a noise vector \(z\) to a synthetic data instance \(\tilde{X}\), attempting to approximate \(P_{data}\):\(\tilde{X} = G(z), \quad z \sim P_z.\)
 
-The discriminator \(D\) is a function \(D: \mathbb{R}^n \to [0,1]\) that outputs the probability that a given sample is real rather than generated. It is trained to distinguish between real samples \(X \sim P_{data}\) and generated samples \(\tilde{X} \sim P_G\), where \(P_G\) is the implicit distribution induced by \(G\).
+The discriminator \(D\) is a function \(D: \mathbb{R}^n \to [0,1]\) that outputs the probability that a given sample is real or generated. It is trained to distinguish between real samples \(X \sim P_{data}\) and generated samples \(\tilde{X} \sim P_G\), where \(P_G\) is the implicit distribution induced by \(G\).
 
 The training objective is formulated as the following minimax game:
 
@@ -207,10 +210,10 @@ The training objective is formulated as the following minimax game:
         \mathcal{L}_{\text{adv}} = \min_G \max_D \mathbb{E}_{X \sim P_{data}} [\log D(X)] + \mathbb{E}_{z \sim P_z} [\log (1 - D(G(z)))].
     \end{equation}
 
-Here, the discriminator \(D\) aims to maximize the probability of correctly classifying real and fake samples \(\hat{x}\), while the generator \(G\) aims to generate samples that fool \(D\), minimizing \(\log(1 - D(G(z)))\). In an ideal scenario, the game converges to a Nash equilibrium where \(G\) produces samples indistinguishable from real data, i.e., \(P_G \approx P_{data}\).
+Here, the discriminator \(D\) aims to maximize the probability of correctly differentiating real and fake samples \(\hat{x}\), while the generator \(G\) aims to generate samples that fool \(D\), minimizing \(\log(1 - D(G(z)))\). In an ideal scenario, the game converges to a Nash equilibrium where \(G\) produces samples indistinguishable from real data, i.e., \(P_G \approx P_{data}\). In this scenario, the discriminators output oszilates [TODO: spelling?!] around $0.5$, continuosly [TODO: SPELLING!?] unable to differentiate real and fake.
 
 \subsubsection{Training Process}\label{theoretical_gan_training}
-GAN training follows an alternating optimization approach:
+GAN training follows an alternating optimization approach. Typically, alternating training the generator and the discriminator:
 \begin{enumerate}
     \item Update \(D\): Given a batch of real samples from \(P_{data}\) and fake samples generated by \(G\), update \(D\) to maximize its ability to discriminate real from fake data.
     \item Update \(G\): Generate new fake samples and update \(G\) to minimize \\ \(\log(1 - D(G(z)))\), effectively pushing \(G\) to generate more realistic samples.
@@ -218,17 +221,17 @@ GAN training follows an alternating optimization approach:
 \end{enumerate}
 
 \subsubsection{Challenges in GAN Training}\label{theory_gan_problems}
-Following, challenges that can occur during the training of gans are discussed. These have already been mentioned in the introductionary section \ref{problems_of_gans}. Here, they are described in greater detail.
+Following, challenges that can occur during the training of GANs are discussed. These have already been mentioned in the introductionary section \ref{problems_of_gans}. Here, they are described in greater detail.
 \paragraph[Mode Collapse]{Mode Collapse}
-Mode collapse occurs when the generator produces only a small subset of the data distribution, leading to a lack of diversity. Instead of generating varied samples, it repeatedly produces similar ones that fool the discriminator. This happens when the generator finds an easy "shortcut" rather than learning the full distribution. More formally, \(G\) collapses many values of \(z\) to the same value of \(x\) \cite{goodfellow2014generativeadversarialnetworks}. A common technique to mitigate this issue is  minibatch discrimination \cite{salimans2016improvedtechniquestraininggans}. In several studies, experiments have been conducted to enhance diversity of GANs (\cite{Chang2024QDGenSampling}, \cite{Humayun2021MaGNET}, \cite{Humayun2022PolaritySampling}) % TODO: I tried minibatch discrimination for the cifar madgan, but did not work
+Mode collapse occurs when the generator produces only a small subset of the data distribution, leading to a lack of diversity. Instead of generating varied dieverse samples, it repeatedly produces similar ones that fool the discriminator. This happens when the generator finds an easy \textit{shortcut} rather than learning the full distribution over all classes. More formally, \(G\) collapses many values of \(z\) to the same value of \(x\) \cite{goodfellow2014generativeadversarialnetworks}. A common technique to mitigate this issue is minibatch discrimination \cite{salimans2016improvedtechniquestraininggans}. In several studies, experiments have been conducted to enhance diversity of GANs (\cite{Chang2024QDGenSampling}, \cite{Humayun2021MaGNET}, \cite{Humayun2022PolaritySampling}) % TODO: I tried minibatch discrimination for the cifar madgan, but did not work
 \paragraph[Lack of Inter-Class Diversity]{Lack of Inter-Class Diversity}
 Even if mode collapse is avoided, GANs may struggle to generate samples that represent all data classes equally. This is a common issue in class-conditional GANs, where samples across different classes may overlap or lack distinct features. Causes include imbalanced datasets, poor class conditioning, or weak discriminator feedback \cite{Odena201710.5555/3305890.3305954}.
 \paragraph[Failure to Converge]{Failure to Converge}
 Unlike traditional neural networks, GANs follow an adversarial training process, making optimization highly unstable. The loss functions of both the generator and discriminator change dynamically, often leading to non-convergent behavior. Methods like Wasserstein GANs (WGAN) \cite{arjovsky2017wassersteingan} and spectral normalization \cite{miyato2018spectralnormalizationgenerativeadversarial} improve stability and help achieve better convergence.
 \paragraph[Vanishing & unstable Gradients]{Vanishing \& unstable Gradients}
-When the discriminator becomes too strong, it perfectly distinguishes real from fake samples, leading to vanishing gradients for the generator. This prevents meaningful updates, stalling progress. On the other hand, unstable gradients cause erratic updates, preventing smooth learning. Alternative loss functions (e.g., LSGANs \cite{mao2017squaresgenerativeadversarialnetworks}) and spectral normalization help stabilize training.
+When the discriminator becomes too strong, it perfectly distinguishes real from fake samples, leading to vanishing gradients for the generator. This prevents meaningful updates and stalling progress. On the other hand, unstable gradients cause erratic updates, preventing smooth learning. Alternative loss functions (e.g., LSGANs \cite{mao2017squaresgenerativeadversarialnetworks}) and spectral normalization can help stabilize the training.
 \paragraph[Imbalance between Generator and Discriminator]{Imbalance between Generator and Discriminator}
-A well-balanced GAN requires both models to improve at a similar pace. If the discriminator overpowers the generator, training halts. If it's too weak, the generator receives poor feedback and produces low-quality outputs \cite{goodfellow2014generativeadversarialnetworks}. Balancing techniques include adaptive learning rates, gradient penalties, and label smoothing \cite{Radford2015DCGAN}.
+A well-balanced GAN requires both models to improve at a similar pace. If the discriminator overpowers the generator, gradient updates to the generaotr can vanish. If it's too weak, the generator receives poor feedback and produces low-quality outputs \cite{goodfellow2014generativeadversarialnetworks}. Balancing techniques include adaptive learning rates, gradient penalties, and label smoothing \cite{Radford2015DCGAN}. [TODO: there are also options to gradually grow the networks (How is this called?)]
 
 
 \subsection[Deep Convolutional Generative Adversarial Network - DCGAN]{Deep Convolutional Generative Adversarial Network}\label{theoretical_dcgan}
@@ -241,7 +244,7 @@ To improve training stability and image quality, DCGANs implement the use of \hy
     \item \textbf{Convolutional Architecture:} Fully connected layers in both \(G\) and \(D\) are replaced with deep convolutional layers, enabling better spatial feature extraction.
     \item \textbf{Strided Convolutions:} In the discriminator, pooling layers are removed in favor of strided convolutions, reducing the risk of information loss.
     \item \textbf{Transposed Convolutions:} The generator employs transposed convolutions (also known as fractionally-strided convolutions) instead of upsampling layers to improve the quality of generated images.
-    \item \textbf{Batch Normalization:} Applied to both \(G\) and \(D\), batchnorm helps stabilize training by reducing internal covariate shift \ref{theoretical_classification_batchnorm_layers}. Batchnorm is omitted in the generator’s final layer to allow unrestricted output variability and in the discriminator’s input layer to preserve the original data distribution.
+    \item \textbf{Batch Normalization:} Applied to both \(G\) and \(D\), batchnorm helps stabilize training by reducing internal covariate shift \ref{theoretical_classification_batchnorm_layers}. Batchnorm is omitted in the generators final layer to allow unrestricted output variability and in the discriminators input layer to preserve the original data distribution.
     \item \textbf{LeakyReLU Activation:} The discriminator uses LeakyReLU instead of standard ReLU to prevent dying neurons and allow gradients to flow through negative inputs \ref{theoretical_activations_leakyrelu}.
     \item \textbf{No Fully Connected Layers:} Fully connected layers are removed to maintain spatial coherence in generated images, as they discard spatial information by flattening feature maps. Instead, convolutional layers preserve local structures, enabling more realistic image synthesis \ref{theoretical_classification_fully_connected_layers}.
 \end{itemize}
@@ -259,7 +262,6 @@ The core idea of cGANs is to condition both the generator \(G\) and the discrimi
 \tilde{X} = G(z, y)
 \end{equation}
 
-
 \noindent
 Similarly, the discriminator receives both the real or generated sample and the corresponding condition:
 
@@ -275,20 +277,23 @@ The adversarial objective function for cGANs extends the standard GAN loss to in
 \end{equation}
 
 \noindent
-This formulation forces to generate samples that align with the given condition , while  learns to discriminate between real and generated samples, considering their respective conditions.
+This formulation forces the generator to generate samples that align with the given condition, while the discriminator learns to discriminate between real and generated samples, considering their respective conditions. [TODO: unhappy with the formulation.]
 
 \subsubsection{Architectural Adjustments}
 \label{theory_cgan_architecture}
 To implement cGANs, architectural adjustments are necessary compared to vanilla GANs:
 
 \begin{itemize}
-    \item \textbf{Input Conditioning:} Both the generator and discriminator must receive the conditional information y as input. This is typically achieved by concatenating the condition y with the noise vector z in the generator's input and with the input image X in the discriminator's input.
-    \item \textbf{Embedding Conditional Information:} For categorical conditions (e.g., class labels), the condition y is often embedded into a lower-dimensional vector before concatenation. This embedding allows the network to learn meaningful representations of the conditions.
+    \item \textbf{Input Conditioning:} Both the generator and discriminator must receive the conditional information \(y\) as input. This is typically achieved by concatenating the condition y with the noise vector z in the generator's input and with the input image \(X\) in the discriminators input.
+    \item \textbf{Embedding Conditional Information:} For categorical conditions e.g., class labels, the condition \(y\) is often embedded into a lower-dimensional vector before concatenation. This embedding allows the network to learn meaningful representations of the conditions.
     \item \textbf{Concatenation, Addition, or Multiplication:} The conditional information can be incorporated through concatenation, addition, or element-wise multiplication at various layers within the generator and discriminator, depending on the specific application and architecture.
     \item \textbf{Preservation of Conditional Information:} Care must be taken, that the conditional information is preserved throughout the network. This means, that the information must traverse the network, all the way to the output layer.
 \end{itemize}
 
+\noindent
 These architectural modifications ensure that the generator and discriminator can effectively utilize the conditional information to generate and discriminate samples based on the given conditions.
+
+TODO: READ UP TO HERE THUS FAR.
 
 \subsection[Multi-Agent Diverse Generative Adversarial Network - MADGAN]{Multi-Agent Diverse Generative Adversarial Network}
 \label{theoretical_madgan}
