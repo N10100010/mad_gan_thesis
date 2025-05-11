@@ -27,22 +27,22 @@ The second set uses the afore trained generative models to create images. Images
 The second instance the trained generative models are utilized to generate at least $6.000$ images per class. Since some architectures not non-conditional, pre-trained classifiers will be used to classify images. Specifically, data resulting from DCGANs and MADGANs have to be classified and given labels. 
 
 \paragraph{Set 3: Training and Evaluating Classifiers}  \label{thesis_goal_3}
-The third and most important set of experiments trains classifiers using the generated and labeled samples. For this, stratified classifiers with different ratios of real to fake images are trained and evaluated on the respective validation set. These experiments are split into two scenarios: Replacement- and Expansion Scenarios. Their classification performance will be assessed using the \textit{F1 Score}. \footnote{The set of metrics used to assess the quality of the resulting classifiers is defined in chapter Experiments Workflow \ref{body_experiment_succession}.}
-\\
+The third and most important set of experiments train classifiers using the generated and labeled samples. For this, stratified classifiers with different ratios of real to fake images are trained and evaluated on the respective validation set. These experiments are split into two scenarios: Replacement- and Expansion Scenarios. Their classification performance will be assessed using the \textit{F1 Score}.  \\
 
 \noindent All of the above described is executed on the following datasets:
 \begin{itemize}\label{used_datasets}
     \setlength{\itemsep}{-5pt}
     \item MNIST \cite{lecun2010mnist}
     \item Fashion MNIST \cite{xiao2017fashionmnist}
-    \item CIFAR10 \cite{Krizhevsky2009learning}
+    %\item CIFAR10 \cite{Krizhevsky2009learning}
 \end{itemize}
 
 
 \paragraph{Aim of the Thesis}\label{aim_of_the_thesis}
-This thesis evaluates the effectiveness of Multi-Agent Diverse GANs for Generative Data Augmentation. First, the quality of their generated samples is compared to those produced by a Conditional GAN. Next, both sets of generated images are used to augment training datasets for classifiers, which are then assessed on their respective test sets. Classifiers trained on cGAN-augmented data and those trained with traditional augmentation techniques — such as flipping, rotation, and noise addition — serve as baselines for comparison.
-By doing so, this study examines the impact of MADGAN-based augmentation on classifier performance, highlighting its advantages and limitations relative to conventional methods and cGAN-based augmentation.
+This thesis evaluates the effectiveness of Multi-Agent Diverse GANs (MADGAN) for Generative Data Augmentation. First, the quality of generated samples is compared to those produced by a Deep Convolutional- and Conditional GAN. Further, a conditional adaptation of the MADGAN architecture is introduced and tested alongside already established methods. The quality of the resulting images is then evaluated utilizing the \textit{InceptionV3} model to calculate the Inception Score and FID of those images. Next, the sets of generated images are used to replace and alter training datasets for classifiers. The performances of the different classifiers are assessed by the F1 score. These sets of experiments are compared against traditional augmentations techniques, such as flipping, rotating and adding noise to the images, which serve as a minimum baseline. 
 
+\noindent
+With this experimental succession, this thesis studies the effect of the MADGAN-based data augmentation for subsequent classifiers, together with its conditionalized counterpart and comparing their performances against established traditional and generative augmentation techniques. 
 
 
 \newpage

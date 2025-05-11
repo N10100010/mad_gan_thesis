@@ -12,7 +12,7 @@ The graphical representations of the network architectures are created with the 
     \centering
     \vspace{-.5em}
     \includegraphics[width=.9\textwidth]{abb/netron_network_archs/classifying_Classifier_MNIST.png}
-    \caption{Depiction of the CNN achritecture used to classify unlabeled images from the MNIST GDA experiments and judge the effectiveness of said GDA. (Image created with \cite{Gavrikov2020VisualKeras})}
+    \caption{Depiction of the CNN architecture used to classify unlabeled images from the MNIST GDA experiments and judge the effectiveness of said GDA. (Image created with \cite{Gavrikov2020VisualKeras})}
     \label{fig:figure_class_mnist}
 \end{figure}
 
@@ -20,7 +20,7 @@ The graphical representations of the network architectures are created with the 
     \centering
     \vspace{-2em}
     \includegraphics[width=.9\textwidth]{abb/netron_network_archs/classifying_Classifier_FashionMNIST.png}
-    \caption{Depiction of the CNN achritecture used to classify unlabeled images from the FashionMNIST GDA experiments and judge the effectiveness of said GDA. (Image created with \cite{Gavrikov2020VisualKeras})}
+    \caption{Depiction of the CNN architecture used to classify unlabeled images from the Fashion-MNIST GDA experiments and judge the effectiveness of said GDA. (Image created with \cite{Gavrikov2020VisualKeras})}
     \label{fig:figure_class_fashion}
 \end{figure}
 
@@ -28,7 +28,7 @@ The graphical representations of the network architectures are created with the 
     \centering
     \vspace{-2em}
     \includegraphics[width=.9\textwidth]{abb/netron_network_archs/classifying_Classifier_Cifar10.png}
-    \caption{Depiction of the CNN achritecture used to classify unlabeled images from the CIFAR10 GDA experiments and judge the effectiveness of said GDA. (Image created with )}
+    \caption{Depiction of the CNN architecture used to classify unlabeled images from the CIFAR10 GDA experiments and judge the effectiveness of said GDA. (Image created with \cite{Gavrikov2020VisualKeras})}
     \label{fig:figure_class_cifar10}
 \end{figure}
 \newpage
@@ -142,7 +142,7 @@ The graphical representations of the network architectures are created with the 
     & 4 &        $22.614$ & $2.479$ & $0.045$ \\
     \hline
     & 0 &        $22.487$ & $2.513$ & $0.031$ \\
-    & 1 &        $21.076$ & $2.548$ & $0.087$ \\
+    & 1 &        $21.076$ & $\mathbf{2.548}$ & $0.087$ \\
     & 2 &        $20.941$ & $2.530$ & $0.056$ \\
     7 & 3 &      $22.250$ & $2.520$ & $0.035$ \\
     & 4 &        $21.557$ & $2.530$ & $0.051$ \\
@@ -158,16 +158,16 @@ The graphical representations of the network architectures are created with the 
     & 6 &        $21.090$ & $2.452$ & $0.039$ \\
     & 7 &        $20.689$ & $2.508$ & $0.048$ \\
     & 8 &        $21.471$ & $2.480$ & $0.044$ \\
-    & 9 &        $20.459$ & $2.477$ & $0.036$ \\
+    & 9 &        $\mathbf{20.459}$ & $2.477$ & $0.036$ \\
     \hline
 \end{tabular}
-\caption{Effect of varying the number of generators ($N=3, 5, 7, 10$) in the MADGAN model on FID and Inception Score (IS $\pm$ Std Dev) for the \textbf{MNIST} dataset. Results for each generator index are presented alongside baseline metrics.}
-\label{tab:madgan_mnist_fid_is}
+\caption{Effect of varying the number of generators ($N=3, 5, 7, 10$) in the MADGAN model on FID and Inception Score (IS $\pm$ Std. Dev) for the \textbf{MNIST} dataset. Results for each generator index are presented alongside baseline metrics.}
+\label{tab:app_madgan_mnist_fid_is}
 \end{table}
 \newpage
 
 
-\subsubsection{MADGAN Fashion MNIST}
+\subsubsection{MADGAN Fashion-MNIST}
 \begin{table}[H]
     \centering
     \begin{tabular}{|c|c|c|c|c|}
@@ -198,7 +198,7 @@ The graphical representations of the network architectures are created with the 
     & 1 &       $21.914$ & $4.524$ & $0.121$ \\
     & 2 &       $21.327$ & $4.494$ & $0.089$ \\
     & 3 &       $21.630$ & $4.455$ & $0.063$ \\
-    10 & 4 &    $20.851$ & $4.575$ & $0.097$ \\
+    10 & 4 &    $\mathbf{20.851}$ & $\mathbf{4.575}$ & $0.097$ \\
     & 5 &       $21.268$ & $4.561$ & $0.048$ \\
     & 6 &       $22.324$ & $4.566$ & $0.127$ \\
     & 7 &       $21.633$ & $4.542$ & $0.084$ \\
@@ -206,7 +206,7 @@ The graphical representations of the network architectures are created with the 
     & 9 &       $20.963$ & $4.552$ & $0.100$ \\
     \hline
     \end{tabular}
-    \caption{Effect of varying the number of generators ($N=3, 5, 7, 10$) in the MADGAN model on FID and Inception Score (IS $\pm$ Std Dev) for the \textbf{Fashion MNIST} dataset. Results for each generator index are presented alongside baseline metrics.}
+    \caption{Effect of varying the number of generators ($N=3, 5, 7, 10$) in the MADGAN model on FID and Inception Score (IS $\pm$ Std. Dev) for the \textbf{Fashion-MNIST} dataset. Results for each generator index are presented alongside baseline metrics.}
     \label{tab:madgan_fasion_mnist_fid_is}
 \end{table}
 \newpage
@@ -250,12 +250,12 @@ The graphical representations of the network architectures are created with the 
     & 9 &       $106.762$ & $1.975$ & $0.033$ \\
     \hline
     \end{tabular}
-    \caption{Effect of varying the number of generators ($N=3, 5, 7, 10$) in the cMADGAN model on FID and Inception Score (IS $\pm$ Std Dev) for the \textbf{MNIST} dataset. Results for each generator index are presented alongside baseline metrics.}
-    \label{tab:madgan_mnist_fid_is}
+    \caption{Effect of varying the number of generators ($N=3, 5, 7, 10$) in the cMADGAN model on FID and Inception Score (IS $\pm$ Std. Dev) for the \textbf{MNIST} dataset. Results for each generator index are presented alongside baseline metrics.}
+    \label{tab:eypmadgan_mnist_fid_is}
 \end{table}
 \newpage
 
-\subsubsection{cMADGAN Fashion MNIST}
+\subsubsection{cMADGAN Fashion-MNIST}
 \begin{table}[H]
     \centering
     \begin{tabular}{|c|c|c|c|c|}
@@ -266,7 +266,7 @@ The graphical representations of the network architectures are created with the 
     \specialrule{.1em}{.05em}{.05em}
     & 0 &       $25.874$ & $4.750$ & $0.132$ \\
     3 & 1 &     $27.235$ & $4.068$ & $0.090$ \\
-    & 2 &       $23.556$ & $5.049$ & $0.093$ \\
+    & 2 &       $\mathbf{23.556}$ & $\mathbf{5.049}$ & $0.093$ \\
     \hline
     & 0 &       $170.120$ & $2.938$ & $0.020$ \\
     & 1 &       $167.446$ & $3.430$ & $0.052$ \\
@@ -294,13 +294,13 @@ The graphical representations of the network architectures are created with the 
     & 9 &       $191.126$ & $3.073$ & $0.034$ \\
     \hline
     \end{tabular}
-    \caption{Effect of varying the number of generators ($N=3, 5, 7, 10$) in the cMADGAN model on FID and Inception Score (IS $\pm$ Std Dev) for the \textbf{Fashion MNIST} dataset. Results for each generator index are presented alongside baseline metrics.}
+    \caption{Effect of varying the number of generators ($N=3, 5, 7, 10$) in the cMADGAN model on FID and Inception Score (IS $\pm$ Std. Dev) for the \textbf{Fashion-MNIST} dataset. Results for each generator index are presented alongside baseline metrics.}
     \label{tab:cmadgan_fashnion_mnist_fid_is}
 \end{table}
 \newpage
 
 
-\subsubsection{DC MNIST}
+\subsubsection{DCGAN MNIST}
 \begin{table}[H]
     \centering
     \begin{tabular}{|c|c|c|c|}
@@ -312,11 +312,11 @@ The graphical representations of the network architectures are created with the 
     1 & $122.097$ & $2.611$ & $0.056$ \\
     \hline
     \end{tabular}
-    \caption{FID and Inception Score (Mean $\pm$ Std Dev) for a single DCGAN generator ($N=1$) trained on the \textbf{MNIST} dataset. Baseline scores are included for reference.}
+    \caption{FID and Inception Score (Mean $\pm$ Std. Dev) for a single DCGAN generator ($N=1$) trained on the \textbf{MNIST} dataset. Baseline scores are included for reference.}
     \label{tab:dcgan_mnist_n1}
 \end{table}
 
-\subsubsection{DC Fashion MNIST}
+\subsubsection{DCGAN Fashion-MNIST}
 \begin{table}[H]
     \centering
     \begin{tabular}{|c|c|c|c|}
@@ -328,7 +328,7 @@ The graphical representations of the network architectures are created with the 
     1 & $123.349$ & $3.573$ & $0.117$ \\
     \hline
     \end{tabular}
-    \caption{FID and Inception Score (Mean $\pm$ Std Dev) for a single DCGAN generator ($N=1$) trained on the \textbf{Fashion MNIST} dataset. Baseline scores are included for reference.}
+    \caption{FID and Inception Score (Mean $\pm$ Std. Dev) for a single DCGAN generator ($N=1$) trained on the \textbf{Fashion-MNIST} dataset. Baseline scores are included for reference.}
     \label{tab:dcgan_fashion_mnist_n1}
 \end{table}
 
@@ -344,11 +344,11 @@ The graphical representations of the network architectures are created with the 
     1 & $28.721$ & $2.553$ & $0.022$ \\
     \hline
     \end{tabular}
-    \caption{FID and Inception Score (Mean $\pm$ Std Dev) for a single Conditional GAN generator ($N=1$) trained on the \textbf{MNIST} dataset. Baseline scores are included for reference.}
+    \caption{FID and Inception Score (Mean $\pm$ Std. Dev) for a single Conditional GAN generator ($N=1$) trained on the \textbf{MNIST} dataset. Baseline scores are included for reference.}
     \label{tab:cgan_mnist_n1}
 \end{table}
 
-\subsubsection{Conditional Fashion MNIST}
+\subsubsection{Conditional Fashion-MNIST}
 \begin{table}[H]
     \centering
     \begin{tabular}{|c|c|c|c|}
@@ -360,7 +360,7 @@ The graphical representations of the network architectures are created with the 
     1 & $25.560$ & $4.210$ & $0.099$ \\
     \hline
     \end{tabular}
-    \caption{FID and Inception Score (Mean $\pm$ Std Dev) for a single Conditional GAN generator ($N=1$) trained on the \textbf{Fashion MNIST} dataset. Baseline scores are included for reference.}
+    \caption{FID and Inception Score (Mean $\pm$ Std. Dev) for a single Conditional GAN generator ($N=1$) trained on the \textbf{Fashion-MNIST} dataset. Baseline scores are included for reference.}
     \label{tab:cgan_fashion_mnist_n1}
 \end{table}
 
@@ -1153,7 +1153,7 @@ The graphical representations of the network architectures are created with the 
 \end{table}
 % End LaTeX Table for Replacement Experiment:
 \newpage
-\subsubsection{Dataset: FASHION, Architecture: DC GAN}
+\subsubsection{Dataset: FASHION, Architecture: DCGAN}
 % LaTeX Metrics Table for Expansion Experiment: - Metric: val_f1_score
 % LaTeX Metrics Table for Expansion Experiment: - Metric: val_f1_score - Target Gen Group: 10
 \noindent\textbf{Expansion Experiment:}

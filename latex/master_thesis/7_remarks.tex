@@ -26,3 +26,7 @@ Optimization Complexity: Training the shared parameters involves backpropagating
 Architectural Constraint: The fixed structure (shared base + separate heads) might not be the optimal architecture for every problem or dataset. Completely independent generators offer more flexibility in exploring different architectures for each one.
 Potential Bottleneck: If the shared base fails to learn good representations or gets stuck in a poor local minimum, it negatively impacts all generators simultaneously. With independent generators, there's a chance that at least one might find a better solution path independently.
 In summary, the weight-sharing strategy in the original MAD-GAN paper is a clever design choice offering significant efficiency and stability benefits, making it practical to train multiple generators. However, this comes at the cost of potentially limiting the absolute maximum diversity achievable and introducing specific optimization challenges compared to using fully independent generator networks. The choice depends on the trade-off between efficiency, stability, and the desired level/type of diversity for a specific application.
+
+\cite{zhao2023gan}
+TODO: cite this again. they managed to apply dc gans to cifar10 
+

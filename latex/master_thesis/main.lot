@@ -1,0 +1,37 @@
+\babel@toc {english}{}\relax 
+\contentsline {table}{\numberline {1}{\ignorespaces Description of the used datasets for benchmarking.}}{33}{table.caption.32}%
+\contentsline {table}{\numberline {2}{\ignorespaces FID and IS results for GAN models on MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches. Baseline created from training datasets. Baseline created using images from the training set.}}{40}{table.caption.35}%
+\contentsline {table}{\numberline {3}{\ignorespaces FID and IS results for GAN models on Fashion-MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches. Baseline created using images from the training set.}}{41}{table.caption.36}%
+\contentsline {table}{\numberline {4}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN}}{43}{table.caption.38}%
+\contentsline {table}{\numberline {5}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: TDA}}{43}{table.caption.39}%
+\contentsline {table}{\numberline {6}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN}}{45}{table.caption.41}%
+\contentsline {table}{\numberline {7}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: TDA}}{45}{table.caption.42}%
+\contentsline {table}{\numberline {8}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}}{47}{table.caption.44}%
+\contentsline {table}{\numberline {9}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: TDA}}{47}{table.caption.45}%
+\contentsline {table}{\numberline {10}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}}{49}{table.caption.47}%
+\contentsline {table}{\numberline {11}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: TDA}}{49}{table.caption.48}%
+\contentsline {table}{\numberline {12}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN (K=10)}}{52}{table.caption.50}%
+\contentsline {table}{\numberline {13}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cGAN}}{52}{table.caption.51}%
+\contentsline {table}{\numberline {14}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN (K=10)}}{54}{table.caption.53}%
+\contentsline {table}{\numberline {15}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cGAN}}{54}{table.caption.54}%
+\contentsline {table}{\numberline {16}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}}{56}{table.caption.56}%
+\contentsline {table}{\numberline {17}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cGAN}}{56}{table.caption.57}%
+\contentsline {table}{\numberline {18}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}}{58}{table.caption.59}%
+\contentsline {table}{\numberline {19}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cGAN}}{58}{table.caption.60}%
+\contentsline {table}{\numberline {20}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN (K=10)}}{61}{table.caption.62}%
+\contentsline {table}{\numberline {21}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cMADGAN (K=5)}}{61}{table.caption.63}%
+\contentsline {table}{\numberline {22}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}}{63}{table.caption.65}%
+\contentsline {table}{\numberline {23}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=10)}}{63}{table.caption.66}%
+\contentsline {table}{\numberline {24}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}}{65}{table.caption.68}%
+\contentsline {table}{\numberline {25}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=5)}}{65}{table.caption.69}%
+\contentsline {table}{\numberline {26}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}}{67}{table.caption.71}%
+\contentsline {table}{\numberline {27}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=7)}}{67}{table.caption.72}%
+\contentsline {table}{\numberline {28}{\ignorespaces Effect of varying the number of generators ($N=3, 5, 7, 10$) in the MADGAN model on FID and Inception Score (IS $\pm $ Std. Dev) for the \textbf {MNIST} dataset. Results for each generator index are presented alongside baseline metrics.}}{5}{table.caption.88}%
+\contentsline {table}{\numberline {29}{\ignorespaces Effect of varying the number of generators ($N=3, 5, 7, 10$) in the MADGAN model on FID and Inception Score (IS $\pm $ Std. Dev) for the \textbf {Fashion-MNIST} dataset. Results for each generator index are presented alongside baseline metrics.}}{6}{table.caption.89}%
+\contentsline {table}{\numberline {30}{\ignorespaces Effect of varying the number of generators ($N=3, 5, 7, 10$) in the cMADGAN model on FID and Inception Score (IS $\pm $ Std. Dev) for the \textbf {MNIST} dataset. Results for each generator index are presented alongside baseline metrics.}}{7}{table.caption.90}%
+\contentsline {table}{\numberline {31}{\ignorespaces Effect of varying the number of generators ($N=3, 5, 7, 10$) in the cMADGAN model on FID and Inception Score (IS $\pm $ Std. Dev) for the \textbf {Fashion-MNIST} dataset. Results for each generator index are presented alongside baseline metrics.}}{8}{table.caption.91}%
+\contentsline {table}{\numberline {32}{\ignorespaces FID and Inception Score (Mean $\pm $ Std. Dev) for a single DCGAN generator ($N=1$) trained on the \textbf {MNIST} dataset. Baseline scores are included for reference.}}{9}{table.caption.92}%
+\contentsline {table}{\numberline {33}{\ignorespaces FID and Inception Score (Mean $\pm $ Std. Dev) for a single DCGAN generator ($N=1$) trained on the \textbf {Fashion-MNIST} dataset. Baseline scores are included for reference.}}{9}{table.caption.93}%
+\contentsline {table}{\numberline {34}{\ignorespaces FID and Inception Score (Mean $\pm $ Std. Dev) for a single Conditional GAN generator ($N=1$) trained on the \textbf {MNIST} dataset. Baseline scores are included for reference.}}{9}{table.caption.94}%
+\contentsline {table}{\numberline {35}{\ignorespaces FID and Inception Score (Mean $\pm $ Std. Dev) for a single Conditional GAN generator ($N=1$) trained on the \textbf {Fashion-MNIST} dataset. Baseline scores are included for reference.}}{9}{table.caption.95}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

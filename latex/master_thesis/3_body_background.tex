@@ -11,7 +11,7 @@ The final section (\ref{theoretical_image_scores}) explains the theory behind th
 \subsubsection{Neural Networks for Classification}
 Convolutional Neural Networks (CNNs) have become the dominant architecture for image classification tasks due to their inherent ability to automatically learn hierarchical features from raw pixel data. At their core, CNNs are build up by a sequence of convolutional-, pooling- and fully connected layers to extract hierarchical features, and funneling the information, typically into the \(N\) classes defined by the training data. That is, in case of classification tasks. 
 
-Convolutional layers employ learnable filters to detect local patterns in the two-dimensional information. The two dimensionality is inherent to image data. Pooling layers reduce the spatial dimensions to small translations. Fully connected layers then map the extracted information into class probabilities, utilizing the \textit{Softmax} activation function. The afore mentioned layers are discussed in greater detail, in the following subsections.
+Convolutional layers employ learnable filters to detect local patterns in the two-dimensional information. The two-dimensionality is inherent to image data. Pooling layers reduce the spatial dimensions to small translations. Fully connected layers then map the extracted information into class probabilities, utilizing the \textit{Softmax} activation function. The afore mentioned layers are discussed in greater detail, in the following subsections.
 
 \vspace{1em}
 
@@ -19,9 +19,9 @@ Convolutional layers employ learnable filters to detect local patterns in the tw
 TODO: here is a nice place for a ref to \cite{Dumoulin2016TransposedConv}
 These layers compute the output from the local regions of the input. Let $(r \times c)$ be the two-dimensional input, e.g., a grayscale image, where $r$ represents the X-coordinate and $c$ the Y-coordinate of a pixel. Thus, $r \cdot c$ denotes the size of the image. Furthermore, let $(a \times b)$ be a filter with kernel size $a \cdot b$, where the filter is smaller than the input. This filter is moved from the top-left to the bottom-right over the input.
 
-In each iteration, the dot product between the respective coefficients of the input region and the coefficients of the filter is computed. This dot product is then processed by the activation function $g$, which determines how much of the feature is present. If the activation function is ReLU, for example, only positive values are retained, meaning negative responses are set to zero. The result is written to the subsequent layer.
+In each iteration, the dot product between the respective coefficients of the input region and the coefficients of the filter is computed. This dot product is then processed by the activation function $g$, which determines how much of the feature is present. If the activation function is ReLU, for example, only positive values are retained, meaning negative responses are set to zero. The result are written to the subsequent layer.
 
-The stride determines how far the filter is moved after each operation. For a stride of $s = 1$, the filter can be placed in $(r - a + 1)$ positions along the height and $(c - b + 1)$ positions along the width, leading to an output size of $(r - a + 1) \times (c - b + 1)$. In general, the output size in the two-dimensional case is given by:
+The stride determines how far the filter moves after each operation. For a stride of $s = 1$, the filter can be placed in $(r - a + 1)$ positions along the height and $(c - b + 1)$ positions along the width, leading to an output size of $(r - a + 1) \times (c - b + 1)$. In general, the output size in the two-dimensional case is given by:
 \[
 \left( \frac{r - a + s}{s} \right) \times \left( \frac{c - b + s}{s} \right).
 \]
@@ -37,14 +37,14 @@ where $\lfloor \cdot \rfloor$ denotes the floor function, which ensures that the
 \vspace{1em}
 
 \textbf{Pooling Layers}\label{theoretical_classification_pooling_layers}
-Pooling layers compress data along its spatial axes, removing dimensionality. Similar to convolutional layers, pooling layers apply a filter operation, that moves by a given stride. Instead of summing elements covered by the filter, typically, the filter applies one of the following operations: Max-, Average-, Global Max- or Global Average Pooling. \footnote{Other types of pooling involve e.g., L2-norm-, stochastic- or learnable pooling. However, these are less common than the afore mentioned types.}
+A pooling layers compress data along its spatial axes, removing dimensionality. Similar to convolutional layers, pooling layers apply a filter operation, that moves by a given stride. Instead of summing elements covered by the filter, typically, the filter applies one of the following operations: Max-, Average-, Global Max- or Global Average Pooling. \footnote{Other types of pooling involve e.g., L2-norm-, stochastic- or learnable pooling. However, these are less common than the afore mentioned types.}
 
 To give an example, starting with an input of size $[32 \times 32 \times 10]$, applying a pooling operation with a $[2 \times 2]$ filter and a stride of 2 results in an output size of $[16 \times 16 \times 10]$. This operation reduces the spatial dimensions by half while keeping the depth unchanged.
 
 \vspace{1em}
 
 \textbf{Fully-Connected Layers}\label{theoretical_classification_fully_connected_layers}
-Fully-Connected (FC), also called \textit{Dense} layer, typically computes the scores for the respective classes. In the case of ten classes, the result is a volume of size $[1 \times 1 \times 10]$\footnote{Typically, the output from the layer before the FC one is "flattened" into a one-dimensional vector, preserving all information but removing spatial structure. For example, a $[2 \times 2]$ layer would become a vector of size $[1 \times 4]$.}. By this stage, all spatial information has been transformed, leaving a quasi-one-dimensional vector. 
+Fully-Connected (FC), also called \textit{Dense} layer, typically computes the scores for the respective classes. In the case of ten classes, the result is a volume of size $[1 \times 1 \times 10]$\footnote{Typically, the output from the layer before the FC one is \textit{flattened} into a one-dimensional vector, preserving all information but removing spatial structure. For example, a $[2 \times 2]$ layer would become a vector of size $[1 \times 4]$.}. By this stage, all spatial information has been transformed, leaving a quasi-one-dimensional vector. 
 
 In a FC layer, each input is connected to each output, meaning every neuron in the previous layer is connected to each neuron in the FC layer. The output is the weighted sum of all inputs, followed by an activation function, leading to the final classification scores that represent the likelihood of the input belonging to each class. The spatial dimensions are collapsed into a single vector of class scores, which are then used for classification. The class probabilities are a result of applying the Soft-Max Function. [TODO: add a reference to the definition of the softmax function]
 
@@ -69,7 +69,7 @@ With their introduction in \textit{Batch Normalization: Accelerating Deep Networ
         x \quad \text{otherwise}
         \end{cases}
     \end{equation}
-    A variant of ReLU, Leaky ReLU allows small negative values to flow through, addressing the "dying ReLU" problem where neurons can become inactive. [TODO: do we need a reference for the dying ReLU problem?]
+    A variant of ReLU, Leaky ReLU allows small negative values to flow through, addressing the \textit{dying ReLU} problem where neurons can become inactive. [TODO: do we need a reference for the dying ReLU problem?]
 
     \item \textbf{Sigmoid (Logistic)}:  \label{theoretical_activations_sigmoid}
     \begin{equation}
@@ -114,7 +114,7 @@ In this chapter, data augmentation (DA) techniques in the context of images are 
 \subsubsection[Traditional Data Augmentation - TDA]{Traditional Data Augmentation}\label{theoretical_tda}
 The need for data augmentation to make classification algorithms more resilient has existed for decades. Early papers mentioning the augmentation of data for classification tasks date back to the 1960s \cite{Nagy1966} (1966). For the context of deep learning, however, the augmentation of images was popularized by Krizhevsky et al. in 2012 \cite{Krizhevsky2012traditionaldataaugmentation}. This paper introduced the \textit{AlexNet}, a deep CNN used to classify images from the \textit{ImageNet} dataset \cite{ImageNetDataset5206848}, containing $1.000$ classes. This paper also referenced the earlier work of Simard et al. from 2003 \cite{Simard2003bestpracticesforcnns}.
 
-Generally, traditional data augmentation (TDA) techniques can be described as applying transformations to the initial training data. These transformations preserve the respective labels \(y\) and only act on the data \(X\). \footnote{It is to point out, that there are also transformations to be applied to the labels. This can include operations like random flipping of the labels. Furthermore smoothning the labels, e.g., adjusting labels to not be strictly $0$ or $1$, but rather $0.1$ or $0.9$.} Applied transormations could either be used to enlargen the training data or be used to alter existing data altering the variability in it.
+Generally, traditional data augmentation (TDA) techniques can be described as applying transformations to the initial training data. These transformations preserve the respective labels \(y\) and only act on the data \(X\). \footnote{It is to point out, that there are also transformations to be applied to the labels. This can include operations like random flipping of the labels. Such alterations also include techniques such as smoothing the labels, e.g., adjusting labels to not be strictly $0$ or $1$, but rather $0.1$ or $0.9$.} Applied transformations could either be used to enlarge the training data or to alter existing data i.e., altering the variability in it.\\
 
 Augmentations are categorized based on the type of transformations applied:
 
@@ -127,18 +127,21 @@ Alters pixel values while keeping the spatial structure: Brightness, Contrast, H
 \noindent\textit{Noise-Corruption Augmentation}
 Imitates real-world degradations and distortions caused by cameras and sensors: Gaussian Noise, Speckle Noise, Salt-and-Pepper Noise.\\
 
+\noindent
 Mathematically, let \( X \) be an original data sample drawn from the dataset distribution \( P(X) \). Traditional data augmentation applies a transformation function \( f: X \mapsto \tilde{X} \), where \( f \) is a function sampled from a predefined set of augmentation operations \( \mathcal{F} \). The augmented data sample \( \tilde{X} \) is then given by:
 
 \[
 \tilde{X} = f(X), \quad f \sim \mathcal{F}.
 \]
 
-Since TDA does not create entirely new data points but modifies existing ones, the distribution of augmented samples \( P_{\tilde{X}} \) should ideally remain close to the original data distribution:
+\noindent
+Since TDA modifies already existing samples, the distribution of augmented samples \( P_{\tilde{X}} \) should ideally remain close to the original data distribution:
 
 \[
 P_{\tilde{X}}(X) \approx P(X).
 \]
 
+\noindent
 In the context of data augmentation pipelines, this can be generalized as:
 
 \[
@@ -148,21 +151,21 @@ In the context of data augmentation pipelines, this can be generalized as:
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=.9\textwidth]{abb/traditional_image_augmentation_examples.png}
-    \caption{Exemplary use of traditional augmentation techniques from the categories \textit{geometric} (first row), \textit{photometric} (second row), and \textit{noise-corruption} (third row). The image shown is an image from the \hyperref[used_datasets]{CIFAR10 dataset}, assigned to the class "airplane".}
+    \caption{Exemplary use of traditional augmentation techniques from the categories \textit{geometric} (first row), \textit{photometric} (second row), and \textit{noise-corruption} (third row). The image shown is an image from the \hyperref[used_datasets]{CIFAR10 dataset}, assigned to the class \textit{airplane}.}
     \label{fig:figure_tda_examples}
 \end{figure}
 
 \noindent
-When applying the augmentations shown in Figure~\ref{fig:figure_tda_examples}, it is mandatory to consider domain-specific knowledge and constraints. For example, flipping images from the MNIST dataset to train a generative model may result in an image where a horizontally flipped "9" appears, which, in the domain of Arabic numerals, is semantically incorrect. Further, flipping a $9$ along both axes would result in a $6$. Conversely, when classifying an airplane, which can have varying shapes, colors, three-dimensional orientations in space, and images taken through a dusted lens, applying all of the above augmentations could be beneficial.
+When applying the augmentations shown in Figure \ref{fig:figure_tda_examples}, it is mandatory to consider domain-specific knowledge and constraints. For example, flipping images from the MNIST dataset to train a generative model may result in an image where a horizontally flipped \textit{9} appears. This is in the domain of Arabic numerals semantically incorrect. Further, flipping a $9$ along horizontal and vertical axes would result in a $6$. Conversely, when classifying on an airplane, which can have varying shapes, colors, three-dimensional orientations in space, and images taken through a dusted lens, applying all of the above augmentations could be beneficial.
 
 
 \subsubsection[Generative Data Augmentation - GDA]{Generative Data Augmentation}\label{theoretical_gda}
 Differing from the previously mentioned TDA \ref{theoretical_tda}, generative data augmentation (GDA) techniques do not focus on altering existing data instances. Rather, it focuses on creating entirely new samples that match the underlying data distribution of the training data. These generated instances may or may not include labels.
 
-The goal is to train a generative model \( G \) that produces instances \( X_1 \), for example, from a noise vector \( z \) \footnote{A noise vector may serve as input for a Generative Adversarial Network \ref{theoretical_gan}}, such that the distribution of the generated data approximates the true distribution \( P(X) \) of the original dataset. In this context, \( G \) can be viewed as a function:
+The goal is to train a generative model \( G \) that produces instances \( X_1 \), for example, from a noise vector \( z \) \footnote{A noise vector may serve as input for a Generative Adversarial Network. See: \ref{theoretical_gan}}, such that the distribution of the generated data approximates the true distribution \( P(X) \) of the original dataset. In this context, \( G \) can be viewed as a function:
 
 \[
-G: z \mapsto X_1, \quad X_1 \sim P_G(X) \approx P(X),
+G: z \mapsto X_1, \quad X_1 \sim P_G(X_{fake}) \approx P(X),
 \]
 
 \noindent
@@ -188,7 +191,7 @@ where \( P_G(X{fake} \mid y) \) represents the learned conditional distribution,
 % ########################################################################################################
 
 \subsection[Generative Adversarial Network - GAN]{Generative Adversarial Network}\label{theoretical_gan}
-Generative Adversarial Network (GANs) have first been introduced by Goodfellow et al. in 2014 \cite{goodfellow2014generativeadversarialnetworks} GANs are a type of generative models designed to learn the underlying data distribution of their training data and generate new, realistic instances. The core idea of the framework is an adversarial training process between two NNs: the \textit{Generator} \(G\) and \textit{Discriminator} \(D\), are competing against one another in a minimax game \cite{VonNeumann1928Minimax}. The following figure (\ref{fig:figure_gan_arch}) shows a visualization of the vanilla gan architecture.
+Generative Adversarial Network (GANs) have first been introduced by Goodfellow et al. in 2014 \cite{goodfellow2014generativeadversarialnetworks} GANs are a type of generative models designed to learn the underlying data distribution of their training data and generate new, realistic instances. The core idea of the framework is an adversarial training process between two NNs: the \textit{Generator} \(G\) and \textit{Discriminator} \(D\), are competing against one another in a minimax game \cite{VonNeumann1928Minimax}. The following figure (\ref{fig:figure_gan_arch}) shows a visualization of the vanilla GAN architecture.
 
 \begin{figure}[htbp]
     \centering
@@ -210,7 +213,7 @@ The training objective is formulated as the following minimax game:
         \mathcal{L}_{\text{adv}} = \min_G \max_D \mathbb{E}_{X \sim P_{data}} [\log D(X)] + \mathbb{E}_{z \sim P_z} [\log (1 - D(G(z)))].
     \end{equation}
 
-Here, the discriminator \(D\) aims to maximize the probability of correctly differentiating real and fake samples \(\hat{x}\), while the generator \(G\) aims to generate samples that fool \(D\), minimizing \(\log(1 - D(G(z)))\). In an ideal scenario, the game converges to a Nash equilibrium where \(G\) produces samples indistinguishable from real data, i.e., \(P_G \approx P_{data}\). In this scenario, the discriminators output oszilates [TODO: spelling?!] around $0.5$, continuosly [TODO: SPELLING!?] unable to differentiate real and fake.
+Here, the discriminator \(D\) aims to maximize the probability of correctly differentiating real and fake samples \(\hat{x}\), while the generator \(G\) aims to generate samples that fool \(D\), minimizing \(\log(1 - D(G(z)))\). In an ideal scenario, the game converges to a Nash equilibrium where \(G\) produces samples indistinguishable from real data, i.e., \(P_G \approx P_{data}\). In this scenario, the discriminators output oscillates around $0.5$, continuously unable to differentiate real and fake samples.
 
 \subsubsection{Training Process}\label{theoretical_gan_training}
 GAN training follows an alternating optimization approach. Typically, alternating training the generator and the discriminator:
@@ -221,21 +224,25 @@ GAN training follows an alternating optimization approach. Typically, alternatin
 \end{enumerate}
 
 \subsubsection{Challenges in GAN Training}\label{theory_gan_problems}
-Following, challenges that can occur during the training of GANs are discussed. These have already been mentioned in the introductionary section \ref{problems_of_gans}. Here, they are described in greater detail.
+Following, challenges that can occur during the training of GANs are discussed. These have already been mentioned in the introductory section \ref{problems_of_gans}. Here, they are described in greater detail.
+
 \paragraph[Mode Collapse]{Mode Collapse}
-Mode collapse occurs when the generator produces only a small subset of the data distribution, leading to a lack of diversity. Instead of generating varied dieverse samples, it repeatedly produces similar ones that fool the discriminator. This happens when the generator finds an easy \textit{shortcut} rather than learning the full distribution over all classes. More formally, \(G\) collapses many values of \(z\) to the same value of \(x\) \cite{goodfellow2014generativeadversarialnetworks}. A common technique to mitigate this issue is minibatch discrimination \cite{salimans2016improvedtechniquestraininggans}. In several studies, experiments have been conducted to enhance diversity of GANs (\cite{Chang2024QDGenSampling}, \cite{Humayun2021MaGNET}, \cite{Humayun2022PolaritySampling}) % TODO: I tried minibatch discrimination for the cifar madgan, but did not work
+Mode collapse occurs when the generator produces only a small subset of the data distribution, leading to a lack of diversity. Instead of generating varied diverse samples, it repeatedly produces similar ones that fool the discriminator. This happens when the generator finds an easy \textit{shortcut} rather than learning the full distribution over all classes. More formally, \(G\) collapses many values of \(z\) to the same value of \(x\) \cite{goodfellow2014generativeadversarialnetworks}. A common technique to mitigate this issue is minibatch discrimination \cite{salimans2016improvedtechniquestraininggans}. In several studies, experiments have been conducted to enhance diversity of GANs (\cite{Chang2024QDGenSampling}, \cite{Humayun2021MaGNET}, \cite{Humayun2022PolaritySampling}) % TODO: I tried minibatch discrimination for the cifar madgan, but did not work
 \paragraph[Lack of Inter-Class Diversity]{Lack of Inter-Class Diversity}
 Even if mode collapse is avoided, GANs may struggle to generate samples that represent all data classes equally. This is a common issue in class-conditional GANs, where samples across different classes may overlap or lack distinct features. Causes include imbalanced datasets, poor class conditioning, or weak discriminator feedback \cite{Odena201710.5555/3305890.3305954}.
+
 \paragraph[Failure to Converge]{Failure to Converge}
 Unlike traditional neural networks, GANs follow an adversarial training process, making optimization highly unstable. The loss functions of both the generator and discriminator change dynamically, often leading to non-convergent behavior. Methods like Wasserstein GANs (WGAN) \cite{arjovsky2017wassersteingan} and spectral normalization \cite{miyato2018spectralnormalizationgenerativeadversarial} improve stability and help achieve better convergence.
+
 \paragraph[Vanishing & unstable Gradients]{Vanishing \& unstable Gradients}
 When the discriminator becomes too strong, it perfectly distinguishes real from fake samples, leading to vanishing gradients for the generator. This prevents meaningful updates and stalling progress. On the other hand, unstable gradients cause erratic updates, preventing smooth learning. Alternative loss functions (e.g., LSGANs \cite{mao2017squaresgenerativeadversarialnetworks}) and spectral normalization can help stabilize the training.
+
 \paragraph[Imbalance between Generator and Discriminator]{Imbalance between Generator and Discriminator}
-A well-balanced GAN requires both models to improve at a similar pace. If the discriminator overpowers the generator, gradient updates to the generaotr can vanish. If it's too weak, the generator receives poor feedback and produces low-quality outputs \cite{goodfellow2014generativeadversarialnetworks}. Balancing techniques include adaptive learning rates, gradient penalties, and label smoothing \cite{Radford2015DCGAN}. [TODO: there are also options to gradually grow the networks (How is this called?)]
+A well-balanced GAN requires both models to improve at a similar pace. If the discriminator overpowers the generator, gradient updates to the generator can vanish. If it's too weak, the generator receives poor feedback and produces low-quality outputs \cite{goodfellow2014generativeadversarialnetworks}. Balancing techniques include adaptive learning rates, gradient penalties, and label smoothing \cite{Radford2015DCGAN}. [TODO: there are also options to gradually grow the networks (How is this called?)]
 
 
 \subsection[Deep Convolutional Generative Adversarial Network - DCGAN]{Deep Convolutional Generative Adversarial Network}\label{theoretical_dcgan}
-Deep Convolutional Generative Adversarial Networks (DCGANs) were introduced by Radford et al. in 2015 \cite{Radford2015DCGAN} as an improvement over vanilla GANs. While the fundamental adversarial framework remains the same (see \hyperref[theoretical_gan_math]{3.3 Mathematical Formulation}, \hyperref[theoretical_gan_training]{3.3 Training Procecss}), DCGANs leverage deep convolutional neural networks to enhance stability and generate higher-quality images.
+Deep Convolutional Generative Adversarial Networks (DCGANs) were introduced by Radford et al. in 2015 \cite{Radford2015DCGAN} as an improvement over vanilla GANs. While the fundamental adversarial framework remains the same (see \hyperref[theoretical_gan_math]{3.3 Mathematical Formulation}, \hyperref[theoretical_gan_training]{3.3 Training Process}), DCGANs leverage deep convolutional neural networks to enhance stability and generate higher-quality images.
 
 \subsubsection{Architectural Adjustments}\label{theorey_dcgan_architecture}
 To improve training stability and image quality, DCGANs implement the use of \hyperref[theoretical_classification_conv_layers]{convolutional layers}.
@@ -297,7 +304,7 @@ TODO: READ UP TO HERE THUS FAR.
 
 \subsection[Multi-Agent Diverse Generative Adversarial Network - MADGAN]{Multi-Agent Diverse Generative Adversarial Network}
 \label{theoretical_madgan}
-MADGAN is proposed as a generalized framework for the GAN architecture \cite{ghosh2018madgan}. The framework employs multiple generators, one discriminator and an adjusted objective for the discriminator. The adjusted objective aims to enforce the identifications of the generator creating given fake images \(G_{i} \hat{x}\). These changes specifically aim to ease the first two mentioned problems of GANs, namely \textit{Mode Collapse} and \textit{Lack of Inter-Class Diversity} \ref{theory_gan_problems}. This chapter delves into the specifics of this framework: integetration of multi-agent systems with diversity-promoting techniques, within the GAN framework. The following subsections will detail the architecture, objective function, and training procedure of the MADGAN framework.
+MADGAN is proposed as a generalized framework for the GAN architecture \cite{ghosh2018madgan}. The framework employs multiple generators, one discriminator and an adjusted objective for the discriminator. The adjusted objective aims to enforce the identifications of the generator creating given fake images \(G_{i} \hat{x}\). These changes specifically aim to ease the first two mentioned problems of GANs, namely \textit{Mode Collapse} and \textit{Lack of Inter-Class Diversity} \ref{theory_gan_problems}. This chapter delves into the specifics of this framework: integration of multi-agent systems with diversity-promoting techniques, within the GAN framework. The following subsections will detail the architecture, objective function, and training procedure of the MADGAN framework.
 
 \begin{figure}[htbp]
     \centering
@@ -310,34 +317,32 @@ MADGAN is proposed as a generalized framework for the GAN architecture \cite{gho
 
 \subsubsection{Mathematical Formulation}
 \label{theoretical_madgan_math}
-As afore mentioned, the MADGAN architecture employs multiple generators and one discriminator. The goal the for \(K\) generators is to generate samples from different high probability regions of the data \(P_{data}\). In order to guide the generators into their respective direction, the objective of the discriminator has been modified, in which it no longer has to just differentiate between real and fake images, but also identify the generator that produced a given fake instance. Intuitively, the discriminator thereby forces the generators into mostly disjoint regions within the real data distribution. Inspired by the formulation for the discriminator in the paper "\textit{Improved Techniques for Training GANs}" \cite{salimans2016improvedtechniquestraininggans}, their discriminator model has an output of \(k+1\), utilizing the \textit{Softmax} activation function \ref{theoretical_activations_softmax}, where \(k\) sets the number of used generators. The output at \(k+1\) represents the probability that the given samples belongs to the real data distribution \(P_{data}\), whereas the scores at \(j \in \{ 1, ..., k \}\) describe the probability of said sample originating from either of the generators. The above figure \ref{fig:figure_madgan_arch} shows a visualization of the architecture. Thus, when learning the discriminators parameters \(\theta_d\), the cross-entropy between the softmax outputs and the \textit{Dirac delta distribution} (Ddd) \(\delta \in \{0, 1\}^{k+1}\) is optimized. Here, \(\delta(j) = 1\) is 1, if the sample belongs to the \(j\)-th generator, else \(\delta(k+1) = 1\) if the sample originates from \(P_{data}\). Following this definition, the Ddd \(\delta\) can be understood as a one-hot encoding indicating whether a given sample is real of, and if not, from which generator it originates
-\footnote{It is important to point out, that the Dirac delta distribution is actually continuous. Their usage of the Ddd reminds of the Kronecker delta function, which \( \delta(i,j) = 1 \text{ for } i=j; 0 \text{ for } i \ne j \).}
-. The objective function for the optimization of \(\theta_d\), with \(\theta_g\) freezed is therefore:
+As afore mentioned, the MADGAN architecture employs multiple generators and one discriminator. The goal the for \(K\) generators is to generate samples from different high probability regions of the data \(P_{data}\). In order to guide the generators into their respective direction, the objective of the discriminator has been modified. The objective no longer only has to differentiate between real and fake images, but also identify the generator that produced a given fake sample. Intuitively, the discriminator thereby forces the generators into mostly disjoint regions within the real data distribution. Inspired by the formulation for the discriminator in the paper \textit{Improved Techniques for Training GANs} \cite{salimans2016improvedtechniquestraininggans}, their discriminator model has an output of \(k+1\), utilizing the \textit{Softmax} activation function \ref{theoretical_activations_softmax}, where \(k\) sets the number of used generators. The output at \(k+1\) represents the probability that the given samples belongs to the real data distribution \(P_{data}\), whereas the scores at \(j \in \{ 1, ..., k \}\) describe the probability of said sample originating from either of the generators. The above figure \ref{fig:figure_madgan_arch} shows a visualization of the architecture. Thus, when learning the discriminators parameters \(\theta_d\), the cross-entropy between the softmax outputs and the \textit{Dirac delta distribution} (Ddd) \(\delta \in \{0, 1\}^{k+1}\) is optimized. Here, \(\delta(j) = 1\) is 1, if the sample belongs to the \(j\)-th generator, else \(\delta(k+1) = 1\) if the sample originates from \(P_{data}\). Following this definition, the Ddd \(\delta\) can be understood as a one-hot encoding indicating whether a given sample is real of, and if not, from which generator it originates \footnote{It is important to point out, that the Dirac delta distribution is actually continuous. Their usage of the Ddd reminds of the Kronecker delta function, which \( \delta(i,j) = 1 \text{ for } i=j; 0 \text{ for } i \ne j \).}. The objective function for the optimization of \(\theta_d\), with \(\theta_g\) frozen is therefore:
 \begin{equation}
     \max\limits_{\theta_d}\mathbb{E}_{x \sim p} H(\delta, D(x; \theta_d))
-\end{equation}
+\end{equation}.
 
 \noindent
-\(H(...)\) here represents the negative cross-entropy function. Important to piont out here is that, "Intuitively, in order to correctly identify the generator that produced a given fake sample, the discriminator must learn to push different generators towards different identifiable modes." \cite{ghosh2018madgan}, page 4. \hyperref[fig:figure_madgan_diverse_mode_push]{Figure 2} shows a visualization of the generators being pushed to diffenret modes. The objective for the generators however, remains semantically the same as in the vanilla GAN \ref{theory_gan_vanilla_formula}. The difference here is that the objective function is generalized with an indexing \(i\) for the number of generators. That is, for the \(i\)-th generator, the objective function is to minimize:
+\(H(...)\) here represents the negative cross-entropy function. Important to point out here is that, \textit{Intuitively, in order to correctly identify the generator that produced a given fake sample, the discriminator must learn to push different generators towards different identifiable modes.} \cite{ghosh2018madgan}, page 4. \hyperref[fig:figure_madgan_diverse_mode_push]{Figure 2} shows a visualization of the generators being pushed to different modes. The objective for the generators however, remains semantically the same as in the vanilla GAN \ref{theory_gan_vanilla_formula}. The difference here is that the objective function is generalized with an indexing \(i\) for the number of generators. That is, for the \(i\)-th generator, the objective function is to minimize:
 
 \begin{equation}
     \mathcal{L}_{Gen_i} = \mathbf{E}_{x \sim P_{data}} [ \log D(X; \theta_d) ] + \mathbf{E}_{z \sim P_{z}} \log (1-D_{k+1}(G_i(z; \theta_{g}^{i}); \theta_x))
 \end{equation}
 
-\textbf{Enforing Diverse Modes:}
-The researchers provide a theorem demonstrating that the \(k\) generators collectively form a mixture model. In it, each generator represents a mixture compotonent to the global optimimum of \( -(k+1)\log(k+1)+1 \log k \). This is achieved, when \(p_{data} = \frac{1}{k}\sum_{i=1}^{k} p_{g_i}\). It is to point out that, for \(k = 1\), the case with one generator, one obtains the exact Jensen-Shannon divergence based objective, as shown in the vanilla GAN paper by Goodfellow et al. \cite{goodfellow2014generativeadversarialnetworks}. Following their proof, the objective function for all \(k\) generators is to minimize:
+\noindent\textbf{Enforcing Diverse Modes:}
+The researchers provide a theorem demonstrating that the \(k\) generators collectively form a mixture model. In it, each generator represents a mixture component to the global optimum of \( -(k+1)\log(k+1)+1 \log k \). This is achieved, when \(p_{data} = \frac{1}{k}\sum_{i=1}^{k} p_{g_i}\). Significant to note is that, for \(k = 1\), the case with one generator, one obtains the exact Jensen-Shannon divergence based objective, as shown in the vanilla GAN paper by Goodfellow et al. \cite{goodfellow2014generativeadversarialnetworks}. Following their proof, the objective function for all \(k\) generators is to minimize:
 
 \begin{equation}
     \mathcal{L}_{Gen_{[0...K]}} = \mathbf{E}_{x \sim P_{data}} [ \log D_{k+1}(X) ] + \sum_{i=1}^{k}\mathbf{E}_{x \sim p_{g_i}} \log (1-D_{k+1}(x))
 \end{equation}
 
 \noindent
-The exact formulation of their theorem, proof and propositions can be found in Ghosh et al. \cite{ghosh2018madgan}, following formulas (3) through (9).
+The exact formulation of their theorem, proof, and propositions can be found in Ghosh et al. \cite{ghosh2018madgan}, following formulas (3) through (9).
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=.9\textwidth]{abb/madgan_diverse_mode_push.PNG}
-    \caption{Figure taken from the original paper \cite{ghosh2018madgan}. The visualization shows how different generators \(G_1\) and \(G_2\) are pushed to different modes \(M_1\) and \(M_2\)}
+    \caption{Figure taken from the original paper \cite{ghosh2018madgan}. The visualization shows how different generators \(G_{1}\) and \(G_{2}\) are pushed to different modes \(M_{1}\) and \(M_{2}\)}
     \label{fig:figure_madgan_diverse_mode_push}
 \end{figure}
 
@@ -345,33 +350,30 @@ The exact formulation of their theorem, proof and propositions can be found in G
 \label{theory_madgan_architecture}
 The architecture changes can be summarized into three mayor changes applied to the vanilla GAN (\ref{theoretical_gan}) architecture:
 
-\noindent\textbf{Multiple Generators:} The MADGAN architecture employs multiple generators instead of a single one. Following the intuition behind the adjusted disciminator objective, the respective gans distribute into different, mostly disjoint regions in the real data distribution.
+\noindent\textbf{Multiple Generators:} The MADGAN architecture employs multiple generators instead of a single one. Following the intuition behind the adjusted discriminator objective, the respective GANs distribute into different, mostly disjoint regions in the real data distribution.
 
-\noindent\textbf{Modified Discriminator Objective:} The discriminator in this architecture outputs \(k + 1\) instead of \(1\) utilizing the softmax function \ref{theoretical_activations_softmax}. One output for every generator indicating wheter an image originates from either one of the generator and one output implying if the discriminator cam to the conclusion that the current image is fake or not. As afore described, this ecurages the discriminator to push the generators into identifiable distinct outptus.
+\noindent\textbf{Modified Discriminator Objective:} The discriminator in this architecture outputs \(k + 1\) instead of \(1\) utilizing the softmax function \ref{theoretical_activations_softmax}. One output for every generator indicating whether an image originates from either one of the generator and one output implying if the discriminator cam to the conclusion that the current image is fake or not. As afore described, this encourages the discriminator to push the generators into identifiable distinct outputs.
 
-\noindent\textbf{Parameter Sharing among Generators:} Generators in the MADGAN architecture share most of their layers between the \(k\) generators. This reducese redundant compute in the initial feature extraction layers capturing high-frequency structures common in many datasets. Especially in single-view data, this is recommended. For multi-view data it is not recommended, to allow each generator to capture mode-specific features.
+\noindent\textbf{Parameter Sharing among Generators:} Generators in the MADGAN architecture share most of their layers between the \(k\) generators. This reduces redundant compute in the initial feature extraction layers capturing high-frequency structures common in many datasets. Especially in single-view data, this is recommended. For multi-view data it is not recommended, to allow each generator to capture mode-specific features.
 
 % Define placeholder architectural functions
 \newcommand{\definegenerator}{\texttt{define\_generator}}
 \newcommand{\definediscriminator}{\texttt{define\_discriminator}}
 % Define lambda symbol for diversity weight
 \newcommand{\lambdadiv}{\lambda_{\text{div}}}
-\subsection[Adapting MAD-GAN for Conditional Generation with Explicit Diversity - CMADGAN]{Adapting MAD-GAN for Conditional Generation with Explicit Diversity}
+\subsection[Adapting MAD-GAN for Conditional Generation with Explicit Diversity - CMADGAN]{Adapting MADGAN for Conditional Generation with Explicit Diversity}
 \label{theoretical_cmadgan}
 
-The inial gaol of this reasearch included exploring methods for generating diverse samples in the mentioned datasets \ref{used_datasets} to be used for data augemntations. While the multi-agent framework by Ghosh presents a potential approach, experiments revealed significant challanges in achieving stable training and satisfactory results in terms of image quality with the original method. Specifically the CIFAR10 datasets proofed to be challanging, which is the only colored dataset used.
+The finial goal of this research includes exploring methods for generating diverse samples in the mentioned datasets \ref{used_datasets} to be used for data augmentations. While the multi-agent framework by Ghosh et al. presents a potential approach, experiments revealed significant challenges in achieving stable training and satisfactory results in terms of image quality with the original method. Especially the CIFAR10 datasets showed to be challenging, which is the only colored dataset used.
 
-Consequently, an alternative framework, termed Conditional Multi-Agent Diverse GAN (cMADGAN), was conceptualized. The adjustment aims to retain the multi-generator diversity principle while simplifying the task of the discriminator. The discriminator model is rolled back to its original objective to differentiate between real and fake images. However, initial experiments indicated that this approach also faced convergence difficulties when applied to the original CIFAR10 dataset. This specific is explained in more detail in the experiemnts section \textit{todo: reference the correct chapter}
-
-%the following shall be moved to the experiments section
-%Drawing parallels with successful applications of similar GAN architectures on simpler datasets like MNIST and Fashion-MNIST (28x28 pixels, grayscale), a strategic decision was made to evaluate the CMADGAN concept under conditions more amenable to stable training and analysis. To this end, the CIFAR-10 dataset was **modified** for subsequent experiments: images were converted to grayscale and resized to 28x28 pixels.
+Consequently, an alternative framework, termed Conditional Multi-Agent Diverse GAN (cMADGAN), was conceptualized. The adjustment aims to retain the multi-generator diversity principle while simplifying the task of the discriminator. The discriminator model is rolled back to its original objective to differentiate between real and fake images. However, initial experiments indicated that this approach also faced convergence difficulties when applied to the original CIFAR10 dataset. This specific is explained in more detail in the experiments section \ref{setup_cifar10_scope}.
 
 The following sections detail the cMADGAN framework as implemented. This approach utilizes multiple generators (\( G_1, \dots, G_K \)), a single conditional discriminator (\( D \)) performing standard real/fake classification, and incorporates an explicit diversity loss between generator outputs alongside the adversarial objective.
 
 \subsubsection{Mathematical Formulation}
 \label{theoretical_cmadgan_math}
 
-Let \( z \) be a latent vector sampled from a prior distribution \( p(z) \), typically a standard normal distribution . Let \( c \) be the condition variable (e.g., class label) sampled from a distribution \( p(c) \). The framework also employs \( K \) generator networks \( G_1, \dots, G_K \) and a single discriminator network \( D \). Each generator \( G_i \) maps an input pair \( (z, c) \) to the data space, producing a fake sample \( \hat{x}_i = G_i(z, c) \). The discriminator \( D \) takes an input pair \( (x, c) \) (where \( x \) can be a real sample from the true data distribution \( p_{\text{data}}(x|c) \) or a fake sample \( \hat{x}_i \)) and outputs a scalar probability estimating the likelihood that \( x \) is real given the condition \( c \).
+Let \( z \) be a latent vector sampled from a prior distribution \( p(z) \), typically a standard normal distribution. Let \( c \) be the condition variable (e.g., class label) sampled from a distribution \( p(c) \). The framework also employs \( K \) generator networks \( G_1, \dots, G_K \) and a single discriminator network \( D \). Each generator \( G_i \) maps an input pair \( (z, c) \) to the data space, producing a fake sample \( \hat{x}_i = G_i(z, c) \). The discriminator \( D \) takes an input pair \( (x, c) \) (where \( x \) can be a real sample from the true data distribution \( p_{\text{data}}(x|c) \) or a fake sample \( \hat{x}_i \)) and outputs a scalar probability estimating the likelihood that \( x \) is real given the condition \( c \).
 
 The training involves optimizing two competing objectives, \( \mathcal{L}_D \) for the discriminator and \( \mathcal{L}_G \) for the generators:
 
@@ -384,7 +386,7 @@ The discriminator is trained to distinguish real samples from fake samples gener
 & - \frac{1}{K} \sum_{i=1}^{K} \mathbb{E}_{z \sim p(z), c \sim p(c)} [\log(1 - D(G_i(z, c), c))]
 \end{split}
 \end{equation}
-In practice, techniques like label smoothing might be applied to stabilize training. In its current implementation, it is set to \(0.9\) for real and \(0.1\) for fake samples.
+In practice, techniques like label smoothing are applied to stabilize training. In its current implementation, it is set to \(0.9\) for real and \(0.1\) for fake samples.
 
 \paragraph{Generator Loss:}
 The generators are trained collectively to fool the discriminator and simultaneously produce diverse outputs. The combined loss function includes an adversarial term and an explicit diversity term:
@@ -420,11 +422,11 @@ The components are defined as:
 \subsubsection{Architectural Adjustments}
 \label{theory_cmadgan_architecture}
 
-The CMADGAN architecture makes specific adjustments compared to both standard conditional GANs and the original MAD-GAN:
+The cMADGAN architecture makes specific adjustments compared to both standard conditional GANs and the original MADGAN:
 
 \begin{itemize}
     \item \textbf{Multiple Generators:}
-    As the original MADGAN framework propsed, the cMADGAN employs \(K\) distinct generator networks. As suggested in the original paper, the generators do not share their weights, du to the selction of datasets (cf. section 4.1 \cite{ghosh2018madgan}). Each generator takes both the latent vector \( z \) and the condition \( c \) as input.
+    As the original MADGAN framework proposed, the cMADGAN employs \(K\) distinct generator networks. As suggested in the original paper, the generators do not share their weights, due to the selection of datasets (cf. section 4.1 \cite{ghosh2018madgan}). Each generator takes both the latent vector \( z \) and the condition \( c \) as input.
     \item \textbf{Conditional Discriminator:}
     Unlike the original MADGAN discriminator, the task of the cMADGAN discriminator performs the standard conditional GAN task \ref{theory_cgan_architecture}. \(D\) receives an image \( x \) (real or fake) and its corresponding condition \( c \), and outputs a single probability indicating whether the image is real given the condition.
     \item \textbf{Conditioning Mechanism:} Class conditioning \( c \) is integrated into both generator and discriminator networks. There are multiple different ways to encode information \ref{theory_cgan_architecture}.
@@ -432,10 +434,10 @@ The CMADGAN architecture makes specific adjustments compared to both standard co
             \item In the generators, this embedding is concatenated with the latent vector \( z \) before being processed by the main network layers (e.g., transposed convolutions).
             \item In the discriminator, the condition embedding might be concatenated with intermediate feature maps or projected via learned linear layers and combined with image features before the final classification output, following common practices for conditional discriminators \cite{mirza2014conditionalgenerativeadversarialnets}.
         \end{itemize}
-    \item \textbf{Explicit Diversity Enforcement:} Diversity is not solely an emergent property of competition but is explicitly encouraged via the \( \mathcal{L}_{\text{sim}} \) term in the generator objective (Eq. \ref{eq:cmadgan_loss_g}), directly penalizing high similarity between the outputs of different generators for the same input \( (z, c) \).
+    \item \textbf{Explicit Diversity Enforcement:} Diversity is not solely an emergent property of competition but is explicitly encouraged via the \( \mathcal{L}_{\text{sim}} \) term in the generator objective (\ref{eq:cmadgan_loss_g}), directly penalizing high similarity between the outputs of different generators for the same input \( (z, c) \).
 \end{itemize}
 
-The specific convolutional layers, normalization techniques, and activation functions within the generator and discriminator networks follow standard deep convolutional GAN (DCGAN) \cite{Radford2015DCGAN} principles or other relevant architectural patterns suitable, as detailed in the experimental setup section (\textit{TODO: Cross-reference experiments section here}). This cMADGAN structure provides a framework for conditional generation that leverages multiple generators for diversity.
+The specific convolutional layers, normalization techniques, and activation functions within the generator and discriminator networks follow standard deep convolutional GAN (DCGAN) \cite{Radford2015DCGAN} principles and other relevant architectural patterns suitable. This cMADGAN structure provides a framework for conditional generation that leverages multiple generators for diversity.
 
 
 % ########################################################################################################
@@ -449,14 +451,14 @@ The specific convolutional layers, normalization techniques, and activation func
 
 \subsection{Image Scores}\label{theoretical_image_scores}
 
-To quantitatively evaluate the quality and diversity of images generated by generative models, several metrics have been proposed in the literature. These image scores aim to provide an objective measure to compare generative models independently of human evaluation. This section introduces widely-used metrics for evaluating generative models: \textit{Inception Score} (IS), \textit{Fréchet Inception Distance} (FID), and the underlying InceptionV3 model employed for these metrics.q
+To quantitatively evaluate the quality and diversity of images generated by generative models, several metrics have been proposed in the literature. These image scores aim to provide an objective measure to compare generative models independently of human evaluation. This section introduces widely-used metrics for evaluating generative models: \textit{Inception Score} (IS), \textit{Fréchet Inception Distance} (FID), and the underlying InceptionV3 model employed for these metrics.
 
 \subsubsection[Inception Score - IS]{Inception Score}
 The Inception Score (IS) \cite{salimans2016improvedtechniquestraininggans} is one of the earliest and most commonly used metrics for evaluating generative models, especially GANs. It leverages a pretrained InceptionV3 classifier to assess two main criteria of generated images:
 
 \begin{itemize}
     \item \textbf{Image Quality (Clarity)}: Each generated image should be classified into a specific class with high confidence. This corresponds to a low-entropy conditional label distribution \( p(y|x) \).
-    \item \textbf{Diversity}: Across the entire set of generated images, the distribution of predicted classes should be diverse and cover many different labels. This corresponds to a high-entropy marginal label distribution \( p(y) \).
+    \item \textbf{Diversity}: Across the entire set of generated images, the distribution of predicted classes should be diverse and cover many labels. This corresponds to a high-entropy marginal label distribution \( p(y) \).
 \end{itemize}
 
 \noindent
@@ -472,13 +474,13 @@ A higher IS indicates that the model generates images that are confidently class
 \noindent\textbf{Limitations of IS}:
 \begin{itemize}
     \item Does not directly compare generated images with real images.
-    \item Insensitive to intra-class diversity (e.g., generating only one type of dog within the 'dog' class).
+    \item Insensitive to intra-class diversity (e.g., generating only one type of dog within the dog class).
     \item Sensitive to the choice and specific training of the pretrained classifier.
 \end{itemize}
 
 \subsubsection[Fréchet Inception Distance - FID]{Fréchet Inception Distance}
 
-The Fréchet Inception Distance (FID) \cite{heusel2018ganstrainedtimescaleupdate} improves upon IS by directly comparing the feature distributions of real and generated images. FID embeds both real (\(r\)) and generated (\(g\)) images into a lower-dimensional feature space using a pretrained InceptionV3 network (typically using the activations from the final average pooling layer, often referred to as 'pool3'). It then models the distributions of these embeddings as multivariate Gaussians.
+The Fréchet Inception Distance (FID) \cite{heusel2018ganstrainedtimescaleupdate} improves upon IS by directly comparing the feature distributions of real and generated images. FID embeds both real (\(r\)) and generated (\(g\)) images into a lower-dimensional feature space using a pretrained InceptionV3 network (typically using the activations from the final average pooling layer, often referred to as 'pool3'). It then models the distributions of these embeddings as multivariate Gaussian.
 
 Let \( (\mu_r, \Sigma_r) \) and \( (\mu_g, \Sigma_g) \) denote the means and covariance matrices of the real and generated image Inception feature embeddings, respectively. The FID score is computed as the Fréchet distance (also known as Wasserstein-2 distance) between these two Gaussian distributions:
 \begin{equation}
@@ -500,7 +502,7 @@ Lower FID indicates that the distribution of generated image features is more si
 \begin{itemize}
     \item Assumes Gaussian distribution of features, which might be an approximation.
     \item Sensitive to the choice of feature extractor network and the specific layer used.
-    \item Sensitive to both image quality (affecting feature representations) and diversity (affecting the mean and covariance of features).
+    \item Sensitive to both image quality (influencing feature representations) and diversity (influencing the mean and covariance of features).
     \item Requires a sufficiently large number of samples (both real and generated) for stable estimation of moments (\(\mu, \Sigma\)).
 \end{itemize}
 
@@ -509,15 +511,15 @@ Lower FID indicates that the distribution of generated image features is more si
 Both IS and FID commonly rely on the InceptionV3 model~\cite{szegedy2016rethinking}, a deep convolutional neural network pretrained on the large-scale ImageNet dataset \cite{ImageNetDataset5206848}. The InceptionV3 network serves two primary roles in evaluating generative models:
 
 \begin{enumerate}
-    \item \textbf{Feature Extractor (for FID)}: Intermediate activations, typically from the final average pooling layer (`pool3`), are used as a semantic feature representation of the images. The statistics (mean and covariance) of these features are then compared between real and generated image sets.
+    \item \textbf{Feature Extractor (for FID)}: Intermediate activations, typically from the final average pooling layer \textit{pool3}, are used as a semantic feature representation of the images. The statistics (mean and covariance) of these features are then compared between real and generated image sets.
     \item \textbf{Classifier (for IS)}: The output layer provides class probabilities for input images. These probabilities are used to calculate the entropy terms required for the Inception Score.
 \end{enumerate}
 
 \noindent\textbf{Properties of InceptionV3 relevant for image scoring}:
 \begin{itemize}
     \item Trained on the diverse ImageNet dataset, providing a rich semantic feature space capable of capturing complex visual patterns.
-    \item Uses fixed, non-trainable weights during evaluation, ensuring standardization and comparability of scores across different studies (provided the same implementation is used).
-    \item The choice of layer for feature extraction (primarily for FID) impacts sensitivity; earlier layers capture lower-level features like texture, while later layers capture more abstract semantic information. The `pool3` layer is commonly chosen as a balance.
+    \item Uses fixed, non-trainable weights during evaluation, ensuring standardization and comparability of scores across different studies, provided the same implementation is used.
+    \item The choice of layer for feature extraction (primarily for FID) impacts sensitivity; earlier layers capture lower-level features like texture, while later layers capture more abstract semantic information. The \textit{pool3} layer is commonly chosen as a balance.
 \end{itemize}
 
 \noindent\textbf{Limitations of using InceptionV3}:\label{theoretical_inception_model_limitaitions}

@@ -158,13 +158,6 @@
 \newblock \url{http://dx.doi.org/10.1117/1.JMI.9.3.035504}. --
 \newblock DOI 10.1117/1.JMI.9.3.035504
 
-\bibitem[Kri09]{Krizhevsky2009learning}
-\textsc{Krizhevsky}, Alex:
-\newblock \emph{Learning Multiple Layers of Features from Tiny Images}.
-\newblock Technical Report, University of Toronto.
-\newblock \url{https://www.cs.toronto.edu/~kriz/learning-features-2009-TR.pdf}.
-\newblock \,Version:\,2009
-
 \bibitem[KSH12a]{NIPS2012_c399862d}
 \textsc{Krizhevsky}, Alex ; \textsc{Sutskever}, Ilya  ; \textsc{Hinton},
   Geoffrey~E. ; \textsc{Pereira}, F. (Hrsg.) ; \textsc{Burges}, C.J. (Hrsg.) ;

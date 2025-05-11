@@ -20,24 +20,25 @@ This chapter investigates the following questions regarding MADGANs for data aug
 
 \subsection{Key Research Question Answers}
 As mentioned in the subchapter about the experimental workflow, four sets of multi-agent generators models were trained  for the MADGAN and cMADGAN architectures (\ref{body_experiment_succession}). The four sets differ by \(K\), the number of generators trained, with \(K \in [3, 5, 7, 10]\). Onward, the generator of a discussion is identified explicitly by a suffix referencing the generator of a trained set \(G_{i, j}\) with \(i=K, j=0...(K-1)\) (e.g., \(\text{MADGAN}_{5, 0}\) for the first generator in the architecture trained with five generators). The set of generators however, is referenced via the notation: MADGAN \(K=5\) (e.g., if a discussion talks about the average performance of the generators \(0...4\)). Throughout this chapter, the experiment will be viewed with respect to afore mentioned differentiation between expansion and replacement scenarios \ref{exp_setup_difference_replace_expand}. The comparisons of FID- and Inception Score are excluded from this differentiation. Experiment not directly discussed in greater detail can be seen in the appendix \ref{app_strat_class_performance}.
-The generated graphs contain all respective runs of a given experimental setup for which, best, worst, average, median, and baseline are explicitly highlighted. Each gray line in a graph, that is not highlighted represents every other combination of the setup. Especially for the multi-agent generator setups, this results in many graphs, up to $60$ per figure. Therefore, a colorful highlighting of specific graphs is omitted as this would not benefit the overall readability of the respective graphs. This however removes the potential for interesting insights. TODO: maaah, important sentence... Could be phrased better
+The generated graphs contain all respective runs of a given experimental setup for which, best, worst, average, median, and baseline are explicitly highlighted. Each gray line in a graph, that is not highlighted, represents every other combination of the setup. Especially for the multi-agent generator setups, this results in many graphs, up to $60$ per figure in case of 10 generators. Therefore, a colorful highlighting of specific graphs is omitted as this would not benefit the overall readability of the respective graphs. This however removes the potential for interesting insights.
 
-
+\newpage
 \subsubsection[Question 1]{Comparison of FID- and Inception Scores}     \label{exp_results_ans_q1}
-In order to compare the FID-Score and the means and standard deviations of the IS, $10.000$ generated samples are chosen by random selection. These fake images are drawn from the entirety of the generated data for a given generator, regardless of their assigned class.
-The comparison is being based on the respective datasets used (MNIST, Fashion-MNIST) for data generation.\\
+In order to compare the FID-Score and the means and standard deviations of the IS, $10.000$ generated samples are chosen by random selection. These fake images are drawn from the entirety of the generated data for a given generator, regardless of their assigned class. The comparison is based on the respective datasets used (MNIST, Fashion-MNIST) for data generation. Baselines have been created by probing the respective training datasets for the same amount of $10.000$ sampeles.\\
 \\
-\noindent\textbf{MNIST Dataset}
+\noindent\textbf{MNIST Dataset}\label{exp_ans_q1_mnsit_fid_is}
 \begin{table}[H]
     \centering
     \begin{tabular}{|c|c|c|c|c|c|}
         \hline
         Generator Type & Generators trained & FID & IS & IS-std \\
         \hline
+		\textit{Baseline} & - & $-0.004$ & $2.549$ & $0.036$ \\
+		\specialrule{.1em}{.05em}{.05em}
         DCGAN & 1 & $122.097$ & $\mathbf{2.611}$ & $0.056$ \\
-        \hline
+		\specialrule{.1em}{.05em}{.05em}
         cGAN & 1 & $28.721$ & $2.553$ & $0.022$ \\
-        \hline
+		\specialrule{.1em}{.05em}{.05em}
         MADGAN & K=3 (avg) & $23.177$ & $2.511$ & $0.04$ \\
         \hline
         MADGAN & K=5 (avg) & $22.656$ & $2.471$ & $0.044$ \\
@@ -45,7 +46,7 @@ The comparison is being based on the respective datasets used (MNIST, Fashion-MN
         MADGAN & K=7 (avg) & $21.599$ & $2.533$ & $0.051$ \\
         \hline
         MADGAN & K=10 (avg) & $\mathbf{20.973}$ & $2.474$ & $0.037$ \\
-        \hline
+		\specialrule{.1em}{.05em}{.05em}
         cMADGAN & K=3 (avg) & $25.578$ & $2.398$ & $0.036$ \\
         \hline
         cMADGAN & K=5 (avg) & $29.071$ & $2.35$ & $0.039$ \\
@@ -55,7 +56,7 @@ The comparison is being based on the respective datasets used (MNIST, Fashion-MN
         cMADGAN & K=10 (avg) & $110.553$ & $2.062$ & $0.018$ \\
         \hline
     \end{tabular}
-    \caption{FID and IS results for GAN models on MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches.}
+    \caption{FID and IS results for GAN models on MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches. Baseline created from training datasets. Baseline created using images from the training set.}
     \label{tab:exp_mnist_fid_is}
 \end{table}
 \textbf{Interpretation:} Table \ref{tab:exp_mnist_fid_is} presents the Fréchet Inception Distance (FID, lower is better) and Inception Score (IS, higher is better) for various GAN models evaluated on the MNIST dataset. The results reveal a trade-off between the two metrics across different architectures.
@@ -68,17 +69,19 @@ The conditional multi-generator adaptation, cMADGAN, showed a more complex relat
 
 In summary, on MNIST, standard conditioning (cGAN) greatly enhances baseline FID. The unconditional MADGAN framework effectively improves FID further, benefiting from more generators. The conditional cMADGAN variant demonstrates potential (peaking at K=5) but exhibits non-monotonic FID performance with increasing generator count in this setup, suggesting a more complex optimization landscape compared to its unconditional counterpart. \\
 
-\noindent\textbf{Fashion-MNIST Dataset}
+\noindent\textbf{Fashion-MNIST Dataset}\label{exp_ans_q1_fmnsit_fid_is}
 \begin{table}[H]
     \centering
     \begin{tabular}{|c|c|c|c|c|c|}
         \hline
         Generator Type & Generators trained & FID & IS & IS-std \\
         \hline
+		\textit{Baseline} & - & $-0.004$ & $4.723$ & $0.056$ \\
+		\specialrule{.1em}{.05em}{.05em}
         DCGAN & 1 & $25.56$ & $4.21$ & $0.099$ \\
-        \hline
+		\specialrule{.1em}{.05em}{.05em}
         cGAN & 1 & $123.349$ & $3.573$ & $0.117$ \\
-        \hline
+		\specialrule{.1em}{.05em}{.05em}
         MADGAN & K=3 (avg) & $26.202$ & $4.496$ & $0.099$ \\
         \hline
         MADGAN & K=5 (avg) & $24.218$ & $4.497$ & $0.098$ \\
@@ -86,7 +89,7 @@ In summary, on MNIST, standard conditioning (cGAN) greatly enhances baseline FID
         MADGAN & K=7 (avg) & $23.875$ & $4.523$ & $0.094$ \\
         \hline
         MADGAN & K=10 (avg) & $21.587$ & $4.534$ & $0.097$ \\
-        \hline
+		\specialrule{.1em}{.05em}{.05em}
         cMADGAN & K=3 (avg) & $25.555$ & $4.623$ & $0.105$ \\
         \hline
         cMADGAN & K=5 (avg) & $160.082$ & $3.346$ & $0.038$ \\
@@ -96,12 +99,12 @@ In summary, on MNIST, standard conditioning (cGAN) greatly enhances baseline FID
         cMADGAN & K=10 (avg) & $159.067$ & $3.317$ & $0.035$ \\
         \hline
     \end{tabular}
-    \caption{FID and IS results for GAN models on Fashion-MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches.}
+    \caption{FID and IS results for GAN models on Fashion-MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches. Baseline created using images from the training set.}
     \label{tab:exp_fashionmnist_fid_is}
 \end{table}
 \textbf{Interpretation:} The evaluation metrics for the various GAN models on the Fashion-MNIST dataset, presented in Table \ref{tab:exp_fashionmnist_fid_is}, reveal distinct performance patterns. The baseline DCGAN provided a reasonable starting point with an FID of $25.56$ and an IS of $4.21$. However, unlike observations on MNIST, standard conditioning via cGAN proved detrimental on this dataset within this setup, resulting in significantly degraded FID ($123.35$) and IS ($3.57$) compared to the unconditional DCGAN.
 
-In contrast, the unconditional MADGAN framework demonstrated robust and consistently improving performance. Its FID score, initially comparable to DCGAN at K=3 ($26.20$), improved monotonically as the number of generators increased, achieving the table's best FID of $21.59$ at K=10. Notably, MADGAN also maintained high IS scores (around $4.5$), which showed a slight tendency to increase with more generators.
+In contrast, the unconditional MADGAN framework demonstrated robust and consistently improving performance. Its FID, initially comparable to DCGAN at K=3 ($26.20$), improved monotonically as the number of generators increased, achieving the table's best FID of $21.59$ at K=10. Notably, MADGAN also maintained high IS scores (around $4.5$), which showed a slight tendency to increase with more generators.
 
 The conditional adaptation, cMADGAN, exhibited highly sensitive and divergent behavior on Fashion-MNIST compared to MNIST. Only the $K = 3$ configuration yielded strong results, achieving a competitive FID ($25.56$) while registering the table's highest IS ($4.62$). However, increasing the generator count further to $K = 5$, $7$, or $10$ led to a dramatic performance collapse, characterized by extremely high FID scores (approximately $154$–$160$) and substantially lower IS scores (around $2.9$–$3.3$).
 
@@ -797,7 +800,18 @@ This superiority of cMADGAN K=7 is further reflected in its average ($0.9093$) a
 
 In conclusion, for the Fashion-MNIST expansion task, cMADGAN (K=7) emerges as the more effective and reliable GDA technique compared to MADGAN (K=10). It not only achieves a higher peak F1 score that rivals TDA but also delivers better average performance and greater robustness, maintaining strong results even when substantially expanding the dataset with synthetic samples.
 
-\subsubsection[Question 5]{Impact of MADGAN Generator Count}            \label{exp_results_ans_q5}
+\subsubsection[Question 5]{Effect of increasing the Generators}            \label{exp_results_ans_q5}
+The following paragraphs conclude the experimental section and answers question 5 (\ref{exp_results_research_questions}). Above experiments are used to conclude the effect of adjusting \textbf{K} (the number of generators in multi-agent GAN architectures). First, the sections focus the MADGAN- and secondly the cMADGAN architecture. To answer this question, all experiments, including those present in the appendix are taken into consideration.
+
+% labels for fid is scores: 
+% \label{exp_ans_q1_mnsit_fid_is}, \label{exp_ans_q1_fmnsit_fid_is}c
+
+\noindent\textbf{MADGAN}
+Across the datasets (MNIST, Fashion-MNIST), increasing K positively correlated with an increase of image quality and diversity, judged by the average FID and IS. Especially for the Fashion-MNIST dataset, the MADGAN with $K=10$ performed the best. This setting achieved the lowest FID and the highest IS, excluding the baseline \ref{tab:exp_fashionmnist_fid_is}. The results on MNIST however show, that this trend does not fully generalize. The MADGAN with $K=10$ does result in the lowest FID, the IS on the other hand is the third highest from four \ref{tab:exp_mnist_fid_is}. Analyzing the scores for the single generator evaluations, the lowest FID score results from the ninth generator from the $K=10$ experiment. The highest IS occurred in the setting with $K=7$ \ref{tab:app_madgan_mnist_fid_is}. For MNIST the lowest FID and highest IS are created by the generator with index $4$ in the $K=10$ setting. 
+
+Overall, it can be concluded that the increase of $K$ generally improved the performance of the MADGANs, especially for the Fashion-MNIST dataset. The effect is however less consistent on the MNIST dataset. 
+
+\noindent\textbf{cMADGAN}
 
 
 

@@ -1,0 +1,60 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+The style file: alphadin.bst
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'wiz_functions' (item size: 4) to 6000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Database file #1: main.bib
+Warning--entry type for "NIPS2012_c399862d" isn't style-file defined
+--line 235 of file main.bib
+Warning--entry type for "WanLiZeiler2013" isn't style-file defined
+--line 413 of file main.bib
+Warning--empty booktitle in Radford2015DCGAN
+Warning--empty pages in Radford2015DCGAN
+You've used 50 entries,
+            4793 wiz_defined-function locations,
+            1196 strings with 17796 characters,
+and the built_in function-call counts, 42318 in all, are:
+= -- 4363
+> -- 1454
+< -- 1567
++ -- 1875
+- -- 558
+* -- 3046
+:= -- 7438
+add.period$ -- 88
+call.type$ -- 50
+change.case$ -- 341
+chr.to.int$ -- 49
+cite$ -- 52
+duplicate$ -- 938
+empty$ -- 2363
+format.name$ -- 961
+if$ -- 7871
+int.to.chr$ -- 2
+int.to.str$ -- 0
+missing$ -- 261
+newline$ -- 315
+num.names$ -- 152
+pop$ -- 425
+preamble$ -- 1
+purify$ -- 441
+quote$ -- 0
+skip$ -- 2331
+stack$ -- 0
+substring$ -- 3215
+swap$ -- 291
+text.length$ -- 229
+text.prefix$ -- 3
+top$ -- 0
+type$ -- 504
+warning$ -- 2
+while$ -- 383
+width$ -- 54
+write$ -- 695
+(There were 4 warnings)
