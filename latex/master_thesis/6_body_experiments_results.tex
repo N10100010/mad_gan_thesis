@@ -88,9 +88,9 @@ In summary, on MNIST, standard conditioning (cGAN) greatly enhances baseline FID
         \hline
         MADGAN & K=7 (avg) & $23.875$ & $4.523$ & $0.094$ \\
         \hline
-        MADGAN & K=10 (avg) & $21.587$ & $4.534$ & $0.097$ \\
+        MADGAN & K=10 (avg) & $\mathbf{21.587}$ & $4.534$ & $0.097$ \\
 		\specialrule{.1em}{.05em}{.05em}
-        cMADGAN & K=3 (avg) & $25.555$ & $4.623$ & $0.105$ \\
+        cMADGAN & K=3 (avg) & $25.555$ & $\mathbf{4.623}$ & $0.105$ \\
         \hline
         cMADGAN & K=5 (avg) & $160.082$ & $3.346$ & $0.038$ \\
         \hline
@@ -807,12 +807,19 @@ The following paragraphs conclude the experimental section and answers question 
 % \label{exp_ans_q1_mnsit_fid_is}, \label{exp_ans_q1_fmnsit_fid_is}c
 
 \noindent\textbf{MADGAN}
-Across the datasets (MNIST, Fashion-MNIST), increasing K positively correlated with an increase of image quality and diversity, judged by the average FID and IS. Especially for the Fashion-MNIST dataset, the MADGAN with $K=10$ performed the best. This setting achieved the lowest FID and the highest IS, excluding the baseline \ref{tab:exp_fashionmnist_fid_is}. The results on MNIST however show, that this trend does not fully generalize. The MADGAN with $K=10$ does result in the lowest FID, the IS on the other hand is the third highest from four \ref{tab:exp_mnist_fid_is}. Analyzing the scores for the single generator evaluations, the lowest FID score results from the ninth generator from the $K=10$ experiment. The highest IS occurred in the setting with $K=7$ \ref{tab:app_madgan_mnist_fid_is}. For MNIST the lowest FID and highest IS are created by the generator with index $4$ in the $K=10$ setting. 
+Across the datasets (MNIST, Fashion-MNIST), increasing K positively correlated with an increase of image quality and diversity, judged by the average FID and IS. Especially for the Fashion-MNIST dataset, the MADGAN with $K=10$ performed the best. This setting achieved the lowest FID and the highest IS, excluding the baseline \ref{tab:exp_fashionmnist_fid_is}. The results on MNIST however show, that this trend does not fully generalize. The MADGAN with $K=10$ does result in the lowest FID, the IS on the other hand is the third highest from four (\ref{tab:exp_mnist_fid_is}). Analyzing the scores for the single generator evaluations, the lowest FID score results from the ninth generator from the $K=10$ experiment. The highest IS occurred in the setting with $K=7$ (\ref{tab:app_madgan_mnist_fid_is}). For MNIST the lowest FID and highest IS are created by the generator \(G_{10,4}\). 
 
-Overall, it can be concluded that the increase of $K$ generally improved the performance of the MADGANs, especially for the Fashion-MNIST dataset. The effect is however less consistent on the MNIST dataset. 
+Taking the Replacement and Expansion scenarios into consideration, the MADGAN architecture performed best with a value, close to the number of classes in the dataset. For the Replacement scenario on MNIST, $K=10$ and for the Expansion scenario $K=7$ achieved the highest F1 scores. In accordance to these results, the outcome on Fashion-MNIST was the same, with $K=7$ and $K=10$ performing best on the two scenarios respectively. 
+
+Overall, it can be concluded that the increase of $K$ generally improved the performance of the MADGANs, especially for the Fashion-MNIST dataset. The effect is however less consistent on the MNIST dataset. \\
 
 \noindent\textbf{cMADGAN}
+The same cannot be said about the cMADGAN architecture. In fact, the opposite is the case here. On MNIST, the best FID and IS can be found with $K=3$. Here, the lowest FID score is achieved by generator \(G_{3,2}\), with $22.753$ and the highest IS achieved by generator \(G_{3,0}\), with $2.494$ (\ref{tab:cmadgan_mnist_fid_is}). The averaged performance of the architecture with growing $K$ showed a monotonic increase of the FID, pointing at a negative correlation between the number of generators and the quality of the generated images, judged by the FID. 
+The results for the Fashion-MNIST dataset are consistent with the conclusions drawn from the MNIST dataset. The best performing setup is again found in the setting with the lowest generator count of $K=3$. In both metrics, the FID and the IS, generator \(G_{3,2}\) achieved the best results (FID: $22.753$, IS: 5.049). Again pointing to the fact, that smaller values for K benefit the cMADGAN architecture.
 
+For both datasets, the opposite results as in the above paragraph must be concluded in terms of the FID and IS. Generally, the cMADGAN architecture performance decreases with an increase of K for these metrics. 
+
+Considering the Replacement and Expansion scenarios however points to an inconsistency with the afore mentioned results. $K=5$ and $K=7$ resulted in the best Replacement and Expansion scenarios on both datasets, favoring a mid to high value for K wrt the number of classes.
 
 
 \newpage
