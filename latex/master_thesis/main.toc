@@ -86,10 +86,10 @@
 \contentsline {subsubsection}{\numberline {8.3.2}Dataset: MNIST, Architecture: cMADGAN}{14}{subsubsection.8.3.2}%
 \contentsline {subsubsection}{\numberline {8.3.3}Dataset: FASHION, Architecture: MADGAN}{18}{subsubsection.8.3.3}%
 \contentsline {subsubsection}{\numberline {8.3.4}Dataset: FASHION, Architecture: cMADGAN}{22}{subsubsection.8.3.4}%
-\contentsline {subsubsection}{\numberline {8.3.5}Dataset: MNIST, Architecture: Deep Convolutional GAN}{26}{subsubsection.8.3.5}%
-\contentsline {subsubsection}{\numberline {8.3.6}Dataset: MNIST, Architecture: COND GAN}{27}{subsubsection.8.3.6}%
+\contentsline {subsubsection}{\numberline {8.3.5}Dataset: MNIST, Architecture: DCGAN}{26}{subsubsection.8.3.5}%
+\contentsline {subsubsection}{\numberline {8.3.6}Dataset: MNIST, Architecture: cGAN}{27}{subsubsection.8.3.6}%
 \contentsline {subsubsection}{\numberline {8.3.7}Dataset: FASHION, Architecture: DCGAN}{28}{subsubsection.8.3.7}%
-\contentsline {subsubsection}{\numberline {8.3.8}Dataset: FASHION, Architecture: COND GAN}{29}{subsubsection.8.3.8}%
+\contentsline {subsubsection}{\numberline {8.3.8}Dataset: FASHION, Architecture: cGAN}{29}{subsubsection.8.3.8}%
 \contentsline {subsubsection}{\numberline {8.3.9}Dataset: MNIST, Architecture: TDA}{30}{subsubsection.8.3.9}%
 \contentsline {subsubsection}{\numberline {8.3.10}Dataset: FASHION, Architecture: TDA}{31}{subsubsection.8.3.10}%
 \contentsline {subsection}{\numberline {8.4}Data Creation Histograms}{32}{subsection.8.4}%
