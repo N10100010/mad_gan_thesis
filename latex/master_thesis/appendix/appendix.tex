@@ -541,7 +541,7 @@ The graphical representations of the network architectures are created with the 
 \end{table}
 % End LaTeX Table for Replacement Experiment:
 \newpage
-\subsubsection{Dataset: MNIST, Architecture: cMADGAN}
+\subsubsection{Dataset: MNIST, Architecture: cMADGAN} \label{app_strat_class_performance_cmadgan_mnist}
 % LaTeX Metrics Table for Expansion Experiment: - Metric: val_f1_score - Target Gen Group: 3
 \noindent\textbf{Expansion Experiment: K=3}
 \begin{figure}[htbp]
@@ -1339,12 +1339,19 @@ The graphical representations of the network architectures are created with the 
 % End LaTeX Table for Replacement Experiment:
 \newpage
 
-\subsection{Data Creation Histograms}
-\subsubsection{DCGAN MNIST}
-
+\subsection{Other Graphs and Figures}
+\subsubsection{DCGAN MNIST, Mode Collapse}
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=.9\textwidth]{abb/datageneration_histograms/dc_mnist.png}
     \caption{A histogram chart depicting the class distribution of the generated data with the DCGAN generator trained on the \textbf{MNIST} dataset. The labels result from an auxiliary classifier as mentioned in \ref{body_experiment_labeling_data}.}
     \label{fig:figure_dcgan_datacreation_histogram}
+\end{figure}
+
+\subsubsection{Convolutional Filtering}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=.9\textwidth]{abb/maucher/maucher_ConvolutionConcept.png}
+    \caption{Depiction of the concept of convolutional filtering \cite{Maucher2025}.}
+    \label{fig:maucher_convolutional_filtering}
 \end{figure}
