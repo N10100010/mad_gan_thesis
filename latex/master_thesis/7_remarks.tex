@@ -1,32 +1,11 @@
-\section{Remarks}
+\section{Remarks} \label{chapter_remarks}
+This section shall serve ideas that, with the implemented frameworks and trained models, could further be analyzed. These ideas have been omitted, to stick to the scope of this thesis. 
 
-Is Weight Sharing Mandatory in MAD-GAN?
+\subsection{Connection between Generator Index and used Ratio to Classifier Performance}
+\noindent \noindent With the current design of the study, especially for the multi-generator architectures, some granular insights into individual generator contributions to GDA performance are not fully elaborated in the main results. This is primarily due to the sheer volume of data from individual multi-generator architectures and the substantial number of corresponding classifiers trained. To illustrate the scale, the experimental workflow (as detailed in Section \ref{body_experiment_succession}) required evaluating both Replacement and Expansion GDA scenarios using the synthetic samples produced by each of the $K$ generators independently. Since each of these scenarios involved testing six distinct data compositions (e.g., varying ratios of real to synthetic data), a multi-generator model with $K$ components led to $K \times 6$ classifiers being trained for the Replacement experiments, and an equivalent number for the Expansion experiments\footnote{Recall that both Expansion and Replacement scenarios included six different ratios.}. Consequently, in cases with $K=10$ generators, figures depicting the results for just one scenario, such as Replacement, would ideally display $10 \text{ generators} \times 6 \text{ configurations} = 60$ distinct learning curves, leading to very dense visualizations (exemplified in Figures \ref{fig:app_strat_class_performance_replacement__val_f1__10__example_used_1} and \ref{fig:app_strat_class_performance_expansion__val_f1__10__example_used_1}). A significant amount of time has been invested, trying to add information about the generators' index to the graphs, visually connecting the generator creating the samples with the classifier using said data. With the Figures already containing such a high number of graphs, the decision was made to only reduce the opacity of the graphs, to indicate a trend via overlapping graphs, ultimately resulting in a darker visual representation. This is especially prominent in the second linked figure.
 
-No, weight sharing is not strictly mandatory to implement the general idea of having multiple generators aiming for diversity and fooling a single discriminator. You could implement K completely independent generator networks.
+\subsection{Distinction of Modes}
+\noindent A big advantage inherent to the MADGAN architecture is the encouraged diversity and the enforced differentiation of modes, through the adjusted generator-identification objective of the discriminator \ref{theoretical_madgan_math}. Following those implications, if successful, the generators should focus on a specific subset of modes. In case of the MNIST dataset, this may result in $N$, potentially overlapping subsets of generator outputs. It is imaginable that one specific generator may be better at creating samples for the classes \([0, 3, 5, 8]\) and another is better creating samples for \([1, 4, 7]\). 
+Each classifier was used to create a classification report, stating its capabilities to classify each class separately\footnote{For this, the classification report from \textit{scikit-learn} was used. See: \url{https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html}.}. Therefore, the information about which generator created images best for a certain class is already present, but open for analysis.
 
-However, the weight-sharing strategy proposed by Ghosh et al. is a key architectural feature and contribution of their specific MAD-GAN formulation. In their paper, they propose sharing the parameters of the initial, deeper layers across all generators and only having separate (unshared) parameters for the final few layers of each generator.
-
-So, while not theoretically mandatory for any multi-generator setup, it's central to the design and efficiency benefits highlighted in the original MAD-GAN paper. Deviating significantly from it means you are implementing a different variant of a multi-generator diverse GAN.
-
-Advantages of Weight Sharing (as proposed in MAD-GAN):
-
-Parameter Efficiency: This is a major advantage. Instead of storing and training K full generator networks, you store one large shared network base and K smaller "heads" (the final unshared layers). This drastically reduces the total number of parameters.
-Lower Memory Footprint: Requires less GPU memory, making it feasible to train more generators or use larger base networks.
-Faster Training (Potentially): Fewer parameters typically mean fewer computations per training step, potentially leading to faster epochs, although the overall training dynamic is complex.
-Improved Training Stability and Sample Efficiency:
-The shared base learns common low-level and mid-level features more effectively because it receives gradient updates influenced by the learning objectives of all generators. It essentially gets a stronger, more averaged learning signal for shared features.
-This shared learning can prevent individual generators from collapsing early or diverging drastically, potentially leading to more stable training.
-Generators benefit from features learned via the experiences of other generators through the shared base.
-Knowledge Transfer: Useful features learned by the shared base (e.g., basic shapes, textures common to the dataset) are immediately available to all generators, promoting faster learning of complex structures.
-Implicit Regularization: Sharing weights constrains the generators, acting as a form of regularization that might prevent individual generators from overfitting noise or specific data points too quickly.
-Disadvantages of Weight Sharing:
-
-Limited Diversity Potential: Because a significant portion of the network is shared, the fundamental feature extraction process is common to all generators. The diversity is primarily introduced by the final few unshared layers. This might impose a ceiling on the maximum achievable diversity compared to completely independent generators, which could potentially learn radically different internal representations from scratch.
-Optimization Complexity: Training the shared parameters involves backpropagating gradients derived from multiple generator heads, each with its adversarial loss and influenced by the diversity loss relative to others. Balancing these potentially conflicting gradient signals flowing into the shared base can be tricky and might require careful tuning of learning rates and the diversity weight (lambda). Poor tuning could lead to suboptimal learning in the shared base.
-Architectural Constraint: The fixed structure (shared base + separate heads) might not be the optimal architecture for every problem or dataset. Completely independent generators offer more flexibility in exploring different architectures for each one.
-Potential Bottleneck: If the shared base fails to learn good representations or gets stuck in a poor local minimum, it negatively impacts all generators simultaneously. With independent generators, there's a chance that at least one might find a better solution path independently.
-In summary, the weight-sharing strategy in the original MAD-GAN paper is a clever design choice offering significant efficiency and stability benefits, making it practical to train multiple generators. However, this comes at the cost of potentially limiting the absolute maximum diversity achievable and introducing specific optimization challenges compared to using fully independent generator networks. The choice depends on the trade-off between efficiency, stability, and the desired level/type of diversity for a specific application.
-
-\cite{zhao2023gan}
-TODO: cite this again. they managed to apply dc gans to cifar10 
-
+\newpage

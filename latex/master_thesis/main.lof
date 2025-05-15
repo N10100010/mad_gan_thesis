@@ -16,6 +16,8 @@
 \contentsline {figure}{\numberline {27}{\ignorespaces Depiction of the discriminator used in the Conditional GAN dependent experiments. Used to train a generator based on the MNIST and Fashion-MNIST datasets.}}{4}{figure.caption.85}%
 \contentsline {figure}{\numberline {28}{\ignorespaces Depiction of the discriminator used in the MADGAN dependent experiments. Used to train a generator based on the MNIST and Fashion-MNIST datasets.}}{4}{figure.caption.86}%
 \contentsline {figure}{\numberline {29}{\ignorespaces Depiction of the discriminator used in the cMADGAN dependent experiments. Used to train a generator based on the MNIST and Fashion-MNIST datasets.}}{4}{figure.caption.87}%
-\contentsline {figure}{\numberline {30}{\ignorespaces A histogram chart depicting the class distribution of the generated data with the DCGAN generator trained on the \textbf {MNIST} dataset. The labels result from an auxiliary classifier as mentioned in \ref {body_experiment_labeling_data}.}}{32}{figure.caption.184}%
-\contentsline {figure}{\numberline {31}{\ignorespaces Depiction of the concept of convolutional filtering \cite {Maucher2025}.}}{33}{figure.caption.185}%
+\contentsline {figure}{\numberline {30}{\ignorespaces }}{17}{figure.caption.124}%
+\contentsline {figure}{\numberline {31}{\ignorespaces }}{17}{figure.caption.126}%
+\contentsline {figure}{\numberline {32}{\ignorespaces A histogram chart depicting the class distribution of the generated data with the DCGAN generator trained on the \textbf {MNIST} dataset. The labels result from an auxiliary classifier as mentioned in \ref {body_experiment_labeling_data}.}}{32}{figure.caption.184}%
+\contentsline {figure}{\numberline {33}{\ignorespaces Depiction of the concept of convolutional filtering \cite {Maucher2025}.}}{33}{figure.caption.185}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
