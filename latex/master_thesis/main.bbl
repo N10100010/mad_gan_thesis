@@ -345,6 +345,14 @@
 \newblock {In: }\emph{Proceedings of the IEEE Conference on Computer Vision and
   Pattern Recognition (CVPR)}, 2016, S. 2818--2826
 
+\bibitem[TFNL22]{Tanno2022repairingneuralnetworkfromcorrupt}
+\textsc{Tanno}, Ryutaro ; \textsc{F.Pradier}, Melanie ; \textsc{Nori}, Aditya
+  ; \textsc{Li}, Yingzhen:
+\newblock Repairing Neural Networks by Leaving the Right Past Behind.
+\newblock   (2022), 07, S.~19.
+\newblock \url{http://dx.doi.org/10.48550/arXiv.2207.04806}. --
+\newblock DOI 10.48550/arXiv.2207.04806
+
 \bibitem[WM21]{wickramaratne2021conditional}
 \textsc{Wickramaratne}, S.~D. ; \textsc{Mahmud}, M.~S.:
 \newblock Conditional-GAN Based Data Augmentation for Deep Learning Task
