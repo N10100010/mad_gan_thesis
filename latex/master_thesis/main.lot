@@ -1,31 +1,31 @@
 \babel@toc {english}{}\relax 
-\contentsline {table}{\numberline {1}{\ignorespaces Description of the used datasets for benchmarking.}}{35}{table.caption.32}%
-\contentsline {table}{\numberline {2}{\ignorespaces FID and IS results for GAN models on MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches. Baseline created from training datasets. Baseline created using images from the training set.}}{42}{table.caption.35}%
-\contentsline {table}{\numberline {3}{\ignorespaces FID and IS results for GAN models on Fashion-MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches. Baseline created using images from the training set.}}{43}{table.caption.36}%
-\contentsline {table}{\numberline {4}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN}}{45}{table.caption.38}%
-\contentsline {table}{\numberline {5}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: TDA}}{45}{table.caption.39}%
-\contentsline {table}{\numberline {6}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN}}{47}{table.caption.41}%
-\contentsline {table}{\numberline {7}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: TDA}}{47}{table.caption.42}%
-\contentsline {table}{\numberline {8}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}}{49}{table.caption.44}%
-\contentsline {table}{\numberline {9}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: TDA}}{49}{table.caption.45}%
-\contentsline {table}{\numberline {10}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}}{51}{table.caption.47}%
-\contentsline {table}{\numberline {11}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: TDA}}{51}{table.caption.48}%
-\contentsline {table}{\numberline {12}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN (K=10)}}{54}{table.caption.50}%
-\contentsline {table}{\numberline {13}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cGAN}}{54}{table.caption.51}%
-\contentsline {table}{\numberline {14}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN (K=10)}}{56}{table.caption.53}%
-\contentsline {table}{\numberline {15}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cGAN}}{56}{table.caption.54}%
-\contentsline {table}{\numberline {16}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}}{58}{table.caption.56}%
-\contentsline {table}{\numberline {17}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cGAN}}{58}{table.caption.57}%
-\contentsline {table}{\numberline {18}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}}{60}{table.caption.59}%
-\contentsline {table}{\numberline {19}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cGAN}}{60}{table.caption.60}%
-\contentsline {table}{\numberline {20}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN (K=10)}}{63}{table.caption.62}%
-\contentsline {table}{\numberline {21}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cMADGAN (K=5)}}{63}{table.caption.63}%
-\contentsline {table}{\numberline {22}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}}{65}{table.caption.65}%
-\contentsline {table}{\numberline {23}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=10)}}{65}{table.caption.66}%
-\contentsline {table}{\numberline {24}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}}{67}{table.caption.68}%
-\contentsline {table}{\numberline {25}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=5)}}{67}{table.caption.69}%
-\contentsline {table}{\numberline {26}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}}{69}{table.caption.71}%
-\contentsline {table}{\numberline {27}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=7)}}{69}{table.caption.72}%
+\contentsline {table}{\numberline {1}{\ignorespaces Description of the used datasets for benchmarking.}}{36}{table.caption.32}%
+\contentsline {table}{\numberline {2}{\ignorespaces FID and IS results for GAN models on MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches. Baseline created from training datasets. Baseline created using images from the training set.}}{43}{table.caption.35}%
+\contentsline {table}{\numberline {3}{\ignorespaces FID and IS results for GAN models on Fashion-MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches. Baseline created using images from the training set.}}{44}{table.caption.36}%
+\contentsline {table}{\numberline {4}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN}}{46}{table.caption.38}%
+\contentsline {table}{\numberline {5}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: TDA}}{46}{table.caption.39}%
+\contentsline {table}{\numberline {6}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN}}{48}{table.caption.41}%
+\contentsline {table}{\numberline {7}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: TDA}}{48}{table.caption.42}%
+\contentsline {table}{\numberline {8}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}}{50}{table.caption.44}%
+\contentsline {table}{\numberline {9}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: TDA}}{50}{table.caption.45}%
+\contentsline {table}{\numberline {10}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}}{52}{table.caption.47}%
+\contentsline {table}{\numberline {11}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: TDA}}{52}{table.caption.48}%
+\contentsline {table}{\numberline {12}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN (K=10)}}{55}{table.caption.50}%
+\contentsline {table}{\numberline {13}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cGAN}}{55}{table.caption.51}%
+\contentsline {table}{\numberline {14}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN (K=10)}}{57}{table.caption.53}%
+\contentsline {table}{\numberline {15}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cGAN}}{57}{table.caption.54}%
+\contentsline {table}{\numberline {16}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}}{59}{table.caption.56}%
+\contentsline {table}{\numberline {17}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cGAN}}{59}{table.caption.57}%
+\contentsline {table}{\numberline {18}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}}{61}{table.caption.59}%
+\contentsline {table}{\numberline {19}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cGAN}}{61}{table.caption.60}%
+\contentsline {table}{\numberline {20}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN (K=10)}}{64}{table.caption.62}%
+\contentsline {table}{\numberline {21}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cMADGAN (K=5)}}{64}{table.caption.63}%
+\contentsline {table}{\numberline {22}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}}{66}{table.caption.65}%
+\contentsline {table}{\numberline {23}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=10)}}{66}{table.caption.66}%
+\contentsline {table}{\numberline {24}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}}{68}{table.caption.68}%
+\contentsline {table}{\numberline {25}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=5)}}{68}{table.caption.69}%
+\contentsline {table}{\numberline {26}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}}{70}{table.caption.71}%
+\contentsline {table}{\numberline {27}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=7)}}{70}{table.caption.72}%
 \contentsline {table}{\numberline {28}{\ignorespaces Effect of varying the number of generators ($N=3, 5, 7, 10$) in the MADGAN model on FID and Inception Score (IS $\pm $ Std. Dev) for the \textbf {MNIST} dataset. Results for each generator index are presented alongside baseline metrics.}}{5}{table.caption.88}%
 \contentsline {table}{\numberline {29}{\ignorespaces Effect of varying the number of generators ($N=3, 5, 7, 10$) in the MADGAN model on FID and Inception Score (IS $\pm $ Std. Dev) for the \textbf {Fashion-MNIST} dataset. Results for each generator index are presented alongside baseline metrics.}}{6}{table.caption.89}%
 \contentsline {table}{\numberline {30}{\ignorespaces Effect of varying the number of generators ($N=3, 5, 7, 10$) in the cMADGAN model on FID and Inception Score (IS $\pm $ Std. Dev) for the \textbf {MNIST} dataset. Results for each generator index are presented alongside baseline metrics.}}{7}{table.caption.90}%
