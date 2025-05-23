@@ -334,74 +334,104 @@ As afore mentioned, the MADGAN architecture employs multiple generators and one 
 \delta(i) = 
 \begin{cases}
 1, & \text{if the sample originates from the } i\text{-th generator, at positions:} \quad i \in \{1, \ldots, k\} \\
-1, & \text{if the sample originates from} P_{\text{data}} \text{at positions:} i = k+1 \\
-0, & \text{otherwise}
+1, & \text{if the sample originates from } P_{\text{data}} \text{ at positions:} \quad i = k+1 \\
 \end{cases}
 \]
-This means exactly one entry of \(\delta\) is 1, indicating the source of the sample, and all other entries are 0.
- Following this definition, the Ddd \(\delta\) can be understood as a one-hot encoding indicating whether a given sample is real of, and if not, from which generator it originates \footnote{It is important to point out, that the Dirac delta distribution is actually continuous. Their usage of the Ddd reminds of the Kronecker delta function, which \( \delta(i,j) = 1 \text{ for } i=j; 0 \text{ for } i \ne j \).}. The objective function for the optimization of \(\theta_d\), with \(\theta_g\) frozen is therefore:
+Since one of the above cases must be fulfilled, every other index in the resulting vector must be $0$. This means exactly one entry of \(\delta\) is 1, indicating the source of the sample.
+Following this definition, the Ddd \(\delta\) can be understood as a one-hot encoding indicating whether a given sample is real of, and if not, from which generator it originates \footnote{It is important to point out, that the Dirac delta distribution is actually continuous. Their usage of the Ddd reminds of the Kronecker delta function, which \( \delta(i,j) = 1 \text{ for } i=j; 0 \text{ for } i \ne j \).}. The objective function for the optimization of \(\theta_d\), with \(\theta_g\) frozen is therefore:
 
 \begin{equation}
     \max\limits_{\theta_d}\mathbb{E}_{x \sim p} H(\delta, D(x; \theta_d))
 \end{equation}.
 
 \noindent
-\(H(...)\) here represents the negative cross-entropy function. Important to point out here is that, \textit{Intuitively, in order to correctly identify the generator that produced a given fake sample, the discriminator must learn to push different generators towards different identifiable modes.} \cite{ghosh2018madgan}, page 4. \hyperref[fig:figure_madgan_diverse_mode_push]{Figure 2} shows a visualization of the generators being pushed to different modes. This is explicitly encouraged in the discriminators objective function. The objective for the generators however, remains semantically the same as in the vanilla GAN \ref{theory_gan_vanilla_formula}. The difference here is that the objective function is generalized with an indexing \(i\) for the number of generators. That is, for the \(i\)-th generator, the objective function is to minimize:
+\(H(...)\) here represents the negative cross-entropy function. Important to point out here is that, \textit{Intuitively, in order to correctly identify the generator that produced a given fake sample, the discriminator must learn to push different generators towards different identifiable modes.} \cite{ghosh2018madgan}, page 4. Figure \ref{fig:figure_madgan_diverse_mode_push} shows a visualization of the generators being pushed to different modes. This is explicitly encouraged in the discriminators objective function. The objective for the generators however, remains semantically the same as in the vanilla GAN \ref{theory_gan_vanilla_formula}. The difference here is that the objective function is generalized with an indexing \(i\) for the number of generators. That is, for the \(i\)-th generator, the objective function is to minimize:
 
 \begin{equation}
     \mathcal{L}_{Gen_i} = \mathbf{E}_{x \sim P_{data}} [ \log D(X; \theta_d) ] + \mathbf{E}_{z \sim P_{z}} \log (1-D_{k+1}(G_i(z; \theta_{g}^{i}); \theta_x))
 \end{equation}
 
 \noindent\textbf{Enforcing Diverse Modes:}
-The researchers provide a theorem demonstrating that the \(k\) generators collectively form a mixture model. In it, each generator represents a mixture component to the global optimum of \( -(k+1)\log(k+1)+1 \log k \). This is achieved, when \(p_{data} = \frac{1}{k}\sum_{i=1}^{k} p_{g_i}\). Significant to note is that, for \(k = 1\), the case with one generator, one obtains the exact Jensen-Shannon divergence based objective, as shown in the vanilla GAN paper by Goodfellow et al. \cite{goodfellow2014generativeadversarialnetworks}. Following their proof, the objective function for all \(k\) generators is to minimize:
+The multi-agent framework by Ghosh et al. introduces a mechanism for promoting mode diversity through multiple generators. The core idea is formalized in \textbf{Theorem 1} \cite{ghosh2018madgan} (page 2), which demonstrates that, given an optimal discriminator, the \(k\) generators collectively form a mixture model.
+
+The objective function for the set of generators, which they collectively minimize, is defined as:
 
 \begin{equation}
-    \mathcal{L}_{Gen_{[0...K]}} = \mathbf{E}_{x \sim P_{data}} [ \log D_{k+1}(X) ] + \sum_{i=1}^{k}\mathbf{E}_{x \sim p_{g_i}} \log (1-D_{k+1}(x))
+\label{eq:madgan_gen_loss_original}
+\mathcal{L}_{Gen_{[0...k]}} = \mathbf{E}_{x \sim P_{data}} [ \log D_{k+1}(X) ] + \sum_{i=1}^{k}\mathbf{E}_{x \sim p_{g_i}} [\log (1-D_{k+1}(x))]
 \end{equation}
 
+When the discriminator \(D_{k+1}\) reaches its optimal state for a given set of generator distributions, its output \(D^*_{k+1}(x)\) allows the generator's objective function to be re-expressed in terms of divergences between probability distributions. While the explicit algebraic steps are omitted for brevity in the paper \cite{ghosh2018madgan}, this transformation converts the cross-entropy terms in Equation \ref{eq:madgan_gen_loss_original} into a form involving Kullback-Leibler (KL) divergences. This is a standard technique in GAN proofs, where the problem of distinguishing \textit{real} from \textit{fake} becomes one of minimizing the \textit{distance} between distributions.
+
+Specifically, at equilibrium, the generator objective boils down to minimizing:
+
+\begin{equation}
+\label{eq:madgan_theorem1_simplified}
+\text{KL} \left( p_{data}(x) \| p_{avg}(x) \right) + k \cdot \text{KL} \left( \frac{1}{k}\sum_{i=1}^k p_{g_i}(x) \middle\| p_{avg}(x) \right) - (k+1)\log(k+1) + k\log k
+\end{equation}
+where \(k\) is the number of generators and \(p_{avg}(x) = \frac{p_{data}(x) + \sum_{i=1}^k p_{g_i}(x)}{k+1}\).
+
+The key to understanding the constant term \( -(k+1)\log(k+1) + k\log k \) lies in how this transformed objective achieves its global minimum. This minimum value is reached precisely when the real data distribution \(p_{data}\) is perfectly matched by the average of the generator distributions, i.e., \(p_{data} = \frac{1}{k}\sum_{i=1}^{k} p_{g_i}\).
+
 \noindent
+Under this optimal condition (\(p_{data} = \frac{1}{k}\sum_{i=1}^{k} p_{g_i}\)):
+\begin{enumerate}
+    \item The average distribution \(p_{avg}(x)\) simplifies to \(p_{data}(x)\), as \\\(p_{avg}(x) = \frac{p_{data}(x) + k \cdot p_{data}(x)}{k+1} = \frac{(k+1)p_{data}(x)}{k+1} = p_{data}(x)\).
+    \item Consequently, both KL-divergence terms in Equation \ref{eq:madgan_theorem1_simplified} become zero, as \(\text{KL}(P||Q) = 0\) if and only if \(P=Q\).
+    \begin{itemize}
+        \item \(\text{KL}(p_{data}(x) \| p_{avg}(x)) = \text{KL}(p_{data}(x)|\| p_{data}(x)) = 0\)
+        \item \(k \cdot \text{KL}\left(\frac{1}{k}\sum_{i=1}^k p_{g_i}(x) \| p_{avg}(x)\right) = k \cdot \text{KL}(p_{data}(x) \| p_{data}(x)) = 0\)
+    \end{itemize}
+\end{enumerate}
+
+
+Thus, at this global optimum, the generator's objective value is simply the constant term: \( -(k+1)\log(k+1) + k\log k \). This constant represents the baseline value of the divergence when the distributions are perfectly aligned, arising from the inherent mathematical structure of the objective function transformation.
+
+It's significant to note that, for \(k=1\) (the case with a single generator), substituting \(k=1\) into this expression yields \( -(1+1)\log(1+1) + 1\log 1 = -2\log 2 + 0 = -\log 4 \). This value perfectly aligns with the known optimal value of the generator objective for the vanilla GAN, which is rooted in the Jensen-Shannon divergence as shown by Goodfellow et al. \cite{goodfellow2014generativeadversarialnetworks}. This consistency reinforces the correctness of Theorem 1.
+
 The exact formulation of their theorem, proof, and propositions can be found in Ghosh et al. \cite{ghosh2018madgan}, following formulas (3) through (9).
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=.9\textwidth]{abb/madgan_diverse_mode_push.PNG}
-    \caption{Figure taken from the original paper \cite{ghosh2018madgan}. The visualization shows how different generators \(G_{1}\) and \(G_{2}\) are pushed to different modes \(M_{1}\) and \(M_{2}\)}
+    \caption{Figure taken from the original paper \cite{ghosh2018madgan}. The visualization shows how different generators \(G_ {1}\) and \(G_{2}\) are pushed to different modes \(M_{1}\) and \(M_{2}\), by the discriminator.}
     \label{fig:figure_madgan_diverse_mode_push}
 \end{figure}
 
 \subsubsection{Architectural Adjustments}
 \label{theory_madgan_architecture}
-The architecture changes can be summarized into three mayor changes applied to the vanilla GAN (\ref{theoretical_gan}) architecture:
+The architectural changes can be summarized into three major changes applied to the vanilla GAN (\ref{theoretical_gan}) architecture:
 
-\noindent\textbf{Multiple Generators:} The MADGAN architecture employs multiple generators instead of a single one. Following the intuition behind the adjusted discriminator objective, the respective GANs distribute into different, mostly disjoint regions in the real data distribution.
+\noindent\textbf{Multiple Generators:} The MADGAN architecture employs multiple generators instead of a single one. Following the intuition behind the adjusted discriminator objective, the outputs of the generators are distributed across different, mostly disjoint regions of the real data distribution.
 
-\noindent\textbf{Modified Discriminator Objective:} The discriminator in this architecture outputs \(k + 1\) instead of \(1\) utilizing the softmax function \ref{theoretical_activations_softmax}. One output for every generator indicating whether an image originates from either one of the generator and one output implying if the discriminator came to the conclusion that the current image is fake or not. As afore described, this encourages the discriminator to push the generators into identifiable distinct outputs.
+\noindent\textbf{Modified Discriminator Objective:} The discriminator's last layer has an output of \(k + 1\), instead of \(1\)\footnote{Compared to the vanilla version of the architecture \ref{fig:figure_gan_arch}.} utilizing the softmax function \ref{theoretical_activations_softmax}. One output for every generator indicating whether an image originates from either one of the generator and one output implying if the discriminator came to the conclusion that the current image is fake or not. This encourages the discriminator to push the generators into identifiable distinct outputs (\ref{fig:figure_madgan_diverse_mode_push}).
 
-\noindent\textbf{Parameter Sharing among Generators:} Generators in the MADGAN architecture share most of their layers between the \(k\) generators. This reduces redundant compute in the initial feature extraction layers capturing high-frequency structures common in many datasets. Especially in single-view data, this is recommended. For multi-view data it is not recommended, to allow each generator to capture mode-specific features.
+\noindent\textbf{Parameter Sharing among Generators:} In the MADGAN architecture, the generators share all but the input and the final dense layer across the \(k\) generators. These shared layers function as a common feature extractor, reducing redundant computation in early feature extraction stages that capture high-frequency structures common to many datasets\footnote{For example, the first layers may detect horizontal and vertical edges, followed by corner detection, and so on.}. This setup is particularly recommended for single-view data, where the data distribution is more uniform. For multi-view data, however, parameter sharing is discouraged, as it may hinder each generator’s ability to learn mode-specific features.
+
 
 % Define placeholder architectural functions
 \newcommand{\definegenerator}{\texttt{define\_generator}}
 \newcommand{\definediscriminator}{\texttt{define\_discriminator}}
 % Define lambda symbol for diversity weight
 \newcommand{\lambdadiv}{\lambda_{\text{div}}}
-\subsection[Adapting MAD-GAN for Conditional Generation with Explicit Diversity - CMADGAN]{Adapting MADGAN for Conditional Generation with Explicit Diversity}
+\subsection[Adapting MADGAN for Conditional Generation with Explicit Diversity - cMADGAN]{Adapting MADGAN for Conditional Generation with Explicit Diversity}
 \label{theoretical_cmadgan}
 
-The finial goal of this research includes exploring methods for generating diverse samples in the mentioned datasets \ref{used_datasets} to be used for data augmentations. While the multi-agent framework by Ghosh et al. presents a potential approach, experiments revealed significant challenges in achieving stable training and satisfactory results in terms of image quality with the original method. Especially the CIFAR10 datasets showed to be challenging, which is the only colored dataset used.
+The final goal of this research includes exploring methods for generating diverse samples in the mentioned datasets \ref{used_datasets} to be used for data augmentations. While the multi-agent framework by Ghosh et al. presents a potential approach, experiments revealed significant challenges in achieving stable training and satisfactory results in terms of image quality with the original method. Especially the CIFAR-10 dataset proved to be challenging, which is the only colored dataset used.
 
-Consequently, an alternative framework, termed Conditional Multi-Agent Diverse GAN (cMADGAN), was conceptualized. The adjustment aims to retain the multi-generator diversity principle while simplifying the task of the discriminator. The discriminator model is rolled back to its original objective to differentiate between real and fake images. However, initial experiments indicated that this approach also faced convergence difficulties when applied to the original CIFAR10 dataset. This specific is explained in more detail in the experiments section \ref{setup_cifar10_scope}.
+Consequently, an alternative framework, termed Conditional Multi-Agent Diverse GAN (cMADGAN), was conceptualized. The adjustment aims to retain the multi-generator diversity principle while simplifying the task of the discriminator. The discriminator model is rolled back to its original objective to differentiate between real and fake images. However, initial experiments indicated that this approach also faced convergence difficulties when applied to the original CIFAR-10 dataset. This specific is explained in more detail in the experiments section \ref{setup_cifar10_scope}.
 
-The following sections detail the cMADGAN framework as implemented. This approach utilizes multiple generators (\( G_1, \dots, G_K \)), a single conditional discriminator (\( D \)) performing standard real/fake classification, and incorporates an explicit diversity loss between generator outputs alongside the adversarial objective.
+The following sections detail the cMADGAN framework as implemented. This approach utilizes multiple generators ($G_1, \dots, G_K$), a single conditional discriminator ($D$) performing standard real/fake classification, and incorporates an explicit diversity loss between generator outputs alongside the adversarial objective.
 
 \subsubsection{Mathematical Formulation}
 \label{theoretical_cmadgan_math}
 
-Let \( z \) be a latent vector sampled from a prior distribution \( p(z) \), typically a standard normal distribution. Let \( c \) be the condition variable (e.g., class label) sampled from a distribution \( p(c) \). The framework also employs \( K \) generator networks \( G_1, \dots, G_K \) and a single discriminator network \( D \). Each generator \( G_i \) maps an input pair \( (z, c) \) to the data space, producing a fake sample \( \hat{x}_i = G_i(z, c) \). The discriminator \( D \) takes an input pair \( (x, c) \) (where \( x \) can be a real sample from the true data distribution \( p_{\text{data}}(x|c) \) or a fake sample \( \hat{x}_i \)) and outputs a scalar probability estimating the likelihood that \( x \) is real given the condition \( c \).
+Let $z$ be a latent vector sampled from a prior distribution $p(z)$, typically a standard normal distribution. Let $c$ be the condition variable (e.g., class label) sampled from a distribution $p(c)$. The framework also employs $K$ generator networks $G_1, \dots, G_K$ and a single discriminator network $D$. Each generator $G_i$ maps an input pair $(z, c)$ to the data space, producing a fake sample $\hat{x}_i = G_i(z, c)$. The discriminator $D$ takes an input pair $(x, c)$ (where $x$ can be a real sample from the true data distribution $p_{\text{data}}(x|c)$ or a fake sample $\hat{x}_i$) and outputs a scalar probability estimating the likelihood that $x$ is real given the condition $c$.
 
-The training involves optimizing two competing objectives, \( \mathcal{L}_D \) for the discriminator and \( \mathcal{L}_G \) for the generators:
+The training involves optimizing two competing objectives, $\mathcal{L}_D$ for the discriminator and $\mathcal{L}_G$ for the generators:
 
 \paragraph{Discriminator Loss:}
-The discriminator is trained to distinguish real samples from fake samples generated by \textit{any} of the \( K \) generators, given the condition \( c \). Using the binary cross-entropy (BCE) loss, the objective is:
+The discriminator is trained to distinguish real samples from fake samples generated by \textit{any} of the $K$ generators, given the condition $c$. Using the binary cross-entropy (BCE) loss, the objective is:
 \begin{equation}
 \label{eq:cmadgan_loss_d}
 \begin{split}
@@ -409,38 +439,36 @@ The discriminator is trained to distinguish real samples from fake samples gener
 & - \frac{1}{K} \sum_{i=1}^{K} \mathbb{E}_{z \sim p(z), c \sim p(c)} [\log(1 - D(G_i(z, c), c))]
 \end{split}
 \end{equation}
-In practice, techniques like label smoothing are applied to stabilize training. In its current implementation, it is set to \(0.9\) for real and \(0.1\) for fake samples.
+This formulation averages the loss over the fake samples from all generators.
 
 \paragraph{Generator Loss:}
-The generators are trained collectively to fool the discriminator and simultaneously produce diverse outputs. The combined loss function includes an adversarial term and an explicit diversity term:
+The generators are trained collectively to fool the discriminator and simultaneously produce diverse outputs. The combined loss function for all generators includes an adversarial term and an explicit diversity term:
 \begin{equation}
 \label{eq:cmadgan_loss_g}
-\mathcal{L}_G = \mathcal{L}_{\text{adv}} - \lambdadiv \mathcal{L}_{\text{sim}}
+\mathcal{L}_G = \mathcal{L}_{\text{adv}} + \lambda_{div} \cdot \mathcal{L}_{\text{div}}
 \end{equation}
-where \( \lambdadiv \) is a hyperparameter controlling the weight of the diversity component.
+where \(\lambda_{div}\) is a hyperparameter controlling the importance of the diversity component.
 
 The components are defined as:
 \begin{itemize}
-    \item \textbf{Adversarial Loss (\( \mathcal{L}_{\text{adv}} \)):} Encourages generators to produce samples that the discriminator classifies as real. The non-saturating formulation based on maximizing the probability of fake samples being classified as real is commonly used:
+    \item \textbf{Adversarial Loss ($\mathcal{L}_{\text{adv}}$):} Encourages generators to produce samples that the discriminator classifies as real. This is the sum of the non-saturating losses for each generator:
     \begin{equation}
     \label{eq:cmadgan_loss_g_adv}
-    \mathcal{L}_{\text{adv}} = - \frac{1}{K} \sum_{i=1}^{K} \mathbb{E}_{z \sim p(z), c \sim p(c)} [\log D(G_i(z, c), c)]
+    \mathcal{L}_{\text{adv}} = - \sum_{i=1}^{K} \mathbb{E}_{z \sim p(z), c \sim p(c)} [\log D(G_i(z, c), c)]
     \end{equation}
 
-    \item \textbf{Similarity Loss (\( \mathcal{L}_{\text{sim}} \)):} This term quantifies the similarity between outputs of different generator pairs for the same input \( (z, c) \). The goal during optimization (\(\min \mathcal{L}_G\)) is to maximize diversity, which corresponds to minimizing the similarity term \( \mathcal{L}_{\text{sim}} \) when \( \lambdadiv > 0 \) due to the negative sign in Eq. \ref{eq:cmadgan_loss_g}. Cosine similarity between the flattened outputs is used:
+    \item \textbf{Diversity Loss ($\mathcal{L}_{\text{div}}$):} This term actively pushes the outputs of different generators apart. The goal during optimization ($\min \mathcal{L}_G$) is to maximize diversity. This is achieved by minimizing the negative cosine similarity. Cosine similarity is defined as:
     \begin{equation}
     \label{eq:cmadgan_cossim}
     \text{CosSim}(a, b) = \frac{\text{vec}(a) \cdot \text{vec}(b)}{\|\text{vec}(a)\|_2 \|\text{vec}(b)\|_2}
     \end{equation}
-    where \( \text{vec}(\cdot) \) denotes flattening the image tensor into a vector. The similarity loss is the average pairwise cosine similarity:
+    where $\text{vec}(\cdot)$ denotes flattening the image tensor into a vector and $\|\cdot\|_2$ represents the \textit{L2 norm}, also known as the Euclidean norm of a vector. The diversity loss is the average pairwise negative cosine similarity, which the optimizer seeks to minimize:
     \begin{equation}
-    \label{eq:cmadgan_loss_g_sim}
-    \mathcal{L}_{\text{sim}} = \frac{1}{N_p} \sum_{i=1}^{K} \sum_{j=i+1}^{K} \mathbb{E}_{z \sim p(z), c \sim p(c)} [\text{CosSim}(G_i(z, c), G_j(z, c))]
+    \label{eq:cmadgan_loss_g_div}
+    \mathcal{L}_{\text{div}} = -\frac{1}{N_p} \sum_{i=1}^{K} \sum_{j=i+1}^{K} \mathbb{E}_{z \sim p(z), c \sim p(c)} [\text{CosSim}(G_i(z, c), G_j(z, c))]
     \end{equation}
-    where \( N_p = K(K-1)/2 \) is the number of unique generator pairs. Minimizing the combined \( \mathcal{L}_G \) in Eq. \ref{eq:cmadgan_loss_g} thus encourages fooling the discriminator (minimizing \( \mathcal{L}_{\text{adv}} \)) while discouraging similarity between generator outputs (by minimizing \( -\mathcal{L}_{\text{sim}} \)).
+    where $N_p = K(K-1)/2$ is the number of unique generator pairs. Minimizing the combined $\mathcal{L}_G$ in Eq. \ref{eq:cmadgan_loss_g} thus encourages fooling the discriminator while explicitly promoting diversity between generator outputs.
 \end{itemize}
-
-%\textbf{Note on Implementation:} The provided codebase calculates a `diversity_loss_term = mean(CosSim - 1)` and subtracts `diversity_weight * diversity_loss_term` from the adversarial sum. This is mathematically equivalent to `Sum(L_adv_i) + diversity_weight * mean(1 - CosSim)`, which, when minimized, correctly promotes diversity by minimizing the dissimilarity `(1 - CosSim)`. The formulation \( \mathcal{L}_G = \mathcal{L}_{\text{adv}} - \lambdadiv \mathcal{L}_{\text{sim}} \) presented here achieves the same goal.
 
 \subsubsection{Architectural Adjustments}
 \label{theory_cmadgan_architecture}
@@ -449,18 +477,18 @@ The cMADGAN architecture makes specific adjustments compared to both standard co
 
 \begin{itemize}
     \item \textbf{Multiple Generators:}
-    As the original MADGAN framework proposed, the cMADGAN employs \(K\) distinct generator networks. As suggested in the original paper, the generators do not share their weights, due to the selection of datasets (cf. section 4.1 \cite{ghosh2018madgan}). Each generator takes both the latent vector \( z \) and the condition \( c \) as input.
+    As the original MADGAN framework proposed, the cMADGAN employs $K$ distinct generator networks. As suggested in the original paper, the generators do not share their weights, due to the selection of datasets (cf. section 4.1 in \cite{ghosh2018madgan}). Each generator takes both the latent vector $z$ and the condition $c$ as input.
     \item \textbf{Conditional Discriminator:}
-    Unlike the original MADGAN discriminator, the task of the cMADGAN discriminator performs the standard conditional GAN task \ref{theory_cgan_architecture}. \(D\) receives an image \( x \) (real or fake) and its corresponding condition \( c \), and outputs a single probability indicating whether the image is real given the condition.
-    \item \textbf{Conditioning Mechanism:} Class conditioning \( c \) is integrated into both generator and discriminator networks. There are multiple different ways to encode information \ref{theory_cgan_architecture}.
+    Unlike the original MADGAN discriminator, the task of the cMADGAN discriminator performs the standard conditional GAN task \ref{theory_cgan_architecture}. $D$ receives an image $x$ (real or fake) and its corresponding condition $c$, and outputs a single probability indicating whether the image is real given the condition.
+    \item \textbf{Conditioning Mechanism:} Class conditioning $c$ is integrated into both generator and discriminator networks.
         \begin{itemize}
-            \item In the generators, this embedding is concatenated with the latent vector \( z \) before being processed by the main network layers (e.g., transposed convolutions).
-            \item In the discriminator, the condition embedding might be concatenated with intermediate feature maps or projected via learned linear layers and combined with image features before the final classification output, following common practices for conditional discriminators \cite{mirza2014conditionalgenerativeadversarialnets}.
+            \item In the generators, an embedding of the condition $c$ is concatenated with the latent vector $z$ at the input layer before being processed by the main network layers (e.g., transposed convolutions).
+            \item In the discriminator, the condition embedding is typically concatenated with intermediate feature maps before the final classification output, following common practices for conditional discriminators \cite{mirza2014conditionalgenerativeadversarialnets}.
         \end{itemize}
-    \item \textbf{Explicit Diversity Enforcement:} Diversity is not solely an emergent property of competition but is explicitly encouraged via the \( \mathcal{L}_{\text{sim}} \) term in the generator objective (\ref{eq:cmadgan_loss_g}), directly penalizing high similarity between the outputs of different generators for the same input \( (z, c) \).
+    \item \textbf{Explicit Diversity Enforcement:} Diversity is not solely an emergent property of competition but is explicitly encouraged via the $\mathcal{L}_{\text{div}}$ term in the generator objective (Eq. \ref{eq:cmadgan_loss_g}), directly penalizing high similarity between the outputs of different generators for the same input $(z, c)$.
 \end{itemize}
 
-The specific convolutional layers, normalization techniques, and activation functions within the generator and discriminator networks follow standard deep convolutional GAN (DCGAN) \cite{Radford2015DCGAN} principles and other relevant architectural patterns suitable. This cMADGAN structure provides a framework for conditional generation that leverages multiple generators for diversity.
+The specific convolutional layers, normalization techniques, and activation functions within the generator and discriminator networks follow standard deep convolutional GAN (DCGAN) \cite{Radford2015DCGAN} principles and other relevant architectural patterns. This cMADGAN structure provides a framework for conditional generation that leverages multiple generators for diversity.
 
 
 % ########################################################################################################
@@ -503,13 +531,15 @@ A higher IS indicates that the model generates images that are confidently class
 
 \subsubsection[Fréchet Inception Distance - FID]{Fréchet Inception Distance}
 
-The Fréchet Inception Distance (FID) \cite{heusel2018ganstrainedtimescaleupdate} improves upon IS by directly comparing the feature distributions of real and generated images. FID embeds both real (\(r\)) and generated (\(g\)) images into a lower-dimensional feature space using a pretrained InceptionV3 network (typically using the activations from the final average pooling layer, often referred to as 'pool3'). It then models the distributions of these embeddings as multivariate Gaussian.
+The Fréchet Inception Distance (FID) \cite{heusel2018ganstrainedtimescaleupdate} improves upon IS by directly comparing the feature distributions of real and generated images. FID embeds both real (\(r\)) and generated (\(g\)) images into a lower-dimensional feature space using a pretrained \textit{InceptionV3} network (typically using the activations from the final average pooling layer, often referred to as 'pool3'). Each image is mapped to a fixed-length feature vector (embedding) consisting of all activation values from this layer. The embeddings across many images are then used to estimate two multivariate Gaussian distributions, one for real and one for generated data, by computing their empirical mean and covariance.
 
-Let \( (\mu_r, \Sigma_r) \) and \( (\mu_g, \Sigma_g) \) denote the means and covariance matrices of the real and generated image Inception feature embeddings, respectively. The FID score is computed as the Fréchet distance (also known as Wasserstein-2 distance) between these two Gaussian distributions:
+
+Let \( (\mu_r, \Sigma_r) \) and \( (\mu_g, \Sigma_g) \) denote the means and covariance matrices of the real and generated image Inception feature embeddings, respectively. The FID score is computed as the Fréchet distance (also known as Wasserstein-2 distance) between these two multivariate Gaussian distributions:
 \begin{equation}
-FID = \| \mu_r - \mu_g \|^2_2 + \text{Tr} \left( \Sigma_r + \Sigma_g - 2(\Sigma_r \Sigma_g)^{1/2} \right)
+\text{FID} = \| \mu_r - \mu_g \|^2_2 + \text{Tr} \left( \Sigma_r + \Sigma_g - 2\left( \Sigma_r \Sigma_g \right)^{1/2} \right)
 \end{equation}
-where \( \|\cdot\|^2_2 \) is the squared Euclidean norm, \( \text{Tr}(\cdot) \) is the trace of a matrix, and \( (\Sigma_r \Sigma_g)^{1/2} \) is the matrix square root of the product of the covariance matrices.
+where \( \|\cdot\|^2_2 \) is the squared \textit{L2 norm} (or Euclidean norm), \( \text{Tr}(\cdot) \) is the trace of a matrix, and \( \left( \Sigma_r \Sigma_g \right)^{1/2} \) denotes the **matrix square root of the matrix product** (i.e., standard matrix multiplication, not element-wise) between the two covariance matrices. The matrix square root \( A^{1/2} \) of a positive semi-definite matrix \( A \) is defined such that \( A^{1/2} A^{1/2} = A \).
+
 
 \noindent\textbf{Interpretation}:
 Lower FID indicates that the distribution of generated image features is more similar to the distribution of real image features, suggesting better quality and diversity. A score of 0 indicates identical distributions.

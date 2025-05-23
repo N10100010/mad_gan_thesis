@@ -181,230 +181,234 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1}Mathematical Formulation}{26}{subsubsection.3.6.1}\protected@file@percent }
 \newlabel{theoretical_madgan_math}{{3.6.1}{26}{Mathematical Formulation}{subsubsection.3.6.1}{}}
 \citation{ghosh2018madgan}
+\citation{ghosh2018madgan}
+\citation{ghosh2018madgan}
+\newlabel{eq:madgan_gen_loss_original}{{15}{27}{Mathematical Formulation}{equation.3.15}{}}
 \citation{goodfellow2014generativeadversarialnetworks}
 \citation{ghosh2018madgan}
 \citation{ghosh2018madgan}
 \citation{ghosh2018madgan}
-\BKM@entry{id=25,dest={73756273756273656374696F6E2E332E362E32},srcline={372}}{5C3337365C3337375C303030335C3030302E5C303030365C3030302E5C303030325C3030305C3034305C303030415C303030725C303030635C303030685C303030695C303030745C303030655C303030635C303030745C303030755C303030725C303030615C3030306C5C3030305C3034305C303030415C303030645C3030306A5C303030755C303030735C303030745C3030306D5C303030655C3030306E5C303030745C30303073}
-\BKM@entry{id=26,dest={73756273656374696F6E2E332E37},srcline={387}}{5C3337365C3337375C303030335C3030302E5C303030375C3030305C3034305C303030415C303030645C303030615C303030705C303030745C303030695C3030306E5C303030675C3030305C3034305C3030304D5C303030415C303030445C3030302D5C303030475C303030415C3030304E5C3030305C3034305C303030665C3030306F5C303030725C3030305C3034305C303030435C3030306F5C3030306E5C303030645C303030695C303030745C303030695C3030306F5C3030306E5C303030615C3030306C5C3030305C3034305C303030475C303030655C3030306E5C303030655C303030725C303030615C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030775C303030695C303030745C303030685C3030305C3034305C303030455C303030785C303030705C3030306C5C303030695C303030635C303030695C303030745C3030305C3034305C303030445C303030695C303030765C303030655C303030725C303030735C303030695C303030745C303030795C3030305C3034305C3030302D5C3030305C3034305C303030435C3030304D5C303030415C303030445C303030475C303030415C3030304E}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Figure taken from the original paper \cite  {ghosh2018madgan}. The visualization shows how different generators \(G_{1}\) and \(G_{2}\) are pushed to different modes \(M_{1}\) and \(M_{2}\)}}{28}{figure.caption.27}\protected@file@percent }
-\newlabel{fig:figure_madgan_diverse_mode_push}{{4}{28}{Figure taken from the original paper \cite {ghosh2018madgan}. The visualization shows how different generators \(G_{1}\) and \(G_{2}\) are pushed to different modes \(M_{1}\) and \(M_{2}\)}{figure.caption.27}{}}
+\BKM@entry{id=25,dest={73756273756273656374696F6E2E332E362E32},srcline={401}}{5C3337365C3337375C303030335C3030302E5C303030365C3030302E5C303030325C3030305C3034305C303030415C303030725C303030635C303030685C303030695C303030745C303030655C303030635C303030745C303030755C303030725C303030615C3030306C5C3030305C3034305C303030415C303030645C3030306A5C303030755C303030735C303030745C3030306D5C303030655C3030306E5C303030745C30303073}
+\newlabel{eq:madgan_theorem1_simplified}{{16}{28}{Mathematical Formulation}{equation.3.16}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2}Architectural Adjustments}{28}{subsubsection.3.6.2}\protected@file@percent }
 \newlabel{theory_madgan_architecture}{{3.6.2}{28}{Architectural Adjustments}{subsubsection.3.6.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Adapting MAD-GAN for Conditional Generation with Explicit Diversity - CMADGAN}{28}{subsection.3.7}\protected@file@percent }
-\newlabel{theoretical_cmadgan}{{3.7}{28}{Adapting MAD-GAN for Conditional Generation with Explicit Diversity - CMADGAN}{subsection.3.7}{}}
-\BKM@entry{id=27,dest={73756273756273656374696F6E2E332E372E31},srcline={396}}{5C3337365C3337375C303030335C3030302E5C303030375C3030302E5C303030315C3030305C3034305C3030304D5C303030615C303030745C303030685C303030655C3030306D5C303030615C303030745C303030695C303030635C303030615C3030306C5C3030305C3034305C303030465C3030306F5C303030725C3030306D5C303030755C3030306C5C303030615C303030745C303030695C3030306F5C3030306E}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.7.1}Mathematical Formulation}{29}{subsubsection.3.7.1}\protected@file@percent }
-\newlabel{theoretical_cmadgan_math}{{3.7.1}{29}{Mathematical Formulation}{subsubsection.3.7.1}{}}
-\@writefile{toc}{\contentsline {paragraph}{\nonumberline Discriminator Loss:}{29}{paragraph*.29}\protected@file@percent }
-\newlabel{eq:cmadgan_loss_d}{{16}{29}{Discriminator Loss:}{equation.3.16}{}}
-\BKM@entry{id=28,dest={73756273756273656374696F6E2E332E372E32},srcline={445}}{5C3337365C3337375C303030335C3030302E5C303030375C3030302E5C303030325C3030305C3034305C303030415C303030725C303030635C303030685C303030695C303030745C303030655C303030635C303030745C303030755C303030725C303030615C3030306C5C3030305C3034305C303030415C303030645C3030306A5C303030755C303030735C303030745C3030306D5C303030655C3030306E5C303030745C30303073}
+\BKM@entry{id=26,dest={73756273656374696F6E2E332E37},srcline={417}}{5C3337365C3337375C303030335C3030302E5C303030375C3030305C3034305C303030415C303030645C303030615C303030705C303030745C303030695C3030306E5C303030675C3030305C3034305C3030304D5C303030415C303030445C303030475C303030415C3030304E5C3030305C3034305C303030665C3030306F5C303030725C3030305C3034305C303030435C3030306F5C3030306E5C303030645C303030695C303030745C303030695C3030306F5C3030306E5C303030615C3030306C5C3030305C3034305C303030475C303030655C3030306E5C303030655C303030725C303030615C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030775C303030695C303030745C303030685C3030305C3034305C303030455C303030785C303030705C3030306C5C303030695C303030635C303030695C303030745C3030305C3034305C303030445C303030695C303030765C303030655C303030725C303030735C303030695C303030745C303030795C3030305C3034305C3030302D5C3030305C3034305C303030635C3030304D5C303030415C303030445C303030475C303030415C3030304E}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Figure taken from the original paper \cite  {ghosh2018madgan}. The visualization shows how different generators \(G_ {1}\) and \(G_{2}\) are pushed to different modes \(M_{1}\) and \(M_{2}\), by the discriminator.}}{29}{figure.caption.27}\protected@file@percent }
+\newlabel{fig:figure_madgan_diverse_mode_push}{{4}{29}{Figure taken from the original paper \cite {ghosh2018madgan}. The visualization shows how different generators \(G_ {1}\) and \(G_{2}\) are pushed to different modes \(M_{1}\) and \(M_{2}\), by the discriminator}{figure.caption.27}{}}
+\BKM@entry{id=27,dest={73756273756273656374696F6E2E332E372E31},srcline={426}}{5C3337365C3337375C303030335C3030302E5C303030375C3030302E5C303030315C3030305C3034305C3030304D5C303030615C303030745C303030685C303030655C3030306D5C303030615C303030745C303030695C303030635C303030615C3030306C5C3030305C3034305C303030465C3030306F5C303030725C3030306D5C303030755C3030306C5C303030615C303030745C303030695C3030306F5C3030306E}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Adapting MADGAN for Conditional Generation with Explicit Diversity - cMADGAN}{30}{subsection.3.7}\protected@file@percent }
+\newlabel{theoretical_cmadgan}{{3.7}{30}{Adapting MADGAN for Conditional Generation with Explicit Diversity - cMADGAN}{subsection.3.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.7.1}Mathematical Formulation}{30}{subsubsection.3.7.1}\protected@file@percent }
+\newlabel{theoretical_cmadgan_math}{{3.7.1}{30}{Mathematical Formulation}{subsubsection.3.7.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{\nonumberline Discriminator Loss:}{30}{paragraph*.29}\protected@file@percent }
+\newlabel{eq:cmadgan_loss_d}{{17}{30}{Discriminator Loss:}{equation.3.17}{}}
+\BKM@entry{id=28,dest={73756273756273656374696F6E2E332E372E32},srcline={473}}{5C3337365C3337375C303030335C3030302E5C303030375C3030302E5C303030325C3030305C3034305C303030415C303030725C303030635C303030685C303030695C303030745C303030655C303030635C303030745C303030755C303030725C303030615C3030306C5C3030305C3034305C303030415C303030645C3030306A5C303030755C303030735C303030745C3030306D5C303030655C3030306E5C303030745C30303073}
 \citation{ghosh2018madgan}
-\@writefile{toc}{\contentsline {paragraph}{\nonumberline Generator Loss:}{30}{paragraph*.31}\protected@file@percent }
-\newlabel{eq:cmadgan_loss_g}{{17}{30}{Generator Loss:}{equation.3.17}{}}
-\newlabel{eq:cmadgan_loss_g_adv}{{18}{30}{Generator Loss:}{equation.3.18}{}}
-\newlabel{eq:cmadgan_cossim}{{19}{30}{Generator Loss:}{equation.3.19}{}}
-\newlabel{eq:cmadgan_loss_g_sim}{{20}{30}{Generator Loss:}{equation.3.20}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.7.2}Architectural Adjustments}{30}{subsubsection.3.7.2}\protected@file@percent }
-\newlabel{theory_cmadgan_architecture}{{3.7.2}{30}{Architectural Adjustments}{subsubsection.3.7.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{\nonumberline Generator Loss:}{31}{paragraph*.31}\protected@file@percent }
+\newlabel{eq:cmadgan_loss_g}{{18}{31}{Generator Loss:}{equation.3.18}{}}
+\newlabel{eq:cmadgan_loss_g_adv}{{19}{31}{Generator Loss:}{equation.3.19}{}}
+\newlabel{eq:cmadgan_cossim}{{20}{31}{Generator Loss:}{equation.3.20}{}}
+\newlabel{eq:cmadgan_loss_g_div}{{21}{31}{Generator Loss:}{equation.3.21}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.7.2}Architectural Adjustments}{31}{subsubsection.3.7.2}\protected@file@percent }
+\newlabel{theory_cmadgan_architecture}{{3.7.2}{31}{Architectural Adjustments}{subsubsection.3.7.2}{}}
 \citation{mirza2014conditionalgenerativeadversarialnets}
 \citation{Radford2015DCGAN}
-\BKM@entry{id=29,dest={73756273656374696F6E2E332E38},srcline={475}}{5C3337365C3337375C303030335C3030302E5C303030385C3030305C3034305C303030495C3030306D5C303030615C303030675C303030655C3030305C3034305C303030535C303030635C3030306F5C303030725C303030655C30303073}
-\BKM@entry{id=30,dest={73756273756273656374696F6E2E332E382E31},srcline={479}}{5C3337365C3337375C303030335C3030302E5C303030385C3030302E5C303030315C3030305C3034305C303030495C3030306E5C303030635C303030655C303030705C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030535C303030635C3030306F5C303030725C303030655C3030305C3034305C3030302D5C3030305C3034305C303030495C30303053}
+\BKM@entry{id=29,dest={73756273656374696F6E2E332E38},srcline={503}}{5C3337365C3337375C303030335C3030302E5C303030385C3030305C3034305C303030495C3030306D5C303030615C303030675C303030655C3030305C3034305C303030535C303030635C3030306F5C303030725C303030655C30303073}
+\BKM@entry{id=30,dest={73756273756273656374696F6E2E332E382E31},srcline={507}}{5C3337365C3337375C303030335C3030302E5C303030385C3030302E5C303030315C3030305C3034305C303030495C3030306E5C303030635C303030655C303030705C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030535C303030635C3030306F5C303030725C303030655C3030305C3034305C3030302D5C3030305C3034305C303030495C30303053}
 \citation{salimans2016improvedtechniquestraininggans}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Image Scores}{31}{subsection.3.8}\protected@file@percent }
-\newlabel{theoretical_image_scores}{{3.8}{31}{Image Scores}{subsection.3.8}{}}
-\BKM@entry{id=31,dest={73756273756273656374696F6E2E332E382E32},srcline={504}}{5C3337365C3337375C303030335C3030302E5C303030385C3030302E5C303030325C3030305C3034305C303030465C303030725C3030305C3335315C303030635C303030685C303030655C303030745C3030305C3034305C303030495C3030306E5C303030635C303030655C303030705C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030445C303030695C303030735C303030745C303030615C3030306E5C303030635C303030655C3030305C3034305C3030302D5C3030305C3034305C303030465C303030495C30303044}
-\citation{heusel2018ganstrainedtimescaleupdate}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Image Scores}{32}{subsection.3.8}\protected@file@percent }
+\newlabel{theoretical_image_scores}{{3.8}{32}{Image Scores}{subsection.3.8}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.8.1}Inception Score - IS}{32}{subsubsection.3.8.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.8.2}Fréchet Inception Distance - FID}{32}{subsubsection.3.8.2}\protected@file@percent }
-\BKM@entry{id=32,dest={73756273756273656374696F6E2E332E382E33},srcline={532}}{5C3337365C3337375C303030335C3030302E5C303030385C3030302E5C303030335C3030305C3034305C303030495C3030306E5C303030635C303030655C303030705C303030745C303030695C3030306F5C3030306E5C303030565C303030335C3030305C3034305C3030304D5C3030306F5C303030645C303030655C3030306C}
+\BKM@entry{id=31,dest={73756273756273656374696F6E2E332E382E32},srcline={532}}{5C3337365C3337375C303030335C3030302E5C303030385C3030302E5C303030325C3030305C3034305C303030465C303030725C3030305C3335315C303030635C303030685C303030655C303030745C3030305C3034305C303030495C3030306E5C303030635C303030655C303030705C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030445C303030695C303030735C303030745C303030615C3030306E5C303030635C303030655C3030305C3034305C3030302D5C3030305C3034305C303030465C303030495C30303044}
+\citation{heusel2018ganstrainedtimescaleupdate}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.8.2}Fréchet Inception Distance - FID}{33}{subsubsection.3.8.2}\protected@file@percent }
+\BKM@entry{id=32,dest={73756273756273656374696F6E2E332E382E33},srcline={562}}{5C3337365C3337375C303030335C3030302E5C303030385C3030302E5C303030335C3030305C3034305C303030495C3030306E5C303030635C303030655C303030705C303030745C303030695C3030306F5C3030306E5C303030565C303030335C3030305C3034305C3030304D5C3030306F5C303030645C303030655C3030306C}
 \citation{szegedy2016rethinking}
 \citation{ImageNetDataset5206848}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.8.3}InceptionV3 Model}{33}{subsubsection.3.8.3}\protected@file@percent }
-\newlabel{theoretical_inception_model_limitaitions}{{3.8.3}{34}{InceptionV3 Model}{Item.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.8.3}InceptionV3 Model}{34}{subsubsection.3.8.3}\protected@file@percent }
+\newlabel{theoretical_inception_model_limitaitions}{{3.8.3}{35}{InceptionV3 Model}{Item.7}{}}
 \BKM@entry{id=33,dest={73656374696F6E2E34},srcline={1}}{5C3337365C3337375C303030345C3030305C3034305C303030455C303030785C303030705C303030655C303030725C303030695C3030306D5C303030655C3030306E5C303030745C303030735C3030305C3034305C303030535C303030655C303030745C303030755C30303070}
 \BKM@entry{id=34,dest={73756273656374696F6E2E342E31},srcline={3}}{5C3337365C3337375C303030345C3030302E5C303030315C3030305C3034305C303030505C303030725C303030655C3030306C5C303030695C3030306D5C303030695C3030306E5C303030615C303030725C303030795C3030305C3034305C303030525C303030655C3030306D5C303030615C303030725C3030306B5C30303073}
 \BKM@entry{id=35,dest={73756273756273656374696F6E2E342E312E31},srcline={6}}{5C3337365C3337375C303030345C3030302E5C303030315C3030302E5C303030315C3030305C3034305C303030535C303030635C3030306F5C303030705C303030655C3030305C3034305C3030304C5C303030695C3030306D5C303030695C303030745C303030615C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030525C303030655C303030675C303030615C303030725C303030645C303030695C3030306E5C303030675C3030305C3034305C303030535C303030745C303030615C3030306E5C303030645C303030615C303030725C303030645C3030305C3034305C303030435C303030495C303030465C303030415C303030525C3030302D5C303030315C30303030}
 \citation{ghosh2018madgan}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments Setup}{35}{section.4}\protected@file@percent }
-\newlabel{body_experiments_setup}{{4}{35}{Experiments Setup}{section.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Preliminary Remarks}{35}{subsection.4.1}\protected@file@percent }
-\newlabel{body_prelim}{{4.1}{35}{Preliminary Remarks}{subsection.4.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Scope Limitation Regarding Standard CIFAR-10}{35}{subsubsection.4.1.1}\protected@file@percent }
-\newlabel{setup_cifar10_scope}{{4.1.1}{35}{Scope Limitation Regarding Standard CIFAR-10}{subsubsection.4.1.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments Setup}{36}{section.4}\protected@file@percent }
+\newlabel{body_experiments_setup}{{4}{36}{Experiments Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Preliminary Remarks}{36}{subsection.4.1}\protected@file@percent }
+\newlabel{body_prelim}{{4.1}{36}{Preliminary Remarks}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Scope Limitation Regarding Standard CIFAR-10}{36}{subsubsection.4.1.1}\protected@file@percent }
+\newlabel{setup_cifar10_scope}{{4.1.1}{36}{Scope Limitation Regarding Standard CIFAR-10}{subsubsection.4.1.1}{}}
 \BKM@entry{id=36,dest={73756273756273656374696F6E2E342E312E32},srcline={26}}{5C3337365C3337375C303030345C3030302E5C303030315C3030302E5C303030325C3030305C3034305C303030555C303030735C303030655C303030645C3030305C3034305C303030445C303030615C303030745C303030615C303030735C303030655C303030745C30303073}
 \BKM@entry{id=37,dest={73756273756273656374696F6E2E342E312E33},srcline={42}}{5C3337365C3337375C303030345C3030302E5C303030315C3030302E5C303030335C3030305C3034305C303030475C303030415C3030304E5C3030303A5C3030305C3034305C303030415C303030725C303030635C303030685C303030695C303030745C303030655C303030635C303030745C303030755C303030725C303030655C3030302C5C3030305C3034305C303030545C303030725C303030615C303030695C3030306E5C303030695C3030306E5C303030675C3030305C3034305C303030615C3030306E5C303030645C3030305C3034305C303030445C303030615C303030745C303030615C3030305C3034305C303030415C303030755C303030675C3030306D5C303030655C3030306E5C303030745C303030615C303030745C303030695C3030306F5C3030306E}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Used Datasets}{36}{subsubsection.4.1.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Description of the used datasets for benchmarking.}}{36}{table.caption.32}\protected@file@percent }
-\newlabel{exp_setup_used_datasets}{{1}{36}{Description of the used datasets for benchmarking}{table.caption.32}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}GAN: Architecture, Training and Data Augmentation}{36}{subsubsection.4.1.3}\protected@file@percent }
-\newlabel{body_experiment_dataaugmentation}{{4.1.3}{36}{GAN: Architecture, Training and Data Augmentation}{subsubsection.4.1.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Used Datasets}{37}{subsubsection.4.1.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Description of the used datasets for benchmarking.}}{37}{table.caption.32}\protected@file@percent }
+\newlabel{exp_setup_used_datasets}{{1}{37}{Description of the used datasets for benchmarking}{table.caption.32}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}GAN: Architecture, Training and Data Augmentation}{37}{subsubsection.4.1.3}\protected@file@percent }
+\newlabel{body_experiment_dataaugmentation}{{4.1.3}{37}{GAN: Architecture, Training and Data Augmentation}{subsubsection.4.1.3}{}}
 \BKM@entry{id=38,dest={73756273756273656374696F6E2E342E312E34},srcline={54}}{5C3337365C3337375C303030345C3030302E5C303030315C3030302E5C303030345C3030305C3034305C303030535C303030745C303030725C303030615C303030745C303030695C303030665C303030695C303030655C303030645C3030305C3034305C303030435C3030306C5C303030615C303030735C303030735C303030695C303030665C303030695C303030655C303030725C303030735C3030305C3034305C303030615C303030735C3030305C3034305C3030306D5C303030655C303030615C303030735C303030755C303030725C303030655C3030305C3034305C303030665C3030306F5C303030725C3030305C3034305C303030615C303030755C303030675C3030306D5C303030655C3030306E5C303030745C303030615C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030515C303030755C303030615C3030306C5C303030695C303030745C30303079}
 \BKM@entry{id=39,dest={73756273756273656374696F6E2E342E312E35},srcline={57}}{5C3337365C3337375C303030345C3030302E5C303030315C3030302E5C303030355C3030305C3034305C3030304C5C303030615C303030625C303030655C3030306C5C303030695C3030306E5C303030675C3030305C3034305C303030755C3030306E5C303030635C3030306F5C3030306E5C303030645C303030695C303030745C303030695C3030306F5C3030306E5C303030655C303030645C3030305C3034305C303030645C303030615C303030745C30303061}
 \BKM@entry{id=40,dest={73756273756273656374696F6E2E342E312E36},srcline={61}}{5C3337365C3337375C303030345C3030302E5C303030315C3030302E5C303030365C3030305C3034305C303030555C303030745C303030695C3030306C5C303030695C3030307A5C303030615C303030745C303030695C3030306F5C3030306E5C3030305C3034305C3030306F5C303030665C3030305C3034305C303030495C3030306E5C303030635C303030655C303030705C303030745C303030695C3030306F5C3030306E5C303030565C303030335C3030305C3034305C303030665C3030306F5C303030725C3030305C3034305C303030465C303030495C303030445C3030305C3034305C303030615C3030306E5C303030645C3030305C3034305C303030495C30303053}
 \BKM@entry{id=41,dest={73756273656374696F6E2E342E32},srcline={65}}{5C3337365C3337375C303030345C3030302E5C303030325C3030305C3034305C303030455C303030785C303030705C303030655C303030725C303030695C3030306D5C303030655C3030306E5C303030745C303030615C3030306C5C3030305C3034305C303030575C3030306F5C303030725C3030306B5C303030665C3030306C5C3030306F5C30303077}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.4}Stratified Classifiers as measure for augmentation Quality}{37}{subsubsection.4.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.5}Labeling unconditioned data}{37}{subsubsection.4.1.5}\protected@file@percent }
-\newlabel{body_experiment_labeling_data}{{4.1.5}{37}{Labeling unconditioned data}{subsubsection.4.1.5}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.6}Utilization of InceptionV3 for FID and IS}{37}{subsubsection.4.1.6}\protected@file@percent }
-\newlabel{body_experiment_inception_model}{{4.1.6}{37}{Utilization of InceptionV3 for FID and IS}{subsubsection.4.1.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Experimental Workflow}{38}{subsection.4.2}\protected@file@percent }
-\newlabel{body_experiment_succession}{{4.2}{38}{Experimental Workflow}{subsection.4.2}{}}
-\newlabel{exp_setup_difference_replace_expand}{{3}{38}{Experimental Workflow}{Item.8}{}}
-\BKM@entry{id=42,dest={73756273656374696F6E2E342E33},srcline={89}}{5C3337365C3337375C303030345C3030302E5C303030335C3030305C3034305C303030435C3030306F5C3030306D5C303030705C303030615C303030725C303030695C303030735C3030306F5C3030306E5C3030305C3034305C3030306F5C303030665C3030305C3034305C303030435C3030306C5C303030615C303030735C303030735C303030695C303030665C303030695C303030655C303030725C3030305C3034305C303030505C303030655C303030725C303030665C3030306F5C303030725C3030306D5C303030615C3030306E5C303030635C30303065}
-\BKM@entry{id=43,dest={73756273656374696F6E2E342E34},srcline={92}}{5C3337365C3337375C303030345C3030302E5C303030345C3030305C3034305C303030485C303030615C303030725C303030645C303030775C303030615C303030725C303030655C3030305C3034305C303030615C3030306E5C303030645C3030305C3034305C303030535C3030306F5C303030665C303030745C303030775C303030615C303030725C303030655C3030305C3034305C303030455C3030306E5C303030765C303030695C303030725C3030306F5C3030306E5C3030306D5C303030655C3030306E5C30303074}
-\BKM@entry{id=44,dest={73756273756273656374696F6E2E342E342E31},srcline={94}}{5C3337365C3337375C303030345C3030302E5C303030345C3030302E5C303030315C3030305C3034305C303030485C303030615C303030725C303030645C303030775C303030615C303030725C30303065}
-\BKM@entry{id=45,dest={73756273756273656374696F6E2E342E342E32},srcline={97}}{5C3337365C3337375C303030345C3030302E5C303030345C3030302E5C303030325C3030305C3034305C303030535C3030306F5C303030665C303030745C303030775C303030615C303030725C30303065}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Comparison of Classifier Performance}{39}{subsection.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Hardware and Software Environment}{39}{subsection.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1}Hardware}{39}{subsubsection.4.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.2}Software}{40}{subsubsection.4.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.4}Stratified Classifiers as measure for augmentation Quality}{38}{subsubsection.4.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.5}Labeling unconditioned data}{38}{subsubsection.4.1.5}\protected@file@percent }
+\newlabel{body_experiment_labeling_data}{{4.1.5}{38}{Labeling unconditioned data}{subsubsection.4.1.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.6}Utilization of InceptionV3 for FID and IS}{38}{subsubsection.4.1.6}\protected@file@percent }
+\newlabel{body_experiment_inception_model}{{4.1.6}{38}{Utilization of InceptionV3 for FID and IS}{subsubsection.4.1.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Experimental Workflow}{39}{subsection.4.2}\protected@file@percent }
+\newlabel{body_experiment_succession}{{4.2}{39}{Experimental Workflow}{subsection.4.2}{}}
+\newlabel{exp_setup_difference_replace_expand}{{3}{39}{Experimental Workflow}{Item.10}{}}
+\BKM@entry{id=42,dest={73756273656374696F6E2E342E33},srcline={96}}{5C3337365C3337375C303030345C3030302E5C303030335C3030305C3034305C303030435C3030306F5C3030306D5C303030705C303030615C303030725C303030695C303030735C3030306F5C3030306E5C3030305C3034305C3030306F5C303030665C3030305C3034305C303030435C3030306C5C303030615C303030735C303030735C303030695C303030665C303030695C303030655C303030725C3030305C3034305C303030505C303030655C303030725C303030665C3030306F5C303030725C3030306D5C303030615C3030306E5C303030635C30303065}
+\BKM@entry{id=43,dest={73756273656374696F6E2E342E34},srcline={99}}{5C3337365C3337375C303030345C3030302E5C303030345C3030305C3034305C303030485C303030615C303030725C303030645C303030775C303030615C303030725C303030655C3030305C3034305C303030615C3030306E5C303030645C3030305C3034305C303030535C3030306F5C303030665C303030745C303030775C303030615C303030725C303030655C3030305C3034305C303030455C3030306E5C303030765C303030695C303030725C3030306F5C3030306E5C3030306D5C303030655C3030306E5C30303074}
+\BKM@entry{id=44,dest={73756273756273656374696F6E2E342E342E31},srcline={101}}{5C3337365C3337375C303030345C3030302E5C303030345C3030302E5C303030315C3030305C3034305C303030485C303030615C303030725C303030645C303030775C303030615C303030725C30303065}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Comparison of Classifier Performance}{40}{subsection.4.3}\protected@file@percent }
+\BKM@entry{id=45,dest={73756273756273656374696F6E2E342E342E32},srcline={104}}{5C3337365C3337375C303030345C3030302E5C303030345C3030302E5C303030325C3030305C3034305C303030535C3030306F5C303030665C303030745C303030775C303030615C303030725C30303065}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Hardware and Software Environment}{41}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1}Hardware}{41}{subsubsection.4.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.2}Software}{41}{subsubsection.4.4.2}\protected@file@percent }
 \BKM@entry{id=46,dest={73656374696F6E2E35},srcline={1}}{5C3337365C3337375C303030355C3030305C3034305C303030455C303030785C303030705C303030655C303030725C303030695C3030306D5C303030655C3030306E5C303030745C303030735C3030305C3034305C303030525C303030655C303030735C303030755C3030306C5C303030745C30303073}
 \citation{fridman2019Goodfellow}
 \citation{fridman2019Goodfellow}
 \citation{ghosh2018madgan}
 \BKM@entry{id=47,dest={73756273656374696F6E2E352E31},srcline={11}}{5C3337365C3337375C303030355C3030302E5C303030315C3030305C3034305C3030304B5C303030655C303030795C3030305C3034305C303030525C303030655C303030735C303030655C303030615C303030725C303030635C303030685C3030305C3034305C303030515C303030755C303030655C303030735C303030745C303030695C3030306F5C3030306E5C30303073}
 \BKM@entry{id=48,dest={73756273656374696F6E2E352E32},srcline={21}}{5C3337365C3337375C303030355C3030302E5C303030325C3030305C3034305C3030304B5C303030655C303030795C3030305C3034305C303030525C303030655C303030735C303030655C303030615C303030725C303030635C303030685C3030305C3034305C303030515C303030755C303030655C303030735C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030415C3030306E5C303030735C303030775C303030655C303030725C30303073}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments Results}{41}{section.5}\protected@file@percent }
-\newlabel{body_experiments_results}{{5}{41}{Experiments Results}{section.5}{}}
-\newlabel{exp_results_motivation}{{5}{41}{Motivation}{paragraph*.34}{}}
-\@writefile{toc}{\contentsline {paragraph}{\nonumberline Motivation}{41}{paragraph*.34}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Key Research Questions}{41}{subsection.5.1}\protected@file@percent }
-\newlabel{exp_results_research_questions}{{5.1}{41}{Key Research Questions}{subsection.5.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Key Research Question Answers}{42}{subsection.5.2}\protected@file@percent }
-\newlabel{exp_results_questions_answers}{{5.2}{42}{Key Research Question Answers}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments Results}{42}{section.5}\protected@file@percent }
+\newlabel{body_experiments_results}{{5}{42}{Experiments Results}{section.5}{}}
+\newlabel{exp_results_motivation}{{5}{42}{Motivation}{paragraph*.34}{}}
+\@writefile{toc}{\contentsline {paragraph}{\nonumberline Motivation}{42}{paragraph*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Key Research Questions}{42}{subsection.5.1}\protected@file@percent }
+\newlabel{exp_results_research_questions}{{5.1}{42}{Key Research Questions}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Key Research Question Answers}{43}{subsection.5.2}\protected@file@percent }
+\newlabel{exp_results_questions_answers}{{5.2}{43}{Key Research Question Answers}{subsection.5.2}{}}
 \BKM@entry{id=49,dest={73756273756273656374696F6E2E352E322E31},srcline={26}}{5C3337365C3337375C303030355C3030302E5C303030325C3030302E5C303030315C3030305C3034305C303030515C303030755C303030655C303030735C303030745C303030695C3030306F5C3030306E5C3030305C3034305C30303031}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Question 1}{43}{subsubsection.5.2.1}\protected@file@percent }
-\newlabel{exp_results_ans_q1}{{5.2.1}{43}{Question 1}{subsubsection.5.2.1}{}}
-\newlabel{exp_ans_q1_mnsit_fid_is}{{5.2.1}{43}{Question 1}{subsubsection.5.2.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces FID and IS results for GAN models on MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches. Baseline created from training datasets. Baseline created using images from the training set.}}{43}{table.caption.35}\protected@file@percent }
-\newlabel{tab:exp_mnist_fid_is}{{2}{43}{FID and IS results for GAN models on MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches. Baseline created from training datasets. Baseline created using images from the training set}{table.caption.35}{}}
-\newlabel{exp_ans_q1_fmnsit_fid_is}{{5.2.1}{44}{Question 1}{table.caption.35}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces FID and IS results for GAN models on Fashion-MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches. Baseline created using images from the training set.}}{44}{table.caption.36}\protected@file@percent }
-\newlabel{tab:exp_fashionmnist_fid_is}{{3}{44}{FID and IS results for GAN models on Fashion-MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches. Baseline created using images from the training set}{table.caption.36}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Question 1}{44}{subsubsection.5.2.1}\protected@file@percent }
+\newlabel{exp_results_ans_q1}{{5.2.1}{44}{Question 1}{subsubsection.5.2.1}{}}
+\newlabel{exp_ans_q1_mnsit_fid_is}{{5.2.1}{44}{Question 1}{subsubsection.5.2.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces FID and IS results for GAN models on MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches. Baseline created from training datasets. Baseline created using images from the training set.}}{44}{table.caption.35}\protected@file@percent }
+\newlabel{tab:exp_mnist_fid_is}{{2}{44}{FID and IS results for GAN models on MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches. Baseline created from training datasets. Baseline created using images from the training set}{table.caption.35}{}}
+\newlabel{exp_ans_q1_fmnsit_fid_is}{{5.2.1}{45}{Question 1}{table.caption.35}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces FID and IS results for GAN models on Fashion-MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches. Baseline created using images from the training set.}}{45}{table.caption.36}\protected@file@percent }
+\newlabel{tab:exp_fashionmnist_fid_is}{{3}{45}{FID and IS results for GAN models on Fashion-MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches. Baseline created using images from the training set}{table.caption.36}{}}
 \BKM@entry{id=50,dest={73756273756273656374696F6E2E352E322E32},srcline={113}}{5C3337365C3337375C303030355C3030302E5C303030325C3030302E5C303030325C3030305C3034305C303030515C303030755C303030655C303030735C303030745C303030695C3030306F5C3030306E5C3030305C3034305C30303032}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}Question 2}{45}{subsubsection.5.2.2}\protected@file@percent }
-\newlabel{exp_results_ans_q2}{{5.2.2}{45}{Question 2}{subsubsection.5.2.2}{}}
-\newlabel{fig:res_replacement_mnist_tda_vs_madgan__madgan}{{5a}{46}{F1 Score on MNIST over 50 epochs. Augmentation technique: MADGAN (K=10)}{figure.caption.37}{}}
-\newlabel{sub@fig:res_replacement_mnist_tda_vs_madgan__madgan}{{a}{46}{F1 Score on MNIST over 50 epochs. Augmentation technique: MADGAN (K=10)}{figure.caption.37}{}}
-\newlabel{fig:res_replacement_mnist_tda_vs_madgan__tda}{{5b}{46}{F1 Score on MNIST over 50 epochs. Augmentation Technique: TDA}{figure.caption.37}{}}
-\newlabel{sub@fig:res_replacement_mnist_tda_vs_madgan__tda}{{b}{46}{F1 Score on MNIST over 50 epochs. Augmentation Technique: TDA}{figure.caption.37}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN}}{46}{table.caption.38}\protected@file@percent }
-\newlabel{tab:res_replacement_mnist_tda_vs_madgan__madgan}{{4}{46}{Final F1 Scores after 50 epochs. Augmentation technique: MADGAN}{table.caption.38}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: TDA}}{46}{table.caption.39}\protected@file@percent }
-\newlabel{tab:res_replacement_mnist_tda_vs_madgan__tda}{{5}{46}{Final F1 Scores after 50 epochs. Augmentation technique: TDA}{table.caption.39}{}}
-\newlabel{fig:res_expansion_mnist_tda_vs_madgan__madgan}{{6a}{48}{F1 Score on MNIST over 50 epochs. Augmentation technique: MADGAN (K=7)}{figure.caption.40}{}}
-\newlabel{sub@fig:res_expansion_mnist_tda_vs_madgan__madgan}{{a}{48}{F1 Score on MNIST over 50 epochs. Augmentation technique: MADGAN (K=7)}{figure.caption.40}{}}
-\newlabel{fig:res_expansion_mnist_tda_vs_madgan__tda}{{6b}{48}{F1 Score on MNIST over 50 epochs. Augmentation Technique: TDA}{figure.caption.40}{}}
-\newlabel{sub@fig:res_expansion_mnist_tda_vs_madgan__tda}{{b}{48}{F1 Score on MNIST over 50 epochs. Augmentation Technique: TDA}{figure.caption.40}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN}}{48}{table.caption.41}\protected@file@percent }
-\newlabel{tab:res_expansion_mnist_tda_vs_madgan__madgan}{{6}{48}{Final F1 Scores after 50 epochs. Augmentation technique: MADGAN}{table.caption.41}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: TDA}}{48}{table.caption.42}\protected@file@percent }
-\newlabel{tab:res_expansion_mnist_tda_vs_madgan__tda}{{7}{48}{Final F1 Scores after 50 epochs. Augmentation technique: TDA}{table.caption.42}{}}
-\newlabel{fig:res_replacement_fashion_tda_vs_madgan__madgan}{{7a}{50}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=7)}{figure.caption.43}{}}
-\newlabel{sub@fig:res_replacement_fashion_tda_vs_madgan__madgan}{{a}{50}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=7)}{figure.caption.43}{}}
-\newlabel{fig:res_replacement_fashion_tda_vs_madgan__tda}{{7b}{50}{F1 Score on FASHION over 50 epochs. Augmentation Technique: TDA}{figure.caption.43}{}}
-\newlabel{sub@fig:res_replacement_fashion_tda_vs_madgan__tda}{{b}{50}{F1 Score on FASHION over 50 epochs. Augmentation Technique: TDA}{figure.caption.43}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}}{50}{table.caption.44}\protected@file@percent }
-\newlabel{tab:res_replacement_fashion_tda_vs_madgan__madgan}{{8}{50}{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}{table.caption.44}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: TDA}}{50}{table.caption.45}\protected@file@percent }
-\newlabel{tab:res_replacement_fashion_tda_vs_madgan__tda}{{9}{50}{Final F1 Scores after 50 epochs. Augmentation technique: TDA}{table.caption.45}{}}
-\newlabel{fig:res_expansion_fashion_tda_vs_madgan__madgan}{{8a}{52}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=10)}{figure.caption.46}{}}
-\newlabel{sub@fig:res_expansion_fashion_tda_vs_madgan__madgan}{{a}{52}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=10)}{figure.caption.46}{}}
-\newlabel{fig:res_expansion_fashion_tda_vs_madgan__tda}{{8b}{52}{F1 Score on FASHION over 50 epochs. Augmentation Technique: TDA}{figure.caption.46}{}}
-\newlabel{sub@fig:res_expansion_fashion_tda_vs_madgan__tda}{{b}{52}{F1 Score on FASHION over 50 epochs. Augmentation Technique: TDA}{figure.caption.46}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}}{52}{table.caption.47}\protected@file@percent }
-\newlabel{tab:res_expansion_fashion_tda_vs_madgan__madgan}{{10}{52}{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}{table.caption.47}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: TDA}}{52}{table.caption.48}\protected@file@percent }
-\newlabel{tab:res_expansion_fashion_tda_vs_madgan__tda}{{11}{52}{Final F1 Scores after 50 epochs. Augmentation technique: TDA}{table.caption.48}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}Question 2}{46}{subsubsection.5.2.2}\protected@file@percent }
+\newlabel{exp_results_ans_q2}{{5.2.2}{46}{Question 2}{subsubsection.5.2.2}{}}
+\newlabel{fig:res_replacement_mnist_tda_vs_madgan__madgan}{{5a}{47}{F1 Score on MNIST over 50 epochs. Augmentation technique: MADGAN (K=10)}{figure.caption.37}{}}
+\newlabel{sub@fig:res_replacement_mnist_tda_vs_madgan__madgan}{{a}{47}{F1 Score on MNIST over 50 epochs. Augmentation technique: MADGAN (K=10)}{figure.caption.37}{}}
+\newlabel{fig:res_replacement_mnist_tda_vs_madgan__tda}{{5b}{47}{F1 Score on MNIST over 50 epochs. Augmentation Technique: TDA}{figure.caption.37}{}}
+\newlabel{sub@fig:res_replacement_mnist_tda_vs_madgan__tda}{{b}{47}{F1 Score on MNIST over 50 epochs. Augmentation Technique: TDA}{figure.caption.37}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN}}{47}{table.caption.38}\protected@file@percent }
+\newlabel{tab:res_replacement_mnist_tda_vs_madgan__madgan}{{4}{47}{Final F1 Scores after 50 epochs. Augmentation technique: MADGAN}{table.caption.38}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: TDA}}{47}{table.caption.39}\protected@file@percent }
+\newlabel{tab:res_replacement_mnist_tda_vs_madgan__tda}{{5}{47}{Final F1 Scores after 50 epochs. Augmentation technique: TDA}{table.caption.39}{}}
+\newlabel{fig:res_expansion_mnist_tda_vs_madgan__madgan}{{6a}{49}{F1 Score on MNIST over 50 epochs. Augmentation technique: MADGAN (K=7)}{figure.caption.40}{}}
+\newlabel{sub@fig:res_expansion_mnist_tda_vs_madgan__madgan}{{a}{49}{F1 Score on MNIST over 50 epochs. Augmentation technique: MADGAN (K=7)}{figure.caption.40}{}}
+\newlabel{fig:res_expansion_mnist_tda_vs_madgan__tda}{{6b}{49}{F1 Score on MNIST over 50 epochs. Augmentation Technique: TDA}{figure.caption.40}{}}
+\newlabel{sub@fig:res_expansion_mnist_tda_vs_madgan__tda}{{b}{49}{F1 Score on MNIST over 50 epochs. Augmentation Technique: TDA}{figure.caption.40}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN}}{49}{table.caption.41}\protected@file@percent }
+\newlabel{tab:res_expansion_mnist_tda_vs_madgan__madgan}{{6}{49}{Final F1 Scores after 50 epochs. Augmentation technique: MADGAN}{table.caption.41}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: TDA}}{49}{table.caption.42}\protected@file@percent }
+\newlabel{tab:res_expansion_mnist_tda_vs_madgan__tda}{{7}{49}{Final F1 Scores after 50 epochs. Augmentation technique: TDA}{table.caption.42}{}}
+\newlabel{fig:res_replacement_fashion_tda_vs_madgan__madgan}{{7a}{51}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=7)}{figure.caption.43}{}}
+\newlabel{sub@fig:res_replacement_fashion_tda_vs_madgan__madgan}{{a}{51}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=7)}{figure.caption.43}{}}
+\newlabel{fig:res_replacement_fashion_tda_vs_madgan__tda}{{7b}{51}{F1 Score on FASHION over 50 epochs. Augmentation Technique: TDA}{figure.caption.43}{}}
+\newlabel{sub@fig:res_replacement_fashion_tda_vs_madgan__tda}{{b}{51}{F1 Score on FASHION over 50 epochs. Augmentation Technique: TDA}{figure.caption.43}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}}{51}{table.caption.44}\protected@file@percent }
+\newlabel{tab:res_replacement_fashion_tda_vs_madgan__madgan}{{8}{51}{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}{table.caption.44}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: TDA}}{51}{table.caption.45}\protected@file@percent }
+\newlabel{tab:res_replacement_fashion_tda_vs_madgan__tda}{{9}{51}{Final F1 Scores after 50 epochs. Augmentation technique: TDA}{table.caption.45}{}}
+\newlabel{fig:res_expansion_fashion_tda_vs_madgan__madgan}{{8a}{53}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=10)}{figure.caption.46}{}}
+\newlabel{sub@fig:res_expansion_fashion_tda_vs_madgan__madgan}{{a}{53}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=10)}{figure.caption.46}{}}
+\newlabel{fig:res_expansion_fashion_tda_vs_madgan__tda}{{8b}{53}{F1 Score on FASHION over 50 epochs. Augmentation Technique: TDA}{figure.caption.46}{}}
+\newlabel{sub@fig:res_expansion_fashion_tda_vs_madgan__tda}{{b}{53}{F1 Score on FASHION over 50 epochs. Augmentation Technique: TDA}{figure.caption.46}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}}{53}{table.caption.47}\protected@file@percent }
+\newlabel{tab:res_expansion_fashion_tda_vs_madgan__madgan}{{10}{53}{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}{table.caption.47}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: TDA}}{53}{table.caption.48}\protected@file@percent }
+\newlabel{tab:res_expansion_fashion_tda_vs_madgan__tda}{{11}{53}{Final F1 Scores after 50 epochs. Augmentation technique: TDA}{table.caption.48}{}}
 \BKM@entry{id=51,dest={73756273756273656374696F6E2E352E322E33},srcline={339}}{5C3337365C3337375C303030355C3030302E5C303030325C3030302E5C303030335C3030305C3034305C303030515C303030755C303030655C303030735C303030745C303030695C3030306F5C3030306E5C3030305C3034305C30303033}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.3}Question 3}{54}{subsubsection.5.2.3}\protected@file@percent }
-\newlabel{exp_results_ans_q3}{{5.2.3}{54}{Question 3}{subsubsection.5.2.3}{}}
-\newlabel{fig:res_replacement_mnist_ccgan_vs_madgan__madgan}{{9a}{55}{F1 Score on MNIST over 50 epochs. Augmentation technique: MADGAN (K=10)}{figure.caption.49}{}}
-\newlabel{sub@fig:res_replacement_mnist_ccgan_vs_madgan__madgan}{{a}{55}{F1 Score on MNIST over 50 epochs. Augmentation technique: MADGAN (K=10)}{figure.caption.49}{}}
-\newlabel{fig:res_replacement_mnist_ccgan_vs_madgan__cgan}{{9b}{55}{F1 Score on MNIST over 50 epochs. Augmentation Technique: cGAN}{figure.caption.49}{}}
-\newlabel{sub@fig:res_replacement_mnist_ccgan_vs_madgan__cgan}{{b}{55}{F1 Score on MNIST over 50 epochs. Augmentation Technique: cGAN}{figure.caption.49}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN (K=10)}}{55}{table.caption.50}\protected@file@percent }
-\newlabel{tab:res_replacement_mnist_ccgan_vs_madgan__madgan}{{12}{55}{Final F1 Scores after 50 epochs. Augmentation technique: MADGAN (K=10)}{table.caption.50}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cGAN}}{55}{table.caption.51}\protected@file@percent }
-\newlabel{tab:res_replacement_mnist_ccgan_vs_madgan__cgan}{{13}{55}{Final F1 Scores after 50 epochs. Augmentation technique: cGAN}{table.caption.51}{}}
-\newlabel{fig:res_expansion_mnist_ccgan_vs_madgan__madgan}{{10a}{57}{F1 Score on MNIST over 50 epochs. Augmentation technique: MADGAN (K=7)}{figure.caption.52}{}}
-\newlabel{sub@fig:res_expansion_mnist_ccgan_vs_madgan__madgan}{{a}{57}{F1 Score on MNIST over 50 epochs. Augmentation technique: MADGAN (K=7)}{figure.caption.52}{}}
-\newlabel{fig:res_expansion_mnist_ccgan_vs_madgan__cgan}{{10b}{57}{F1 Score on MNIST over 50 epochs. Augmentation Technique: cGAN}{figure.caption.52}{}}
-\newlabel{sub@fig:res_expansion_mnist_ccgan_vs_madgan__cgan}{{b}{57}{F1 Score on MNIST over 50 epochs. Augmentation Technique: cGAN}{figure.caption.52}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN (K=10)}}{57}{table.caption.53}\protected@file@percent }
-\newlabel{tab:res_expansion_mnist_ccgan_vs_madgan__madgan}{{14}{57}{Final F1 Scores after 50 epochs. Augmentation technique: MADGAN (K=10)}{table.caption.53}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cGAN}}{57}{table.caption.54}\protected@file@percent }
-\newlabel{tab:res_expansion_mnist_ccgan_vs_madgan__cgan}{{15}{57}{Final F1 Scores after 50 epochs. Augmentation technique: cGAN}{table.caption.54}{}}
-\newlabel{fig:res_replacement_fashion_cgan_vs_madgan__madgan}{{11a}{59}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=7)}{figure.caption.55}{}}
-\newlabel{sub@fig:res_replacement_fashion_cgan_vs_madgan__madgan}{{a}{59}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=7)}{figure.caption.55}{}}
-\newlabel{fig:res_replacement_fashion_cgan_vs_madgan__cgan}{{11b}{59}{F1 Score on FASHION over 50 epochs. Augmentation Technique: cGAN}{figure.caption.55}{}}
-\newlabel{sub@fig:res_replacement_fashion_cgan_vs_madgan__cgan}{{b}{59}{F1 Score on FASHION over 50 epochs. Augmentation Technique: cGAN}{figure.caption.55}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}}{59}{table.caption.56}\protected@file@percent }
-\newlabel{tab:res_replacement_fashion_cgan_vs_madgan__madgan}{{16}{59}{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}{table.caption.56}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cGAN}}{59}{table.caption.57}\protected@file@percent }
-\newlabel{tab:res_replacement_fashion_cgan_vs_madgan__cgan}{{17}{59}{Final F1 Scores after 50 epochs. Augmentation technique: cGAN}{table.caption.57}{}}
-\newlabel{fig:res_expansion_fashion_cgan_vs_madgan__madgan}{{12a}{61}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=10)}{figure.caption.58}{}}
-\newlabel{sub@fig:res_expansion_fashion_cgan_vs_madgan__madgan}{{a}{61}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=10)}{figure.caption.58}{}}
-\newlabel{fig:res_expansion_fashion_cgan_vs_madgan__cgan}{{12b}{61}{F1 Score on FASHION over 50 epochs. Augmentation Technique: cGAN}{figure.caption.58}{}}
-\newlabel{sub@fig:res_expansion_fashion_cgan_vs_madgan__cgan}{{b}{61}{F1 Score on FASHION over 50 epochs. Augmentation Technique: cGAN}{figure.caption.58}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}}{61}{table.caption.59}\protected@file@percent }
-\newlabel{tab:res_expansion_fashion_cgan_vs_madgan__madgan}{{18}{61}{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}{table.caption.59}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cGAN}}{61}{table.caption.60}\protected@file@percent }
-\newlabel{tab:res_expansion_fashion_cgan_vs_madgan__cgan}{{19}{61}{Final F1 Scores after 50 epochs. Augmentation technique: cGAN}{table.caption.60}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.3}Question 3}{55}{subsubsection.5.2.3}\protected@file@percent }
+\newlabel{exp_results_ans_q3}{{5.2.3}{55}{Question 3}{subsubsection.5.2.3}{}}
+\newlabel{fig:res_replacement_mnist_ccgan_vs_madgan__madgan}{{9a}{56}{F1 Score on MNIST over 50 epochs. Augmentation technique: MADGAN (K=10)}{figure.caption.49}{}}
+\newlabel{sub@fig:res_replacement_mnist_ccgan_vs_madgan__madgan}{{a}{56}{F1 Score on MNIST over 50 epochs. Augmentation technique: MADGAN (K=10)}{figure.caption.49}{}}
+\newlabel{fig:res_replacement_mnist_ccgan_vs_madgan__cgan}{{9b}{56}{F1 Score on MNIST over 50 epochs. Augmentation Technique: cGAN}{figure.caption.49}{}}
+\newlabel{sub@fig:res_replacement_mnist_ccgan_vs_madgan__cgan}{{b}{56}{F1 Score on MNIST over 50 epochs. Augmentation Technique: cGAN}{figure.caption.49}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN (K=10)}}{56}{table.caption.50}\protected@file@percent }
+\newlabel{tab:res_replacement_mnist_ccgan_vs_madgan__madgan}{{12}{56}{Final F1 Scores after 50 epochs. Augmentation technique: MADGAN (K=10)}{table.caption.50}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cGAN}}{56}{table.caption.51}\protected@file@percent }
+\newlabel{tab:res_replacement_mnist_ccgan_vs_madgan__cgan}{{13}{56}{Final F1 Scores after 50 epochs. Augmentation technique: cGAN}{table.caption.51}{}}
+\newlabel{fig:res_expansion_mnist_ccgan_vs_madgan__madgan}{{10a}{58}{F1 Score on MNIST over 50 epochs. Augmentation technique: MADGAN (K=7)}{figure.caption.52}{}}
+\newlabel{sub@fig:res_expansion_mnist_ccgan_vs_madgan__madgan}{{a}{58}{F1 Score on MNIST over 50 epochs. Augmentation technique: MADGAN (K=7)}{figure.caption.52}{}}
+\newlabel{fig:res_expansion_mnist_ccgan_vs_madgan__cgan}{{10b}{58}{F1 Score on MNIST over 50 epochs. Augmentation Technique: cGAN}{figure.caption.52}{}}
+\newlabel{sub@fig:res_expansion_mnist_ccgan_vs_madgan__cgan}{{b}{58}{F1 Score on MNIST over 50 epochs. Augmentation Technique: cGAN}{figure.caption.52}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN (K=10)}}{58}{table.caption.53}\protected@file@percent }
+\newlabel{tab:res_expansion_mnist_ccgan_vs_madgan__madgan}{{14}{58}{Final F1 Scores after 50 epochs. Augmentation technique: MADGAN (K=10)}{table.caption.53}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cGAN}}{58}{table.caption.54}\protected@file@percent }
+\newlabel{tab:res_expansion_mnist_ccgan_vs_madgan__cgan}{{15}{58}{Final F1 Scores after 50 epochs. Augmentation technique: cGAN}{table.caption.54}{}}
+\newlabel{fig:res_replacement_fashion_cgan_vs_madgan__madgan}{{11a}{60}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=7)}{figure.caption.55}{}}
+\newlabel{sub@fig:res_replacement_fashion_cgan_vs_madgan__madgan}{{a}{60}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=7)}{figure.caption.55}{}}
+\newlabel{fig:res_replacement_fashion_cgan_vs_madgan__cgan}{{11b}{60}{F1 Score on FASHION over 50 epochs. Augmentation Technique: cGAN}{figure.caption.55}{}}
+\newlabel{sub@fig:res_replacement_fashion_cgan_vs_madgan__cgan}{{b}{60}{F1 Score on FASHION over 50 epochs. Augmentation Technique: cGAN}{figure.caption.55}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}}{60}{table.caption.56}\protected@file@percent }
+\newlabel{tab:res_replacement_fashion_cgan_vs_madgan__madgan}{{16}{60}{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}{table.caption.56}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cGAN}}{60}{table.caption.57}\protected@file@percent }
+\newlabel{tab:res_replacement_fashion_cgan_vs_madgan__cgan}{{17}{60}{Final F1 Scores after 50 epochs. Augmentation technique: cGAN}{table.caption.57}{}}
+\newlabel{fig:res_expansion_fashion_cgan_vs_madgan__madgan}{{12a}{62}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=10)}{figure.caption.58}{}}
+\newlabel{sub@fig:res_expansion_fashion_cgan_vs_madgan__madgan}{{a}{62}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=10)}{figure.caption.58}{}}
+\newlabel{fig:res_expansion_fashion_cgan_vs_madgan__cgan}{{12b}{62}{F1 Score on FASHION over 50 epochs. Augmentation Technique: cGAN}{figure.caption.58}{}}
+\newlabel{sub@fig:res_expansion_fashion_cgan_vs_madgan__cgan}{{b}{62}{F1 Score on FASHION over 50 epochs. Augmentation Technique: cGAN}{figure.caption.58}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}}{62}{table.caption.59}\protected@file@percent }
+\newlabel{tab:res_expansion_fashion_cgan_vs_madgan__madgan}{{18}{62}{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}{table.caption.59}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cGAN}}{62}{table.caption.60}\protected@file@percent }
+\newlabel{tab:res_expansion_fashion_cgan_vs_madgan__cgan}{{19}{62}{Final F1 Scores after 50 epochs. Augmentation technique: cGAN}{table.caption.60}{}}
 \BKM@entry{id=52,dest={73756273756273656374696F6E2E352E322E34},srcline={566}}{5C3337365C3337375C303030355C3030302E5C303030325C3030302E5C303030345C3030305C3034305C303030515C303030755C303030655C303030735C303030745C303030695C3030306F5C3030306E5C3030305C3034305C30303034}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.4}Question 4}{63}{subsubsection.5.2.4}\protected@file@percent }
-\newlabel{exp_results_ans_q4}{{5.2.4}{63}{Question 4}{subsubsection.5.2.4}{}}
-\newlabel{fig:res_replacement_mnist_cmadgan_vs_madgan__madgan}{{13a}{64}{F1 Score on MNIST over 50 epochs. Augmentation technique: MADGAN (K=10)}{figure.caption.61}{}}
-\newlabel{sub@fig:res_replacement_mnist_cmadgan_vs_madgan__madgan}{{a}{64}{F1 Score on MNIST over 50 epochs. Augmentation technique: MADGAN (K=10)}{figure.caption.61}{}}
-\newlabel{fig:res_replacement_mnist_cmadgan_vs_madgan__cmadgan}{{13b}{64}{F1 Score on MNIST over 50 epochs. Augmentation technique: cMADGAN (K=5)}{figure.caption.61}{}}
-\newlabel{sub@fig:res_replacement_mnist_cmadgan_vs_madgan__cmadgan}{{b}{64}{F1 Score on MNIST over 50 epochs. Augmentation technique: cMADGAN (K=5)}{figure.caption.61}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN (K=10)}}{64}{table.caption.62}\protected@file@percent }
-\newlabel{tab:res_replacement_mnist_cmadgan_vs_madgan__madgan}{{20}{64}{Final F1 Scores after 50 epochs. Augmentation technique: MADGAN (K=10)}{table.caption.62}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cMADGAN (K=5)}}{64}{table.caption.63}\protected@file@percent }
-\newlabel{tab:res_replacement_mnist_cmadgan_vs_madgan__cmadgan}{{21}{64}{Final F1 Scores after 50 epochs. Augmentation technique: cMADGAN (K=5)}{table.caption.63}{}}
-\newlabel{fig:res_expansion_mnist_cmadgan_vs_madgan__madgan}{{14a}{66}{F1 Score on MNIST over 50 epochs. Augmentation tech.: MADGAN (K=7)}{figure.caption.64}{}}
-\newlabel{sub@fig:res_expansion_mnist_cmadgan_vs_madgan__madgan}{{a}{66}{F1 Score on MNIST over 50 epochs. Augmentation tech.: MADGAN (K=7)}{figure.caption.64}{}}
-\newlabel{fig:res_expansion_mnist_cmadgan_vs_madgan__cmadgan}{{14b}{66}{F1 Score on MNIST over 50 epochs. Augmentation tech.: cMADGAN (K=10)}{figure.caption.64}{}}
-\newlabel{sub@fig:res_expansion_mnist_cmadgan_vs_madgan__cmadgan}{{b}{66}{F1 Score on MNIST over 50 epochs. Augmentation tech.: cMADGAN (K=10)}{figure.caption.64}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}}{66}{table.caption.65}\protected@file@percent }
-\newlabel{tab:res_expansion_mnist_cmadgan_vs_madgan__madgan}{{22}{66}{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}{table.caption.65}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=10)}}{66}{table.caption.66}\protected@file@percent }
-\newlabel{tab:res_expansion_mnist_cmadgan_vs_madgan__cmadgan}{{23}{66}{Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=10)}{table.caption.66}{}}
-\newlabel{fig:res_replacement_fashion_cmadgan_vs_madgan__madgan}{{15a}{68}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=7)}{figure.caption.67}{}}
-\newlabel{sub@fig:res_replacement_fashion_cmadgan_vs_madgan__madgan}{{a}{68}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=7)}{figure.caption.67}{}}
-\newlabel{fig:res_replacement_fashion_cmadgan_vs_madgan__cmadgan}{{15b}{68}{F1 Score on FASHION over 50 epochs. Augmentation tech.: cMADGAN (K=5)}{figure.caption.67}{}}
-\newlabel{sub@fig:res_replacement_fashion_cmadgan_vs_madgan__cmadgan}{{b}{68}{F1 Score on FASHION over 50 epochs. Augmentation tech.: cMADGAN (K=5)}{figure.caption.67}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {24}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}}{68}{table.caption.68}\protected@file@percent }
-\newlabel{tab:res_replacement_fashion_cmadgan_vs_madgan__madgan}{{24}{68}{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}{table.caption.68}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {25}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=5)}}{68}{table.caption.69}\protected@file@percent }
-\newlabel{tab:res_replacement_fashion_cmadgan_vs_madgan__cmadgan}{{25}{68}{Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=5)}{table.caption.69}{}}
-\newlabel{fig:res_expansion_fashion_cmadgan_vs_madgan__madgan}{{16a}{70}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=10)}{figure.caption.70}{}}
-\newlabel{sub@fig:res_expansion_fashion_cmadgan_vs_madgan__madgan}{{a}{70}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=10)}{figure.caption.70}{}}
-\newlabel{fig:res_expansion_fashion_cmadgan_vs_madgan__cmadgan}{{16b}{70}{F1 Score on FASHION over 50 epochs. Augmentation tech.: cMADGAN (K=7)}{figure.caption.70}{}}
-\newlabel{sub@fig:res_expansion_fashion_cmadgan_vs_madgan__cmadgan}{{b}{70}{F1 Score on FASHION over 50 epochs. Augmentation tech.: cMADGAN (K=7)}{figure.caption.70}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {26}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}}{70}{table.caption.71}\protected@file@percent }
-\newlabel{tab:res_expansion_fashion_cmadgan_vs_madgan__madgan}{{26}{70}{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}{table.caption.71}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {27}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=7)}}{70}{table.caption.72}\protected@file@percent }
-\newlabel{tab:res_expansion_fashion_cmadgan_vs_madgan__cmadgan}{{27}{70}{Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=7)}{table.caption.72}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.4}Question 4}{64}{subsubsection.5.2.4}\protected@file@percent }
+\newlabel{exp_results_ans_q4}{{5.2.4}{64}{Question 4}{subsubsection.5.2.4}{}}
+\newlabel{fig:res_replacement_mnist_cmadgan_vs_madgan__madgan}{{13a}{65}{F1 Score on MNIST over 50 epochs. Augmentation technique: MADGAN (K=10)}{figure.caption.61}{}}
+\newlabel{sub@fig:res_replacement_mnist_cmadgan_vs_madgan__madgan}{{a}{65}{F1 Score on MNIST over 50 epochs. Augmentation technique: MADGAN (K=10)}{figure.caption.61}{}}
+\newlabel{fig:res_replacement_mnist_cmadgan_vs_madgan__cmadgan}{{13b}{65}{F1 Score on MNIST over 50 epochs. Augmentation technique: cMADGAN (K=5)}{figure.caption.61}{}}
+\newlabel{sub@fig:res_replacement_mnist_cmadgan_vs_madgan__cmadgan}{{b}{65}{F1 Score on MNIST over 50 epochs. Augmentation technique: cMADGAN (K=5)}{figure.caption.61}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: MADGAN (K=10)}}{65}{table.caption.62}\protected@file@percent }
+\newlabel{tab:res_replacement_mnist_cmadgan_vs_madgan__madgan}{{20}{65}{Final F1 Scores after 50 epochs. Augmentation technique: MADGAN (K=10)}{table.caption.62}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation technique: cMADGAN (K=5)}}{65}{table.caption.63}\protected@file@percent }
+\newlabel{tab:res_replacement_mnist_cmadgan_vs_madgan__cmadgan}{{21}{65}{Final F1 Scores after 50 epochs. Augmentation technique: cMADGAN (K=5)}{table.caption.63}{}}
+\newlabel{fig:res_expansion_mnist_cmadgan_vs_madgan__madgan}{{14a}{67}{F1 Score on MNIST over 50 epochs. Augmentation tech.: MADGAN (K=7)}{figure.caption.64}{}}
+\newlabel{sub@fig:res_expansion_mnist_cmadgan_vs_madgan__madgan}{{a}{67}{F1 Score on MNIST over 50 epochs. Augmentation tech.: MADGAN (K=7)}{figure.caption.64}{}}
+\newlabel{fig:res_expansion_mnist_cmadgan_vs_madgan__cmadgan}{{14b}{67}{F1 Score on MNIST over 50 epochs. Augmentation tech.: cMADGAN (K=10)}{figure.caption.64}{}}
+\newlabel{sub@fig:res_expansion_mnist_cmadgan_vs_madgan__cmadgan}{{b}{67}{F1 Score on MNIST over 50 epochs. Augmentation tech.: cMADGAN (K=10)}{figure.caption.64}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}}{67}{table.caption.65}\protected@file@percent }
+\newlabel{tab:res_expansion_mnist_cmadgan_vs_madgan__madgan}{{22}{67}{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}{table.caption.65}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=10)}}{67}{table.caption.66}\protected@file@percent }
+\newlabel{tab:res_expansion_mnist_cmadgan_vs_madgan__cmadgan}{{23}{67}{Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=10)}{table.caption.66}{}}
+\newlabel{fig:res_replacement_fashion_cmadgan_vs_madgan__madgan}{{15a}{69}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=7)}{figure.caption.67}{}}
+\newlabel{sub@fig:res_replacement_fashion_cmadgan_vs_madgan__madgan}{{a}{69}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=7)}{figure.caption.67}{}}
+\newlabel{fig:res_replacement_fashion_cmadgan_vs_madgan__cmadgan}{{15b}{69}{F1 Score on FASHION over 50 epochs. Augmentation tech.: cMADGAN (K=5)}{figure.caption.67}{}}
+\newlabel{sub@fig:res_replacement_fashion_cmadgan_vs_madgan__cmadgan}{{b}{69}{F1 Score on FASHION over 50 epochs. Augmentation tech.: cMADGAN (K=5)}{figure.caption.67}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {24}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}}{69}{table.caption.68}\protected@file@percent }
+\newlabel{tab:res_replacement_fashion_cmadgan_vs_madgan__madgan}{{24}{69}{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=7)}{table.caption.68}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {25}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=5)}}{69}{table.caption.69}\protected@file@percent }
+\newlabel{tab:res_replacement_fashion_cmadgan_vs_madgan__cmadgan}{{25}{69}{Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=5)}{table.caption.69}{}}
+\newlabel{fig:res_expansion_fashion_cmadgan_vs_madgan__madgan}{{16a}{71}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=10)}{figure.caption.70}{}}
+\newlabel{sub@fig:res_expansion_fashion_cmadgan_vs_madgan__madgan}{{a}{71}{F1 Score on FASHION over 50 epochs. Augmentation tech.: MADGAN (K=10)}{figure.caption.70}{}}
+\newlabel{fig:res_expansion_fashion_cmadgan_vs_madgan__cmadgan}{{16b}{71}{F1 Score on FASHION over 50 epochs. Augmentation tech.: cMADGAN (K=7)}{figure.caption.70}{}}
+\newlabel{sub@fig:res_expansion_fashion_cmadgan_vs_madgan__cmadgan}{{b}{71}{F1 Score on FASHION over 50 epochs. Augmentation tech.: cMADGAN (K=7)}{figure.caption.70}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {26}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}}{71}{table.caption.71}\protected@file@percent }
+\newlabel{tab:res_expansion_fashion_cmadgan_vs_madgan__madgan}{{26}{71}{Final F1 Scores after 50 epochs. Augmentation tech.: MADGAN (K=10)}{table.caption.71}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {27}{\ignorespaces Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=7)}}{71}{table.caption.72}\protected@file@percent }
+\newlabel{tab:res_expansion_fashion_cmadgan_vs_madgan__cmadgan}{{27}{71}{Final F1 Scores after 50 epochs. Augmentation tech.: cMADGAN (K=7)}{table.caption.72}{}}
 \BKM@entry{id=53,dest={73756273756273656374696F6E2E352E322E35},srcline={803}}{5C3337365C3337375C303030355C3030302E5C303030325C3030302E5C303030355C3030305C3034305C303030515C303030755C303030655C303030735C303030745C303030695C3030306F5C3030306E5C3030305C3034305C30303035}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.5}Question 5}{71}{subsubsection.5.2.5}\protected@file@percent }
-\newlabel{exp_results_ans_q5}{{5.2.5}{71}{Question 5}{subsubsection.5.2.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.5}Question 5}{72}{subsubsection.5.2.5}\protected@file@percent }
+\newlabel{exp_results_ans_q5}{{5.2.5}{72}{Question 5}{subsubsection.5.2.5}{}}
 \BKM@entry{id=54,dest={73656374696F6E2E36},srcline={1}}{5C3337365C3337375C303030365C3030305C3034305C303030525C303030655C3030306D5C303030615C303030725C3030306B5C30303073}
 \BKM@entry{id=55,dest={73756273656374696F6E2E362E31},srcline={4}}{5C3337365C3337375C303030365C3030302E5C303030315C3030305C3034305C303030435C3030306F5C3030306E5C3030306E5C303030655C303030635C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030625C303030655C303030745C303030775C303030655C303030655C3030306E5C3030305C3034305C303030475C303030655C3030306E5C303030655C303030725C303030615C303030745C3030306F5C303030725C3030305C3034305C303030495C3030306E5C303030645C303030655C303030785C3030305C3034305C303030615C3030306E5C303030645C3030305C3034305C303030755C303030735C303030655C303030645C3030305C3034305C303030525C303030615C303030745C303030695C3030306F5C3030305C3034305C303030745C3030306F5C3030305C3034305C303030435C3030306C5C303030615C303030735C303030735C303030695C303030665C303030695C303030655C303030725C3030305C3034305C303030505C303030655C303030725C303030665C3030306F5C303030725C3030306D5C303030615C3030306E5C303030635C30303065}
 \BKM@entry{id=56,dest={73756273656374696F6E2E362E32},srcline={7}}{5C3337365C3337375C303030365C3030302E5C303030325C3030305C3034305C303030445C303030695C303030735C303030745C303030695C3030306E5C303030635C303030745C303030695C3030306F5C3030306E5C3030305C3034305C3030306F5C303030665C3030305C3034305C3030304D5C3030306F5C303030645C303030655C30303073}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Remarks}{73}{section.6}\protected@file@percent }
-\newlabel{chapter_remarks}{{6}{73}{Remarks}{section.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Connection between Generator Index and used Ratio to Classifier Performance}{73}{subsection.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Distinction of Modes}{73}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Remarks}{74}{section.6}\protected@file@percent }
+\newlabel{chapter_remarks}{{6}{74}{Remarks}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Connection between Generator Index and used Ratio to Classifier Performance}{74}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Distinction of Modes}{74}{subsection.6.2}\protected@file@percent }
 \BKM@entry{id=57,dest={73656374696F6E2E37},srcline={1}}{5C3337365C3337375C303030375C3030305C3034305C3030304F5C303030755C303030745C3030306C5C3030306F5C3030306F5C3030306B}
 \citation{Tanno2022repairingneuralnetworkfromcorrupt}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Outlook}{76}{section.7}\protected@file@percent }
-\newlabel{outlook}{{7}{76}{Outlook}{section.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Outlook}{77}{section.7}\protected@file@percent }
+\newlabel{outlook}{{7}{77}{Outlook}{section.7}{}}
 \BKM@entry{id=58,dest={73656374696F6E2E38},srcline={1}}{5C3337365C3337375C303030385C3030305C3034305C303030435C3030306F5C3030306E5C303030635C3030306C5C303030755C303030735C303030695C3030306F5C3030306E}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{77}{section.8}\protected@file@percent }
-\newlabel{conclusion}{{8}{77}{Conclusion}{section.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{78}{section.8}\protected@file@percent }
+\newlabel{conclusion}{{8}{78}{Conclusion}{section.8}{}}
 \BKM@entry{id=59,dest={73656374696F6E2E38},srcline={298}}{5C3337365C3337375C3030304C5C303030695C303030735C303030745C3030305C3034305C3030306F5C303030665C3030305C3034305C303030525C303030655C303030665C303030655C303030725C303030655C3030306E5C303030635C303030655C30303073}
 \bibdata{main.bib}
 \bibcite{arjovsky2017wassersteingan}{{ACB17}{}{{}}{{}}}
@@ -419,7 +423,7 @@
 \bibcite{ghosh2018madgan}{{GKN{$^{+}$}18}{}{{}}{{}}}
 \bibcite{goodfellow2014generativeadversarialnetworks}{{GPAM{$^{+}$}14}{}{{}}{{}}}
 \bibcite{Humayun2021MaGNET}{{HBB21}{}{{}}{{}}}
-\@writefile{toc}{\contentsline {section}{List of References}{78}{section.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{List of References}{79}{section.8}\protected@file@percent }
 \bibcite{Humayun2022PolaritySampling}{{HBB22}{}{{}}{{}}}
 \bibcite{huang2022tutorial}{{HFM22}{}{{}}{{}}}
 \bibcite{heusel2018ganstrainedtimescaleupdate}{{HRU{$^{+}$}18}{}{{}}{{}}}
@@ -638,4 +642,4 @@
 \@writefile{toc}{\providecommand\tocbasic@end@toc@file{}\tocbasic@end@toc@file}
 \@writefile{lof}{\providecommand\tocbasic@end@toc@file{}\tocbasic@end@toc@file}
 \@writefile{lot}{\providecommand\tocbasic@end@toc@file{}\tocbasic@end@toc@file}
-\gdef \@abspage@last{117}
+\gdef \@abspage@last{118}
