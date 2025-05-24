@@ -1360,3 +1360,35 @@ The graphical representations of the network architectures are created with the 
     \caption{Depiction of the concept of convolutional filtering \cite{Maucher2025}.}
     \label{fig:maucher_convolutional_filtering}
 \end{figure}
+
+\subsubsection{Experimental Data and Results from Ghosh et al.}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		Generators & Chi-square \((x 10^7)\) & KL-Diverse
+		1 & $1.27$ & $0.57$
+		2 & $1.38$ & $0.42$
+		3 & $3.15$ & $0.71$
+		4 & $0.39$ & $0.28$
+		5 & $3.05$ & $0.88$
+		6 & $0.54$ & $0.29$ 
+		7 & $0.97$ & $0.78$
+		8 & $4.83$ & $0.68$
+	\end{tabular}	
+	\caption{Results found in Ghosh et al. \cite{ghosh2018madgan}. Original caption: \textit{Synthetic experiment with different number of MAD-GAN generators as Figure 5.}}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\vspace{-1em}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		Run Type & Experiment & Val F1 \\ \hline
+		best & TDA (R:3000, F:2000) & $0.9048$\\ \hline
+		worst & TDA (R:0, F:5000) & $0.8874$\\ \hline
+		median & TDA & $0.8934$\\ \hline
+		average & TDA & $0.8955$
+		\\ \hline
+	\end{tabular}
+\end{table}
