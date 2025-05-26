@@ -34,4 +34,5 @@
 \contentsline {table}{\numberline {33}{\ignorespaces FID and Inception Score (Mean $\pm $ Std. Dev) for a single DCGAN generator ($N=1$) trained on the \textbf {Fashion-MNIST} dataset. Baseline scores are included for reference.}}{9}{table.caption.93}%
 \contentsline {table}{\numberline {34}{\ignorespaces FID and Inception Score (Mean $\pm $ Std. Dev) for a single Conditional GAN generator ($N=1$) trained on the \textbf {MNIST} dataset. Baseline scores are included for reference.}}{9}{table.caption.94}%
 \contentsline {table}{\numberline {35}{\ignorespaces FID and Inception Score (Mean $\pm $ Std. Dev) for a single Conditional GAN generator ($N=1$) trained on the \textbf {Fashion-MNIST} dataset. Baseline scores are included for reference.}}{9}{table.caption.95}%
+\contentsline {table}{\numberline {36}{\ignorespaces Results from Ghosh et al. \cite {ghosh2018madgan}. Original caption: \textit {Synthetic experiment with different number of MAD-GAN generators as Figure 5.}}}{32}{table.caption.186}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

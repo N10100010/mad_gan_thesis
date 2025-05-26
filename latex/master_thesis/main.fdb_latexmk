@@ -1,27 +1,27 @@
 # Fdb version 4
-["bibtex main"] 1748001088.66809 "main.aux" "main.bbl" "main" 1748001106.10135 0
+["bibtex main"] 1748293930.59219 "main.aux" "main.bbl" "main" 1748295046.07849 0
   "./main.bib" 1747932343 30041 de6980313adadb4d801743e165a91d4e ""
   "C:/Users/NiXoN/AppData/Local/Programs/MiKTeX/bibtex/bst/din1505/alphadin.bst" 1139852412 55981 bb3d488c43a074e2c361fac27856c205 ""
-  "main.aux" 1748001104 110584 c0d5015c9d0962f5fa5cc1e65a533921 "pdflatex"
+  "main.aux" 1748295044 112998 b61b617b3a0e87002323c87ccf531dc8 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["makeindex main.idx"] 1747997596.57734 "main.idx" "main.ind" "main" 1748001106.10077 0
-  "main.idx" 1748001090 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+["makeindex main.idx"] 1748293911.59605 "main.idx" "main.ind" "main" 1748295046.07792 0
+  "main.idx" 1748295030 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   (generated)
   "main.ilg"
   "main.ind"
   (rewritten before read)
-["pdflatex"] 1748001089.02144 "c:/Users/NiXoN/Desktop/_thesis/mad_gan_thesis/latex/master_thesis/main.tex" "main.pdf" "main" 1748001106.10236 0
+["pdflatex"] 1748295029.14317 "c:/Users/NiXoN/Desktop/_thesis/mad_gan_thesis/latex/master_thesis/main.tex" "main.pdf" "main" 1748295046.07941 0
   "1_introduction.tex" 1747931242 8751 c860991ea68797469aed94c006c7d689 ""
   "2_related_work.tex" 1747931312 8010 ddda67b4f734284aae69c269f6ea07a7 ""
   "3_body_background.tex" 1747999362 62210 9a8fd97239d63af81e731781900fa562 ""
   "4_body_prelim.tex" 1744579613 59 2f7c58658a248f9f098a8dbffccfd796 ""
-  "5_body_experiments_setup.tex" 1748001066 15187 27dd0d59b80e01bdd90c76e6714ea983 ""
-  "6_body_experiments_results.tex" 1747929047 68793 68297dd911b9dbb35fc33f3c29cb252e ""
-  "7_remarks.tex" 1747672364 7128 9fca7a6daea3791ffc9caab3d86c804a ""
-  "8_outlook.tex" 1747929314 5340 e7121e18adf473c125bfd63689d4a27f ""
+  "5_body_experiments_setup.tex" 1748293387 15269 fe96d5f135b945a68eb281a48c938d53 ""
+  "6_body_experiments_results.tex" 1748295028 68879 197bba986ced308c92d3e3f44bafb956 ""
+  "7_remarks.tex" 1748166142 7218 d5d040388f90109b464810fbf5329309 ""
+  "8_outlook.tex" 1748292735 11202 6fccbed3f3dbc0975047a744a7d3fff9 ""
   "9_conclusion.tex" 1747324506 2785 f481b34150b730bfc34ff35d3dcdff31 ""
   "C:/Users/NiXoN/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1745865235 278213 95657c73472c04ba4ea8a9fe260c4682 ""
   "C:/Users/NiXoN/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1740678729 24225087 940914992fe89bfa34f6462cc352a70e ""
@@ -281,18 +281,18 @@
   "abb/strat_classifier_performance/tda_mnist/replacement_experiments/val_f1_score_tda_mnist_mnist_all.png" 1746281545 173373 7f6b7d86f04a98f5777727774af0d8d5 ""
   "abb/traditional_image_augmentation_examples.png" 1743341136 90282 fb736833b9475e6e5da1028ad442e333 ""
   "abstract.tex" 1747674171 1918 683a5e3b60523762ea9b055b6c129d13 ""
-  "appendix/appendix.tex" 1747324240 56315 19d98adb4d54fbb6bed51b2dbf3bddbe ""
+  "appendix/appendix.tex" 1748292886 57273 55f4515714c446b6cd0263ff180149a6 ""
   "c:/Users/NiXoN/Desktop/_thesis/mad_gan_thesis/latex/master_thesis/main.tex" 1746290281 8461 9833ee83a38c324903044b8be2fe6994 ""
   "dec_of_oath.tex" 1742160011 1031 a9eb92c8ee59c55f6debd42c011a5c1f ""
-  "main.aux" 1748001104 110584 c0d5015c9d0962f5fa5cc1e65a533921 "pdflatex"
-  "main.bbl" 1748001088 19082 519a6de85c2eaa77d31e73d9da6631f6 "bibtex main"
-  "main.ind" 1747997596 0 d41d8cd98f00b204e9800998ecf8427e "makeindex main.idx"
-  "main.lof" 1748001104 5169 b1cdc59657c168bd36edcc36e55877b1 "pdflatex"
-  "main.lot" 1748001104 6546 5f41a59bed81c25eeb7ca445cc685957 "pdflatex"
+  "main.aux" 1748295044 112998 b61b617b3a0e87002323c87ccf531dc8 "pdflatex"
+  "main.bbl" 1748293930 18702 40c9d084384fd0d638b0121fa71c4bc0 "bibtex main"
+  "main.ind" 1748293911 0 d41d8cd98f00b204e9800998ecf8427e "makeindex main.idx"
+  "main.lof" 1748295044 5169 b1cdc59657c168bd36edcc36e55877b1 "pdflatex"
+  "main.lot" 1748295044 6782 17ec1d019e89bbff841434c9acade2a5 "pdflatex"
   "main.nls" 0 -1 0 ""
-  "main.out" 1748001090 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "main.out" 1748295030 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "main.tex" 1746290281 8461 9833ee83a38c324903044b8be2fe6994 ""
-  "main.toc" 1748001104 9727 fd4d9076ca3be8f76e71675bc5eff3b8 "pdflatex"
+  "main.toc" 1748295044 10049 cc10ff787ee53ad7421d990967b1e7c6 "pdflatex"
   "tertiary_docs/abbreviations/abbreviations.tex" 1744554216 1234 5335bd93e4745f5f1fc9ba9c1ecaecfe ""
   "tertiary_docs/deckblatt.tex" 1742155842 1290 322320ed4fbe0af7de6e2e3dad755376 ""
   "tertiary_docs/trennung.tex" 1742133811 229 8def437ea5167c1c09582c349e6ad94a ""

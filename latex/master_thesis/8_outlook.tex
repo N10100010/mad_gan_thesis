@@ -3,30 +3,32 @@
 Unstructured thoughts, hidden for review. 
 
 \subsection{Potential of the MADGAN Framework}
-As introduced by Ghosh et al., MADGAN is ment to serve as a framework to be applied to different types of adversarial training procedures that can scale to multiple generators. An instance for which this framework has been applied is introduced in this thesis \ref{theoretical_cmadgan}. This, however, is only a simple adaptation introducing conditionality into the framework. With other research like attantion based- or progressive growing GANs, multiple routes for further researcher are open to be explored. An approach may involve formulating the MADGAN framework to a robust and resiliant state to apply its benefits to different architectures, e.g., the afore mentioned architectures. 
+As introduced by Ghosh et al., MADGAN is meant to serve as a framework to be applied to different types of adversarial training procedures that can scale to multiple generators. An instance for which this framework has been applied is introduced in this thesis \ref{theoretical_cmadgan}. This, however, is only a simple adaptation introducing conditionality into the framework. With other research like attention based- or progressive growing GANs, multiple routes for further researcher are open to be explored. An approach may involve formulating the MADGAN framework to a robust and resilient state to apply its benefits to different architectures, e.g., the aforementioned architectures. 
 
 
 %repair networks
 %\cite{Tanno2022repairingneuralnetworkfromcorrupt}
 
 \subsection{Weight Sharing across Generators}
-In this work, the implementation of the MADGAN framework involved weight sharing across all but the first and last layers of the generators \ref{theory_madgan_architecture}. However, this is not mandatory. According to Ghosh et al. wheight sharing is only recommended for single-view data and shall not be applied to multi-view data. An example for single-view data can be a images only representing a specific family of birds. Multi-view data can be represented by a dataset consting of images of birds, horses, dogs, etc., e.g. the CIFAR10 dataset. 
+In this work, the implementation of the MADGAN framework involved weight sharing across all but the first and last layers of the generators \ref{theory_madgan_architecture}. However, this is not mandatory. According to Ghosh et al. weight sharing is only recommended for single-view data and shall not be applied to multi-view data. An example for single-view data can be images only representing a specific family of birds. Multi-view data can be represented by a dataset consisting of images of birds, horses, dogs, etc., e.g., the CIFAR10 dataset. 
 
-As mentioned in the chapter \textit{Experiments Setup} (\ref{body_experiments_setup}), the CIFAR10 dataset was excluded from this work, due to afore mentioned difficulties training the different architectures on this dataset\ref{setup_cifar10_scope}. Although briefly tested with little success, training the MADGAN framework with entirely seperate generators has not been fully exhausted during experiments for this thesis. The results presented in their work (\cite{ghosh2018madgan}) give examples for the potential of their framework. 
+As mentioned in the chapter \textit{Experiments Setup} (\ref{body_experiments_setup}), the CIFAR10 dataset was excluded from this work, due to aforementioned difficulties training the different architectures on this dataset\ref{setup_cifar10_scope}. Although briefly tested with little success, training the MADGAN framework with entirely separate generators has not been fully exhausted during experiments for this thesis. The results presented in their work (\cite{ghosh2018madgan}) give examples for the potential of their framework. 
+
 Ultimately, the number of shared layers can be treated as a hyperparameter, having strong effect on the frameworks capabilities to generate data and approximate the original \(p_{data}\) (the original data distribution the GAN framework was trained on).
 
 It must be mentioned, that weight-sharing or lack there of comes with benefits and disadvantages respectively. 
 
+
 \noindent\textbf{Advantages:}
 \begin{enumerate}
-    \item Parameter Efficiency: Instead of training and stroing $K$ generators, the shared part of the generators e.g., the feature-extractor, only has to be trained once. Thereby, the training time and memory footprint can be reduced significantly. 
+    \item Parameter Efficiency: Instead of training and holding $K$ generators in memory separately, the shared part of the generators e.g., the feature-extractor, only has to be trained and stored once. Thereby, the training time and memory footprint can be reduced significantly. 
     \item The shared base between the generators learn common low- and mid-level features potentially more effectively because it receives gradient updates influenced by the objective of each of the $K$ generators. It may be possible, that, the shared base can positively influence the probability of mode collapse.
 \end{enumerate}
 
 \noindent\textbf{Disadvantages:}
 \begin{enumerate}
     \item Potential for limited Diversity: Depending on the setting, a significant portion of the generators may be shared. In the setup used in this work, the diversity between the generators is bound to the last dense layer of the respective generators. This can impose a ceiling for potential diversity. 
-    \item Optimization Complexity: Sharing layers between generators involves backpropagating gradients derived from multiple generator heads. Each of these heads has its own adversarial loss and may be influenced by a diversity loss, relative to other generators. These signals may conflict with eachother, potentially hindering progress in training the generators. 
+    \item Optimization Complexity: Sharing layers between generators involves backpropagating gradients derived from multiple generator heads. Each of these heads has its own adversarial loss and may be influenced by a loss of diversity, relative to other generators. These signals may conflict with each other, potentially hindering progress in training the generators. 
 \end{enumerate}
 
 
