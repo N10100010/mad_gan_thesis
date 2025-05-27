@@ -24,7 +24,7 @@ The stride determines how far the filter moves after each operation. For a strid
 \[
 \lfloor\left( \frac{r - a + s}{s} \right) \times \left( \frac{c - b + s}{s} \right)\rfloor
 \]
-where $\lfloor \cdot \rfloor$ denotes the floor function, which ensures that the output size is an integer.An image of this process can be found in Figure \ref{fig:maucher_convolutional_filtering}, in the Appendix. This image shows an input of size $[10 \times 10]$ and a filter of size $[3 \times 3]$. With a stride of $s = 1$, the resulting layer has a size of $[8 \times 8]$ (computed as $\left(10 - 3 + 1\right) \times \left(10 - 3 + 1\right)$). 
+where $\lfloor \cdot \rfloor$ denotes the floor function, which ensures that the output size is an integer. An image of this process can be found in Figure \ref{fig:maucher_convolutional_filtering}, in the Appendix. This image shows an input of size $[10 \times 10]$ and a filter of size $[3 \times 3]$. With a stride of $s = 1$, the resulting layer has a size of $[8 \times 8]$ (computed as $\left(10 - 3 + 1\right) \times \left(10 - 3 + 1\right)$). 
 
 The stride of the filter can also be greater than $1$. Additionally, there is the option to apply padding to the image. There are different ways to implement padding. When padding of size $p$ is applied, the output size for a square input and filter is calculated as follows:
 \[
@@ -35,7 +35,7 @@ A well known source for the context of convolutional arithmetic is the paper \te
 \vspace{1em}
 
 \textbf{Pooling Layers}\label{theoretical_classification_pooling_layers}
-A pooling layer reduces the spatial dimensions (height and width) of feature maps, effectively compressing data while preserving the number of channels. Similar to convolutional layers, pooling layers apply a filter operations, that moves by a given stride. Instead of summing elements covered by the filter, typically, the filter applies one of the following operations: Max-, Average-, Global Max- or Global Average Pooling. \footnote{Other types of pooling involve e.g., L2-norm-, stochastic- or learnable pooling. However, these are less common than the afore mentioned types.}
+A pooling layer reduces the spatial dimensions (height and width) of feature maps, effectively compressing data while preserving the number of channels. Similar to convolutional layers, pooling layers apply filter operations, that moves by a given stride. Instead of summing elements covered by the filter, typically, the filter applies one of the following operations: Max-, Average-, Global Max- or Global Average Pooling. \footnote{Other types of pooling involve e.g., L2-norm-, stochastic- or learnable pooling. However, these are less common than the afore mentioned types.}
 
 To give an example, starting with an input of size $[32 \times 32 \times 10]$, applying a pooling operation with a $[2 \times 2]$ filter and a stride of 2 results in an output size of $[16 \times 16 \times 10]$. This operation reduces the spatial dimensions by half while keeping the depth unchanged.
 
@@ -97,7 +97,7 @@ With their introduction in \textit{Batch Normalization: Accelerating Deep Networ
 \end{itemize}
 
 \subsubsection{Classification Models for augmented Training}
-The classification models, on which the data augmentation is tested, are simple CNN classifiers consisting of the described layers. A dedicated classifier architecture is created for each dataset: MNIST and Fashion-MNIST (\ref{used_datasets}). The main differences between these architectures is the number of blocks, made of two-dimensional \hyperref[theoretical_classification_conv_layers]{convolutional}, \hyperref[theoretical_classification_batchnorm_layers]{batchnorm} and \hyperref[theoretical_classification_pooling_layers]{pooling} layers. All models use the \hyperref[theoretical_activations_relu]{ReLU} function for activation of the convolutional layers and the \hyperref[theoretical_activations_softmax]{Softmax} function for the activation at their last dense layer, resulting in probability distribution over the space of classes. More on the specific model architectures and used metrics for evaluation can be found in chapter \ref{body_prelim}.
+The classification models, on which the data augmentation is tested, are simple CNN classifiers consisting of the described layers. A dedicated classifier architecture is created for each dataset: MNIST and Fashion-MNIST (\ref{used_datasets}). The main difference between these architectures is the number of blocks, made of two-dimensional \hyperref[theoretical_classification_conv_layers]{convolutional}, \hyperref[theoretical_classification_batchnorm_layers]{batchnorm} and \hyperref[theoretical_classification_pooling_layers]{pooling} layers. All models use the \hyperref[theoretical_activations_relu]{ReLU} function for activation of the convolutional layers and the \hyperref[theoretical_activations_softmax]{Softmax} function for the activation at their last dense layer, resulting in probability distribution over the space of classes. More on the specific model architectures and used metrics for evaluation can be found in chapter \ref{body_prelim}.
 
 \subsubsection{Classification Model Performance Metrics} \label{theory_classification_performanc_metrics}
 For the assessment of classification performance, several standard metrics are commonly used. \textit{Accuracy} gives a measure for the overall proportion of correctly predicted instances, but can be misleading in imbalanced datasets. \textit{Precision} quantifies the proportion of correctly predicted positive instances among all predicted instances, whereas \textit{recall} \footnote{Recall is also known as sensitivity.} captures the proportion of correctly predicted positives out of all actual positive samples. 
@@ -175,7 +175,7 @@ When applying the augmentations shown in Figure \ref{fig:figure_tda_examples}, i
 \subsubsection[Generative Data Augmentation - GDA]{Generative Data Augmentation}\label{theoretical_gda}
 Differing from the previously mentioned TDA \ref{theoretical_tda}, generative data augmentation (GDA) techniques do not focus on altering existing data instances. Rather, it focuses on creating entirely new samples that match the underlying data distribution of the training data. These generated instances may or may not include labels.
 
-The goal is to train a generative model \( G \) that produces instances \( X_1 \), for example, from a noise vector \( z \) \footnote{A noise vector may serve as input for a Generative Adversarial Network. See: \ref{theoretical_gan}}, such that the distribution of the generated data approximates the true distribution \( P(X) \) of the original dataset. In this context, \( G \) can be viewed as a function:
+The goal is to train a generative model \( G \) that produces instances \( X_1 \), for example, from a noise vector \( z \)\footnote{A noise vector may serve as input for a Generative Adversarial Network. See: \ref{theoretical_gan}}, such that the distribution of the generated data approximates the true distribution \( P(X) \) of the original dataset. In this context, \( G \) can be viewed as a function:
 
 \[
 G: z \mapsto X_1, \quad X_1 \sim P_G(X_{fake}) \approx P(X),
@@ -338,8 +338,7 @@ As afore mentioned, the MADGAN architecture employs multiple generators and one 
 \end{cases}
 \]
 Since one of the above cases must be fulfilled, every other index in the resulting vector must be $0$. This means exactly one entry of \(\delta\) is 1, indicating the source of the sample.
-Following this definition, the Ddd \(\delta\) can be understood as a one-hot encoding indicating whether a given sample is real of, and if not, from which generator it originates \footnote{It is important to point out, that the Dirac delta distribution is actually continuous. Their usage of the Ddd reminds of the Kronecker delta function, which \( \delta(i,j) = 1 \text{ for } i=j; 0 \text{ for } i \ne j \).}. The objective function for the optimization of \(\theta_d\), with \(\theta_g\) frozen is therefore:
-
+Following this definition, the Ddd \(\delta\) can be understood as a one-hot encoding indicating whether a given sample is real of, and if not, from which generator it originates\footnote{It is important to point out, that the Dirac delta distribution is actually continuous. Their usage of the Ddd reminds of the Kronecker delta function, which \( \delta(i,j) = 1 \text{ for } i=j; 0 \text{ for } i \ne j \).}. The objective function for the optimization of \(\theta_d\), with \(\theta_g\) frozen is therefore:
 \begin{equation}
     \max\limits_{\theta_d}\mathbb{E}_{x \sim p} H(\delta, D(x; \theta_d))
 \end{equation}.
@@ -382,7 +381,7 @@ Under this optimal condition (\(p_{data} = \frac{1}{k}\sum_{i=1}^{k} p_{g_i}\)):
         \item \(\text{KL}(p_{data}(x) \| p_{avg}(x)) = \text{KL}(p_{data}(x)|\| p_{data}(x)) = 0\)
         \item \(k \cdot \text{KL}\left(\frac{1}{k}\sum_{i=1}^k p_{g_i}(x) \| p_{avg}(x)\right) = k \cdot \text{KL}(p_{data}(x) \| p_{data}(x)) = 0\)
     \end{itemize}
-\end{enumerate}
+\end{enumerate}.
 
 
 Thus, at this global optimum, the generator's objective value is simply the constant term: \( -(k+1)\log(k+1) + k\log k \). This constant represents the baseline value of the divergence when the distributions are perfectly aligned, arising from the inherent mathematical structure of the objective function transformation.
@@ -456,7 +455,6 @@ The components are defined as:
     \label{eq:cmadgan_loss_g_adv}
     \mathcal{L}_{\text{adv}} = - \sum_{i=1}^{K} \mathbb{E}_{z \sim p(z), c \sim p(c)} [\log D(G_i(z, c), c)]
     \end{equation}
-
     \item \textbf{Diversity Loss ($\mathcal{L}_{\text{div}}$):} This term actively pushes the outputs of different generators apart. The goal during optimization ($\min \mathcal{L}_G$) is to maximize diversity. This is achieved by minimizing the negative cosine similarity. Cosine similarity is defined as:
     \begin{equation}
     \label{eq:cmadgan_cossim}
@@ -537,8 +535,9 @@ The Fréchet Inception Distance (FID) \cite{heusel2018ganstrainedtimescaleupdate
 Let \( (\mu_r, \Sigma_r) \) and \( (\mu_g, \Sigma_g) \) denote the means and covariance matrices of the real and generated image Inception feature embeddings, respectively. The FID score is computed as the Fréchet distance (also known as Wasserstein-2 distance) between these two multivariate Gaussian distributions:
 \begin{equation}
 \text{FID} = \| \mu_r - \mu_g \|^2_2 + \text{Tr} \left( \Sigma_r + \Sigma_g - 2\left( \Sigma_r \Sigma_g \right)^{1/2} \right)
+\label{eq:fid}
 \end{equation}
-where \( \|\cdot\|^2_2 \) is the squared \textit{L2 norm} (or Euclidean norm), \( \text{Tr}(\cdot) \) is the trace of a matrix, and \( \left( \Sigma_r \Sigma_g \right)^{1/2} \) denotes the **matrix square root of the matrix product** (i.e., standard matrix multiplication, not element-wise) between the two covariance matrices. The matrix square root \( A^{1/2} \) of a positive semi-definite matrix \( A \) is defined such that \( A^{1/2} A^{1/2} = A \).
+where \( \|\cdot\|^2_2 \) is the squared \textit{L2 norm} (or Euclidean norm), \( \text{Tr}(\cdot) \) is the trace of a matrix, and \( \left( \Sigma_r \Sigma_g \right)^{1/2} \) denotes the matrix square root of the matrix product (i.e., standard matrix multiplication, not element-wise) between the two covariance matrices. The matrix square root \( A^{1/2} \) of a positive semi-definite matrix \( A \) is defined such that \( A^{1/2} A^{1/2} = A \).
 
 
 \noindent\textbf{Interpretation}:
