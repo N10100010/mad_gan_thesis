@@ -16,45 +16,45 @@ Warning--entry type for "WanLiZeiler2013" isn't style-file defined
 --line 413 of file main.bib
 Warning--empty booktitle in Radford2015DCGAN
 Warning--empty pages in Radford2015DCGAN
-You've used 51 entries,
+You've used 54 entries,
             4793 wiz_defined-function locations,
-            1201 strings with 17936 characters,
-and the built_in function-call counts, 42659 in all, are:
-= -- 4392
-> -- 1462
-< -- 1568
-+ -- 1877
-- -- 560
-* -- 3069
-:= -- 7492
-add.period$ -- 90
-call.type$ -- 51
-change.case$ -- 345
-chr.to.int$ -- 50
-cite$ -- 53
-duplicate$ -- 950
-empty$ -- 2389
-format.name$ -- 967
-if$ -- 7950
+            1213 strings with 18525 characters,
+and the built_in function-call counts, 44812 in all, are:
+= -- 4603
+> -- 1549
+< -- 1650
++ -- 1981
+- -- 593
+* -- 3207
+:= -- 7883
+add.period$ -- 96
+call.type$ -- 54
+change.case$ -- 365
+chr.to.int$ -- 53
+cite$ -- 56
+duplicate$ -- 1000
+empty$ -- 2502
+format.name$ -- 1025
+if$ -- 8346
 int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 272
-newline$ -- 323
-num.names$ -- 155
-pop$ -- 429
+missing$ -- 290
+newline$ -- 341
+num.names$ -- 164
+pop$ -- 455
 preamble$ -- 1
-purify$ -- 447
+purify$ -- 473
 quote$ -- 0
-skip$ -- 2349
+skip$ -- 2483
 stack$ -- 0
-substring$ -- 3223
-swap$ -- 294
-text.length$ -- 230
+substring$ -- 3330
+swap$ -- 308
+text.length$ -- 241
 text.prefix$ -- 4
 top$ -- 0
-type$ -- 514
+type$ -- 544
 warning$ -- 2
-while$ -- 384
-width$ -- 55
-write$ -- 710
+while$ -- 404
+width$ -- 58
+write$ -- 749
 (There were 4 warnings)

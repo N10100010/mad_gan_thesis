@@ -1,170 +1,33 @@
 \section{Outlook}\label{outlook}
 
-Unstructured thoughts, hidden for review. 
-
+This chapter outlines potential future research directions stemming from the work presented in this thesis, focusing on extending the capabilities of the Multi-Agent Diverse GAN (MADGAN) framework and exploring variations in its architectural design.
 \subsection{Potential of the MADGAN Framework}
-As introduced by Ghosh et al., MADGAN is meant to serve as a framework to be applied to different types of adversarial training procedures that can scale to multiple generators. An instance for which this framework has been applied is introduced in this thesis \ref{theoretical_cmadgan}. This, however, is only a simple adaptation introducing conditionality into the framework. With other research like attention based- or progressive growing GANs, multiple routes for further researcher are open to be explored. An approach may involve formulating the MADGAN framework to a robust and resilient state to apply its benefits to different architectures, e.g., the aforementioned architectures. 
+As introduced by Ghosh et al., MADGAN is meant to serve as a framework to be applied to different types of adversarial training procedures that can scale to multiple generators. An instance for which this framework has been applied is introduced in this thesis (see Section \ref{theoretical_cmadgan}). The cMADGAN variant developed in this thesis represents a foundational adaptation, introducing conditionality and a novel diversity mechanism to the core MADGAN structure. Building upon this, several avenues for further research are apparent. With other research, like attention-based or progressively growing GANs, multiple routes for further research are open to be explored. Future work could focus on enhancing the MADGAN framework's robustness—improving its stability across diverse hyperparameter settings and dataset characteristics—and resilience to issues like mode collapse. This enhanced framework could then be integrated with advanced architectures; for instance, multiple generators in a progressively growing GAN could specialize in generating features at different resolutions, or attention mechanisms could be employed to dynamically weight the contributions of diverse generators based on the conditioning input.
 
+In accordance with the last paragraph, interesting results could emerge from applying the framework to different, more complex datasets, e.g., CIFAR-10. As mentioned in Section \ref{setup_cifar10_scope}, the CIFAR-10 dataset was omitted from further analysis due to challenges during training. Nevertheless, there are multiple instances of GAN architectures applied to this dataset (\cite{salimans2016improvedtechniquestraininggans}, \cite{denton2015deepgenerativeimagemodels}, \cite{gong2019autoganneuralarchitecturesearch}). Even to the significantly more complex (in terms of image size and number of classes) \textit{ImageNet} dataset, an adaptation of GANs was successfully applied \cite{brock2019largescalegantraining}. With their work, the researchers were able to markedly improve the generator's performance, measured by the \textit{Fréchet Inception Distance} and the \textit{Inception Score} (FID improvement over (50\%), IS improvement more than twofold). A critical aspect for such complex datasets, and a key challenge likely contributing to the difficulties observed with CIFAR-10 in this work, is achieving an effective balance in the training dynamics of the \(K\) generators. Future research should investigate strategies to ensure that all generators contribute meaningfully and diversely, preventing dominance by a few or the collapse of others. This might involve adaptive learning rates for each generator, modifications to the discriminator to handle outputs from multiple generators more effectively, or more sophisticated loss formulations for inter-generator competition and cooperation.
 
-%repair networks
-%\cite{Tanno2022repairingneuralnetworkfromcorrupt}
 
 \subsection{Weight Sharing across Generators}
-In this work, the implementation of the MADGAN framework involved weight sharing across all but the first and last layers of the generators \ref{theory_madgan_architecture}. However, this is not mandatory. According to Ghosh et al. weight sharing is only recommended for single-view data and shall not be applied to multi-view data. An example for single-view data can be images only representing a specific family of birds. Multi-view data can be represented by a dataset consisting of images of birds, horses, dogs, etc., e.g., the CIFAR10 dataset. 
+In this work, the implementation of the MADGAN framework involved weight sharing across all but the first and last layers of the generators (see Section \ref{theory_madgan_architecture}). However, this is not mandatory. According to Ghosh et al., weight sharing is only recommended for single-view data and should not be applied to multi-view data. An example of single-view data can be images only representing a specific family of birds. Multi-view data can be represented by a dataset consisting of images of birds, horses, dogs, etc., e.g., the CIFAR-10 dataset.
 
-As mentioned in the chapter \textit{Experiments Setup} (\ref{body_experiments_setup}), the CIFAR10 dataset was excluded from this work, due to aforementioned difficulties training the different architectures on this dataset\ref{setup_cifar10_scope}. Although briefly tested with little success, training the MADGAN framework with entirely separate generators has not been fully exhausted during experiments for this thesis. The results presented in their work (\cite{ghosh2018madgan}) give examples for the potential of their framework. 
+As mentioned in the chapter \textit{Experiments Setup} (Section \ref{body_experiments_setup}), the CIFAR-10 dataset was excluded from this work due to the aforementioned difficulties training the different architectures on this dataset (\ref{setup_cifar10_scope}). While briefly tested with limited success, the potential of training the cMADGAN framework with entirely separate (non-weight-sharing) generator architectures was not fully exhausted. This leads to a pertinent research question for future work: To what extent does transitioning from the partially shared weight scheme used in this thesis to fully independent generator architectures impact sample diversity, image quality, and training stability, particularly on challenging multi-view datasets like CIFAR-10? 
 
-Ultimately, the number of shared layers can be treated as a hyperparameter, having strong effect on the frameworks capabilities to generate data and approximate the original \(p_{data}\) (the original data distribution the GAN framework was trained on).
+Ultimately, the number of shared layers can be treated as a hyperparameter, having a strong effect on the framework's capabilities to generate data and approximate the original \(p_{\text{data}}\) (the original data distribution the GAN framework was trained on).
 
-It must be mentioned, that weight-sharing or lack there of comes with benefits and disadvantages respectively. 
-
+It must be mentioned that weight-sharing, or lack thereof, comes with benefits and disadvantages.
 
 \noindent\textbf{Advantages:}
 \begin{enumerate}
-    \item Parameter Efficiency: Instead of training and holding $K$ generators in memory separately, the shared part of the generators e.g., the feature-extractor, only has to be trained and stored once. Thereby, the training time and memory footprint can be reduced significantly. 
-    \item The shared base between the generators learn common low- and mid-level features potentially more effectively because it receives gradient updates influenced by the objective of each of the $K$ generators. It may be possible, that, the shared base can positively influence the probability of mode collapse.
+\item Parameter Efficiency: Instead of training and holding K generators in memory separately, the shared part of the generators, e.g., the feature-extractor, only has to be trained and stored once. Thereby, the training time and memory footprint can be reduced significantly.
+\item Feature Learning: The shared base between the generators learns common low- and mid-level features potentially more effectively because it receives gradient updates influenced by the objective of each of the K generators. It may be possible that the shared base can positively influence the probability of avoiding mode collapse.
 \end{enumerate}
 
 \noindent\textbf{Disadvantages:}
 \begin{enumerate}
-    \item Potential for limited Diversity: Depending on the setting, a significant portion of the generators may be shared. In the setup used in this work, the diversity between the generators is bound to the last dense layer of the respective generators. This can impose a ceiling for potential diversity. 
-    \item Optimization Complexity: Sharing layers between generators involves backpropagating gradients derived from multiple generator heads. Each of these heads has its own adversarial loss and may be influenced by a loss of diversity, relative to other generators. These signals may conflict with each other, potentially hindering progress in training the generators. 
+\item Potential for Limited Diversity: Depending on the setting, a significant portion of the generators may be shared. In the setup used in this work, the diversity between the generators is bound to the last dense layer of the respective generators. This can impose a ceiling for potential diversity.
+\item Optimization Complexity: Sharing layers between generators involves backpropagating gradients derived from multiple generator heads. Each of these heads has its own adversarial loss and may be influenced by a loss of diversity relative to other generators. These signals may conflict with each other, potentially hindering progress in training the generators.
 \end{enumerate}
 
-
-
-% Limited Diversity Potential: Because a significant portion of the network is shared, the fundamental feature 
-% extraction process is common to all generators. The diversity is primarily introduced by the final few unshared 
-% layers. This might impose a ceiling on the maximum achievable diversity compared to completely independent 
-% generators, which could potentially learn radically different internal representations from scratch.
-
-% Optimization Complexity: Training the shared parameters involves backpropagating gradients derived from multiple 
-% generator heads, each with its adversarial loss and influenced by the diversity loss relative to others. Balancing 
-% these potentially conflicting gradient signals flowing into the shared base can be tricky and might require careful 
-% tuning of learning rates and the diversity weight (lambda). Poor tuning could lead to suboptimal learning in the 
-% shared base.
-
-% Architectural Constraint: The fixed structure (shared base + separate heads) might not be the optimal architecture 
-% for every problem or dataset. Completely independent generators offer more flexibility in exploring different 
-% architectures for each one.
-
-% Potential Bottleneck: If the shared base fails to learn good representations or gets stuck in a poor local minimum, 
-% it negatively impacts all generators simultaneously. With independent generators, there's a chance that at least 
-% one might find a better solution path independently.
-
-
-
-% Improved Training Stability and Sample Efficiency:
-
-% The shared base learns common low-level and mid-level features more effectively because it receives gradient 
-% updates influenced by the learning objectives of all generators. It essentially gets a stronger, more averaged 
-% learning signal for shared features.
-
-% This shared learning can prevent individual generators from collapsing early or diverging drastically, potentially 
-% leading to more stable training.
-
-% Generators benefit from features learned via the experiences of other generators through the shared base.
-
-% Knowledge Transfer: Useful features learned by the shared base (e.g., basic shapes, textures common to the dataset) 
-% are immediately available to all generators, promoting faster learning of complex structures.
-
-
-% 
-
-% check the diversity of modes in the generated images. following the experiments shown figure 5 
-
-% 
-
-% \subsubsection{Weight Sharing across Generators in MADGAN}
-
-% Is Weight Sharing Mandatory in MADGAN?
-
-% 
-
-% No, weight sharing is not strictly mandatory to implement the general idea of having multiple generators aiming for 
-% diversity and fooling a single discriminator. You could implement K completely independent generator networks.
-
-% 
-
-% However, the weight-sharing strategy proposed by Ghosh et al. is a key architectural feature and contribution of 
-% their specific MAD-GAN formulation. In their paper, they ropose sharing the parameters of the initial, deeper 
-% layers across all generators and only having separate (unshared) parameters for the final few layers of each 
-% generator.
-
-% 
-
-% So, while not theoretically mandatory for any multi-generator setup, it's central to the design and efficiency 
-% benefits highlighted in the original MAD-GAN paper. Deviating significantly from it means you are implementing a 
-% different variant of a multi-generator diverse GAN.
-
-% 
-
-% Advantages of Weight Sharing (as proposed in MAD-GAN):
-
-% 
-
-% Parameter Efficiency: This is a major advantage. Instead of storing and training K full generator networks, you 
-% store one large shared network base and K smaller "heads" (the final unshared layers). This drastically reduces the 
-% total number of parameters.
-
-% Lower Memory Footprint: Requires less GPU memory, making it feasible to train more generators or use larger base 
-% networks.
-
-% Faster Training (Potentially): Fewer parameters typically mean fewer computations per training step, potentially 
-% leading to faster epochs, although the overall training dynamic is complex.
-
-% Improved Training Stability and Sample Efficiency:
-
-% The shared base learns common low-level and mid-level features more effectively because it receives gradient 
-% updates influenced by the learning objectives of all generators. It essentially gets a stronger, more averaged 
-% learning signal for shared features.
-
-% This shared learning can prevent individual generators from collapsing early or diverging drastically, potentially 
-% leading to more stable training.
-
-% Generators benefit from features learned via the experiences of other generators through the shared base.
-
-% Knowledge Transfer: Useful features learned by the shared base (e.g., basic shapes, textures common to the dataset) 
-% are immediately available to all generators, promoting faster learning of complex structures.
-
-% Implicit Regularization: Sharing weights constrains the generators, acting as a form of regularization that might 
-% prevent individual generators from overfitting noise or specific data points too quickly.
-
-% Disadvantages of Weight Sharing:
-
-% 
-
-% Limited Diversity Potential: Because a significant portion of the network is shared, the fundamental feature 
-% extraction process is common to all generators. The diversity is primarily introduced by the final few unshared 
-% layers. This might impose a ceiling on the maximum achievable diversity compared to completely independent 
-% generators, which could potentially learn radically different internal representations from scratch.
-
-% Optimization Complexity: Training the shared parameters involves backpropagating gradients derived from multiple 
-% generator heads, each with its adversarial loss and influenced by the diversity loss relative to others. Balancing 
-% these potentially conflicting gradient signals flowing into the shared base can be tricky and might require careful 
-% tuning of learning rates and the diversity weight (lambda). Poor tuning could lead to suboptimal learning in the 
-% shared base.
-
-% Architectural Constraint: The fixed structure (shared base + separate heads) might not be the optimal architecture 
-% for every problem or dataset. Completely independent generators offer more flexibility in exploring different 
-% architectures for each one.
-
-% Potential Bottleneck: If the shared base fails to learn good representations or gets stuck in a poor local minimum, 
-% it negatively impacts all generators simultaneously. With independent generators, there's a chance that at least 
-% one might find a better solution path independently.
-
-% In summary, the weight-sharing strategy in the original MAD-GAN paper is a clever design choice offering 
-% significant efficiency and stability benefits, making it practical to train multiple generators. However, this 
-% comes at the cost of potentially limiting the absolute maximum diversity achievable and introducing specific 
-% optimization challenges compared to using fully independent generator networks. The choice depends on the trade-off 
-% between efficiency, stability, and the desired level/type of diversity for a specific application.
-
-% 
-
-% 
-
-% \cite{zhao2023gan}
-
-% TODO: cite this again. they managed to apply dc gans to cifar10 
+In summary, the weight-sharing strategy in the original MADGAN paper is a clever design choice offering significant efficiency and stability benefits, making it practical to train multiple generators. However, this comes at the cost of potentially limiting the absolute maximum diversity achievable and introducing specific optimization challenges compared to using fully independent generator networks. The choice depends on the trade-off between efficiency, stability, and the desired level or type of diversity for a specific application.
 
 \newpage

@@ -310,6 +310,7 @@ INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmssbx
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmssbx10.tfm
 INPUT C:\Users\NiXoN\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-ec.enc
+INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathit.enc
 INPUT .\main.toc
 INPUT .\main.toc
 INPUT main.toc
@@ -318,7 +319,6 @@ INPUT .\main.lof
 INPUT .\main.lof
 INPUT main.lof
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmri12.tfm
-INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathit.enc
 INPUT C:\Users\NiXoN\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-rm.enc
 OUTPUT main.lof
 INPUT .\main.lot

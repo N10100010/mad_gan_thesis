@@ -15,6 +15,13 @@
 \newblock \url{https://arxiv.org/abs/1701.07875}.
 \newblock \,Version:\,2017
 
+\bibitem[BDS19]{brock2019largescalegantraining}
+\textsc{Brock}, Andrew ; \textsc{Donahue}, Jeff  ; \textsc{Simonyan}, Karen:
+\newblock \emph{Large Scale GAN Training for High Fidelity Natural Image
+  Synthesis}.
+\newblock \url{https://arxiv.org/abs/1809.11096}.
+\newblock \,Version:\,2019
+
 \bibitem[BNI{\etalchar{+}}23]{biswas2023generativeadversarialnetworksdata}
 \textsc{Biswas}, Angona ; \textsc{Nasim}, MD Abdullah~A. ; \textsc{Imran}, Al ;
   \textsc{Sejuty}, Anika~T. ; \textsc{Fairooz}, Fabliha ; \textsc{Puppala}, Sai
@@ -38,6 +45,14 @@
   using Hessian Eigenvalues}.
 \newblock \url{https://arxiv.org/abs/2012.09673}.
 \newblock \,Version:\,2020
+
+\bibitem[DCSF15]{denton2015deepgenerativeimagemodels}
+\textsc{Denton}, Emily ; \textsc{Chintala}, Soumith ; \textsc{Szlam}, Arthur  ;
+  \textsc{Fergus}, Rob:
+\newblock \emph{Deep Generative Image Models using a Laplacian Pyramid of
+  Adversarial Networks}.
+\newblock \url{https://arxiv.org/abs/1506.05751}.
+\newblock \,Version:\,2015
 
 \bibitem[DDS{\etalchar{+}}09]{ImageNetDataset5206848}
 \textsc{Deng}, Jia ; \textsc{Dong}, Wei ; \textsc{Socher}, Richard ;
@@ -73,6 +88,14 @@
 \textsc{Gavrikov}, Paul:
 \newblock \emph{visualkeras}.
 \newblock \url{https://github.com/paulgavrikov/visualkeras}, 2020
+
+\bibitem[GCJW19]{gong2019autoganneuralarchitecturesearch}
+\textsc{Gong}, Xinyu ; \textsc{Chang}, Shiyu ; \textsc{Jiang}, Yifan  ;
+  \textsc{Wang}, Zhangyang:
+\newblock \emph{AutoGAN: Neural Architecture Search for Generative Adversarial
+  Networks}.
+\newblock \url{https://arxiv.org/abs/1908.03835}.
+\newblock \,Version:\,2019
 
 \bibitem[GKN{\etalchar{+}}18]{ghosh2018madgan}
 \textsc{Ghosh}, Arnab ; \textsc{Kulharia}, Viveka ; \textsc{Namboodiri}, Vinay
