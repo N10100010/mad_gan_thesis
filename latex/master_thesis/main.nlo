@@ -1,23 +1,23 @@
-\nomenclatureentry{aGDA@[{GDA}]\begingroup Generative Data Augmentation\nomeqref {0}|nompageref}{8}
-\nomenclatureentry{aSLP@[{SLP}]\begingroup Single Layer Perceptron\nomeqref {0}|nompageref}{8}
-\nomenclatureentry{aMLP@[{MLP}]\begingroup Multi Layer Perceptron\nomeqref {0}|nompageref}{8}
-\nomenclatureentry{aNN@[{NN}]\begingroup Neural Netzwerk\nomeqref {0}|nompageref}{8}
-\nomenclatureentry{aFFN@[{FFN}]\begingroup Feed Forward Netzwerk\nomeqref {0}|nompageref}{8}
-\nomenclatureentry{aCNN@[{CNN}]\begingroup Convolutional Neural Network\nomeqref {0}|nompageref}{8}
-\nomenclatureentry{aCNNs@[{CNNs}]\begingroup Convolutional Neural Networks\nomeqref {0}|nompageref}{8}
-\nomenclatureentry{aDNN@[{DNN}]\begingroup Deep Neural Network\nomeqref {0}|nompageref}{8}
-\nomenclatureentry{aGAN@[{GAN}]\begingroup Generative Adversarial Network\nomeqref {0}|nompageref}{8}
-\nomenclatureentry{aGANs@[{GANs}]\begingroup Generative Adversarial Networks\nomeqref {0}|nompageref}{8}
-\nomenclatureentry{aMADGAN@[{MADGAN}]\begingroup Multi-Agent Diverse Generative Adversarial Network\nomeqref {0}|nompageref}{8}
-\nomenclatureentry{aMADGANs@[{MADGANs}]\begingroup Multi-Agent Diverse Generative Adversarial Networks\nomeqref {0}|nompageref}{8}
-\nomenclatureentry{acGAN@[{cGAN}]\begingroup Conditional Generative Adversarial Network\nomeqref {0}|nompageref}{8}
-\nomenclatureentry{acGANs@[{cGANs}]\begingroup Conditional Generative Adversarial Networks\nomeqref {0}|nompageref}{8}
-\nomenclatureentry{aDCGAN@[{DCGAN}]\begingroup Deep Convolutional Generative Adversarial Network\nomeqref {0}|nompageref}{8}
-\nomenclatureentry{aDCGANs@[{DCGANs}]\begingroup Deep Convolutional Generative Adversarial Networks\nomeqref {0}|nompageref}{8}
-\nomenclatureentry{aVAE@[{VAE}]\begingroup Variational Auto Encoder\nomeqref {0}|nompageref}{8}
-\nomenclatureentry{aVAEs@[{VAEs}]\begingroup Variational Auto Encoders\nomeqref {0}|nompageref}{8}
-\nomenclatureentry{aFID@[{FID}]\begingroup Fréchet Inception Distance\nomeqref {0}|nompageref}{8}
-\nomenclatureentry{aIS@[{IS}]\begingroup Inception Score\nomeqref {0}|nompageref}{8}
-\nomenclatureentry{abatchnorm@[{batchnorm}]\begingroup Batch Normalization\nomeqref {0}|nompageref}{8}
-\nomenclatureentry{aDdd@[{Ddd}]\begingroup Dirac delta distribution\nomeqref {0}|nompageref}{8}
-\nomenclatureentry{aKL@[{KL}]\begingroup Kullback-Leibler\nomeqref {0}|nompageref}{8}
+\nomenclatureentry{aGDA@[{GDA}]\begingroup Generative Data Augmentation\nomeqref {0}|nompageref}{7}
+\nomenclatureentry{aSLP@[{SLP}]\begingroup Single Layer Perceptron\nomeqref {0}|nompageref}{7}
+\nomenclatureentry{aMLP@[{MLP}]\begingroup Multi Layer Perceptron\nomeqref {0}|nompageref}{7}
+\nomenclatureentry{aNN@[{NN}]\begingroup Neural Netzwerk\nomeqref {0}|nompageref}{7}
+\nomenclatureentry{aFFN@[{FFN}]\begingroup Feed Forward Netzwerk\nomeqref {0}|nompageref}{7}
+\nomenclatureentry{aCNN@[{CNN}]\begingroup Convolutional Neural Network\nomeqref {0}|nompageref}{7}
+\nomenclatureentry{aCNNs@[{CNNs}]\begingroup Convolutional Neural Networks\nomeqref {0}|nompageref}{7}
+\nomenclatureentry{aDNN@[{DNN}]\begingroup Deep Neural Network\nomeqref {0}|nompageref}{7}
+\nomenclatureentry{aGAN@[{GAN}]\begingroup Generative Adversarial Network\nomeqref {0}|nompageref}{7}
+\nomenclatureentry{aGANs@[{GANs}]\begingroup Generative Adversarial Networks\nomeqref {0}|nompageref}{7}
+\nomenclatureentry{aMADGAN@[{MADGAN}]\begingroup Multi-Agent Diverse Generative Adversarial Network\nomeqref {0}|nompageref}{7}
+\nomenclatureentry{aMADGANs@[{MADGANs}]\begingroup Multi-Agent Diverse Generative Adversarial Networks\nomeqref {0}|nompageref}{7}
+\nomenclatureentry{acGAN@[{cGAN}]\begingroup Conditional Generative Adversarial Network\nomeqref {0}|nompageref}{7}
+\nomenclatureentry{acGANs@[{cGANs}]\begingroup Conditional Generative Adversarial Networks\nomeqref {0}|nompageref}{7}
+\nomenclatureentry{aDCGAN@[{DCGAN}]\begingroup Deep Convolutional Generative Adversarial Network\nomeqref {0}|nompageref}{7}
+\nomenclatureentry{aDCGANs@[{DCGANs}]\begingroup Deep Convolutional Generative Adversarial Networks\nomeqref {0}|nompageref}{7}
+\nomenclatureentry{aVAE@[{VAE}]\begingroup Variational Auto Encoder\nomeqref {0}|nompageref}{7}
+\nomenclatureentry{aVAEs@[{VAEs}]\begingroup Variational Auto Encoders\nomeqref {0}|nompageref}{7}
+\nomenclatureentry{aFID@[{FID}]\begingroup Fréchet Inception Distance\nomeqref {0}|nompageref}{7}
+\nomenclatureentry{aIS@[{IS}]\begingroup Inception Score\nomeqref {0}|nompageref}{7}
+\nomenclatureentry{abatchnorm@[{batchnorm}]\begingroup Batch Normalization\nomeqref {0}|nompageref}{7}
+\nomenclatureentry{aDdd@[{Ddd}]\begingroup Dirac delta distribution\nomeqref {0}|nompageref}{7}
+\nomenclatureentry{aKL@[{KL}]\begingroup Kullback-Leibler\nomeqref {0}|nompageref}{7}

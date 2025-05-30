@@ -1,77 +1,77 @@
 \babel@toc {english}{}\relax 
-\contentsline {section}{List of Figures}{6}{section*.3}%
-\contentsline {section}{List of Tables}{7}{section*.4}%
-\contentsline {section}{List of Abbreviations}{8}{section*.5}%
-\contentsline {section}{\numberline {1}Introduction and Motivation}{9}{section.1}%
-\contentsline {paragraph}{\nonumberline Set 1: Training and Analysis of GANs}{9}{paragraph*.7}%
-\contentsline {paragraph}{\nonumberline Set 2: Generating and Classifying Unlabeled Images}{10}{paragraph*.9}%
-\contentsline {paragraph}{\nonumberline Set 3: Training and Evaluating Classifiers}{10}{paragraph*.11}%
-\contentsline {paragraph}{\nonumberline Aim of the Thesis}{10}{paragraph*.13}%
-\contentsline {section}{\numberline {2}Related Work}{12}{section.2}%
-\contentsline {section}{\numberline {3}Theoretical Background}{14}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Image Classification Models}{14}{subsection.3.1}%
-\contentsline {subsubsection}{\numberline {3.1.1}Neural Networks for Classification}{14}{subsubsection.3.1.1}%
-\contentsline {subsubsection}{\numberline {3.1.2}Classification Models for augmented Training}{17}{subsubsection.3.1.2}%
-\contentsline {subsubsection}{\numberline {3.1.3}Classification Model Performance Metrics}{18}{subsubsection.3.1.3}%
-\contentsline {subsection}{\numberline {3.2}Data Augmentation - DA}{18}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Traditional Data Augmentation - TDA}{18}{subsubsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2}Generative Data Augmentation - GDA}{20}{subsubsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.3}Generative Adversarial Network - GAN}{21}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}Mathematical Formulation}{21}{subsubsection.3.3.1}%
-\contentsline {subsubsection}{\numberline {3.3.2}Training Process}{22}{subsubsection.3.3.2}%
-\contentsline {subsubsection}{\numberline {3.3.3}Challenges in GAN Training}{22}{subsubsection.3.3.3}%
-\contentsline {paragraph}{\nonumberline Mode Collapse}{22}{paragraph*.17}%
-\contentsline {paragraph}{\nonumberline Lack of Inter-Class Diversity}{23}{paragraph*.19}%
-\contentsline {paragraph}{\nonumberline Failure to Converge}{23}{paragraph*.21}%
-\contentsline {paragraph}{\nonumberline Vanishing & unstable Gradients}{23}{paragraph*.23}%
-\contentsline {paragraph}{\nonumberline Imbalance between Generator and Discriminator}{23}{paragraph*.25}%
-\contentsline {subsection}{\numberline {3.4}Deep Convolutional Generative Adversarial Network - DCGAN}{23}{subsection.3.4}%
-\contentsline {subsubsection}{\numberline {3.4.1}Architectural Adjustments}{23}{subsubsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.5}Conditional Generative Adversarial Network - cGAN}{24}{subsection.3.5}%
-\contentsline {subsubsection}{\numberline {3.5.1}Mathematical Formulation}{24}{subsubsection.3.5.1}%
-\contentsline {subsubsection}{\numberline {3.5.2}Architectural Adjustments}{25}{subsubsection.3.5.2}%
-\contentsline {subsection}{\numberline {3.6}Multi-Agent Diverse Generative Adversarial Network - MADGAN}{25}{subsection.3.6}%
-\contentsline {subsubsection}{\numberline {3.6.1}Mathematical Formulation}{26}{subsubsection.3.6.1}%
-\contentsline {subsubsection}{\numberline {3.6.2}Architectural Adjustments}{28}{subsubsection.3.6.2}%
-\contentsline {subsection}{\numberline {3.7}Adapting MADGAN for Conditional Generation with Explicit Diversity - cMADGAN}{30}{subsection.3.7}%
-\contentsline {subsubsection}{\numberline {3.7.1}Mathematical Formulation}{30}{subsubsection.3.7.1}%
-\contentsline {paragraph}{\nonumberline Discriminator Loss:}{30}{paragraph*.29}%
-\contentsline {paragraph}{\nonumberline Generator Loss:}{31}{paragraph*.31}%
-\contentsline {subsubsection}{\numberline {3.7.2}Architectural Adjustments}{31}{subsubsection.3.7.2}%
-\contentsline {subsection}{\numberline {3.8}Image Scores}{32}{subsection.3.8}%
-\contentsline {subsubsection}{\numberline {3.8.1}Inception Score - IS}{32}{subsubsection.3.8.1}%
-\contentsline {subsubsection}{\numberline {3.8.2}Fréchet Inception Distance - FID}{33}{subsubsection.3.8.2}%
-\contentsline {subsubsection}{\numberline {3.8.3}InceptionV3 Model}{34}{subsubsection.3.8.3}%
-\contentsline {section}{\numberline {4}Experiments Setup}{36}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Preliminary Remarks}{36}{subsection.4.1}%
-\contentsline {subsubsection}{\numberline {4.1.1}Scope Limitation Regarding Standard CIFAR-10}{36}{subsubsection.4.1.1}%
-\contentsline {subsubsection}{\numberline {4.1.2}Used Datasets}{37}{subsubsection.4.1.2}%
-\contentsline {subsubsection}{\numberline {4.1.3}GAN: Architecture, Training and Data Augmentation}{37}{subsubsection.4.1.3}%
-\contentsline {subsubsection}{\numberline {4.1.4}Stratified Classifiers as measure for augmentation Quality}{38}{subsubsection.4.1.4}%
-\contentsline {subsubsection}{\numberline {4.1.5}Labeling unconditioned data}{38}{subsubsection.4.1.5}%
-\contentsline {subsubsection}{\numberline {4.1.6}Utilization of InceptionV3 for FID and IS}{38}{subsubsection.4.1.6}%
-\contentsline {subsection}{\numberline {4.2}Experimental Workflow}{39}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Comparison of Classifier Performance}{40}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Hardware and Software Environment}{41}{subsection.4.4}%
-\contentsline {subsubsection}{\numberline {4.4.1}Hardware}{41}{subsubsection.4.4.1}%
-\contentsline {subsubsection}{\numberline {4.4.2}Software}{41}{subsubsection.4.4.2}%
-\contentsline {section}{\numberline {5}Experiments Results}{42}{section.5}%
-\contentsline {paragraph}{\nonumberline Motivation}{42}{paragraph*.34}%
-\contentsline {subsection}{\numberline {5.1}Key Research Questions}{42}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Key Research Question Answers}{43}{subsection.5.2}%
-\contentsline {subsubsection}{\numberline {5.2.1}Question 1}{44}{subsubsection.5.2.1}%
-\contentsline {subsubsection}{\numberline {5.2.2}Question 2}{46}{subsubsection.5.2.2}%
-\contentsline {subsubsection}{\numberline {5.2.3}Question 3}{55}{subsubsection.5.2.3}%
-\contentsline {subsubsection}{\numberline {5.2.4}Question 4}{64}{subsubsection.5.2.4}%
-\contentsline {subsubsection}{\numberline {5.2.5}Question 5}{72}{subsubsection.5.2.5}%
-\contentsline {section}{\numberline {6}Remarks}{74}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Connection between Generator Index and used Ratio to Classifier Performance}{74}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Distinction of Modes}{74}{subsection.6.2}%
-\contentsline {section}{\numberline {7}Outlook}{77}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Potential of the MADGAN Framework}{77}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Weight Sharing across Generators}{78}{subsection.7.2}%
-\contentsline {section}{\numberline {8}Conclusion}{80}{section.8}%
-\contentsline {section}{List of References}{81}{section.8}%
+\contentsline {section}{List of Figures}{5}{section*.3}%
+\contentsline {section}{List of Tables}{6}{section*.4}%
+\contentsline {section}{List of Abbreviations}{7}{section*.5}%
+\contentsline {section}{\numberline {1}Introduction and Motivation}{8}{section.1}%
+\contentsline {paragraph}{\nonumberline Set 1: Training and Analysis of GANs}{8}{paragraph*.7}%
+\contentsline {paragraph}{\nonumberline Set 2: Generating and Classifying Unlabeled Images}{8}{paragraph*.9}%
+\contentsline {paragraph}{\nonumberline Set 3: Training and Evaluating Classifiers}{9}{paragraph*.11}%
+\contentsline {paragraph}{\nonumberline Aim of the Thesis}{9}{paragraph*.13}%
+\contentsline {section}{\numberline {2}Related Work}{11}{section.2}%
+\contentsline {section}{\numberline {3}Theoretical Background}{13}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Image Classification Models}{13}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Neural Networks for Classification}{13}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Classification Models for augmented Training}{16}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}Classification Model Performance Metrics}{16}{subsubsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.2}Data Augmentation - DA}{17}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Traditional Data Augmentation - TDA}{17}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Generative Data Augmentation - GDA}{18}{subsubsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.3}Generative Adversarial Network - GAN}{19}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Mathematical Formulation}{19}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Training Process}{20}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Challenges in GAN Training}{20}{subsubsection.3.3.3}%
+\contentsline {paragraph}{\nonumberline Mode Collapse}{20}{paragraph*.17}%
+\contentsline {paragraph}{\nonumberline Lack of Inter-Class Diversity}{21}{paragraph*.19}%
+\contentsline {paragraph}{\nonumberline Failure to Converge}{21}{paragraph*.21}%
+\contentsline {paragraph}{\nonumberline Vanishing & unstable Gradients}{21}{paragraph*.23}%
+\contentsline {paragraph}{\nonumberline Imbalance between Generator and Discriminator}{21}{paragraph*.25}%
+\contentsline {subsection}{\numberline {3.4}Deep Convolutional Generative Adversarial Network - DCGAN}{21}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Architectural Adjustments}{21}{subsubsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.5}Conditional Generative Adversarial Network - cGAN}{22}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}Mathematical Formulation}{22}{subsubsection.3.5.1}%
+\contentsline {subsubsection}{\numberline {3.5.2}Architectural Adjustments}{23}{subsubsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.6}Multi-Agent Diverse Generative Adversarial Network - MADGAN}{23}{subsection.3.6}%
+\contentsline {subsubsection}{\numberline {3.6.1}Mathematical Formulation}{23}{subsubsection.3.6.1}%
+\contentsline {subsubsection}{\numberline {3.6.2}Architectural Adjustments}{26}{subsubsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.7}Adapting MADGAN for Conditional Generation with Diversity - cMADGAN}{27}{subsection.3.7}%
+\contentsline {subsubsection}{\numberline {3.7.1}Mathematical Formulation}{27}{subsubsection.3.7.1}%
+\contentsline {paragraph}{\nonumberline Discriminator Loss:}{27}{paragraph*.29}%
+\contentsline {paragraph}{\nonumberline Generator Loss:}{28}{paragraph*.31}%
+\contentsline {subsubsection}{\numberline {3.7.2}Architectural Adjustments}{28}{subsubsection.3.7.2}%
+\contentsline {subsection}{\numberline {3.8}Image Scores}{29}{subsection.3.8}%
+\contentsline {subsubsection}{\numberline {3.8.1}Inception Score - IS}{29}{subsubsection.3.8.1}%
+\contentsline {subsubsection}{\numberline {3.8.2}Fréchet Inception Distance - FID}{30}{subsubsection.3.8.2}%
+\contentsline {subsubsection}{\numberline {3.8.3}InceptionV3 Model}{31}{subsubsection.3.8.3}%
+\contentsline {section}{\numberline {4}Experiments Setup}{33}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Preliminary Remarks}{33}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}Scope Limitation Regarding Standard CIFAR-10}{33}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}Used Datasets}{34}{subsubsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.3}GAN: Architecture, Training and Data Augmentation}{34}{subsubsection.4.1.3}%
+\contentsline {subsubsection}{\numberline {4.1.4}Stratified Classifiers as measure for augmentation Quality}{34}{subsubsection.4.1.4}%
+\contentsline {subsubsection}{\numberline {4.1.5}Labeling unconditioned data}{35}{subsubsection.4.1.5}%
+\contentsline {subsubsection}{\numberline {4.1.6}Utilization of InceptionV3 for FID and IS}{35}{subsubsection.4.1.6}%
+\contentsline {subsection}{\numberline {4.2}Experimental Workflow}{35}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Comparison of Classifier Performance}{37}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Hardware and Software Environment}{37}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}Hardware}{37}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}Software}{37}{subsubsection.4.4.2}%
+\contentsline {section}{\numberline {5}Experiments Results}{38}{section.5}%
+\contentsline {paragraph}{\nonumberline Motivation}{38}{paragraph*.34}%
+\contentsline {subsection}{\numberline {5.1}Key Research Questions}{38}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Key Research Question Answers}{38}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Question 1}{40}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}Question 2}{42}{subsubsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.3}Question 3}{51}{subsubsection.5.2.3}%
+\contentsline {subsubsection}{\numberline {5.2.4}Question 4}{60}{subsubsection.5.2.4}%
+\contentsline {subsubsection}{\numberline {5.2.5}Question 5}{68}{subsubsection.5.2.5}%
+\contentsline {section}{\numberline {6}Remarks}{70}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Connection between Generator Index and used Ratio to Classifier Performance}{70}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Distinction of Modes}{70}{subsection.6.2}%
+\contentsline {section}{\numberline {7}Outlook}{72}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Potential of the MADGAN Framework}{72}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Weight Sharing across Generators}{72}{subsection.7.2}%
+\contentsline {section}{\numberline {8}Conclusion}{74}{section.8}%
+\contentsline {section}{List of References}{75}{section.8}%
 \contentsline {section}{Appendix}{1}{section*.73}%
 \contentsline {subsection}{\numberline {8.1}Network Architectures}{1}{subsection.8.1}%
 \contentsline {subsubsection}{\numberline {8.1.1}Classifiers}{1}{subsubsection.8.1.1}%

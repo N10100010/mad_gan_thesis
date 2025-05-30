@@ -9,7 +9,7 @@ The final section (\ref{theoretical_image_scores}) explains the theory behind th
 % ########################################################################################################
 \subsection{Image Classification Models}\label{theoretical_classification}
 \subsubsection{Neural Networks for Classification}
-Convolutional Neural Networks (CNNs) have become the dominant architecture for image classification tasks due to their inherent ability to automatically learn hierarchical features from raw pixel data. At their core, CNNs are build up by a sequence of convolutional-, pooling- and fully connected layers to extract hierarchical features, and funneling the information, typically into the \(N\) classes defined by the training data. That is, in case of classification tasks. 
+Convolutional Neural Networks (CNNs) have become the dominant architecture for image classification tasks due to their inherent ability to automatically learn hierarchical features from raw pixel data. At their core, CNNs are build up by a sequence of convolutional-, pooling- and fully connected layers to extract hierarchical features, and funneling the information, typically into the \(N\) classes defined by the training data. That is, in case of classification tasks.
 
 Convolutional layers employ learnable filters to detect local patterns in the two-dimensional information. The two-dimensionality is inherent to image data. Pooling layers reduce the spatial dimensions, translating incoming data to a lower-dimensional space. Fully connected layers then map the extracted information into class probabilities, utilizing the \textit{Softmax} activation function. The afore mentioned layers are discussed in greater detail, in the following subsections.
 
@@ -24,7 +24,7 @@ The stride determines how far the filter moves after each operation. For a strid
 \[
 \lfloor\left( \frac{r - a + s}{s} \right) \times \left( \frac{c - b + s}{s} \right)\rfloor
 \]
-where $\lfloor \cdot \rfloor$ denotes the floor function, which ensures that the output size is an integer. An image of this process can be found in Figure \ref{fig:maucher_convolutional_filtering}, in the Appendix. This image shows an input of size $[10 \times 10]$ and a filter of size $[3 \times 3]$. With a stride of $s = 1$, the resulting layer has a size of $[8 \times 8]$ (computed as $\left(10 - 3 + 1\right) \times \left(10 - 3 + 1\right)$). 
+where $\lfloor \cdot \rfloor$ denotes the floor function, which ensures that the output size is an integer. An image of this process can be found in Figure \ref{fig:maucher_convolutional_filtering}, in the Appendix. This image shows an input of size $[10 \times 10]$ and a filter of size $[3 \times 3]$. With a stride of $s = 1$, the resulting layer has a size of $[8 \times 8]$ (computed as $\left(10 - 3 + 1\right) \times \left(10 - 3 + 1\right)$).
 
 The stride of the filter can also be greater than $1$. Additionally, there is the option to apply padding to the image. There are different ways to implement padding. When padding of size $p$ is applied, the output size for a square input and filter is calculated as follows:
 \[
@@ -42,7 +42,7 @@ To give an example, starting with an input of size $[32 \times 32 \times 10]$, a
 \vspace{1em}
 
 \textbf{Fully-Connected Layers}\label{theoretical_classification_fully_connected_layers}
-Fully-Connected (FC), also called \textit{Dense} layer, typically computes the scores for the respective classes. In the case of ten classes, the result is a volume of size $[1 \times 1 \times 10]$\footnote{Typically, the output from the layer before the FC one is \textit{flattened} into a one-dimensional vector, preserving all information but removing spatial structure. For example, a $[2 \times 2]$ layer would result in a vector of size $[1 \times 4]$.}. By this stage, all spatial information has been transformed, leaving a quasi-one-dimensional vector. 
+Fully-Connected (FC), also called \textit{Dense} layer, typically computes the scores for the respective classes. In the case of ten classes, the result is a volume of size $[1 \times 1 \times 10]$\footnote{Typically, the output from the layer before the FC one is \textit{flattened} into a one-dimensional vector, preserving all information but removing spatial structure. For example, a $[2 \times 2]$ layer would result in a vector of size $[1 \times 4]$.}. By this stage, all spatial information has been transformed, leaving a quasi-one-dimensional vector.
 
 In a fully connected (FC) layer, each input is connected to each output, meaning every neuron in the previous layer is linked to every neuron in the FC layer. The output is computed as the weighted sum of all inputs, followed by an activation function, leading to the final classification scores that represent the likelihood of the input belonging to each class. It is not unusual to stack FC layers progressively to refine these scores. The spatial dimensions are collapsed into a single vector of class scores, which are then used for classification. The class probabilities are obtained by applying the Soft-Max Function \ref{theoretical_activations_softmax}.
 
@@ -67,7 +67,7 @@ With their introduction in \textit{Batch Normalization: Accelerating Deep Networ
         x \quad \text{otherwise}
         \end{cases}
     \end{equation}
-    A variant of ReLU, Leaky ReLU allows small negative values to flow through, addressing the \textit{dying ReLU} problem where neurons can become inactive \cite{Lu_Lu_2020}. 
+    A variant of ReLU, Leaky ReLU allows small negative values to flow through, addressing the \textit{dying ReLU} problem where neurons can become inactive \cite{Lu_Lu_2020}.
 
     \item \textbf{Sigmoid (Logistic)}:  \label{theoretical_activations_sigmoid}
     \begin{equation}
@@ -100,9 +100,9 @@ With their introduction in \textit{Batch Normalization: Accelerating Deep Networ
 The classification models, on which the data augmentation is tested, are simple CNN classifiers consisting of the described layers. A dedicated classifier architecture is created for each dataset: MNIST and Fashion-MNIST (\ref{used_datasets}). The main difference between these architectures is the number of blocks, made of two-dimensional \hyperref[theoretical_classification_conv_layers]{convolutional}, \hyperref[theoretical_classification_batchnorm_layers]{batchnorm} and \hyperref[theoretical_classification_pooling_layers]{pooling} layers. All models use the \hyperref[theoretical_activations_relu]{ReLU} function for activation of the convolutional layers and the \hyperref[theoretical_activations_softmax]{Softmax} function for the activation at their last dense layer, resulting in probability distribution over the space of classes. More on the specific model architectures and used metrics for evaluation can be found in chapter \ref{body_prelim}.
 
 \subsubsection{Classification Model Performance Metrics} \label{theory_classification_performanc_metrics}
-For the assessment of classification performance, several standard metrics are commonly used. \textit{Accuracy} gives a measure for the overall proportion of correctly predicted instances, but can be misleading in imbalanced datasets. \textit{Precision} quantifies the proportion of correctly predicted positive instances among all predicted instances, whereas \textit{recall} \footnote{Recall is also known as sensitivity.} captures the proportion of correctly predicted positives out of all actual positive samples. 
+For the assessment of classification performance, several standard metrics are commonly used. \textit{Accuracy} gives a measure for the overall proportion of correctly predicted instances, but can be misleading in imbalanced datasets. \textit{Precision} quantifies the proportion of correctly predicted positive instances among all predicted instances, whereas \textit{recall} \footnote{Recall is also known as sensitivity.} captures the proportion of correctly predicted positives out of all actual positive samples.
 
-The \textit{F1 score} is the harmonic mean of precision and recall and serves as a balanced metric when both false positives and false negative are of concern. This is especially useful for imbalanced datasets. Mathematically, the formulation of the F1 score is as follows: 
+The \textit{F1 score} is the harmonic mean of precision and recall and serves as a balanced metric when both false positives and false negative are of concern. This is especially useful for imbalanced datasets. Mathematically, the formulation of the F1 score is as follows:
 
 \begin{equation}
     \mathrm{Precision} = \frac{TP}{TP + FP}, \quad \mathrm{Recall} = \frac{TP}{TP + FN}
@@ -110,7 +110,7 @@ The \textit{F1 score} is the harmonic mean of precision and recall and serves as
 
 \begin{equation}
     \mathrm{F1} = 2 \cdot \frac{\mathrm{Precision} \cdot \mathrm{Recall}}{\mathrm{Precision} + \mathrm{Recall}}
-\end{equation}    
+\end{equation}
 
 Even when working with stratified data, where class distributions are balanced, the F1 score remains valuable by providing a single, informative measure that accounts for the trade-off between precision and recall. Due to its sensitivity to both types of classification errors, the F1 score is used as the primary evaluation metric throughout this work, in the context of classifications.
 
@@ -126,7 +126,7 @@ Even when working with stratified data, where class distributions are balanced, 
 In this chapter, data augmentation (DA) techniques in the context of images are discussed in greater detail, starting with traditional augmentations (e.g., rotating or cropping an image) and ending with generative augmentations, in which generative models are used to expand the training data of subsequent classification models.
 
 \subsubsection[Traditional Data Augmentation - TDA]{Traditional Data Augmentation}\label{theoretical_tda}
-The need for data augmentation to make classification algorithms more resilient has existed for decades. Early papers mentioning the augmentation of data for classification tasks date back to the 1960s \cite{Nagy1966} (1966). For the context of deep learning, however, the augmentation of images was popularized by Krizhevsky et al. in 2012 \cite{Krizhevsky2012traditionaldataaugmentation}. This paper introduced the \textit{AlexNet}, a deep CNN used to classify images from the \textit{ImageNet} dataset \cite{ImageNetDataset5206848}, containing $1 000$ classes. 
+The need for data augmentation to make classification algorithms more resilient has existed for decades. Early papers mentioning the augmentation of data for classification tasks date back to the 1960s \cite{Nagy1966} (1966). For the context of deep learning, however, the augmentation of images was popularized by Krizhevsky et al. in 2012 \cite{Krizhevsky2012traditionaldataaugmentation}. This paper introduced the \textit{AlexNet}, a deep CNN used to classify images from the \textit{ImageNet} dataset \cite{ImageNetDataset5206848}, containing $1 000$ classes.
 
 %This paper also referenced the earlier work of Simard et al. from 2003 \cite{Simard2003bestpracticesforcnns}.
 
@@ -331,7 +331,7 @@ MADGAN is proposed as a generalized framework for the GAN architecture \cite{gho
 As afore mentioned, the MADGAN architecture employs multiple generators and one discriminator. The goal for the \(K\) generators is to generate samples from different high probability regions of the data \(P_{data}\). In order to guide the generators into their respective direction, the objective of the discriminator has been modified. The objective no longer only has to differentiate between real and fake images, but also identify the generator that produced a given fake sample. Intuitively, the discriminator thereby forces the generators into mostly disjoint regions within the real data distribution. Inspired by the formulation for the discriminator in the paper \textit{Improved Techniques for Training GANs} \cite{salimans2016improvedtechniquestraininggans}, their discriminator model produces a \((k+1)\)-dimensional output vector using the \textit{Softmax} activation function (\ref{theoretical_activations_softmax}), where \(k\) is the number of generators. The output at index \(k+1\) represents the probability that the given sample belongs to the real data distribution \(P_{\text{data}}\), while the entries at indices \(j \in \{1, \ldots, k\}\) represent the probabilities that the sample originates from each of the \(k\) generators. The above Figure \ref{fig:figure_madgan_arch} shows a visualization of the architecture. Thus, when learning the discriminators parameters \(\theta_d\), the cross-entropy between the softmax outputs and the \textit{Dirac delta distribution} (Ddd) \(\delta \in \{0, 1\}^{k+1}\) is optimized. Here, \(\delta \in \{0,1\}^{k+1}\) is a one-hot vector defined as:
 
 \[
-\delta(i) = 
+\delta(i) =
 \begin{cases}
 1, & \text{if the sample originates from the } i\text{-th generator, at positions:} \quad i \in \{1, \ldots, k\} \\
 1, & \text{if the sample originates from } P_{\text{data}} \text{ at positions:} \quad i = k+1 \\
@@ -344,7 +344,7 @@ Following this definition, the Ddd \(\delta\) can be understood as a one-hot enc
 \end{equation}.
 
 \noindent
-\(H(...)\) here represents the negative cross-entropy function. Important to point out here is that, \textit{Intuitively, in order to correctly identify the generator that produced a given fake sample, the discriminator must learn to push different generators towards different identifiable modes.} \cite{ghosh2018madgan}, page 4. Figure \ref{fig:figure_madgan_diverse_mode_push} shows a visualization of the generators being pushed to different modes. This is explicitly encouraged in the discriminators objective function. The objective for the generators however, remains semantically the same as in the vanilla GAN \ref{theory_gan_vanilla_formula}. The difference here is that the objective function is generalized with an indexing \(i\) for the number of generators. That is, for the \(i\)-th generator, the objective function is to minimize:
+\(H(...)\) here represents the negative cross-entropy function. Important to point out here is that, \textit{Intuitively, in order to correctly identify the generator that produced a given fake sample, the discriminator must learn to push different generators towards different identifiable modes.} \cite{ghosh2018madgan}, page 4. Figure \ref{fig:figure_madgan_diverse_mode_push} shows a visualization of the generators being pushed to different modes. This is explicitly encouraged in the discriminators objective function. The objective for the generators, however, remains semantically the same as in the vanilla GAN \ref{theory_gan_vanilla_formula}. The difference here is that the objective function is generalized with an indexing \(i\) for the number of generators. That is, for the \(i\)-th generator, the objective function is to minimize:
 
 \begin{equation}
     \mathcal{L}_{Gen_i} = \mathbf{E}_{x \sim P_{data}} [ \log D(X; \theta_d) ] + \mathbf{E}_{z \sim P_{z}} \log (1-D_{k+1}(G_i(z; \theta_{g}^{i}); \theta_x))
@@ -413,7 +413,7 @@ The architectural changes can be summarized into three major changes applied to 
 \newcommand{\definediscriminator}{\texttt{define\_discriminator}}
 % Define lambda symbol for diversity weight
 \newcommand{\lambdadiv}{\lambda_{\text{div}}}
-\subsection[Adapting MADGAN for Conditional Generation with Explicit Diversity - cMADGAN]{Adapting MADGAN for Conditional Generation with Explicit Diversity}
+\subsection[Adapting MADGAN for Conditional Generation with Diversity - cMADGAN]{Adapting MADGAN for Conditional Generation with Explicit Diversity}
 \label{theoretical_cmadgan}
 
 The final goal of this research includes exploring methods for generating diverse samples in the mentioned datasets \ref{used_datasets} to be used for data augmentations. While the multi-agent framework by Ghosh et al. presents a potential approach, experiments revealed significant challenges in achieving stable training and satisfactory results in terms of image quality with the original method. Especially the CIFAR-10 dataset proved to be challenging, which is the only colored dataset used.
@@ -475,7 +475,7 @@ The cMADGAN architecture makes specific adjustments compared to both standard co
 
 \begin{itemize}
     \item \textbf{Multiple Generators:}
-    As the original MADGAN framework proposed, the cMADGAN employs $K$ distinct generator networks. As suggested in the original paper, the generators do not share their weights, due to the selection of datasets (cf. section 4.1 in \cite{ghosh2018madgan}). Each generator takes both the latent vector $z$ and the condition $c$ as input.
+    As the original MADGAN framework proposed, the \\cMADGAN employs $K$ distinct generator networks. As suggested in the original paper, the generators do not share their weights, due to the selection of datasets (cf. section 4.1 in \cite{ghosh2018madgan}). Each generator takes both the latent vector $z$ and the condition $c$ as input.
     \item \textbf{Conditional Discriminator:}
     Unlike the original MADGAN discriminator, the task of the cMADGAN discriminator performs the standard conditional GAN task \ref{theory_cgan_architecture}. $D$ receives an image $x$ (real or fake) and its corresponding condition $c$, and outputs a single probability indicating whether the image is real given the condition.
     \item \textbf{Conditioning Mechanism:} Class conditioning $c$ is integrated into both generator and discriminator networks.
@@ -515,7 +515,7 @@ Mathematically, the Inception Score is computed over a set of generated images \
 \begin{equation}
 IS = \exp \left( \mathbb{E}_{x \sim p_g} \left[ D_{\text{KL}}(p(y|x) \| p(y)) \right] \right)
 \end{equation}
-where \( D_{\text{KL}} \) denotes the Kullback-Leibler divergence between the conditional class distribution \(p(y|x)\) for a specific image \(x\) and the marginal class distribution \(p(y)\) estimated over all generated images. 
+where \( D_{\text{KL}} \) denotes the Kullback-Leibler divergence between the conditional class distribution \(p(y|x)\) for a specific image \(x\) and the marginal class distribution \(p(y)\) estimated over all generated images.
 
 \noindent\textbf{Interpretation}:
 A higher IS indicates that the model generates images that are confidently classified into diverse classes.
@@ -573,6 +573,8 @@ Both IS and FID commonly rely on the InceptionV3 model~\cite{szegedy2016rethinki
     \item Uses fixed, non-trainable weights during evaluation, ensuring standardization and comparability of scores across different studies, provided the same implementation is used.
     \item The choice of layer for feature extraction (primarily for FID) impacts sensitivity; earlier layers capture lower-level features like texture, while later layers capture more abstract semantic information. The \textit{pool3} layer is commonly chosen as a balance.
 \end{itemize}
+
+\newpage
 
 \noindent\textbf{Limitations of using InceptionV3}:\label{theoretical_inception_model_limitaitions}
 \begin{itemize}
