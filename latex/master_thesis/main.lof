@@ -1,4 +1,4 @@
-\babel@toc {english}{}\relax 
+\babel@toc {english}{}\relax
 \contentsline {figure}{\numberline {1}{\ignorespaces Exemplary use of traditional augmentation techniques from the categories \textit {geometric} (first row), \textit {photometric} (second row), and \textit {noise-corruption} (third row). The image shown is an image from the \hyperref [used_datasets]{CIFAR10 dataset}, assigned to the class \textit {airplane}.}}{18}{figure.caption.14}%
 \contentsline {figure}{\numberline {2}{\ignorespaces Visualization of the vanilla GAN architecture. The figure shows the noise vector flowing into the generator. The generators output, as well as the real sample from \(P_{data}\), flow into the discriminator.}}{19}{figure.caption.15}%
 \contentsline {figure}{\numberline {3}{\ignorespaces Visualization of the MADGAN architecture. The figure shows the \(k+1\) outputs of the discriminator and the \(k\) generators, with tied weights in the middle of the network.}}{24}{figure.caption.26}%
@@ -20,4 +20,4 @@
 \contentsline {figure}{\numberline {31}{\ignorespaces }}{17}{figure.caption.126}%
 \contentsline {figure}{\numberline {32}{\ignorespaces A histogram chart depicting the class distribution of the generated data with the DCGAN generator trained on the \textbf {MNIST} dataset. The labels result from an auxiliary classifier as mentioned in \ref {body_experiment_labeling_data}.}}{32}{figure.caption.184}%
 \contentsline {figure}{\numberline {33}{\ignorespaces Depiction of the concept of convolutional filtering \cite {Maucher2025}.}}{33}{figure.caption.185}%
-\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file
