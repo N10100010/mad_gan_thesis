@@ -1,4 +1,4 @@
-\babel@toc {english}{}\relax
+\babel@toc {english}{}\relax 
 \contentsline {section}{List of Figures}{5}{section*.3}%
 \contentsline {section}{List of Tables}{6}{section*.4}%
 \contentsline {section}{List of Abbreviations}{7}{section*.5}%
@@ -102,4 +102,4 @@
 \contentsline {subsubsection}{\numberline {8.4.2}Convolutional Filtering}{32}{subsubsection.8.4.2}%
 \contentsline {subsubsection}{\numberline {8.4.3}Experimental Data and Results from Ghosh et al.}{32}{subsubsection.8.4.3}%
 \contentsline {section}{Declaration of Oath}{34}{table.caption.187}%
-\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

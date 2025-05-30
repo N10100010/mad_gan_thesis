@@ -1,4 +1,4 @@
-\babel@toc {english}{}\relax
+\babel@toc {english}{}\relax 
 \contentsline {table}{\numberline {1}{\ignorespaces Description of the used datasets for benchmarking.}}{34}{table.caption.32}%
 \contentsline {table}{\numberline {2}{\ignorespaces FID and IS results for GAN models on MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches. Baseline created from training datasets. Baseline created using images from the training set.}}{40}{table.caption.35}%
 \contentsline {table}{\numberline {3}{\ignorespaces FID and IS results for GAN models on Fashion-MNIST, comparing single-generator (DCGAN, cGAN) and multi-generator (MADGAN, cMADGAN; K=3-10) approaches. Baseline created using images from the training set.}}{41}{table.caption.36}%
@@ -35,4 +35,4 @@
 \contentsline {table}{\numberline {34}{\ignorespaces FID and Inception Score (Mean $\pm $ Std. Dev) for a single Conditional GAN generator ($N=1$) trained on the \textbf {MNIST} dataset. Baseline scores are included for reference.}}{9}{table.caption.94}%
 \contentsline {table}{\numberline {35}{\ignorespaces FID and Inception Score (Mean $\pm $ Std. Dev) for a single Conditional GAN generator ($N=1$) trained on the \textbf {Fashion-MNIST} dataset. Baseline scores are included for reference.}}{9}{table.caption.95}%
 \contentsline {table}{\numberline {36}{\ignorespaces Results from Ghosh et al. \cite {ghosh2018madgan}. Original caption: \textit {Synthetic experiment with different number of MAD-GAN generators as Figure 5.}}}{32}{table.caption.186}%
-\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
