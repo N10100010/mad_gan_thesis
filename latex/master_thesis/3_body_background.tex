@@ -416,9 +416,9 @@ The architectural changes can be summarized into three major changes applied to 
 \subsection[Adapting MADGAN for Conditional Generation with Diversity - cMADGAN]{Adapting MADGAN for Conditional Generation with Explicit Diversity}
 \label{theoretical_cmadgan}
 
-The final goal of this research includes exploring methods for generating diverse samples in the mentioned datasets \ref{used_datasets} to be used for data augmentations. While the multi-agent framework by Ghosh et al. presents a potential approach, experiments revealed significant challenges in achieving stable training and satisfactory results in terms of image quality with the original method. Especially the CIFAR-10 dataset proved to be challenging, which is the only colored dataset used.
+The ultimate goal of this research includes exploring methods for generating diverse samples in the mentioned datasets \ref{used_datasets} to be used for data augmentations. While the multi-agent framework by Ghosh et al. presents a potential approach, experiments revealed significant challenges in achieving stable training and satisfactory results in terms of image quality with the original method. Especially the CIFAR-10 dataset proved to be challenging, which is the only colored dataset used (\ref{setup_cifar10_scope}).
 
-Consequently, an alternative framework, termed Conditional Multi-Agent Diverse GAN (cMADGAN), was conceptualized. The adjustment aims to retain the multi-generator diversity principle while simplifying the task of the discriminator. The discriminator model is rolled back to its original objective to differentiate between real and fake images. However, initial experiments indicated that this approach also faced convergence difficulties when applied to the original CIFAR-10 dataset. This specific is explained in more detail in the experiments section \ref{setup_cifar10_scope}.
+Consequently, an alternative framework, termed Conditional Multi-Agent Diverse GAN (cMADGAN), was conceptualized. The adjustment aims to retain the multi-generator diversity principle while simplifying the task of the discriminator. The discriminator model is rolled back to its original objective to differentiate between real and fake images. However, initial experiments indicated that this approach also faced convergence difficulties when applied to the CIFAR-10 dataset. This specific is explained in more detail in the experiments section \ref{setup_cifar10_scope}.
 
 The following sections detail the cMADGAN framework as implemented. This approach utilizes multiple generators ($G_1, \dots, G_K$), a single conditional discriminator ($D$) performing standard real/fake classification, and incorporates an explicit diversity loss between generator outputs alongside the adversarial objective.
 
@@ -455,15 +455,15 @@ The components are defined as:
     \label{eq:cmadgan_loss_g_adv}
     \mathcal{L}_{\text{adv}} = - \sum_{i=1}^{K} \mathbb{E}_{z \sim p(z), c \sim p(c)} [\log D(G_i(z, c), c)]
     \end{equation}
-    \item \textbf{Diversity Loss ($\mathcal{L}_{\text{div}}$):} This term actively pushes the outputs of different generators apart. The goal during optimization ($\min \mathcal{L}_G$) is to maximize diversity. This is achieved by minimizing the negative cosine similarity. Cosine similarity is defined as:
+    \item \textbf{Diversity Loss ($\mathcal{L}_{\text{div}}$):} This term actively pushes the outputs of different generators apart. The goal during optimization ($\min \mathcal{L}_G$) is to maximize diversity. This is achieved because minimizing the defined \(\mathcal{L}_{\text{div}}\) (positive cosine similarity) makes the outputs more dissimilar. Cosine similarity is defined as:
     \begin{equation}
     \label{eq:cmadgan_cossim}
     \text{CosSim}(a, b) = \frac{\text{vec}(a) \cdot \text{vec}(b)}{\|\text{vec}(a)\|_2 \|\text{vec}(b)\|_2}
     \end{equation}
-    where $\text{vec}(\cdot)$ denotes flattening the image tensor into a vector and $\|\cdot\|_2$ represents the \textit{L2 norm}, also known as the Euclidean norm of a vector. The diversity loss is the average pairwise negative cosine similarity, which the optimizer seeks to minimize:
+    where $\text{vec}(\cdot)$ denotes flattening the image tensor into a vector and $\|\cdot\|_2$ represents the \textit{L2 norm}, also known as the Euclidean norm of a vector. The diversity loss is the average pairwise cosine similarity, which the optimizer seeks to minimize:
     \begin{equation}
     \label{eq:cmadgan_loss_g_div}
-    \mathcal{L}_{\text{div}} = -\frac{1}{N_p} \sum_{i=1}^{K} \sum_{j=i+1}^{K} \mathbb{E}_{z \sim p(z), c \sim p(c)} [\text{CosSim}(G_i(z, c), G_j(z, c))]
+    \mathcal{L}_{\text{div}} = \frac{1}{N_p} \sum_{i=1}^{K} \sum_{j=i+1}^{K} \mathbb{E}_{z \sim p(z), c \sim p(c)} [\text{CosSim}(G_i(z, c), G_j(z, c))]
     \end{equation}
     where $N_p = K(K-1)/2$ is the number of unique generator pairs. Minimizing the combined $\mathcal{L}_G$ in Eq. \ref{eq:cmadgan_loss_g} thus encourages fooling the discriminator while explicitly promoting diversity between generator outputs.
 \end{itemize}
