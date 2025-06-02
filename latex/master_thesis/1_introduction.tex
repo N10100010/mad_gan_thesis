@@ -13,14 +13,14 @@ The idea of using GANs for \textit{Generative Data Augmentation} (GDA) has alrea
     \item Failure to Converge
     \item Vanishing Gradients \& Unstable Gradients
     \item Imbalance between Generator- and Discriminator Model
-\end{itemize} 
+\end{itemize}
 
 This thesis investigates the potential of using GANs --- specifically \textit{Multi-Agent Diverse Generative Adversarial Networks} (MADGANs) \cite{ghosh2018madgan} --- for Generative Data Augmentation. MADGANs aim to aid the first two of the afore mentioned in particular: Mode Collapse and Loss of inter-class Diversity. They, along other modifications, \textit{propose to modify the objective function of the discriminator, in which, along with finding the real and the fake samples, the discriminator also has to correctly predict the generator that generated the given fake sample.} \cite{ghosh2018madgan}. The goal of this adjustment of the discriminator is, that the discriminator has to push the generators towards distinct identifiable modes. While various strategies have been proposed to address mode collapse and inter-class diversity, MADGANs explicitly enforce mode separation by the introduction of multiple generators and the adjusted discriminator objective. This makes them particularly promising for GDA, as diverse samples and clear distinction of modes is crucial for training robust classifiers. In their paper, they experimentally show, that their architectural adjustment of GANs is generally capable of providing assistance for the first two of the mentioned problems.
 
 The experiments in this work are structured into three major parts.
 
 \paragraph{Set 1: Training and Analysis of GANs}  \label{thesis_goal_1}
-The first set trains multiple variations of GANs, explicitly \textit{Deep Convolutional GANs} (DCGANs), \textit{Conditional GANs} (cGANs) and the afore introduced MADGANs, in addition to an adapted conditionalized version called \textit{Conditional Multi-Agent Diverse GANs} (cMADGANs) \ref{theoretical_cmadgan}. 
+The first set trains multiple variations of GANs, explicitly \textit{Deep Convolutional GANs} (DCGANs), \textit{Conditional GANs} (cGANs) and the afore introduced MADGANs, in addition to an adapted conditionalized version called \textit{Conditional Multi-Agent Diverse GANs} (cMADGANs) \ref{theoretical_cmadgan}.
 
 \paragraph{Set 2: Generating and Classifying Unlabeled Images}  \label{thesis_goal_2}
 The second set uses the afore trained generative models to create images. Specifically, the goal for this stage is to generate at least $6 000$ images per class in the respective datasets. Images without labels, originating from MADGANs and DCGANs, will be classified using auxiliary classifiers trained with traditional data augmentation techniques. When all samples are classified, the quality of the resulting images is scored by the \textit{Fréchet Inception Distance} (FID) \cite{heusel2018ganstrainedtimescaleupdate} and the \textit{Inception Score} (IS) \cite{salimans2016improvedtechniquestraininggans}.
@@ -38,19 +38,26 @@ The third and most important set of experiments trains classifiers using the gen
 
 
 \paragraph{Aim of the Thesis}\label{aim_of_the_thesis}
-This thesis evaluates the effectiveness of Multi-Agent Diverse GANs (MADGAN) for Generative Data Augmentation. First, the quality of generated samples is compared to those produced by a Deep Convolutional- and Conditional GAN. Further, a conditional adaptation of the MADGAN architecture, called cMADGAN, is introduced and tested alongside already established methods. The quality of the resulting images is then evaluated utilizing the \textit{InceptionV3} model to calculate the IS and FID of those images. Next, the sets of generated images are used to replace and expand training datasets for stratified classifiers. The performances of the different classifiers are assessed by the F1 score. These sets of experiments compare against traditional augmentations techniques, such as flipping, rotating and adding noise to the images, which serve as a minimum baseline. 
 
-\noindent
-With this experimental succession, this thesis studies the effectiveness of the MADGAN-based data augmentation for subsequent classifiers, together with its conditionalized counterpart and comparing their performances against established traditional and generative augmentation techniques. 
+The goal of this thesis is to explore how effective Multi-Agent GAN architectures, like MADGAN and a novel conditional adaptation developed herein, termed cMADGAN, can be used for Generative Data Augmentation (GDA). Specifically, it sets out to:
 
-Chapter two \ref{related_work} describes the relevant connected works of researchers relevant to this thesis. This chapter reviews how other research conducted experiments in the context of data augmentation, may it be generative or traditional.  
+\begin{enumerate}
+    \item Compare the generative quality of MADGAN and cMADGAN --- measured by the aforementioned Fréchet Inception Distance (FID) and Inception Score (IS) --- with more basic GAN variants like DCGANs and cGANs.
+    \item Evaluate the effectiveness of the multi-generator models in practice by analyzing their impact on classifier performance, particularly F1 scores on the validation sets, within two distinct GDA scenarios: replacing portions of the training set with synthetic images, and expanding the training set by adding synthetic images.
+    \item Analyze how MADGAN and cMADGAN perform when their GDA results are compared against those from both traditional data augmentation (TDA) and established GAN baselines like DCGAN and cGAN, to delineate their respective advantages and limitations.
+\end{enumerate}
+\noindent Through these investigations, this thesis aims to provide insights into the challenges and opportunities associated with employing multi-generator GANs for augmenting datasets such as MNIST and Fashion-MNIST. The exact research questions can be found in Chapter \ref{exp_results_research_questions}.
 
-The third chapter \ref{body_theoretical_background} gives an introduction to the theoretical background for the architectures and differences between them. First, a brief overview for classification models and metrics to judge their performance is given. This is followed by the background for data augmentation and different forms augmentations can enhance training data (\ref{theoretical_classification}, \ref{theoretical_tda}). Next, Generative Adversarial Networks and the specific GAN variants utilized in this thesis are presented. Starting with their vanilla version, and problems they can face during training, followed by the adaptations experimented with (\ref{theoretical_gan}, \ref{theoretical_dcgan}, \ref{theoretical_cgan}, \ref{theoretical_madgan}, \ref{theoretical_cmadgan}). This is followed by the insights on how the image scoring works, applied here. 
+\newpage
 
-Chapter four, \textit{Experiments Setup} presents preliminary remarks essential for understanding the experimental work. It outlines scope limitations defined for this thesis (\ref{body_experiments_setup}) and details the consistent experimental workflow applied (\ref{body_experiment_succession}). 
+Chapter two \ref{related_work} describes the relevant connected works of researchers relevant to this thesis. This chapter reviews how other research conducted experiments in the context of data augmentation, may it be generative or traditional.
 
-The experimental results are presented in chapter five (\ref{body_experiments_results}). Here, the research questions are listed (\ref{exp_results_research_questions}) and answered, one after another \ref{exp_results_questions_answers}. 
+The third chapter \ref{body_theoretical_background} gives an introduction to the theoretical background for the architectures and differences between them. First, a brief overview for classification models and metrics to judge their performance is given. This is followed by the background for data augmentation and different forms augmentations can enhance training data (\ref{theoretical_classification}, \ref{theoretical_tda}). Next, Generative Adversarial Networks and the specific GAN variants utilized in this thesis are presented. Starting with their vanilla version, and problems they can face during training, followed by the adaptations experimented with (\ref{theoretical_gan}, \ref{theoretical_dcgan}, \ref{theoretical_cgan}, \ref{theoretical_madgan}, \ref{theoretical_cmadgan}). This is followed by the insights on how the image scoring works, applied here.
 
-The closing three chapters are general remarks (\ref{chapter_remarks}), the outlook (\ref{outlook}) and the conclusion. The remarks mention further experiments, that can be conducted, given trained models and generated images, thereby raising interesting questions that remain unanswered in this work. In the Outlook (\ref{outlook}), further directions for research in the context of generative data augmentations are mentioned. Ultimately, the conclusion (\ref{conclusion}) closes the thesis, summarizing the experiments. 
+Chapter four, \textit{Experiments Setup} presents preliminary remarks essential for understanding the experimental work. It outlines scope limitations defined for this thesis (\ref{body_experiments_setup}) and details the consistent experimental workflow applied (\ref{body_experiment_succession}).
+
+The experimental results are presented in chapter five (\ref{body_experiments_results}). Here, the research questions are listed (\ref{exp_results_research_questions}) and answered, one after another \ref{exp_results_questions_answers}.
+
+The closing three chapters are general remarks (\ref{chapter_remarks}), the outlook (\ref{outlook}) and the conclusion. The remarks mention further experiments, that can be conducted, given trained models and generated images, thereby raising interesting questions that remain unanswered in this work. In the Outlook (\ref{outlook}), further directions for research in the context of generative data augmentations are mentioned. Ultimately, the conclusion (\ref{conclusion}) closes the thesis, summarizing the experiments.
 
 \newpage
