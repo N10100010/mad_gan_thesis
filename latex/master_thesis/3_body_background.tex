@@ -180,7 +180,7 @@ Differing from the previously mentioned TDA \ref{theoretical_tda}, generative da
 The goal is to train a generative model \( G \) that produces instances \( X_1 \), for example, from a noise vector \( z \)\footnote{A noise vector may serve as input for a Generative Adversarial Network. See: \ref{theoretical_gan}}, such that the distribution of the generated data approximates the true distribution \( P(X) \) of the original dataset. In this context, \( G \) can be viewed as a function:
 
 \[
-G: z \mapsto X_1, \quad X_1 \sim P_G(X_{fake}) \approx P(X),
+G: z \mapsto X_{fake}, \quad X_{fake} \sim P_G(X_{fake}) \approx P(X),
 \]
 
 \noindent
