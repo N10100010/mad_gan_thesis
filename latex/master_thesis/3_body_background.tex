@@ -340,7 +340,7 @@ As afore mentioned, the MADGAN architecture employs multiple generators and one 
 \end{cases}
 \]
 Since one of the above cases must be fulfilled, every other index in the resulting vector must be $0$. This means exactly one entry of \(\delta\) is 1, indicating the source of the sample.
-Following this definition, the Ddd \(\delta\) can be understood as a one-hot encoding indicating whether a given sample is real of, and if not, from which generator it originates\footnote{It is important to point out, that the Dirac delta distribution is actually continuous. Their usage of the Ddd reminds of the Kronecker delta function, which \( \delta(i,j) = 1 \text{ for } i=j; 0 \text{ for } i \ne j \).}. The objective function for the optimization of \(\theta_d\), with \(\theta_g\) frozen is therefore:
+Following this definition, the Ddd \(\delta\) can be understood as a one-hot encoding indicating whether a given sample is real, and if not, from which generator it originates\footnote{It is important to point out, that the Dirac delta distribution is actually continuous. Their usage of the Ddd reminds of the Kronecker delta function, which \( \delta(i,j) = 1 \text{ for } i=j; 0 \text{ for } i \ne j \).}. The objective function for the optimization of \(\theta_d\), with \(\theta_g\) frozen is therefore:
 \begin{equation}
     \max\limits_{\theta_d}\mathbb{E}_{x \sim p} H(\delta, D(x; \theta_d))
 \end{equation}.
