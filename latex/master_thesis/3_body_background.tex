@@ -516,7 +516,7 @@ The Inception Score (IS) \cite{salimans2016improvedtechniquestraininggans} is on
 \noindent
 Mathematically, the Inception Score is computed over a set of generated images \(x\) drawn from the generator's distribution \(p_g\):
 \begin{equation}
-IS = \exp \left( \mathbb{E}_{x \sim p_g} \left[ D_{\text{KL}}(p(y|x) \| p(y)) \right] \right)
+IS = \exp \left( \mathbb{E}_{x \sim p_g} \left[ D_{KL} \left( p(y|x) \| p(y) \right) \right] \right)
 \end{equation}
 where \( D_{\text{KL}} \) denotes the Kullback-Leibler divergence between the conditional class distribution \(p(y|x)\) for a specific image \(x\) and the marginal class distribution \(p(y)\) estimated over all generated images.
 
